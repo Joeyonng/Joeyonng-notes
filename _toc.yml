@@ -1,0 +1,52 @@
+format: jb-book
+parts:
+- caption: Unsupervised Learning
+  chapters:
+  - file: Unsupervised Learning/K-means
+    title: K-means
+  - file: Unsupervised Learning/Principle Component Analysis (PCA)
+    title: Principle Component Analysis (PCA)
+- caption: Supervised Learning
+  chapters:
+  - file: Supervised Learning/Gradient Boosting (GB)
+    title: Gradient Boosting (GB)
+  - file: Supervised Learning/Naive Bayes Classifier (NBC)
+    title: Naive Bayes Classifier (NBC)
+  - file: Supervised Learning/Random Forest (RF)
+    title: Random Forest (RF)
+  - file: Supervised Learning/Adaboost (ADA)
+    title: Adaboost (ADA)
+  - file: Supervised Learning/Support Vector Machine (SVM)
+    title: Support Vector Machine (SVM)
+  - file: Supervised Learning/Logistic Regression (LR)
+    title: Logistic Regression (LR)
+  - file: Supervised Learning/Decision Tree (DT)
+    title: Decision Tree (DT)
+  - file: Supervised Learning/Generalized Additive (Linear) Models (GAM)
+    title: Generalized Additive (Linear) Models (GAM)
+- caption: Notes
+  chapters:
+  - file: Notes/SSGD
+    title: SSGD
+  - file: Notes/RIPPER
+    title: RIPPER
+  - file: Notes/CG Decision Rules
+    title: CG Decision Rules
+  - file: Notes/SGD Warm Restarts
+    title: SGD Warm Restarts
+  - file: Notes/L0 Regularization
+    title: L0 Regularization
+  - file: Notes/Quantization Survey
+    title: Quantization Survey
+  - file: Notes/MobileNets
+    title: MobileNets
+  - file: Notes/Birkhoff+
+    title: Birkhoff+
+- caption: Jupyter book Tests
+  chapters:
+  - file: Jupyter book Tests/sections/index
+    sections:
+    - file: Jupyter book Tests/sections/section1
+      title: section1
+    title: sections
+root: root

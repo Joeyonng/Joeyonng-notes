@@ -1,0 +1,15 @@
+/* 
+Make content span whole page. 
+*/
+.container-xl {
+    max-width: none; 
+}
+
+/* 
+Fix the bug that the footer no longer left aligned after making content span
+the whole page.
+*/
+footer>div.container {
+    padding-right: 0; 
+    margin: 0;
+}
