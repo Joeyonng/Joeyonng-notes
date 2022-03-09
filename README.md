@@ -1,4 +1,4 @@
-# Joeyonng-notes
+# joeyonng-notebook
 
 This repository hosts my learning notes on general machine learning methods and 
 my reading notes of the related papers. 
