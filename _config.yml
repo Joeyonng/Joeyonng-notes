@@ -36,3 +36,6 @@ bibtex_bibfiles:
 sphinx:
   config:
     mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+    html_baseurl: 'https://joeyonng.github.io/joeyonng-notebook/'
+  extra_extensions:
+    - sphinx_sitemap

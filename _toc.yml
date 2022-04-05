@@ -42,11 +42,4 @@ parts:
     title: MobileNets
   - file: Notes/Birkhoff+
     title: Birkhoff+
-- caption: Jupyter book Tests
-  chapters:
-  - file: Jupyter book Tests/sections/index
-    sections:
-    - file: Jupyter book Tests/sections/section1
-      title: section1
-    title: sections
 root: root
