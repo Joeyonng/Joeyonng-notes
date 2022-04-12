@@ -38,6 +38,8 @@ parts:
     title: L0 Regularization
   - file: Notes/Quantization Survey
     title: Quantization Survey
+  - file: Notes/MLIC IMLI
+    title: MLIC IMLI
   - file: Notes/MobileNets
     title: MobileNets
   - file: Notes/Birkhoff+
