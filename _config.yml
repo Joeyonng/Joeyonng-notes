@@ -39,4 +39,5 @@ sphinx:
     html_baseurl: 'https://joeyonng.github.io/joeyonng-notebook/'  # For generating sitemaps
     html_extra_path: ['_assets']  # The files in the listed folder will be copied over to _build/html
   extra_extensions:
+    - sphinx_proof # For proofs/theorems
     - sphinx_sitemap  # For generating sitemaps
