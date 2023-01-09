@@ -1,3 +1,8 @@
 jupyter-book
-matplotlib
-numpy
+sphinx-proof
+sphinx-sitemap
+ghp-import
+GitPython
+jupyterlab-spellchecker
+jupyterlab-myst
+jupyterlab-vim

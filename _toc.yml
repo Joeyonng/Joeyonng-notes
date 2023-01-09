@@ -1,11 +1,27 @@
 format: jb-book
 parts:
-- caption: Unsupervised Learning
+- caption: Notes
   chapters:
-  - file: Unsupervised Learning/K-means
-    title: K-means
-  - file: Unsupervised Learning/Principle Component Analysis (PCA)
-    title: Principle Component Analysis (PCA)
+  - file: Notes/SSGD
+    title: SSGD
+  - file: Notes/RIPPER
+    title: RIPPER
+  - file: Notes/CG Decision Rules
+    title: CG Decision Rules
+  - file: Notes/SGD Warm Restarts
+    title: SGD Warm Restarts
+  - file: Notes/L0 Regularization
+    title: L0 Regularization
+  - file: Notes/Quantization Survey
+    title: Quantization Survey
+  - file: Notes/Confident Learning
+    title: Confident Learning
+  - file: Notes/MLIC IMLI
+    title: MLIC IMLI
+  - file: Notes/MobileNets
+    title: MobileNets
+  - file: Notes/Birkhoff+
+    title: Birkhoff+
 - caption: Supervised Learning
   chapters:
   - file: Supervised Learning/Gradient Boosting (GB)
@@ -24,24 +40,16 @@ parts:
     title: Decision Tree (DT)
   - file: Supervised Learning/Generalized Additive (Linear) Models (GAM)
     title: Generalized Additive (Linear) Models (GAM)
-- caption: Notes
+- caption: Unsupervised Learning
   chapters:
-  - file: Notes/SSGD
-    title: SSGD
-  - file: Notes/RIPPER
-    title: RIPPER
-  - file: Notes/CG Decision Rules
-    title: CG Decision Rules
-  - file: Notes/SGD Warm Restarts
-    title: SGD Warm Restarts
-  - file: Notes/L0 Regularization
-    title: L0 Regularization
-  - file: Notes/Quantization Survey
-    title: Quantization Survey
-  - file: Notes/MLIC IMLI
-    title: MLIC IMLI
-  - file: Notes/MobileNets
-    title: MobileNets
-  - file: Notes/Birkhoff+
-    title: Birkhoff+
+  - file: Unsupervised Learning/K-means
+    title: K-means
+  - file: Unsupervised Learning/Principle Component Analysis (PCA)
+    title: Principle Component Analysis (PCA)
+- caption: Statistical Learning
+  chapters:
+  - file: Statistical Learning/Bayesian Decision Theory
+    title: Bayesian Decision Theory
+  - file: Statistical Learning/Maximum Likelihood Estimation
+    title: Maximum Likelihood Estimation
 root: root
