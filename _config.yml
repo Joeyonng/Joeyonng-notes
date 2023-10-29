@@ -33,11 +33,16 @@ repository:
 bibtex_bibfiles:
   - references.bib
   
+# Restart chapter numbering between parts 
+html:
+  use_multitoc_numbering: false
+  
 sphinx:
   config:
     mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
     html_baseurl: 'https://joeyonng.github.io/joeyonng-notebook/'  # For generating sitemaps
     html_extra_path: ['_assets']  # The files in the listed folder will be copied over to _build/html
+    
   extra_extensions:
     - sphinx_proof # For proofs/theorems
     - sphinx_sitemap  # For generating sitemaps

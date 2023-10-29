@@ -6,3 +6,4 @@ GitPython
 jupyterlab-spellchecker
 jupyterlab-myst
 jupyterlab-vim
+nbdime
