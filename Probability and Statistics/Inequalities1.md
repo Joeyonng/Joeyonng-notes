@@ -1,3 +1,15 @@
+## Boole's inequality (union bound)
+
+The **union bound** states that the probability that at least one event in any finite set of events happens $A_{1}, \dots, A_{n}$ is no greater than the sum of the probabilities of the individual events
+
+$$
+\mathbb{P} \left(
+    \exists i \in [1, n]: A_{i}
+\right) = \mathbb{P} \left(
+    \bigcup_{i = 1}^{n} A_{i} 
+\right) \leq \sum_{i = 1}^{n} \mathbb{P} (A_{i}). 
+$$
+
 ## Markov's inequality
 
 **Markov's inequality** states that the probability of a random variable larger than $t$ is less than $\frac{\mu}{t}$. 
@@ -53,7 +65,7 @@ Then for any $t > 0$,
 
 $$
 \mathbb{P}_{X} \left(
-    \lvert x - \mu \rvert \geq a
+    \lvert x - \mu \rvert \geq t
 \right) \leq \frac{ \sigma^{2} }{ t^{2} }.
 $$
 
@@ -399,43 +411,34 @@ $$
 
 where $\mu = \mathbb{E}_{X} (x) = \sum_{i = 1}^{n} p_{i}$. 
 
-Now according to the Markov's inequality, 
-we can derive a upper bound for $\mathbb{P}_{X} (x \geq (1 + \delta) \mu)$
+By applying the Chernoff bounding method with $t = (1 + \delta) \mu$,
+we can derive a upper bound
 
 $$
 \begin{aligned}
 \mathbb{P}_{X} (x \geq (1 + \delta) \mu) 
-& = \mathbb{P}_{X} (e^{s x} \geq e^{s (1 + \delta) \mu}) 
-\\
-& \leq \frac{
+& \leq \inf_{s > 0} \frac{
     \mathbb{E}_{X} [e^{s x}]
 }{
     e^{s (1 + \delta) \mu}
 }
 \\
-& \leq \frac{
+& = \inf_{s > 0} \frac{
     \exp[(e^{s} - 1) \mu]
 }{
     e^{s (1 + \delta) \mu}
 }
+\\
+& = \inf_{s > 0} \exp\left[
+    (e^{s} - 1) \mu - (1 + \delta) \mu s
+\right].
 \end{aligned}
 $$
 
-where the first equality is true for any $s \in \mathbb{R}$. 
-
-The upper bound 
-
-$$
-\frac{ \exp[(e^{s} - 1) \mu] }{ e^{s (1 + \delta) \mu} }
-$$
-
-for $\mathbb{P}_{X} (x \geq (1 + \delta) \mu)$ can be minimized as a function of $s$ by taking its derivative and set it to $0$
+Since $\exp [(e^{s} - 1) \mu - (1 + \delta) \mu s]$ is a convex function
 
 $$
 \begin{aligned}
-\frac{ d }{ d s } \frac{ \exp[(e^{s} - 1) \mu] }{ e^{s (1 + \delta) \mu} } 
-& = 0
-\\
 \frac{ d }{ d s } \exp\left[
     (e^{s} - 1) \mu - (1 + \delta) \mu s
 \right]
@@ -459,7 +462,11 @@ Now let's select $s = \log [1 + \delta]$ to get the tight upper bound
 
 $$
 \begin{aligned}
-\mathbb{P}_{X} (x \geq (1 + \delta) \mu) 
+\frac{
+    \exp[(e^{s} - 1) \mu]
+}{
+    e^{s (1 + \delta) \mu}
+}
 & = \frac{
     \exp[(e^{\log[1 + \delta]} - 1) \mu]
 }{
