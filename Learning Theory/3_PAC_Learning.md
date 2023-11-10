@@ -353,6 +353,8 @@ $$
 
 $$
 \mathbb{P}_{\mathbf{b}} \left(
+    B (\mathcal{S}, \mathcal{S}', \mathbf{b}) \mid \mathcal{S}, \mathcal{S}'
+\right) = \mathbb{P}_{\mathbf{b}} \left(
     \exist h \in \mathcal{H}: R_{\mathcal{T}} (h) = 0, R_{\mathcal{T}'} (h) \geq \frac{ \epsilon }{ 2 } \mid \mathcal{S}, \mathcal{S}'
 \right) \leq \Pi_{\mathcal{H}} (2 n) 2^{- \frac{ \epsilon n }{ 2 }}.
 $$
