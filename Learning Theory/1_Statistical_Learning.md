@@ -10,6 +10,8 @@ where
 
 - The label $y$ is usualy a scalar that belongs to a label space $\mathcal{Y}$. 
 
+For simplicity, we will write the labeled instances $z \coloneqq (\mathbf{x}, y)$ and the space of labeled instances as $\mathcal{Z} \coloneqq \mathcal{X} \times \mathcal{Z}$.
+
 Machine learning problems usually have two sets of data:
 
 - Training set: the training set consists of a finite number of labeled instances from which the algorithms can learn. 
@@ -37,7 +39,7 @@ Here we have two types of decision functions that have slightly different meanin
 The way we evaluate a function $f$ on a labeled instance $(\mathbf{x}, y)$ is determined by a loss function $L: \mathcal{Y} \times \mathcal{Y} \to \mathbb{R}^{+}$ 
 
 $$
-L (f (\mathbf{x}), y)
+L (z) = L (f (\mathbf{x}), y)
 $$
 
 which calculates some notion of discrepancy between the true label $y$ and the predicated label $\hat{y} = f (\mathbf{x})$. 
@@ -45,7 +47,7 @@ which calculates some notion of discrepancy between the true label $y$ and the p
 All the loss functions used in this note are 0-1 loss for binary classification problem
 
 $$
-L (f (\mathbf{x}), y) = \mathbb{1} \left[
+L (z) = L (f (\mathbf{x}), y) = \mathbb{1} \left[
     f (\mathbf{x}) \neq y
 \right],
 $$
@@ -71,63 +73,61 @@ $$
 
 where $\mathbb{P}_{\mathbf{X} \mid Y}(\mathbf{x} \mid y)$ is called class conditional probability, which gives the probability of the instance if we know the label is $y$.
 
-### Risk
+For simplicity, sometimes we will write $\mathbb{P}_{Z} \coloneqq \mathbb{P}_{\mathbf{X}, Y}$ to denote the probability of the labeled instance. 
 
-The **risk** function of the hypothesis $f$ is defined as the expectation of the loss function over the joint probability
+### True risk
+
+The **true risk** of the hypothesis $h$ is defined as the expectation of the loss function over the joint probability
 
 $$
-R (f) = \mathbb{E}_{\mathbf{X}, Y} \left[
-    L (f (\mathbf{x}), y)
-\right]
-$$
+R (f) = \mathbb{E}_{Z} [L (z)] $$
 
-which is the probability that $f$ makes a mistake if the loss function is 0-1 loss
+which is the probability that $h$ makes a mistake if the loss function is 0-1 loss
 
 $$
 R (f) = \mathbb{P}_{\mathbf{X}, Y} \left[
     \mathbb{1} \left[
-        f (\mathbf{x}) \neq y
+        h (\mathbf{x}) \neq y
     \right]
 \right].
 $$
 
 ### Empirical risk
 
-Since $\mathbb{P}_{\mathbf{X}, Y}$ is unknown,
+Since $\mathbb{P}_{Z}$ is unknown,
 the risk of the decision function cannot be evaluated. 
-Instead, the **empirical risk** function is used with the past data of $n$ labeled instances $\mathcal{D}^{n} = \{ (x_{1}, y_{1}), \dots, (x_{n}, y_{n}) \}$ as a surrogate function for the risk function.
+Instead, the **empirical risk** function is used with the past data of $n$ labeled instances $\mathcal{S} = \{ z_{1}, \dots, z_{n} \}$ as a surrogate function for the risk function
 
 $$
-R_{n} (f) = \frac{ 1 }{ n } \sum_{i = 1}^{n} L (f (\mathbf{x}_{i}), y_{i}),
+R_{\mathcal{S}} (f) = \frac{ 1 }{ n } \sum_{i = 1}^{n} L (z_{i}),
 $$
 
 which is the average number of mistakes $f$ made in $\mathcal{D}^{n}$ if the loss is 0-1 loss
 
 $$
-R_{n} (f) = \frac{ 1 }{ n } \sum_{i = 1}^{n} \mathbb{1} \left[
-    f (\mathbf{x}) \neq 1
+R_{\mathcal{S}} (f) = \frac{ 1 }{ n } \sum_{i = 1}^{n} \mathbb{1} \left[
+    h (\mathbf{x}_{i}) \neq y_{i}
 \right].
 $$
 
 The idea is that if the past data we have is representative of the actual distribution, 
 then it will be the case that the empirical risk will be close to the true risk.
 
-### Connection between risk and empirical risk
+Note that the expectation of the empirical risk over all samples is the true risk
 
 $$
 \begin{aligned}
-\mathbb{E}_{\mathbf{X}, Y} \left[
-    R_{n} (f)
-\right] & = \mathbb{E}_{\mathbf{X}, Y} \left[
-    \frac{ 1 }{ n } \sum_{i = 1}^{n} L (f (\mathbf{x}_{i}), y_{i})
+\mathbb{E}_{\mathcal{S}} \left[
+    R_{\mathcal{S}} (f)
+\right] 
+& = \mathbb{E}_{Z} \left[
+    \frac{ 1 }{ n } \sum_{i = 1}^{n} L (z_{i})
 \right]
 \\
-& = \frac{ 1 }{ n } \sum_{i = 1}^{n} \mathbb{E}_{\mathbf{X}, Y} \left[
-    L (f (\mathbf{x}_{i}), y_{i})
-\right]
+& = \frac{ 1 }{ n } \sum_{i = 1}^{n} \mathbb{E}_{Z} [L (z_{i})]
 \\
 & = \frac{ 1 }{ n } \sum_{i = 1}^{n} R (f)
 \\
-& = R (f)
+& = R (f).
 \end{aligned}
 $$
