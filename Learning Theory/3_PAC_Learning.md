@@ -5,30 +5,30 @@
 Learning in the consistency model requires the algorithm to always predict correctly on the training set,
 but doesn't care much about the generalization of the performance on the test set. 
 
-### Concept class and consistency
+We say that a concept $c$ is **consistent** with a set of labeled instances $\mathcal{S} = \{ (\mathbf{x}_{1}, y_{1}), \dots, (\mathbf{x}_{n}, y_{n}) \}$ if $c (\mathbf{x}_{i}) = y_{i}$ for all $i$.
 
-A concept class $\mathcal{C}$ is a set of decision functions (concepts) that usually share a similar representation (linear functions, decision trees). 
-
-A concept $c$ is consistent with a set of labeled instances $\mathcal{D}^{n} = \{ (\mathbf{x}_{1}, y_{1}), \dots, (\mathbf{x}_{n}, y_{n}) \}$ if $c (\mathbf{x}_{i}) = y_{i}$ for all $i$.
-
-### Learning in consistency model
+:::{prf:definition}
+:label: 
 
 An algorithm $A$ learns the concept class $\mathcal{C}$ in the **consistency model** if
 
-- given a set of labeled instances $\mathcal{D}^{n}$, where instances are sampled from *any distribution* $\mathbb{P}_{\mathbf{X}}$ over the instance space, 
+- given a set of labeled instances $\mathcal{S} = \{ \mathbf{x}_{1}, y_{1}), \dots, (\mathbf{x}_{n}, y_{n}) \}$, where instances are sampled from *any distribution* $\mathbb{P}_{\mathbf{X}}$ over the instance space, 
 
-- $A$ can find a concept $c \in \mathcal{C}$ that is consistent with $\mathcal{D}^{n}$ if $c$ exists, or $A$ outputs False if no such concept exists.
+- $A$ can find a concept $c \in \mathcal{C}$ that is consistent with $\mathcal{S}$ if $c$ exists, or $A$ outputs False if no such concept exists.
+
+:::
 
 ## Probably Approximately Correct (PAC) model
 
 Learning in the PAC model is more applicable in real world,
 as it emphasizes more on the generalization ability of the learned function from the algorithm. 
 
-### Learning in PAC model
+:::{prf:definition}
+:label: 
 
 An algorithm $A$ learns the concept class $\mathcal{C}$ in the **PAC model** by the hypothesis class $\mathcal{H} \supseteq \mathcal{C}$ if, 
 
-- given a set of labeled instances $\mathcal{D}^{n}$, where instances are sampled from *any distribution* $\mathbb{P}_{\mathbf{X}}$ over the instance space and are labeled by *any concept* $c \in \mathcal{C}$, and there exists a function for some $\epsilon > 0 $ and $\delta > 0$ such that 
+- given a set of labeled instances $\mathcal{S}$, where instances are sampled from *any distribution* $\mathbb{P}_{\mathbf{X}}$ over the instance space and are labeled by *any concept* $c \in \mathcal{C}$, and there exists a function for some $\epsilon > 0 $ and $\delta > 0$ such that 
 
     $$
     n \geq n_{\mathcal{H}} (\epsilon, \delta),
@@ -40,12 +40,17 @@ An algorithm $A$ learns the concept class $\mathcal{C}$ in the **PAC model** by 
     \mathbb{P} (R (h) \leq \epsilon) \geq 1 - \delta.
     $$
 
+:::
+
 ## Sample complexity results 
 
 ### PAC learnability for finite classes
 
 If $\mathcal{C}$ is finite and learnable in the consistency model, 
 then $\mathcal{C}$ is PAC learnable. 
+
+:::{prf:theorem}
+:label: 
 
 If an algorithm $A$ learns a finite concept class $\mathcal{C}$ in the consistency model, 
 then $A$ learns the concept class $\mathcal{C}$ by the hypothesis class $\mathcal{H} = \mathcal{C}$ in the PAC model with
@@ -58,69 +63,62 @@ n_{\mathcal{H}} (\epsilon, \delta) = \frac{
 }.
 $$
 
-:::{prf:proof} proof 
+:::{prf:proof}
 :label: 
 :class:dropdown
 
-First note that the probability statement in PAC learning 
+Another way to state the PAC learnability with the consistency model is
 
 $$
-\mathbb{P}_{\mathbf{X}} (R (h) \leq \epsilon) \geq 1 - \delta 
+\mathbb{P}_{\mathcal{S}} (\exist h \in \mathcal{H}: R_{\mathcal{S}} (h) = 0, R (h) \geq \epsilon) \leq \delta
 $$
 
-is equivalent as 
+when $n \geq n_{\mathcal{H}} (\epsilon, \delta)$. 
 
-$$
-\mathbb{P}_{\mathbf{X}} (R (h) \geq \epsilon) \leq \delta.
-$$
-
-Since we know that the hypothesis $h$ learned by $A$ in the consistency model exists in $\mathcal{H}$,
-the statement that we want to prove can be written as 
-
-$$
-\mathbb{P}_{\mathbf{X}} (\exists h \in \mathcal{H}: B (h)) \leq \delta,
-$$
-
-where the event $B (h)$ states that $h$ is consistent with any dataset $\mathcal{D}^{n}$ and has the risk larger than $\epsilon$.
-
-By assuming the hypothesis $h$ has the risk $R (h)$,
-we can express the probability that $h$ correctly classifies the instance $\mathbf{x}$ as 
-
-$$
-\mathbb{P}_{\mathbf{X}} (\mathbb{1} \left[
-    h (\mathbf{x}) = y
-\right]) = 1 - \mathbb{P}_{\mathbf{X}} (\mathbb{1} \left[
-    h (\mathbf{x}) \neq y
-\right]) = 1 - R (h).
-$$
-
-Since the event that $h$ correctly classifies each instance in a dataset $\mathcal{D}^{n}$ with $n$ i.i.d instances is independent,
-the probability that $h$ correctly classifies all instances in $\mathcal{D}^{n}$ is 
-
-$$
-\prod_{i}^{n} (1 - R (h)) = (1 - R (h))^{n}.
-$$
-
-Together with the fact that $R (h) \geq \epsilon$, 
-the probability of the event $B$ is upper bounded 
+Given $h \in \mathcal{H}$, 
+by definition of the empirical risk we can write the probability that $h$ is consistent with $\mathcal{S}$ as 
 
 $$
 \begin{aligned}
-\mathbb{P}_{\mathbf{X}} (B (h))
-& = (1 - R (h))^{n}
+\mathbb{P}_{\mathcal{S}} (R_{\mathcal{S}} (h) = 0)
+& = \mathbb{P}_{\mathcal{S}} (h (\mathbf{x_{i}}) = y_{i}, \forall (\mathbf{x}_{i}, y_{i}) \in \mathcal{S})
 \\
-& \leq (1 - \epsilon)^{n} 
-& [R (h) \leq \epsilon]
+& \stackrel{(1)}{=} \prod_{i = 1}^{n} \mathbb{P}_{\mathbf{X}} (h (\mathbf{x}_{i}) = y_{i})
 \\
-& \leq e^{- n \epsilon}
-& [1 - x < e^{-x}, \forall x \in [0, 1]]
+& = \prod_{i = 1}^{n} 1 - \mathbb{P}_{\mathbf{X}} (h (\mathbf{x}_{i}) \neq y_{i})
+\\
+& \stackrel{(2)}{=} \prod_{i = 1}^{n} 1 - R (h)
+\\
+& = (1 - R (h))^{n}.
 \end{aligned}
 $$
 
-By applying the union bound 
+1. (1) follows because the labeled instances in $\mathcal{S}$ are independent.
+
+1. (2) follows because the true risk of $h$ is the probability of $h$ makes a mistake on a given labeled instance when the loss function is the 0-1 loss.
+
+If we add the fact that $R (h) \geq \epsilon$, 
 
 $$
-\mathbb{P}_{\mathbf{X}} (\exists h \in \mathcal{H}: B (h)) \leq \lvert \mathcal{H} \rvert e^{- n \epsilon},
+\begin{aligned}
+\mathbb{P}_{\mathcal{S}} (R_{\mathcal{S}} (h) = 0, R (h) \geq \epsilon)
+& \leq (1 - \epsilon)^{n} 
+\\
+& \leq e^{- n \epsilon}
+\end{aligned}
+$$
+
+where the last inequality uses the fact that 
+
+$$
+1 - x < e^{-x}, \forall x \in [0, 1].
+$$
+
+We can add the part $\exists h \in \mathcal{H}$ by applying the union bound 
+
+$$
+\mathbb{P}_{\mathcal{S}} (\exists h \in \mathcal{H}: R_{\mathcal{S}} (h) = 0, R (h) \geq \epsilon)
+\leq \lvert \mathcal{H} \rvert e^{- n \epsilon},
 $$
 
 and make $\delta = \lvert \mathcal{H} \rvert e^{- n \epsilon}$,
@@ -138,6 +136,9 @@ $$
 
 ### PAC learnability for infinite classes
 
+:::{prf:theorem}
+:label: 
+
 If an algorithm $A$ learns an infinite concept class $\mathcal{C}$ in the consistency model, 
 then $A$ learns the concept class $\mathcal{C}$ by the hypothesis class $\mathcal{H} = \mathcal{C}$ in the PAC model with
 
@@ -149,7 +150,7 @@ n_{\mathcal{H}} (\epsilon, \delta) = \frac{
 }.
 $$
 
-:::{prf:proof} proof 
+:::{prf:proof}
 :label: 
 :class:dropdown
 
@@ -451,6 +452,9 @@ $$
 
 Now we can use the Sauer’s lemma to get a nice closed form expression on sample complexity result for the infinite class. 
 
+:::{prf:theorem}
+:label: 
+
 If an algorithm $A$ learns an infinite concept class $\mathcal{C}$ in the consistency model, 
 then $A$ learns the concept class $\mathcal{C}$ by the hypothesis class $\mathcal{H} = \mathcal{C}$ in the PAC model with
 
@@ -464,7 +468,7 @@ $$
 
 where $d = \mathrm{VC} (\mathcal{H})$. 
 
-:::{prf:proof} proof 
+:::{prf:proof}
 :label: 
 :class:dropdown
 

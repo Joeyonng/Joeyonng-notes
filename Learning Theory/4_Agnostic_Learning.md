@@ -208,7 +208,7 @@ $$
 ### Agnostic PAC learnability for finite hypothesis class
 
 If $A$ learns the concept by minimizing the empirical risk, 
-then $A$ learns the concept class $\mathcal{C}$ by the hypothesis class $\mathcal{H}$ in the agnostic PAC model with the sample complexity
+then $A$ learns the concept class $\mathcal{C}$ by the finite hypothesis class $\mathcal{H}$ in the agnostic PAC model with the sample complexity
 
 $$
 n_{\mathcal{H}} (\epsilon, \delta) = \frac{
@@ -285,6 +285,9 @@ $$
 
 ### Agnostic PAC learnability for infinite hypothesis class
 
+:::{prf:proof} 
+:label: 
+:class:dropdown
 
 Let's first define 3 "bad" events that are useful in the following proof.
 
@@ -563,3 +566,5 @@ $$
 \\
 \end{aligned}
 $$
+
+:::

@@ -663,6 +663,6 @@ we can derive
 
 $$
 \mathrm{Rad}_{\mathcal{H}} (\mathcal{S}) \leq \sqrt{\frac{ 2 \log \lvert \mathcal{H} (\mathcal{S}) \rvert }{ n }} 
-\leq \sqrt{\frac{ 2 \log \Pi_{\mathcal{H}} (\mathcal{S}) }{ n }} 
+\leq \sqrt{\frac{ 2 \log \Pi_{\mathcal{H}} (\mathcal{n}) }{ n }} 
 \leq \sqrt{\frac{ 2 d \log \frac{ e n }{ d } }{ n }}.
 $$

@@ -131,3 +131,13 @@ $$
 & = R (f).
 \end{aligned}
 $$
+
+## Some probability facts
+
+### Basics
+
+- Complement rule
+
+$$
+\mathbb{P} (A > t) < \delta \implies \mathbb{P} (A \leq t) \geq 1 - \delta
+$$
