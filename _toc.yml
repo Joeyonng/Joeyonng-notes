@@ -1,47 +1,40 @@
 format: jb-book
 parts:
-- caption: Statistical_Learning
+- caption: Statistical Learning
   chapters:
-  - file: Statistical_Learning/1_Bayesian_Decision_Theory
+  - file: Statistical Learning/1_Bayesian_Decision_Theory
     title: Bayesian Decision Theory
-  - file: Statistical_Learning/2_Maximum_Likelihood_Estimation
+  - file: Statistical Learning/2_Maximum_Likelihood_Estimation
     title: Maximum Likelihood Estimation
-  - file: Statistical_Learning/3_Bayesian_Estimation
+  - file: Statistical Learning/3_Bayesian_Estimation
     title: Bayesian Estimation
-  - file: Statistical_Learning/4_Expectation_Maximization
+  - file: Statistical Learning/4_Expectation_Maximization
     title: Expectation Maximization
   numbered: 2
-- caption: Linear Algebra
+- caption: Learning Theory
   chapters:
-  - file: Linear Algebra/01_Fields_and_Vector_Spaces
-    title: Fields and Vector Spaces
-  - file: Linear Algebra/02_Subspace
-    title: Subspace
-  - file: Linear Algebra/03_Span_and_Basis
-    title: Span and Basis
-  - file: Linear Algebra/04_Linear_Map
-    title: Linear Map
-  - file: Linear Algebra/05_Inner_Product_and_Norm
-    title: Inner Product and Norm
-  - file: Linear Algebra/06_Orthogonality_and_Unitary_Matrix
-    title: Orthogonality and Unitary Matrix
-  - file: Linear Algebra/07_Complement_and_Orthogonal_Complement
-    title: Complement and Orthogonal Complement
-  - file: Linear Algebra/08_Projection
-    title: Projection
-  - file: Linear Algebra/09_Orthogonal_Projection
-    title: Orthogonal Projection
-  - file: Linear Algebra/10_Determinants
-    title: Determinants
-  - file: Linear Algebra/11_Eigensystems
-    title: Eigensystems
-  - file: Linear Algebra/12_Similarity_and_Diagonalization
-    title: Similarity and Diagonalization
-  - file: Linear Algebra/13_Normal_Matrices
-    title: Normal Matrices
-  - file: Linear Algebra/14_Positive_Definite_Matrices
-    title: Positive Definite Matrices
-  - file: Linear Algebra/notes
-    title: notes
+  - file: Learning Theory/1_Statistical_Learning
+    title: Statistical Learning
+  - file: Learning Theory/2_Effective_Class_Size
+    title: Effective Class Size
+  - file: Learning Theory/3_PAC_Learning
+    title: PAC Learning
+  - file: Learning Theory/4_Agnostic_Learning
+    title: Agnostic Learning
+  - file: Learning Theory/5_Rademacher_Complexity
+    title: Rademacher Complexity
+  numbered: 2
+- caption: Supervised Learning
+  chapters:
+  - file: Supervised Learning/0_Linear_Discriminant
+    title: Linear Discriminant
+  - file: Supervised Learning/1_Perceptron
+    title: Perceptron
+  - file: Supervised Learning/2_Logistic_Regression
+    title: Logistic Regression
+  - file: Supervised Learning/3_Multi_Layer_Perceptron
+    title: Multi Layer Perceptron
+  - file: Supervised Learning/4_Boosting
+    title: Boosting
   numbered: 2
 root: root

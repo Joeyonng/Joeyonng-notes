@@ -39,8 +39,7 @@ R (h) - R (h_{n}) \leq 2 \max_{h \in \mathcal{H}} \lvert R (h) - R_{n} (h) \rver
 $$
 
 :::{prf:proof} Uniform convergence result
-:label: uniform-convergence result
-:class:dropdown
+:class: dropdown
 
 $$
 \begin{aligned}
@@ -98,8 +97,7 @@ n_{\mathcal{H}} (\epsilon, \delta) = \frac{
 $$
 
 :::{prf:proof} Uniform convergence result
-:label: uniform-convergence result
-:class:dropdown
+:class: dropdown
 
 Since the true risk of a hypothesis is the expectation of the empirical risk with respect to the joint distribution $\mathbb{P}_{\mathbf{X}, Y}$
 
@@ -219,8 +217,7 @@ n_{\mathcal{H}} (\epsilon, \delta) = \frac{
 $$
 
 :::{prf:proof} 
-:label: 
-:class:dropdown
+:class: dropdown
 
 We can prove this by applying the uniform convergence result and the property of the empirical risk minimizer
 
@@ -286,8 +283,7 @@ $$
 ### Agnostic PAC learnability for infinite hypothesis class
 
 :::{prf:proof} 
-:label: 
-:class:dropdown
+:class: dropdown
 
 Let's first define 3 "bad" events that are useful in the following proof.
 

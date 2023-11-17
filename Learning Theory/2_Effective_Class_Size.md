@@ -21,7 +21,6 @@ $$
 The concept of the growth function (shattering coefficient) is to measure the richness of the decisions that a hypothesis class can make with respect to a dataset of size $n$.
 
 :::{prf:definition}
-:label: 
 
 The **growth function** of a hypothesis class $\mathcal{H}$ is defined as the maximum number of unique ways that the hypotheses in $\mathcal{H}$ can label any set of $n$ instances
 
@@ -42,7 +41,6 @@ $$
 $$
 
 :::{prf:definition}
-:label: 
 
 The **Vapnik-Chervonenkis (VC) dimension** of $\mathcal{H}$ is the size
 of the largest set that is shattered by $\mathcal{H}$
@@ -58,7 +56,6 @@ $$
 Sauer's lemma shows that the growth function of any hypothesis class $\mathcal{H}$ is upper-bounded by a function of its VC dimension.
 
 :::{prf:theorem} Sauer's lemma
-:label: sauer's-lemma
 
 For any hypothesis class $\mathcal{H}$ and any dataset size $n$,
 we have
@@ -68,7 +65,7 @@ $$
 $$
 
 :::{prf:proof} 
-:class:dropdown
+:class: dropdown
 
 We will prove the lemma for any set of $n$ instances and any hypothesis class $\mathcal{H}$ with $\mathrm{VC} (\mathcal{H}) = d$ using induction on $n$ and $d$. 
 
@@ -230,7 +227,6 @@ which proves the lemma under the general case.
 The following theorem uses Sauer's lemma to provide a closed form upper-bound of the growth function of any hypothesis class with its VC dimension.
 
 :::{prf:theorem}
-:label:
 
 For any $1 < d = \mathrm{VC} (\mathcal{H}) < n$,
 we have
@@ -242,8 +238,7 @@ $$
 $$
 
 :::{prf:proof}
-:label:
-:class:dropdown
+:class: dropdown
 
 First note that $(\frac{ d }{ n })^{d} < (\frac{ d }{ n })^{i}, i < d$ since $d < n$, 
 and therefore

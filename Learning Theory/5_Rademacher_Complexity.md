@@ -46,8 +46,7 @@ Therefore,  the Rademacher complexity of $\mathcal{F}$ measures the expected noi
 The empirical Rademacher complexity and Rademacher complexity are non-negative.
 
 :::{prf:proof}
-:label:
-:class:dropdown
+:class: dropdown
 
 $$
 \begin{aligned}
@@ -87,8 +86,7 @@ $$
 $$
 
 :::{prf:proof}
-:label:
-:class:dropdown
+:class: dropdown
 
 By definition of $\mathcal{G}$ and the empirical Rademacher complexity,
 
@@ -160,8 +158,7 @@ $$
 where $E_{\mathcal{S}} (f) = \frac{ 1 }{ n } \sum_{i = 1}^{n} f (z_{i})$ is the estimated expectation of $f$ on the sample $\mathcal{S}$.
 
 :::{prf:proof} Rademacher theorem
-:label: rademacher-theorem
-:class:dropdown
+:class: dropdown
 
 We introduce a ghost sample $\mathcal{S}' = \{ z_{1}', \dots, z_{n}' \}$ that is also i.i.d drawn from $\mathbb{P}_{\mathcal{Z}^{n}}$,
 which means
@@ -283,8 +280,7 @@ $$
 $$
 
 :::{prf:proof} 
-:label: 
-:class:dropdown
+:class: dropdown
 
 Given a function $f \in \mathcal{F}$, 
 the difference between its true expectation and estimated expectation on a sample $\mathcal{S} = \{ z_{1}, \dots, z_{n} \}$ is less than the maximum difference of the expectations among all functions in $\mathcal{F}$, 
@@ -472,8 +468,7 @@ $$
 where $R = \sup_{f \in \mathcal{F}} \sqrt{\sum_{i = 1}^{n} f^{2} (z_{i})}$.
 
 :::{prf:proof} 
-:label: 
-:class:dropdown
+:class: dropdown
 
 By Jensen's inequality, 
 the following quantity can be upper-bounded
