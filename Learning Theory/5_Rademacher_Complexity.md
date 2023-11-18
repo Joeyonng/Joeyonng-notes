@@ -6,6 +6,8 @@ A Rademacher distribution is a discrete probability distribution where a random 
 
 ## Rademacher complexity
 
+:::{#def-}
+
 Given an i.i.d sample $\mathcal{S} = \{ z_{1}, \dots, z_{n} \}$ from the distribution $\mathbb{P}_{\mathcal{Z}^{n}}$ and $n$ independent Rademacher random variables $\sigma = \{ \sigma_{1}, \dots, \sigma_{n} \}$,
 the **empirical Rademacher complexity** of a class of binary function $\mathcal{F}$ is defined as
 
@@ -16,6 +18,10 @@ $$
 $$
 
 which is a function of the random variable $\mathcal{S}$ and therefore is a random variable. 
+
+:::
+
+:::{#def-}
 
 Then the **Rademacher complexity** is defined as the expectation of the empirical Rademacher complexity over all i.i.d samples of size $n$
 
@@ -28,6 +34,8 @@ $$
     \right]
 \right].
 $$
+
+:::
 
 ### Intuitions
 
@@ -45,8 +53,7 @@ Therefore,  the Rademacher complexity of $\mathcal{F}$ measures the expected noi
 
 The empirical Rademacher complexity and Rademacher complexity are non-negative.
 
-:::{prf:proof}
-:class: dropdown
+:::{.callout-note collapse="true" title="Proof"}
 
 $$
 \begin{aligned}
@@ -85,8 +92,7 @@ $$
 \mathrm{Rad}_{\mathcal{G}} (n) = \lvert a \rvert \mathrm{Rad}_{\mathcal{F}} (n).
 $$
 
-:::{prf:proof}
-:class: dropdown
+:::{.callout-note collapse="true" title="Proof"}
 
 By definition of $\mathcal{G}$ and the empirical Rademacher complexity,
 
@@ -157,8 +163,7 @@ $$
 
 where $E_{\mathcal{S}} (f) = \frac{ 1 }{ n } \sum_{i = 1}^{n} f (z_{i})$ is the estimated expectation of $f$ on the sample $\mathcal{S}$.
 
-:::{prf:proof} Rademacher theorem
-:class: dropdown
+:::{.callout-note collapse="true" title="Proof"}
 
 We introduce a ghost sample $\mathcal{S}' = \{ z_{1}', \dots, z_{n}' \}$ that is also i.i.d drawn from $\mathbb{P}_{\mathcal{Z}^{n}}$,
 which means
@@ -264,6 +269,8 @@ $$
 
 ### General results for all classes
 
+:::{#thm-}
+
 Given a sample $\mathcal{S}$ that is drawn i.i.d from any distribution $\mathbb{P}_{\mathcal{Z}^{n}}$,
 if the function class $\mathcal{F}$ only contains the functions $f$ such that $f (x) \in [a, a + 1]$,
 then for every $f \in \mathcal{F}$, the *difference between its true expectation and estimated expectation* is no greater than the error $\epsilon$ with probability at least $1 - \delta$
@@ -279,8 +286,9 @@ $$
 \epsilon = 2 \mathrm{Rad}_{\mathcal{F}} (n) + \sqrt{\frac{ \log \frac{ 1 }{ \delta }}{ 2 n }}.
 $$
 
-:::{prf:proof} 
-:class: dropdown
+:::
+
+:::{.callout-note collapse="true" title="Proof"}
 
 Given a function $f \in \mathcal{F}$, 
 the difference between its true expectation and estimated expectation on a sample $\mathcal{S} = \{ z_{1}, \dots, z_{n} \}$ is less than the maximum difference of the expectations among all functions in $\mathcal{F}$, 
@@ -434,7 +442,7 @@ Since all the loss functions $l_{h} \in \mathcal{L}$ have output range $[0, 1]$,
 we can apply the uniform theorem above to the loss class $\mathcal{L}$ to derive the uniform convergence results for risks.
 
 
-:::{prf:theorem}
+:::{#thm-}
 
 Given a sample $\mathcal{S}$ that is drawn i.i.d from any distribution $\mathbb{P}_{\mathcal{Z}^{n}}$,
 for every hypothesis $h \in \mathcal{H}$, the *difference between its true risk and estimated risk* is no greater than the error $\epsilon$ with probability at least $1 - \delta$
@@ -458,6 +466,8 @@ Since the 0-1 loss can be written as
 
 ### Massart’s lemma
 
+:::{#thm-}
+
 Given any finite function class $\mathcal{F}$ and a sample $\mathcal{S} = \{ z_{1}, \dots, z_{n} \}$,
 the empirical Rademacher complexity is upper-bounded 
 
@@ -467,8 +477,9 @@ $$
 
 where $R = \sup_{f \in \mathcal{F}} \sqrt{\sum_{i = 1}^{n} f^{2} (z_{i})}$.
 
-:::{prf:proof} 
-:class: dropdown
+:::
+
+:::{.callout-note collapse="true" title="Proof"}
 
 By Jensen's inequality, 
 the following quantity can be upper-bounded

@@ -1,0 +1,32 @@
+project:
+  type: website
+
+website:
+  title: "joeyonng-notebook"
+  navbar:
+    left:
+      - href: index.md
+        text: Home
+      - href: "ML interviews.ipynb"
+        text: ML Questions
+  sidebar:
+    style: docked
+    search: true
+    contents: 
+      - section: "Learning Theory"
+        contents: Learning Theory/*
+      - section: "Statistical Learning"
+        contents: Statistical Learning/*
+
+format:
+  html:
+    theme: spacelab
+    css: styles.css
+    toc: true
+    html-math-method: katex
+    callout-icon: false
+    callout-appearance: simple
+    page-layout: full
+    grid:
+      sidebar-width: 375px
+      body-width: 4096px

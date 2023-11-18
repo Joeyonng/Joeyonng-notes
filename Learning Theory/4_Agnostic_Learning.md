@@ -9,6 +9,8 @@ That is, the perfect concept cannot be realized because either one of the follow
 
 ## Uniform convergence property
 
+:::{#def-}
+
 An algorithm $A$ has the **uniform convergence property** over the hypothesis class $\mathcal{H}$ if, 
 
 - given a set of labeled instances $\mathcal{D}^{n}$, where instances and labels are sampled from *any joint distribution* $\mathbb{P}_{\mathbf{X}, Y}$ over the instance space and the label space, and there exists a function for some $\epsilon > 0 $ and $\delta > 0$ such that 
@@ -22,6 +24,8 @@ An algorithm $A$ has the **uniform convergence property** over the hypothesis cl
     $$
     \mathbb{P} (\lvert R (h) - R_{n} (h) \rvert \leq \epsilon) \geq 1 - \delta.
     $$
+
+:::
 
 ## Empirical risk minimizer
 
@@ -38,8 +42,7 @@ $$
 R (h) - R (h_{n}) \leq 2 \max_{h \in \mathcal{H}} \lvert R (h) - R_{n} (h) \rvert.
 $$
 
-:::{prf:proof} Uniform convergence result
-:class: dropdown
+:::{.callout-note collapse="true" title="Proof"}
 
 $$
 \begin{aligned}
@@ -67,6 +70,8 @@ $$
 
 ## Agnostic PAC model
 
+:::{#def-}
+
 An algorithm $A$ learns the concept class $\mathcal{C}$ in the **agnostic PAC model** by the hypothesis class $\mathcal{H}$ if, 
 
 - given a set of labeled instances $\mathcal{D}^{n}$, where instances and labels are sampled from *any joint distribution* $\mathbb{P}_{\mathbf{X}, Y}$ over the instance space and the label space, and there exists a function for some $\epsilon > 0 $ and $\delta > 0$ such that 
@@ -81,10 +86,13 @@ An algorithm $A$ learns the concept class $\mathcal{C}$ in the **agnostic PAC mo
     \mathbb{P} (\lvert R (h) - \min_{h \in \mathcal{H}} R (h)] \rvert \leq \epsilon) \geq 1 - \delta.
     $$
 
+:::
 
 ## Sample complexity results 
 
 ### Uniform convergence result
+
+:::{#thm-}
 
 An $A$ has the uniform convergence property over the hypothesis class $\mathcal{H}$ with the sample complexity
 
@@ -96,8 +104,9 @@ n_{\mathcal{H}} (\epsilon, \delta) = \frac{
 }.
 $$
 
-:::{prf:proof} Uniform convergence result
-:class: dropdown
+:::
+
+:::{.callout-note collapse="true" title="Proof"}
 
 Since the true risk of a hypothesis is the expectation of the empirical risk with respect to the joint distribution $\mathbb{P}_{\mathbf{X}, Y}$
 
@@ -205,6 +214,8 @@ $$
 
 ### Agnostic PAC learnability for finite hypothesis class
 
+:::{#thm-}
+
 If $A$ learns the concept by minimizing the empirical risk, 
 then $A$ learns the concept class $\mathcal{C}$ by the finite hypothesis class $\mathcal{H}$ in the agnostic PAC model with the sample complexity
 
@@ -216,8 +227,9 @@ n_{\mathcal{H}} (\epsilon, \delta) = \frac{
 }.
 $$
 
-:::{prf:proof} 
-:class: dropdown
+:::
+
+:::{.callout-note collapse="true" title="Proof"}
 
 We can prove this by applying the uniform convergence result and the property of the empirical risk minimizer
 
@@ -282,8 +294,7 @@ $$
 
 ### Agnostic PAC learnability for infinite hypothesis class
 
-:::{prf:proof} 
-:class: dropdown
+:::{.callout-note collapse="true" title="Proof"}
 
 Let's first define 3 "bad" events that are useful in the following proof.
 

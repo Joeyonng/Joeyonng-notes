@@ -7,7 +7,7 @@ but doesn't care much about the generalization of the performance on the test se
 
 We say that a concept $c$ is **consistent** with a set of labeled instances $\mathcal{S} = \{ (\mathbf{x}_{1}, y_{1}), \dots, (\mathbf{x}_{n}, y_{n}) \}$ if $c (\mathbf{x}_{i}) = y_{i}$ for all $i$.
 
-:::{prf:definition}
+:::{#def-}
 
 An algorithm $A$ learns the concept class $\mathcal{C}$ in the **consistency model** if
 
@@ -22,7 +22,7 @@ An algorithm $A$ learns the concept class $\mathcal{C}$ in the **consistency mod
 Learning in the PAC model is more applicable in real world,
 as it emphasizes more on the generalization ability of the learned function from the algorithm. 
 
-:::{prf:definition}
+:::{#def-}
 
 An algorithm $A$ learns the concept class $\mathcal{C}$ in the **PAC model** by the hypothesis class $\mathcal{H} \supseteq \mathcal{C}$ if, 
 
@@ -47,7 +47,7 @@ An algorithm $A$ learns the concept class $\mathcal{C}$ in the **PAC model** by 
 If $\mathcal{C}$ is finite and learnable in the consistency model, 
 then $\mathcal{C}$ is PAC learnable. 
 
-:::{prf:theorem}
+:::{#thm-}
 
 If an algorithm $A$ learns a finite concept class $\mathcal{C}$ in the consistency model, 
 then $A$ learns the concept class $\mathcal{C}$ by the hypothesis class $\mathcal{H} = \mathcal{C}$ in the PAC model with
@@ -60,8 +60,9 @@ n_{\mathcal{H}} (\epsilon, \delta) = \frac{
 }.
 $$
 
-:::{prf:proof}
-:class: dropdown
+:::
+
+:::{.callout-note collapse="true" title="Proof"}
 
 Another way to state the PAC learnability with the consistency model is
 
@@ -132,7 +133,7 @@ $$
 
 ### PAC learnability for infinite classes
 
-:::{prf:theorem}
+:::{#thm-}
 
 If an algorithm $A$ learns an infinite concept class $\mathcal{C}$ in the consistency model, 
 then $A$ learns the concept class $\mathcal{C}$ by the hypothesis class $\mathcal{H} = \mathcal{C}$ in the PAC model with
@@ -145,8 +146,9 @@ n_{\mathcal{H}} (\epsilon, \delta) = \frac{
 }.
 $$
 
-:::{prf:proof}
-:class: dropdown
+:::
+
+:::{.callout-note collapse="true" title="Proof"}
 
 Let's first define 3 "bad" events that are useful in the following proof.
 
@@ -446,7 +448,7 @@ $$
 
 Now we can use the Sauer’s lemma to get a nice closed form expression on sample complexity result for the infinite class. 
 
-:::{prf:theorem}
+:::{#thm-}
 
 If an algorithm $A$ learns an infinite concept class $\mathcal{C}$ in the consistency model, 
 then $A$ learns the concept class $\mathcal{C}$ by the hypothesis class $\mathcal{H} = \mathcal{C}$ in the PAC model with
@@ -461,8 +463,9 @@ $$
 
 where $d = \mathrm{VC} (\mathcal{H})$. 
 
-:::{prf:proof}
-:class: dropdown
+:::
+
+:::{.callout-note collapse="true" title="Proof"}
 
 By applying Sauer's lemma to the sample complexity results for the infinite classes
 
