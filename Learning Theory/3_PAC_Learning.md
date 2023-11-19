@@ -42,10 +42,8 @@ An algorithm $A$ learns the concept class $\mathcal{C}$ in the **PAC model** by 
 
 ## Sample complexity results 
 
-### PAC learnability for finite classes
-
-If $\mathcal{C}$ is finite and learnable in the consistency model, 
-then $\mathcal{C}$ is PAC learnable. 
+The following theorem states that a **finite concept class** $\mathcal{C}$ is PAC learnable by the same hypothesis class $\mathcal{H} = \mathcal{C}$ if $\mathcal{C}$ is learnable in the consistency model,
+and proves its sample complexity as a function of the size of the hypothesis class.
 
 :::{#thm-}
 
@@ -131,7 +129,8 @@ $$
 
 :::
 
-### PAC learnability for infinite classes
+The following theorem states a similar results as above: an **infinite concept class** $\mathcal{C}$ it is PAC learnable by the same hypothesis class $\mathcal{H} = \mathcal{C}$ if $\mathcal{H}$ is learnable in the consistency model,
+and proves the sample complexity as a function of the growth function of $\mathcal{H}$. 
 
 :::{#thm-}
 
@@ -139,8 +138,8 @@ If an algorithm $A$ learns an infinite concept class $\mathcal{C}$ in the consis
 then $A$ learns the concept class $\mathcal{C}$ by the hypothesis class $\mathcal{H} = \mathcal{C}$ in the PAC model with
 
 $$
-n_{\mathcal{H}} (\epsilon, \delta) = \frac{
-    4 \log \Pi_{\mathcal{H}} (2 n) + 2 \log \frac{ 2 }{ \delta } 
+n_{\mathcal{H}} (\epsilon, \delta) = 2 \frac{
+    \log \Pi_{\mathcal{H}} (2 n) + \log \frac{ 2 }{ \delta } 
 }{
     \epsilon
 }.
@@ -152,7 +151,8 @@ $$
 
 Let's first define 3 "bad" events that are useful in the following proof.
 
-Given any set of instances $\mathcal{S} = \{ \mathbf{x}_{1}, \dots, \mathbf{x}_{n} \}$,
+Given any set of labeled instances $\mathcal{S} = \{ z_{1}, \dots, z_{n} \}$,
+the difference between its true risk and empirical risk on $\mathcal{S}$ is larger than $\epsilon$,
 let $B (\mathcal{S})$ denote the event that there exists a hypothesis $h \in \mathcal{H}$ that is consistent with $\mathcal{S}$ but has the true risk larger than $\epsilon$
 
 $$
@@ -165,52 +165,64 @@ $$
 \mathbb{P}_{\mathcal{S}} (B (\mathcal{S})) \leq \delta.
 $$
 
-Now let's draw another set of i.i.d instances $\mathcal{S}' = \{ \mathbf{x}_{1}', \dots, \mathbf{x}_{n} \}$ from the distribution $\mathbb{P}_{\mathbf{X}}$,
-and define another event $B'$ as a function of $\mathcal{S}$ and $\mathcal{S}'$ that there exists a hypothesis $h \in \mathcal{H}$ that is consistent with $\mathcal{S}$, but has empirical risk on $\mathcal{S}'$ larger than $\frac{ \epsilon }{ 2 }$
+Now let's draw the "ghost samples",
+which is another set of i.i.d labeled instances $\mathcal{S}' = \{ z_{1}', \dots, z_{n}' \}$ from the distribution $\mathbb{P}_{Z}$,
+and define another event $B'$ as a function of $\mathcal{S}$ and $\mathcal{S}'$,
+which states that there exists a hypothesis $h \in \mathcal{H}$ that is consistent with $\mathcal{S}$ but has empirical risk on $\mathcal{S}'$ larger than $\frac{ \epsilon }{ 2 }$
 
 $$
-B (\mathcal{S}, \mathcal{S}') \coloneqq \exist h \in \mathcal{H}: R_{\mathcal{S}} (h) = 0,  R_{S'} (h) \geq \frac{ \epsilon }{ 2 }.
+B' (\mathcal{S}, \mathcal{S}') \coloneqq \exist h \in \mathcal{H}: R_{\mathcal{S}} (h) = 0,  R_{S'} (h) \geq \frac{ \epsilon }{ 2 }.
 $$
 
-Finally, consider a binary vector $\mathbf{b}$ of $n$ independent Bernoulli random variables $\mathrm{Ber} (0.5)$ that indicates whether the instances in $\mathcal{S}$ and $\mathcal{S}'$ are swapped.
-That is, we use $\mathbf{b}$ to create two more sets $\mathcal{T} = \{ \mathbf{t}_{1}, \dots, \mathbf{t}_{n} \}$ and $\mathcal{T}' = \{ t_{1}', \dots, t_{n}' \}$,
-where $t_{i}' = x_{i}, t_{i} = x_{i}'$ if $b_{i} = 1$ and $t_{i} = x_{i}, t_{i}' = x_{i}'$ if $b_{i} = 0$. 
-Then we define another event $B'' (\mathcal{S}, \mathcal{S}', \mathbf{b})$ as
+Finally, let's define an event $B (\mathcal{S}, \mathcal{S}', \sigma)$ as a function of $\mathcal{S}, \mathcal{S}'$, and a set of independent Rademacher random variables $\sigma_{1}, \dots, \sigma_{n}$ that takes values $-1$ or $1$ with equal probabilities
 
 $$
-B'' (\mathcal{S}, \mathcal{S}', \mathbf{b}) \coloneqq \exist h \in \mathcal{H}: R_{\mathcal{T}} (h) = 0, R_{\mathcal{T}'} (h) \geq \frac{ \epsilon }{ 2 }.
+B'' (\mathcal{S}, \mathcal{S}', \sigma) \coloneqq \exist h \in \mathcal{H}: R_{\mathcal{S}_{\sigma}} (h) = 0, R_{\mathcal{S}_{\sigma}'} (h) \geq \frac{ \epsilon }{ 2 }.
 $$
 
-Then we will prove the theorem with following 5 steps. 
+where the samples $\mathcal{S}_{\sigma}, \mathcal{S}_{\sigma}'$ are created by swapping the labeled instances in $\mathcal{S}, \mathcal{S}'$ based on the values of $\sigma$
 
-**Claim 1**: if $n > \frac{ 8 }{ \epsilon }$,
+- $z_{i}$ and $z_{i}'$ are swapped if the corresponding $\sigma_{i} = 1$,
 
-$$
-\mathbb{P}_{\mathbf{X}} (B' (S, S') \mid B (S)) \geq \frac{ 1 }{ 2 }.
-$$
+- and $z_{i}$ and $z_{i}'$ are not swapped if the corresponding $\sigma_{i} = -1$.
 
-Suppose $B (S)$ holds, and therefore we have a hypothesis $h \in \mathcal{H}$ such that $R (h) \geq \epsilon$.
+The event $B'' (\mathcal{S}, \mathcal{S}', \sigma)$ states that there exists a hypothesis $h \in \mathcal{H}$ such that the difference between its empirical risk on $\mathcal{S}_{\sigma}$ and empirical risk on $\mathcal{S}_{\sigma}'$ is larger than $\frac{ \epsilon }{ 2 }$.
 
-Since the instances in $\mathcal{S}'$ are i.i.d sampled,
-each 0-1 loss in the empirical risk on $\mathcal{S}'$ is an i.i.d Bernoulli random variable 
+**Claim 1**: $\mathbb{P}_{\mathcal{S}} (B (\mathcal{S}))$ is upper-bounded by $2 \mathbb{P}_{\mathcal{S}, \mathcal{S}'} (B' (\mathcal{S}, \mathcal{S}'))$,
 
 $$
-R_{\mathcal{S}'} (h) = \frac{ 1 }{ n } \sum_{i = 1}^{n} \left[
-    h (\mathbf{x}_{i}') \neq y_{i}'
-\right]
-$$
+\mathbb{P}_{\mathcal{S}} (B (\mathcal{S})) \leq 2 \mathbb{P}_{\mathcal{S}, \mathcal{S}'} (B' (\mathcal{S}, \mathcal{S}')).
+$$ 
 
-and therefore the empirical risk $R_{\mathcal{S}'} (h)$ is an estimated average of these random variables. 
-
-Also note that the true average of $R_{\mathcal{S}'} (h)$ with respect to the all instances is the true risk $R (h)$
+Since the probability of an event cannot be larger than its conjunction with another event,
 
 $$
-\mathbb{E}_{\mathcal{S}'} \left[
-    R_{\mathcal{S}'} (h)
-\right] = R (h).
+\begin{aligned}
+\mathbb{P}_{\mathcal{S}, \mathcal{S}'} (B' (\mathcal{S}, \mathcal{S}')) 
+& \geq \mathbb{P}_{\mathcal{S}, \mathcal{S}'} (B' (\mathcal{S}, \mathcal{S}') \cap B (\mathcal{S}))
+\\
+& = \mathbb{P}_{\mathcal{S}, \mathcal{S}'} (B' (\mathcal{S}, \mathcal{S}') \mid B (\mathcal{S})) \mathbb{P}_{\mathcal{S}} (B (\mathcal{S}))
+\end{aligned}
 $$
 
-Therefore, we can apply the lower tail case of the Chernoff bound for the average of Bernoulli variables and set $X = R_{\mathcal{S}'} (h), \mu = R (h), \delta = \frac{ 1 }{ 2 }$
+Now consider the probability of the event
+
+$$
+\mathbb{P}_{\mathcal{S}, \mathcal{S}'} (B' (\mathcal{S}, \mathcal{S}') \mid B (\mathcal{S})),
+$$
+
+which can be written as 
+
+$$
+\mathbb{P}_{\mathcal{S}, \mathcal{S}'} \left(
+    R_{\mathcal{S}'} (h) \geq \frac{ \epsilon }{ 2 }
+\right)
+$$
+
+because the event $B' (\mathcal{S}, \mathcal{S}')$ is the event $R_{\mathcal{S}'} (h) \geq \frac{ \epsilon }{ 2 }$ if the event $B (\mathcal{S})$ is given.
+
+Since $R (h)$ is the mean of $R_{\mathcal{S}'} (h)$,
+we can apply the lower tail case of the Chernoff bound for the average of Bernoulli variables and set $X = R_{\mathcal{S}'} (h), \mu = R (h), \delta = \frac{ 1 }{ 2 }$
 
 $$
 \begin{aligned}
@@ -224,14 +236,13 @@ $$
 \right) 
 & \leq \exp \left[
     -\frac{ n R (h) }{ 8 }
-\right]
+\right].
 \end{aligned}
 $$
 
 Since $R (h) \geq \epsilon$ and the assumption states that $n > \frac{ 8 }{ \epsilon }$
 
 $$
-\begin{aligned}
 \mathbb{P} \left(
     R_{\mathcal{S}'} (h) \leq \frac{ \epsilon }{ 2 }
 \right) \leq \mathbb{P} \left(
@@ -240,57 +251,58 @@ $$
     \frac{ - n R(h) }{ 8 }
 \right] \leq \exp \left[
     \frac{ - R(h) }{ \epsilon } 
-\right] \leq \frac{ 1 }{ e } \leq \frac{ 1 }{ 2 },
-\end{aligned}
-$$
-
-and therefore given that $B (\mathcal{S})$ holds we have
-
-$$
+\right] \leq \frac{ 1 }{ e } \leq \frac{ 1 }{ 2 }
+\\
 \mathbb{P} \left(
     R_{\mathcal{S}'} (h) \geq \frac{ \epsilon }{ 2 }
-\right) \geq \frac{ 1 }{ 2 }.
+\right) \geq \frac{ 1 }{ 2 }
 $$
 
-Therefore, when $n > \frac{ 8 }{ \epsilon }$
-
-$$
-\mathbb{P} (B' (\mathcal{S}, \mathcal{S}') \mid B (\mathcal{S})) \geq \frac{ 1 }{ 2 }.
-$$
-
-**Claim 2**: we have
-
-$$
-\mathbb{P}_{\mathcal{S}} (B (\mathcal{S})) \leq 2 \mathbb{P}_{\mathcal{S}, \mathcal{S}'} (B (\mathcal{S}, \mathcal{S}'))
-$$ 
-
-because
+Then we have proved the claim
 
 $$
 \begin{aligned}
-\mathbb{P}_{\mathcal{S}, \mathcal{S}'} (B' (\mathcal{S}, \mathcal{S}')) 
-& \geq \mathbb{P}_{\mathcal{S}, \mathcal{S}'} (B' (\mathcal{S}, \mathcal{S}') \cap B (\mathcal{S}))
+\mathbb{P}_{\mathcal{S}, \mathcal{S}'} (B' (\mathcal{S}, \mathcal{S}') \mid B (\mathcal{S})) \mathbb{P}_{\mathcal{S}} (B (\mathcal{S}))
+& \leq \mathbb{P}_{\mathcal{S}, \mathcal{S}'} (B' (\mathcal{S}, \mathcal{S}')) 
 \\
-& = \mathbb{P}_{\mathcal{S}, \mathcal{S}'} (B' (\mathcal{S}, \mathcal{S}') \mid B (\mathcal{S})) \mathbb{P}_{\mathcal{S}} (B (\mathcal{S}))
+\frac{ 1 }{ 2 } \mathbb{P}_{\mathcal{S}} (B (\mathcal{S}))
+& \leq \mathbb{P}_{\mathcal{S}, \mathcal{S}'} (B' (\mathcal{S}, \mathcal{S}')) 
 \\
-& \geq \frac{ 1 }{ 2 } \mathbb{P}_{\mathcal{S}} (B (\mathcal{S})).
+\mathbb{P}_{\mathcal{S}} (B (\mathcal{S}))
+& \leq 2 \mathbb{P}_{\mathcal{S}, \mathcal{S}'} (B' (\mathcal{S}, \mathcal{S}')).
 \end{aligned}
 $$
 
-**Claim 3**: we have
+**Claim 2**: the probability of event $B' (\mathcal{S}, \mathcal{S}')$ is the same as the expectation of the probability that $B'' (\mathcal{S}, \mathcal{S}', \sigma)$ happens given $\mathcal{S}, \mathcal{S}'$
 
 $$
-\mathbb{P}_{\mathcal{S}, \mathcal{S}'} (B' (\mathcal{S}, \mathcal{S}')) = \mathbb{P}_{\mathcal{S}, \mathcal{S}', \mathbf{b}} (B'' (\mathcal{S}, \mathcal{S}', \mathbf{b}))
+\mathbb{P}_{\mathcal{S}, \mathcal{S}'} (B' (\mathcal{S}, \mathcal{S}')) 
+= \mathbb{E}_{\mathcal{S}, \mathcal{S}'} \left[
+    \mathbb{P}_{\sigma} (B'' (\mathcal{S}, \mathcal{S}', \sigma) \mid \mathcal{S}, \mathcal{S}')
+\right].
+$$ 
+
+Since the event $B' (\mathcal{S}, \mathcal{S}')$ and $B'' (\mathcal{S}, \mathcal{S}', \sigma)$ only differ on the set of instances $\mathcal{S}, \mathcal{S}'$ and $\mathcal{S}_{\sigma}, \mathcal{S}_{\sigma}'$ and they can both be seen as the set of instances i.i.d sampled from the $\mathbb{P}_{Z}$,
+their probability should be the same 
+
+$$
+\mathbb{P}_{\mathcal{S}, \mathcal{S}'} (B' (\mathcal{S}, \mathcal{S}')) = \mathbb{P}_{\mathcal{S}, \mathcal{S}', \sigma} (B'' (\mathcal{S}, \mathcal{S}', \sigma)).
 $$
 
-because the event $B' (\mathcal{S}, \mathcal{S}')$ and $B'' (\mathcal{S}, \mathcal{S}', \mathbf{b}) = B'' (\mathcal{T}, \mathcal{T}')$ only differ on the set of instances $\mathcal{S}, \mathcal{S}'$ and $\mathcal{T}, \mathcal{T}'$ and they can be seen as the set of instances i.i.d sampled from the $\mathcal{X}^{d}$. 
-
-**Claim 4**: given any $\mathcal{S}, \mathcal{S}'$, we have the following for any fixed $h \in \mathcal{H}$
+Then, we can prove the claim by using marginalization of the probability
 
 $$
-\mathbb{P}_{\mathbf{b}} \left(
-    R_{\mathcal{T}} (h) = 0, R_{\mathcal{T}'} (h) \geq \frac{ \epsilon }{ 2 } \mid \mathcal{S}, \mathcal{S}'
-\right) \leq 2^{- \frac{ n \epsilon }{ 2 }}.
+\mathbb{P}_{\mathcal{S}, \mathcal{S}', \sigma} (B'' (\mathcal{S}, \mathcal{S}', \sigma)) = \mathbb{E}_{\mathcal{S}, \mathcal{S}'} [\mathbb{P}_{\sigma} (B'' (\mathcal{S}, \mathcal{S}', \sigma) \mid \mathcal{S}, \mathcal{S}')].
+$$
+
+**Claim 3**: $\mathbb{E}_{\mathcal{S}, \mathcal{S}'} [\mathbb{P}_{\sigma} (B'' (\mathcal{S}, \mathcal{S}', \sigma) \mid \mathcal{S}, \mathcal{S}')]$ is upper-bounded by $\Pi_{\mathcal{H}} (2 n) \exp \left[ - \frac{ n \epsilon }{ 2 } \right]$
+
+$$
+\mathbb{E}_{\mathcal{S}, \mathcal{S}} \left[
+    \mathbb{P}_{\sigma} (B'' (\mathcal{S}, \mathcal{S}', \sigma) \mid \mathcal{S}, \mathcal{S}') 
+\right] \leq \Pi_{\mathcal{H}} (2 n) \exp \left[ 
+    - \frac{ n \epsilon }{ 2 } 
+\right].
 $$
 
 Remember that $\mathcal{S}, \mathcal{S}'$ all have $n$ instances and therefore there are $n$ pairs of instances $(\mathbf{x}_{1}, \mathbf{x}_{1}'), \dots, (\mathbf{x}_{n}, \mathbf{x}_{n}')$.
@@ -305,137 +317,117 @@ There are 3 cases for the corrections of the predictions made by $h$ for each pa
 First if there is a pair in $\mathcal{S}, \mathcal{S}'$ with case 1, then
 
 $$
-\mathbb{P}_{\mathbf{b}} \left(
-    R_{\mathcal{T}} (h) = 0, R_{\mathcal{T}'} (h) \geq \frac{ \epsilon }{ 2 } \mid \mathcal{S}, \mathcal{S}'
+\mathbb{P}_{\sigma} \left(
+    R_{\mathcal{S}_{\sigma}} (h) = 0, R_{\mathcal{S}_{\sigma}'} (h) \geq \frac{ \epsilon }{ 2 } \mid \mathcal{S}, \mathcal{S}'
 \right) = 0
 $$
 
-because $R_{\mathcal{T}} (h) > 0$ no matter how to generate $\mathcal{T}$ by swapping instances in $\mathcal{S}, \mathcal{S}'$. 
+because $R_{\mathcal{S}_{\sigma}} (h) > 0$ no matter how to generate $\mathcal{S}_{\sigma}$ by swapping instances in $\mathcal{S}, \mathcal{S}'$. 
 
 Then denoted by $r$ the number of pairs in $\mathcal{S}, \mathcal{S}'$ that case 2 is true, 
 if $r < \frac{ \epsilon n }{ 2 }$, 
 
 $$
-\mathbb{P}_{\mathbf{b}} \left(
-    R_{\mathcal{T}} (h) = 0, R_{\mathcal{T}'} (h) \geq \frac{ \epsilon }{ 2 } \mid \mathcal{S}, \mathcal{S}'
+\mathbb{P}_{\sigma} \left(
+    R_{\mathcal{S}_{\sigma}} (h) = 0, R_{\mathcal{S}_{\sigma}'} (h) \geq \frac{ \epsilon }{ 2 } \mid \mathcal{S}, \mathcal{S}'
 \right) = 0
 $$
 
-because $R_{\mathcal{T}'} (h) < \frac{ \epsilon }{2}$ no matter how to generate $\mathcal{T}'$ by swapping instances in $\mathcal{S}, \mathcal{S}'$.
+because $R_{\mathcal{S}_{\sigma}'} (h) < \frac{ \epsilon }{2}$ no matter how to generate $\mathcal{S}_{\sigma}'$ by swapping instances in $\mathcal{S}, \mathcal{S}'$.
 
 When $r \geq \frac{ \epsilon n }{ 2 }$, 
-the event $R_{\mathcal{T}} (h) = 0, R_{\mathcal{T}'} (h) \geq \frac{ \epsilon }{ 2 }$ is possible and its possibility is 
+the event $R_{\mathcal{S}_{\sigma}} (h) = 0, R_{\mathcal{S}_{\sigma}'} (h) \geq \frac{ \epsilon }{ 2 }$ is possible and its possibility is 
 
 $$
-\mathbb{P}_{\mathbf{b}} \left(
-    R_{\mathcal{T}} (h) = 0, R_{\mathcal{T}'} (h) \geq \frac{ \epsilon }{ 2 } \mid \mathcal{S}, \mathcal{S}'
+\mathbb{P}_{\sigma} \left(
+    R_{\mathcal{S}_{\sigma}} (h) = 0, R_{\mathcal{S}_{\sigma}'} (h) \geq \frac{ \epsilon }{ 2 } \mid \mathcal{S}, \mathcal{S}'
 \right) = \left(
     \frac{ 1 }{ 2 }
 \right)^{r} \leq 2^{- \frac{ \epsilon n }{ 2 }}
 $$
 
-because the independent binary values in $\mathbf{b}$ must take $1$ with probability 0.5 for all $r'$ mistakes that were in $\mathcal{S}$ and swapped to be in $\mathcal{T}'$,
-and take $0$ with probability 0.5 for the $r - r'$ mistakes that were in $\mathcal{S}'$ and are stayed in $\mathcal{T}'$.
+because the independent Rademacher random variables in $\sigma$ must take $1$ with probability $\frac{ 1 }{ 2 }$ for all $r'$ mistakes that were in $\mathcal{S}$ and swapped to be in $\mathcal{S}_{\sigma}'$,
+and take $-1$ with probability $\frac{ 1 }{ 2 }$ for the $r - r'$ mistakes that were in $\mathcal{S}'$ and are stayed in $\mathcal{S}_{\sigma}'$.
 
 Since the probability of the case 3 is already included in the calculation of the above probabilities,
-we can prove the claim 4 by adding probabilities for all cases
+we can prove the claim by adding probabilities for all cases
 
 $$
-\mathbb{P}_{\mathbf{b}} \left(
-    R_{\mathcal{T}} (h) = 0, R_{\mathcal{T}'} (h) \geq \frac{ \epsilon }{ 2 } \mid \mathcal{S}, \mathcal{S}'
+\mathbb{P}_{\sigma} \left(
+    R_{\mathcal{S}_{\sigma}} (h) = 0, R_{\mathcal{S}_{\sigma}'} (h) \geq \frac{ \epsilon }{ 2 } \mid \mathcal{S}, \mathcal{S}'
 \right) \leq 2^{- \frac{ \epsilon n }{ 2 }}.
 $$
 
-**Claim 5**: given any $\mathcal{S}, \mathcal{S}'$, 
-
-$$
-\mathbb{P}_{\mathbf{b}} \left(
-    B (\mathcal{S}, \mathcal{S}', \mathbf{b}) \mid \mathcal{S}, \mathcal{S}'
-\right) = \mathbb{P}_{\mathbf{b}} \left(
-    \exist h \in \mathcal{H}: R_{\mathcal{T}} (h) = 0, R_{\mathcal{T}'} (h) \geq \frac{ \epsilon }{ 2 } \mid \mathcal{S}, \mathcal{S}'
-\right) \leq \Pi_{\mathcal{H}} (2 n) 2^{- \frac{ \epsilon n }{ 2 }}.
-$$
-
-Since $\mathcal{H} (\mathcal{S} \cup \mathcal{S}')$ contains all the label assignments for the event $\exist h \in \mathcal{H}: R_{\mathcal{T}} (h) = 0, R_{\mathcal{T}'} (h) \geq \frac{ \epsilon }{ 2 }$,
-$\mathcal{H}$ can be replaced with $\mathcal{H} (\mathcal{S} \cup \mathcal{S}')$ 
+To get the probability for any $h \in \mathcal{H}$, 
+we apply union bound on all possible label assignments that $\mathcal{H}$ can make over the set $\mathcal{S} \cup \mathcal{S}'$,
 
 $$
 \begin{aligned}
-& \mathbb{P}_{\mathbf{b}} \left(
-    \exist h \in \mathcal{H}: R_{\mathcal{T}} (h) = 0, R_{\mathcal{T}'} (h) \geq \frac{ \epsilon }{ 2 } \mid \mathcal{S}, \mathcal{S}'
+\mathbb{P}_{\sigma} (B'' (\mathcal{S}, \mathcal{S}', \sigma) \mid \mathcal{S}, \mathcal{S}') 
+& = \mathbb{P}_{\sigma} \left(
+    \exist h \in \mathcal{H}: R_{\mathcal{S}_{\sigma}} (h) = 0, R_{\mathcal{S}_{\sigma}'} (h) \geq \frac{ \epsilon }{ 2 } \mid \mathcal{S}, \mathcal{S}'
 \right) 
 \\
-& = \mathbb{P}_{\mathbf{b}} \left(
-    \exist h \in \mathcal{H} (\mathcal{S} \cup \mathcal{S}'): R_{\mathcal{T}} (h) = 0, R_{\mathcal{T}'} (h) \geq \frac{ \epsilon }{ 2 } \mid \mathcal{S}, \mathcal{S}'
+& = \mathbb{P}_{\sigma} \left(
+    \exist h \in \mathcal{H} (\mathcal{S} \cup \mathcal{S}'): R_{\mathcal{S}_{\sigma}} (h) = 0, R_{\mathcal{S}_{\sigma}'} (h) \geq \frac{ \epsilon }{ 2 } \mid \mathcal{S}, \mathcal{S}'
 \right) 
 \\
-& \leq \sum_{h \in \mathcal{H} (\mathcal{S} \cup \mathcal{S}')} \mathbb{P}_{\mathbf{b}} \left(
-    R_{\mathcal{T}} (h) = 0, R_{\mathcal{T}'} (h) \geq \frac{ \epsilon }{ 2 } \mid \mathcal{S}, \mathcal{S}'
+& \leq \sum_{h \in \mathcal{H} (\mathcal{S} \cup \mathcal{S}')} \mathbb{P}_{\sigma} \left(
+    R_{\mathcal{S}_{\sigma}} (h) = 0, R_{\mathcal{S}_{\sigma}'} (h) \geq \frac{ \epsilon }{ 2 } \mid \mathcal{S}, \mathcal{S}'
 \right) 
 \\
-& \leq \sum_{h \in \mathcal{H} (\mathcal{S} \cup \mathcal{S}')} (2 n) 2^{- \frac{ \epsilon n }{ 2 }}.
-\\
-& \leq \Pi_{\mathcal{H}} (2 n) 2^{- \frac{ \epsilon n }{ 2 }}.
+& \leq \Pi_{\mathcal{H}} (2 n) 2^{- \frac{ \epsilon n }{ 2 }},
 \\
 \end{aligned}
 $$
 
-where the first inequality is because of union bound, 
-the second inequality is because the claim 4, 
-and the last inequality is because the definition of the growth function states that 
+where the last inequality is because of the definition of the growth function states that 
 
 $$
 \lvert \mathcal{H} (\mathcal{S} \cup \mathcal{S}') \rvert \leq \Pi_{H} (\lvert \mathcal{S} \rvert + \lvert \mathcal{S}' \rvert) = \Pi_{\mathcal{H}} (2 n).
 $$
 
-**Claim 6**: $\mathbb{P}_{\mathcal{S}, \mathcal{S}', \mathbf{b}} (B'' (\mathcal{S}, \mathcal{S}', \mathbf{b}))$ has the same upper bound as $\mathbb{P}_{\mathbf{b}} (B'' (\mathcal{S}, \mathcal{S}', \mathbf{b}) \mid \mathcal{S}, \mathcal{S}')$
+Note that the term $\Pi_{\mathcal{H}} (2 n) 2^{- \frac{ n \epsilon }{ 2 }}$ doesn't depend on $\mathcal{S}, \mathcal{S}'$.
+Since the expectation of a constant is that constant,
+we have proved the claim
 
 $$
-\mathbb{P}_{\mathcal{S}, \mathcal{S}', \mathbf{b}} (B'' (\mathcal{S}, \mathcal{S}', \mathbf{b})) \leq \Pi_{\mathcal{H}} (2 n) 2^{- \frac{ \epsilon n }{ 2 }}.
+\mathbb{E}_{\mathcal{S}, \mathcal{S}} \left[
+    \mathbb{P}_{\sigma} (B'' (\mathcal{S}, \mathcal{S}', \sigma) \mid \mathcal{S}, \mathcal{S}') 
+\right] \leq \mathbb{E}_{\mathcal{S}, \mathcal{S}} \left[
+    \Pi_{\mathcal{H}} (2 n) \exp \left[ 
+        - \frac{ n \epsilon }{ 2 } 
+    \right]
+\right] \leq \Pi_{\mathcal{H}} (2 n) \exp \left[ 
+    - \frac{ n \epsilon }{ 2 } 
+\right].
 $$
 
-Since $\Pi_{\mathcal{H}} (2 n) 2^{- \frac{ \epsilon n }{ 2 }}$ is a function that only depends on $n, \epsilon, \mathcal{H}$ and doesn't depend on the choice of $\mathcal{S}, \mathcal{S}'$
-
-$$
-\mathbb{E}_{\mathcal{S}, \mathcal{S}'} \left[
-    \mathbb{P}_{\mathbf{b}} (B'' (\mathcal{S}, \mathcal{S}', \mathbf{b}) \mid \mathcal{S}, \mathcal{S}') 
-\right] = \mathbb{P}_{\mathbf{b}} (B'' (\mathcal{S}, \mathcal{S}', \mathbf{b}) \mid \mathcal{S}, \mathcal{S}') \leq \Pi_{\mathcal{H}} (2 n) 2^{- \frac{ \epsilon n }{ 2 }},
-$$
-
-and by marginalization, 
-
-$$
-\mathbb{P}_{\mathcal{S}, \mathcal{S}', \mathbf{b}} (B'' (\mathcal{S}, \mathcal{S}', \mathbf{b})) = \mathbb{E}_{\mathcal{S}, \mathcal{S}'} \left[
-    \mathbb{P}_{\mathbf{b}} (B'' (\mathcal{S}, \mathcal{S}', \mathbf{b}) \mid \mathcal{S}, \mathcal{S}') 
-\right] \leq \Pi_{\mathcal{H}} (2 n) 2^{- \frac{ \epsilon n }{ 2 }}.
-$$
-
-Finally, by combining some of the claims above,
+Finally we can prove the theorem by using all of the claims above
 
 $$
 \begin{aligned}
 \mathbb{P}_{\mathcal{S}} (B (\mathcal{S})) 
 & \leq 2 \mathbb{P}_{\mathcal{S}, \mathcal{S}'} (B' (\mathcal{S}, \mathcal{S}'))
-& [\text{claim 2}]
 \\
-& = 2 \mathbb{P}_{\mathcal{S}, \mathcal{S}', \mathbf{b}} (B'' (\mathcal{S}, \mathcal{S}', \mathbf{b}))
-& [\text{claim 3}]
+& = 2 \mathbb{E}_{\mathcal{S}, \mathcal{S}'} \left[
+    \mathbb{P}_{\sigma} (B' (\mathcal{S}, \mathcal{S}', \sigma) \mid \mathcal{S}, \mathcal{S}')
+\right]
 \\
-& \leq 2 \Pi_{\mathcal{H}} (2 n) 2^{- \frac{ \epsilon n }{ 2 }}
-& [\text{claim 6}]
+& \leq 2 \Pi_{\mathcal{H}} (2 n) 2^{- \frac{ n \epsilon }{ 2 }}.
 \end{aligned}
-$$
+$$ 
 
-and setting $\delta$, we can get the threshold for $n$
+By setting $\delta = 2 \Pi_{\mathcal{H}} (2 n) 2^{- \frac{ n \epsilon }{ 2 }}$,
 
 $$
 \begin{aligned}
-\delta 
-& = 2 \Pi_{\mathcal{H}} (2 n) 2^{- \frac{ \epsilon n }{ 2 }}
+\delta
+& = 2 \Pi_{\mathcal{H}} (2 n) 2^{- \frac{ n \epsilon }{ 2 }}
 \\
 n
-&  = \frac{
-    4 \log \Pi_{\mathcal{H}} (2 n) + 2 \log \frac{ 2 }{ \delta } 
+& = 2 \frac{ 
+    \log \Pi_{\mathcal{H}} (2 n) + \log \frac{ 2 }{ \delta }
 }{
     \epsilon
 }.
@@ -443,8 +435,6 @@ n
 $$
 
 :::
-
-### More general results using Sauer’s lemma
 
 Now we can use the Sauer’s lemma to get a nice closed form expression on sample complexity result for the infinite class. 
 

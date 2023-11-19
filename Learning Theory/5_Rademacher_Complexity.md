@@ -82,7 +82,7 @@ Explanations in the derivations
 
 #### Scaling and translation
 
-Given any function class $\mathcal{F}$ and constants $a, b \in \mathbb{R}$, denote the function class $ \mathcal{G} = \{g (x) = a f (x) + b \}$.
+Given any function class $\mathcal{F}$ and constants $a, b \in \mathbb{R}$, denote the function class $\mathcal{G} = \{ g (x) = a f (x) + b \}$.
 
 $$
 \mathrm{Rad}_{\mathcal{G}} (\mathcal{S}) = \lvert a \rvert \mathrm{Rad}_{\mathcal{F}} (\mathcal{S})
@@ -457,8 +457,6 @@ where the error $\epsilon$ is
 $$
 \epsilon = 2 \mathrm{Rad}_{\mathcal{L}} (n) + \sqrt{\frac{ \log \frac{ 1 }{ \delta }}{ 2 n }}.
 $$
-
-Since the 0-1 loss can be written as 
 
 :::
 

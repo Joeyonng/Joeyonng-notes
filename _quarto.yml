@@ -1,22 +1,7 @@
 project:
   type: website
-
-website:
-  title: "joeyonng-notebook"
-  navbar:
-    left:
-      - href: index.md
-        text: Home
-      - href: "ML interviews.ipynb"
-        text: ML Questions
-  sidebar:
-    style: docked
-    search: true
-    contents: 
-      - section: "Learning Theory"
-        contents: Learning Theory/*
-      - section: "Statistical Learning"
-        contents: Statistical Learning/*
+  preview:
+    port: 3000
 
 format:
   html:
@@ -30,3 +15,25 @@ format:
     grid:
       sidebar-width: 375px
       body-width: 4096px
+
+website:
+  title: "joeyonng-notebook"
+
+  navbar:
+    left:
+      - href: index.md
+        text: "Home"
+      - href: "ML Q&A.ipynb"
+        text: "ML Q & A"
+
+  sidebar:
+    - id: home
+      title: "Home"
+      style: docked
+      search: true
+      contents: 
+        - section: "Learning Theory"
+          contents: Learning Theory/*
+        - text: "---"
+        - section: "Statistical Learning"
+          contents: Statistical Learning/*
