@@ -19,16 +19,16 @@ format:
 website:
   title: "joeyonng-notebook"
 
-  navbar:
-    left:
-      - href: index.md
-        text: "Home"
-      - href: "ML Q&A.ipynb"
-        text: "ML Q & A"
+  # navbar:
+  #   left:
+  #     - href: index.md
+  #       text: "Home"
+  #     - href: "ML Q&A.ipynb"
+  #       text: "ML Q & A"
 
   sidebar:
-    - id: home
-      title: "Home"
+    - title: "Joeyonng's Notebook"
+      collapse-level: 1
       style: docked
       search: true
       contents: 
@@ -37,3 +37,5 @@ website:
         - text: "---"
         - section: "Statistical Learning"
           contents: Statistical Learning/*
+        - text: "---"
+        - "ML Q&A.ipynb"

@@ -148,9 +148,15 @@ Explanations in the derivations
 
 :::
 
-## Rademacher theorem
+## Symmetrization lemma
 
-The primary use of the Rademacher complexity is to upper bound $\mathbb{E}_{\mathcal{S}} [\phi (\mathcal{S})]$, the expectation of the maximum error in estimating the mean of any function $f \in \mathcal{F}$,
+Here we proved an important result with the Rademacher complexity using so called **symmetrization** technique, 
+which involves creating a "ghost" sample as a hypothetical independent copy of the original sample.
+
+:::{#thm-}
+
+For any class of measurable functions $\mathcal{F}$,
+the expectation of the maximum error in estimating the mean of any function $f \in \mathcal{F}$ is bounded by 2 times of the Rademacher complexity
 
 $$
 \mathbb{E}_{\mathcal{S}} [\phi (\mathcal{S})] 
@@ -163,9 +169,12 @@ $$
 
 where $E_{\mathcal{S}} (f) = \frac{ 1 }{ n } \sum_{i = 1}^{n} f (z_{i})$ is the estimated expectation of $f$ on the sample $\mathcal{S}$.
 
+:::
+
 :::{.callout-note collapse="true" title="Proof"}
 
-We introduce a ghost sample $\mathcal{S}' = \{ z_{1}', \dots, z_{n}' \}$ that is also i.i.d drawn from $\mathbb{P}_{\mathcal{Z}^{n}}$,
+By using the symmetrization technique,
+we introduce a ghost sample $\mathcal{S}' = \{ z_{1}', \dots, z_{n}' \}$ that is also i.i.d drawn from $\mathbb{P}_{\mathcal{Z}^{n}}$,
 which means
 
 $$
@@ -266,8 +275,6 @@ $$
 :::
 
 ## Rademacher-based uniform convergence
-
-### General results for all classes
 
 :::{#thm-}
 

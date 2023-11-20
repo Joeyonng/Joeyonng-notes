@@ -653,18 +653,3 @@ n
 $$
 
 :::
-
-:::{#thm-}
-
-If $A$ learns the concept by minimizing the empirical risk, 
-then $A$ learns the concept class $\mathcal{C}$ by the infinite hypothesis class $\mathcal{H}$ in the agnostic PAC model with the sample complexity
-
-$$
-n_{\mathcal{H}} (\epsilon, \delta) = 8 \frac{
-    \log \Pi_{\mathcal{H}} (2 n) + \log \frac{ 4 }{ \delta } 
-}{
-    \epsilon^{2}
-}.
-$$
-
-:::
