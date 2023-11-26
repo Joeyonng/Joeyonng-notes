@@ -1,7 +1,7 @@
-# joeyonng-notebook
+# Joeyonng
 
-This repository hosts my learning notes on general machine learning methods and 
-my reading notes of the related papers. 
+This repository hosts my personal website where I primarily used to share my summaries on general machine learning methods (Knowledge) and 
+my reading notes of the related papers (Notes). 
 
 My goal is to make my notes **formal**, **comprehensive** and most importantly, 
 **easy-to-read**.

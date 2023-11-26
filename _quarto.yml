@@ -1,5 +1,7 @@
 project:
   type: website
+  resources:
+    - "resume.pdf"
   preview:
     port: 3000
 
@@ -13,29 +15,29 @@ format:
     callout-appearance: simple
     page-layout: full
     grid:
-      sidebar-width: 375px
-      body-width: 4096px
+      body-width: 1200px
 
 website:
-  title: "joeyonng-notebook"
+  title: "Joeyonng"
 
-  # navbar:
-  #   left:
-  #     - href: index.md
-  #       text: "Home"
-  #     - href: "ML Q&A.ipynb"
-  #       text: "ML Q & A"
+  navbar:
+    left:
+      - href: "index.md"
+        text: "Home"
+      - href: "Knowledge"
+        text: "Knowledge"
+      - href: "Notes"
+        text: "Notes"
 
   sidebar:
-    - title: "Joeyonng's Notebook"
+    - title: "Knowledge"
       collapse-level: 1
-      style: docked
       search: true
+      alignment: center
       contents: 
         - section: "Learning Theory"
-          contents: Learning Theory/*
+          contents: Knowledge/Learning Theory/*
         - text: "---"
         - section: "Statistical Learning"
-          contents: Statistical Learning/*
+          contents: Knowledge/Statistical Learning/*
         - text: "---"
-        - "ML Q&A.ipynb"
