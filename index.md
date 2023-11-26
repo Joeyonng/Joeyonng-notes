@@ -29,7 +29,7 @@ UCSD is also where I earned my bachelor's in 2018.
 My primary research interest is [Explainable machine learning](https://en.wikipedia.org/wiki/Explainable_artificial_intelligence) and my expertise extends to general machine learning theory, combinatorial logic, and deep learning. 
 
 This website serves as a platform for sharing my learned knowledge and research notes. 
-Additionally, I enjoy developing web applications and you can find some of my side projects here.
+Additionally, I enjoy developing web applications and you can find some of my side projects in my Github.
 
 :::
 
