@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Joeyonng - Lecture 1</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Joeyonng</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../Knowledge" rel="" target="">
+ <span class="menu-text">Knowledge</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../Notes" rel="" target="">
+ <span class="menu-text">Notes</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://joeyonng.github.io/joeyonng-backyard/" rel="" target="">
+ <span class="menu-text">Backyard</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Lecture 1</li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+ <span class="menu-text">Learning Theory</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Learning Theory/1_Statistical_Learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statistical Learning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Learning Theory/2_Bayesian_Classifier.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Classifier</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Learning Theory/3_Effective_Class_Size.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Effective Class Size</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Learning Theory/4_Empirical_Risk_Minimization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Empirical Risk Minimization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Learning Theory/5_Uniform_Convergence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Uniform Convergence</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Learning Theory/6_PAC_Learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PAC Learning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Learning Theory/7_Rademacher_Complexity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Rademacher Complexity</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#language" id="toc-language" class="nav-link active" data-scroll-target="#language">Language</a>
+  <ul class="collapse">
+  <li><a href="#alphabet" id="toc-alphabet" class="nav-link" data-scroll-target="#alphabet">Alphabet</a></li>
+  <li><a href="#string" id="toc-string" class="nav-link" data-scroll-target="#string">String</a></li>
+  </ul></li>
+  <li><a href="#lecture-2" id="toc-lecture-2" class="nav-link" data-scroll-target="#lecture-2">Lecture 2</a>
+  <ul class="collapse">
+  <li><a href="#single-variable-zero-error-and-worst-case" id="toc-single-variable-zero-error-and-worst-case" class="nav-link" data-scroll-target="#single-variable-zero-error-and-worst-case">Single variable, zero error and worst case:</a></li>
+  <li><a href="#single-variable-zero-error-and-average-case" id="toc-single-variable-zero-error-and-average-case" class="nav-link" data-scroll-target="#single-variable-zero-error-and-average-case">Single variable, zero error and average case:</a></li>
+  </ul></li>
+  <li><a href="#lecture-3" id="toc-lecture-3" class="nav-link" data-scroll-target="#lecture-3">Lecture 3</a>
+  <ul class="collapse">
+  <li><a href="#jensens-inequality" id="toc-jensens-inequality" class="nav-link" data-scroll-target="#jensens-inequality">Jensen’s inequality</a>
+  <ul class="collapse">
+  <li><a href="#proof-h-x-leq-log-lvert-mathcalx-rvert" id="toc-proof-h-x-leq-log-lvert-mathcalx-rvert" class="nav-link" data-scroll-target="#proof-h-x-leq-log-lvert-mathcalx-rvert">Proof: <span class="math inline">H (x) \leq \log \lvert \mathcal{X} \rvert</span></a></li>
+  <li><a href="#krafts-inequality" id="toc-krafts-inequality" class="nav-link" data-scroll-target="#krafts-inequality">Kraft’s inequality</a></li>
+  <li><a href="#show-barl-x-h-x-1" id="toc-show-barl-x-h-x-1" class="nav-link" data-scroll-target="#show-barl-x-h-x-1">Show <span class="math inline">\bar{L} (x) &lt; H (x) + 1</span></a></li>
+  <li><a href="#show-for-all-valid-codes-c-l_c-x-geq-h-x" id="toc-show-for-all-valid-codes-c-l_c-x-geq-h-x" class="nav-link" data-scroll-target="#show-for-all-valid-codes-c-l_c-x-geq-h-x">Show for all valid codes <span class="math inline">c</span>: <span class="math inline">L_{c} (x) \geq H (x)</span></a></li>
+  <li><a href="#more-about-entropy" id="toc-more-about-entropy" class="nav-link" data-scroll-target="#more-about-entropy">More about entropy</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#lecture-4" id="toc-lecture-4" class="nav-link" data-scroll-target="#lecture-4">Lecture 4</a>
+  <ul class="collapse">
+  <li><a href="#entropy-of-functions" id="toc-entropy-of-functions" class="nav-link" data-scroll-target="#entropy-of-functions">Entropy of functions</a></li>
+  <li><a href="#grouping-properties" id="toc-grouping-properties" class="nav-link" data-scroll-target="#grouping-properties">Grouping properties</a></li>
+  <li><a href="#encoding-block-encodes" id="toc-encoding-block-encodes" class="nav-link" data-scroll-target="#encoding-block-encodes">Encoding block encodes</a>
+  <ul class="collapse">
+  <li><a href="#worst-case" id="toc-worst-case" class="nav-link" data-scroll-target="#worst-case">Worst case</a></li>
+  <li><a href="#entropy-of-random-vectors" id="toc-entropy-of-random-vectors" class="nav-link" data-scroll-target="#entropy-of-random-vectors">Entropy of random vectors</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-body" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lecture 1</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="language" class="level2">
+<h2 class="anchored" data-anchor-id="language">Language</h2>
+<section id="alphabet" class="level3">
+<h3 class="anchored" data-anchor-id="alphabet">Alphabet</h3>
+<p>Alphabet <span class="math inline">x \in \mathcal{X}</span>: collection of symbols</p>
+<p>Size of the alphabet <span class="math inline">\lvert \mathcal{X} \rvert</span></p>
+</section>
+<section id="string" class="level3">
+<h3 class="anchored" data-anchor-id="string">String</h3>
+<p>A string is a sequence of symbols <span class="math inline">\bar{x}</span></p>
+<p>Empty string <span class="math inline">\Lambda</span></p>
+</section>
+</section>
+<section id="lecture-2" class="level1">
+<h1>Lecture 2</h1>
+<p>Source: <span class="math inline">x \sim p</span> over <span class="math inline">\mathcal{X}</span></p>
+<p>Decoding D: <span class="math inline">\{ 0, 1 \}^{*} \to \mathcal{X}</span>, <span class="math inline">D = C^{-1}</span></p>
+<p>Encoder <span class="math inline">C</span>: <span class="math inline">\mathcal{X} \to \{0, 1\}^{*}</span></p>
+<section id="single-variable-zero-error-and-worst-case" class="level2">
+<h2 class="anchored" data-anchor-id="single-variable-zero-error-and-worst-case">Single variable, zero error and worst case:</h2>
+<p><span class="math display">
+\hat{L}_{c} (x) = \max_{x \in \mathcal{X}} \lvert C (\mathcal{X}) \rvert
+</span></p>
+<p><span class="math display">
+\hat{L} (x) = \min_{c} \hat{L}_{c} (x)
+</span></p>
+<p><span class="math display">
+\hat{L} (x) = \lceil \log_{2} \lvert \mathcal{X} \rvert \rceil
+</span></p>
+<p>Prove by proving both <span class="math inline">\geq</span> and <span class="math inline">\leq</span> cases.</p>
+<p>The number of binary sequences of length <span class="math inline">n</span> is <span class="math inline">2^{n}</span>.</p>
+<p>the largest number of prefix-free sequences of length <span class="math inline">\leq n</span> is <span class="math inline">2^{n}</span></p>
+</section>
+<section id="single-variable-zero-error-and-average-case" class="level2">
+<h2 class="anchored" data-anchor-id="single-variable-zero-error-and-average-case">Single variable, zero error and average case:</h2>
+<p><span class="math display">
+\bar{L}_{c} (x) = \mathbb{E} \lvert C (x) \rvert = \sum_{x \in \mathcal{X}} p (x) \lvert C (x) \rvert
+</span></p>
+<p><span class="math display">
+\bar{L} (x) = \min_{\text{valid} c} \bar{L}_{c} (x)
+</span></p>
+<p>The length to encode a <span class="math inline">x</span> should be related how often appears in the alphabats.</p>
+<p>The length of encoding <span class="math inline">x</span> is related to the probability <span class="math inline">x</span></p>
+<p><span class="math display">
+\lvert C (x) \rvert = \log_{2} \frac{1}{p (x)}
+</span></p>
+<p>Entropy:</p>
+<p><span class="math display">
+\bar{L} (x) = \sum_{x \in \mathcal{X}} p (x) \lvert C (x) \rvert = \sum_{x \in \mathcal{X}} p (x) \log \frac{1}{p (x)} = H (x)
+</span></p>
+<p><span class="math display">
+H (x) = \bar{L} (x) \leq \hat{L} (x) = \lceil \log \lvert \mathcal{X} \rvert \rceil
+</span></p>
+<p><span class="math display">
+H (x) \leq \log \lvert \mathcal{X} \rvert
+</span></p>
+<p>How to prove this?</p>
+</section>
+</section>
+<section id="lecture-3" class="level1">
+<h1>Lecture 3</h1>
+<section id="jensens-inequality" class="level2">
+<h2 class="anchored" data-anchor-id="jensens-inequality">Jensen’s inequality</h2>
+<p>If <span class="math inline">f</span> is a concave function, then</p>
+<p><span class="math display">
+\mathbb{E} (f (x)) \leq f (\mathbb{E} (x))
+</span></p>
+<section id="proof-h-x-leq-log-lvert-mathcalx-rvert" class="level3">
+<h3 class="anchored" data-anchor-id="proof-h-x-leq-log-lvert-mathcalx-rvert">Proof: <span class="math inline">H (x) \leq \log \lvert \mathcal{X} \rvert</span></h3>
+<p>If <span class="math inline">f'' (x) \leq 0</span> over <span class="math inline">I</span>, then <span class="math inline">f</span> is concave over <span class="math inline">I</span></p>
+<p>If <span class="math inline">f = \log x</span>, since <span class="math inline">f' = \frac{1}{x}</span> and <span class="math inline">f'' = \frac{1}{x^{2}}</span>, <span class="math inline">f</span> is concave on <span class="math inline">(0, \infty)</span></p>
+<p><span class="math display">
+\begin{aligned}
+H (x)
+&amp; = \sum_{i} p_{i} \log \frac{1}{p_{i}}
+\\
+&amp; \leq \log \sum_{i}^{n} p_{i} \frac{1}{p_{i}}
+\\
+&amp; \leq \log n
+\end{aligned}
+</span></p>
+<p><span class="math inline">H (x) = \log n</span> if and only if <span class="math inline">p_{i} = p = \frac{1}{n}</span>.</p>
+<p>Given <span class="math inline">l_{1}, l_{2}, \dots, l_{n}</span>, are there prefix-free sequences of these lengths?</p>
+<p>We know</p>
+<p><span class="math display">
+l_{i} = \log \frac{1}{p_{i}} = - \log p_{i} \\
+\log p_{i} = -l_{i} \\
+p_{i} = 2^{- l_{i}}
+</span></p>
+</section>
+<section id="krafts-inequality" class="level3">
+<h3 class="anchored" data-anchor-id="krafts-inequality">Kraft’s inequality</h3>
+<p>There exists prefix-free code words of lengths <span class="math inline">l_{1}, \dots l_{n}</span> if and only if</p>
+<p><span class="math display">
+\sum p_{i} = \sum 2^{-l_{i}} \leq 1
+</span></p>
+<p>Suppose <span class="math inline">l_{1}, \dots, l_{n}</span> are lengths of prefix-free code words. Show that <span class="math inline">\sum 2^{- l_{i}} \leq 1</span>.</p>
+<p>Using binary tree: define the <span class="math inline">L = \max_{i} l_{i}</span> and project the node of <span class="math inline">l_{i}</span> to level <span class="math inline">L</span> as <span class="math inline">S_{i}</span></p>
+<p>Because we assume prefix free, <span class="math inline">S_{i}</span> are disjoint free,</p>
+<p><span class="math display">
+\bigcup S_{i} \subseteq \{0, 1\}^{L} \\
+\lvert \bigcup S_{i} \rvert \leq 2^{L} \\
+\sum \lvert S_{i} \rvert = \sum 2^{L - l{i}} \\
+\sum 2^{- l_{i}} \leq 1
+</span></p>
+</section>
+<section id="show-barl-x-h-x-1" class="level3">
+<h3 class="anchored" data-anchor-id="show-barl-x-h-x-1">Show <span class="math inline">\bar{L} (x) &lt; H (x) + 1</span></h3>
+<p>Given <span class="math inline">p_{1}, \dots, p_{n}</span>, <span class="math inline">l_{i} = \lceil \log \frac{1}{p_{i}} \rceil</span></p>
+<p><span class="math display">
+\sum 2^{- l_{i}} = \sum 2^{-\lceil \log \frac{1}{p_{i}} \rceil} \leq \sum 2^{\log \frac{1}{p_{i}}} = \sum 2^{\log p_{i}} = \sum p_{i} = 1
+</span></p>
+<p>Therefore there exists codewods of lengths <span class="math inline">\lceil \log \frac{1}{p_{i}} \rceil</span>.</p>
+<p>Call such codes Shannon codes</p>
+<p><span class="math display">
+\bar{L}_{c} (x) = \sum p_{i} \lceil \log \frac{1}{p_{i}} \rceil &lt; \sum p_{i} (\log \frac{1}{p_{i}} + 1) = \sum p_{i} \log \frac{1}{p_{i}} + 1 = H (x) + 1
+</span></p>
+</section>
+<section id="show-for-all-valid-codes-c-l_c-x-geq-h-x" class="level3">
+<h3 class="anchored" data-anchor-id="show-for-all-valid-codes-c-l_c-x-geq-h-x">Show for all valid codes <span class="math inline">c</span>: <span class="math inline">L_{c} (x) \geq H (x)</span></h3>
+<p>Let <span class="math inline">c</span> be a valid code, let <span class="math inline">l_{i} (x)</span> be the number of bits for encoding <span class="math inline">x</span></p>
+<p><span class="math display">
+H (x) - \hat{L}_{c} (x) = \sum_{x} p(x) \log \frac{1}{p (x)} - \sum_{x} p (x) l (x) = \sum_{x} p (x) (\log \frac{1}{p (x)} + \log 2^{-l (x)}) \leq \log \sum p (x) \frac{2^{-l (x)}}{p(x)} = \log \sum 2^{- l(x)} \leq \log 1
+</span></p>
+<p>Therefore,</p>
+<p><span class="math display">
+H (x) \leq \bar{L} (x) &lt; H (x)  + 1
+</span></p>
+</section>
+<section id="more-about-entropy" class="level3">
+<h3 class="anchored" data-anchor-id="more-about-entropy">More about entropy</h3>
+<p>Entropy for a binary distribution with <span class="math inline">p</span></p>
+<p>Entropy: the expected surprise</p>
+</section>
+</section>
+</section>
+<section id="lecture-4" class="level1">
+<h1>Lecture 4</h1>
+<p>Entropy is convex</p>
+<section id="entropy-of-functions" class="level2">
+<h2 class="anchored" data-anchor-id="entropy-of-functions">Entropy of functions</h2>
+<p>A function <span class="math inline">f</span> defeind over <span class="math inline">\mathcal{X}</span>. What is the relation between <span class="math inline">H (x)</span> and <span class="math inline">H (f (x))</span>?</p>
+<p>If and only if <span class="math inline">f</span> is a one-to-one function,</p>
+<p><span class="math display">
+H (x) \geq H (f (x))
+</span></p>
+</section>
+<section id="grouping-properties" class="level2">
+<h2 class="anchored" data-anchor-id="grouping-properties">Grouping properties</h2>
+<p><span class="math display">
+H (p_{1}, \dots, p_{k}, q_{1}, \dots, q_{n}) = H (p, q) + p H (\frac{p_{1}}{p}, \dots, \frac{p_{k}}{p}) + q H (\frac{q_{1}}{q}, \dots, \frac{q_{k}}{q})
+</span></p>
+<p>where <span class="math inline">p = \sum_{i = 1}^{k} = p_{i}</span> and <span class="math inline">q = \sum_{i = 1}^{n} = q_{i}</span></p>
+</section>
+<section id="encoding-block-encodes" class="level2">
+<h2 class="anchored" data-anchor-id="encoding-block-encodes">Encoding block encodes</h2>
+<section id="worst-case" class="level3">
+<h3 class="anchored" data-anchor-id="worst-case">Worst case</h3>
+<p>Encoding <span class="math inline">C_{n}</span>: <span class="math inline">\mathcal{X}^{n} \to \{0, 1\}^{*}</span>.</p>
+<p>Decoding <span class="math inline">D_{n}</span>: <span class="math inline">\{0, 1\}^{*} \to \mathcal{X}^{n}</span>.</p>
+<p><span class="math display">
+\hat{L}_{n, C_{n}} (x) = \max \{\lvert C_{n} (\mathcal{x}^{n}) \rvert: x^{n} \in \mathcal{X}^{n} \}
+</span></p>
+<p><span class="math display">
+\hat{L}_{n} (x) = \min_{C_{n}} \hat{L}_{n, C_{n}}
+</span></p>
+<p><span class="math display">
+\hat{L}^{*} (x) = \lim_{n \to \infty} \frac{1}{n} \hat{L}_{n} (x)
+</span></p>
+<p><span class="math display">
+\hat{L}_{n} (x) = \lceil \log \lvert x^{n} \rvert \rceil = \lceil \log \lvert x \rvert^{n} \rceil \rceil = \lceil n \log \lvert x \rvert \rceil
+</span></p>
+<p><span class="math display">
+\hat{L}^{*} (x) = \lim_{n \to \infty} \frac{\lceil n \log \lvert x \rvert \rceil}{n} = \log \lvert x \rvert
+</span></p>
+<p><span class="math display">
+\bar{L}_{n, C_{n}} (x) = \sum_{x^{n}} p (x^{n}) \lvert C_{n} (x^{n}) \rvert
+</span></p>
+<p><span class="math display">
+\bar{L}_{n} (x) = \min_{C_{n}} \bar{L}_{n, C_{n}} (x)
+</span></p>
+<p><span class="math display">
+\bar{L}^{*} (x) = \lim_{n \to \infty} \frac{1}{n} \bar{L}_{n} (x)
+</span></p>
+<p><span class="math display">
+H (x^{n}) \leq \bar{L}_{n} (x) &lt; H (x^{n}) + 1
+</span></p>
+<p><span class="math display">
+n H (x) \leq \bar{L}_{n} (x) &lt; n H (x^{n}) + 1
+</span></p>
+<p><span class="math display">
+\lim n H (x) \leq \bar{L}^{*} (x) &lt; n H (x^{n}) + 1
+</span></p>
+</section>
+<section id="entropy-of-random-vectors" class="level3">
+<h3 class="anchored" data-anchor-id="entropy-of-random-vectors">Entropy of random vectors</h3>
+<p><span class="math display">
+H (X, Y) = \sum_{x, y} p (x, y) \log \frac{1}{p (x, y)}
+</span></p>
+<p>If <span class="math inline">X</span> and <span class="math inline">Y</span> are independent,</p>
+<p><span class="math display">
+H (x, y) = \sum_{x, y} p (x, y) \log \frac{1}{p (x, y)} = \sum_{x, y} p (x, y) \log \frac{1}{p (x) p (y)} = \sum_{x, y} p (x, y) \log \frac{1}{p (x)} + \sum_{x, y} p (x, y) \log \frac{1}{p (y)} = \sum_{x} p (x) \log \frac{1}{p (x)} + \sum_{y} p (y) \log \frac{1}{p (y)} = H (x) + H (y)
+</span></p>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

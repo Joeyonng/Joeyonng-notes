@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Joeyonng - Birkhoff+</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Joeyonng</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../Knowledge" rel="" target="">
+ <span class="menu-text">Knowledge</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../Notes" rel="" target="">
+ <span class="menu-text">Notes</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://joeyonng.github.io/joeyonng-backyard/" rel="" target="">
+ <span class="menu-text">Backyard</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#problem-definition" id="toc-problem-definition" class="nav-link active" data-scroll-target="#problem-definition">Problem definition:</a></li>
+  <li><a href="#definitions" id="toc-definitions" class="nav-link" data-scroll-target="#definitions">Definitions</a></li>
+  <li><a href="#algorithms-all-matrices-x-are-represented-using-vectors-x-by-stacking-the-matrix-columns" id="toc-algorithms-all-matrices-x-are-represented-using-vectors-x-by-stacking-the-matrix-columns" class="nav-link" data-scroll-target="#algorithms-all-matrices-x-are-represented-using-vectors-x-by-stacking-the-matrix-columns">Algorithms (All matrices (<span class="math inline">X</span>) are represented using vectors (<span class="math inline">x</span>) by stacking the matrix columns)</a>
+  <ul class="collapse">
+  <li><a href="#general-birkhoff-algorithm-algorithm-1-2-and-3" id="toc-general-birkhoff-algorithm-algorithm-1-2-and-3" class="nav-link" data-scroll-target="#general-birkhoff-algorithm-algorithm-1-2-and-3">General Birkhoff algorithm (Algorithm 1, 2 and 3)</a></li>
+  <li><a href="#frank-wolfe-fw-algorithm-algorithm-5" id="toc-frank-wolfe-fw-algorithm-algorithm-5" class="nav-link" data-scroll-target="#frank-wolfe-fw-algorithm-algorithm-5">Frank-Wolfe (FW) algorithm (Algorithm 5)</a></li>
+  </ul></li>
+  <li><a href="#birkhoff-algorithm-algorithm-7" id="toc-birkhoff-algorithm-algorithm-7" class="nav-link" data-scroll-target="#birkhoff-algorithm-algorithm-7">Birkhoff+ algorithm (Algorithm 7)</a>
+  <ul class="collapse">
+  <li><a href="#birkhoff-max_rep-algorithm-algorithm-8" id="toc-birkhoff-max_rep-algorithm-algorithm-8" class="nav-link" data-scroll-target="#birkhoff-max_rep-algorithm-algorithm-8">Birkhoff+ (max_rep) algorithm (Algorithm 8)</a></li>
+  <li><a href="#source-code-with-comment" id="toc-source-code-with-comment" class="nav-link" data-scroll-target="#source-code-with-comment">Source code with comment</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Birkhoff+</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p><em>07-12-2021</em></p>
+<p>This page contains my reading notes on</p>
+<ul>
+<li><a href="https://www.semanticscholar.org/paper/Birkhoff's-Decomposition-Revisited%3A-Sparse-for-Valls-Iosifidis/e9c0e0d1bf7c220e9f471b6fe28bce2c45929c3c"><strong>Birkhoff’s Decomposition Revisited: Sparse Scheduling for High-Speed Circuit Switches</strong></a></li>
+</ul>
+<section id="problem-definition" class="level2">
+<h2 class="anchored" data-anchor-id="problem-definition">Problem definition:</h2>
+<p>For a given <span class="math inline">n \times n</span> doubly stochastic matrix <span class="math inline">X^{\star}</span> and an <span class="math inline">\epsilon \geq 0</span>, our goal is to find a small collection of permutation matrices <span class="math inline">P_{1}, P_{2}, \ldots, P_{k}</span>, and weights <span class="math inline">\theta_{1}, \theta_{2}, \ldots, \theta_{k}</span> with <span class="math inline">\sum_{i=1}^{k}\theta_{i} \leq 1</span> such that <span class="math inline">\lVert X^{\star} - \sum_{i=1}^{k}\theta_{i}P_{i} \rVert_{F} \leq \epsilon</span>.</p>
+</section>
+<section id="definitions" class="level2">
+<h2 class="anchored" data-anchor-id="definitions">Definitions</h2>
+<ol type="1">
+<li>When applied to vectors or matrices, <span class="math inline">+, -, \cdot</span> are all element-wise operations and we write <span class="math inline">x &lt; (\leq, &gt;, \geq ) y</span> when all elements of <span class="math inline">x</span> are <span class="math inline">&lt; (\leq, &gt;, \geq)</span> of all elements of <span class="math inline">y</span>.</li>
+<li>Doubly stochastic matrix: a doubly stochastic matrix is a square matrix of non-negative real numbers, each of whose rows and columns sums to 1.</li>
+<li>Frobenius norm: <span class="math inline">\lVert X \rVert_{F} = \sqrt{\sum_{i, j}\vert X(i, j) \vert^2}</span>, which is the same as the l2 norm of a vector: <span class="math inline">\lVert x \rVert_{2} = \sqrt{\sum_{i}\vert x(i) \vert^2}</span></li>
+<li>Convex hull <span class="math inline">\mathrm{conv}(A)</span>: The convex hull of set A (<span class="math inline">\mathrm{conv}(A)</span>) is the smallest convex set that contains set <span class="math inline">A</span>.</li>
+<li>Birkhoff polytope <span class="math inline">\mathcal{B}</span>: the convex set that contains all doubly stochastic matrices of size <span class="math inline">n \times n</span>.</li>
+<li>Permutation matrices <span class="math inline">\mathcal{P}</span>: the extreme points of the Birkhoff polytope.</li>
+<li>Linear program <span class="math inline">\mathrm{LP}(c, \mathcal{X})</span>: minimize <span class="math inline">c^{T}x</span>, subject to <span class="math inline">x \in \mathcal{X}</span>. We assume that the solution returned is always an extreme point (<span class="math inline">x \in \mathcal{P}</span> if <span class="math inline">\mathcal{X} = \mathcal{B}</span>).</li>
+<li>Birkhoff step: <span class="math inline">\mathrm{STEP}(X^{\star}, X_{k-1}, P_{k}) = \min_{a,b}\{(X^{\star}(a, b) - X_{k-1}(a,b) - 1)P_{k}(a,b) + 1\}</span>. It computes the step size (weight) by taking the minimum non-zero element of the difference matrix (masked by the permutation matrix <span class="math inline">P_{k}</span>) between <span class="math inline">X^{\star}</span> and <span class="math inline">X</span>.</li>
+</ol>
+</section>
+<section id="algorithms-all-matrices-x-are-represented-using-vectors-x-by-stacking-the-matrix-columns" class="level2">
+<h2 class="anchored" data-anchor-id="algorithms-all-matrices-x-are-represented-using-vectors-x-by-stacking-the-matrix-columns">Algorithms (All matrices (<span class="math inline">X</span>) are represented using vectors (<span class="math inline">x</span>) by stacking the matrix columns)</h2>
+<section id="general-birkhoff-algorithm-algorithm-1-2-and-3" class="level3">
+<h3 class="anchored" data-anchor-id="general-birkhoff-algorithm-algorithm-1-2-and-3">General Birkhoff algorithm (Algorithm 1, 2 and 3)</h3>
+<blockquote class="blockquote">
+<ol type="1">
+<li><span class="math inline">x_{0} = 0, k = 0</span></li>
+<li><strong>while</strong> <span class="math inline">\lVert x^{\star} - x_{k-1} \rVert_{2} &gt; \epsilon</span> and <span class="math inline">k \leq k_{max}</span> <strong>do</strong></li>
+<li>  <span class="math inline">\alpha \gets (1 - \sum_{i=1}^{k-1}\theta_{i}) \mathbin{/} n^2</span> // <strong>(Why this value)</strong></li>
+<li>  <span class="math inline">p_{k} \gets p \in \mathcal{I}_{k}(\alpha)</span>   // Get next permutation matrix</li>
+<li>  <span class="math inline">\theta_{k} \gets</span> <span class="math inline">\mathrm{STEP}(x^{\star}, x_{k-1}, p_k)</span>   // Get next weight based on the new permutation matrix</li>
+<li>  <span class="math inline">x_{k} \gets x_{k-1} + \theta_{k}p_{k}</span></li>
+<li>  <span class="math inline">k \gets k + 1</span></li>
+<li><strong>end while</strong></li>
+<li><strong>return</strong> <span class="math inline">(p_{1}, \ldots, p_{k-1})</span>, <span class="math inline">(\theta_{1}, \ldots, \theta_{k-1})</span></li>
+</ol>
+</blockquote>
+<ol type="1">
+<li><span class="math inline">n</span> is the size of <span class="math inline">X^{\star}</span> and <span class="math inline">d=n^2</span> is the number of elements in <span class="math inline">X^{\star}</span>.</li>
+<li><span class="math inline">\mathcal{I}_{k}(\alpha) =\{P \in \mathcal{P} \mid X_{k-1}(a,b) + \alpha P(a,b) \leq X^{\star}(a,b) \}</span>.
+<ol type="1">
+<li>If <span class="math inline">P_{k} \in \mathcal{I}_{k}(\alpha)</span>, then <span class="math inline">(X^{\star} - X_{k-1}) \cdot P_{k} \geq \alpha</span>, (each element of the difference matrix between <span class="math inline">X^{\star}</span> and <span class="math inline">X_{k-1}</span> masked by <span class="math inline">P_{k}</span> is <span class="math inline">\geq \alpha</span>).</li>
+<li>Since <span class="math inline">\mathrm{STEP}(X^{\star}, X_{k-1}, P_{k})</span> is taking the minimum of non-zero element of <span class="math inline">(X^{\star} - X_{k-1}) \cdot P_{k}</span> (definition 7), <span class="math inline">\mathrm{STEP}(X^{\star}, X_{k-1}, P_{k}) \geq \alpha</span></li>
+</ol></li>
+<li>Due to the definitions of <span class="math inline">\mathcal{I}_{k}(\alpha)</span> and <span class="math inline">\mathrm{STEP}</span>, <span class="math inline">x_{k} \leq x^{\star}</span> all the time.
+<ol type="1">
+<li>Birkhoff algorithm can be seen as constructing a path from the origin (<span class="math inline">x_{0} = 0</span>) to <span class="math inline">x^{\star}</span> while always remaining in a dotted box, where <span class="math inline">x_{0}</span> and <span class="math inline">x^{\star}</span> are two diagonal vertices of the box (<span class="math inline">x_{k} \leq x^{\star}</span>).</li>
+</ol></li>
+<li>General Birkhoff algorithm doesn’t specify which specific permutation to select from <span class="math inline">\mathcal{I}_{k}(\alpha)</span>.</li>
+</ol>
+<section id="classic-birkhoff-algorithm-algorithm-4" class="level4">
+<h4 class="anchored" data-anchor-id="classic-birkhoff-algorithm-algorithm-4">Classic Birkhoff algorithm (Algorithm 4)</h4>
+<blockquote class="blockquote">
+<ol type="1">
+<li><span class="math inline">x_{0} = 0, k = 0</span></li>
+<li><strong>while</strong> <span class="math inline">\lVert x^{\star} - x_{k-1} \rVert_{2} &gt; \epsilon</span> and <span class="math inline">k \leq k_{max}</span> <strong>do</strong></li>
+<li>  <span class="math inline">p_k \gets \mathrm{LP}(-\lceil x^{\star} - x_{k-1} \rceil, \mathcal{B})</span>.</li>
+<li>  <span class="math inline">\theta_{k} \gets</span> <span class="math inline">\mathrm{STEP}(x^{\star}, x_{k-1}, p_k)</span>  </li>
+<li>  <span class="math inline">x_{k} \gets x_{k-1} + \theta_{k}p_{k}</span></li>
+<li>  <span class="math inline">k \gets k + 1</span></li>
+<li><strong>end while</strong></li>
+<li><strong>return</strong> <span class="math inline">(p_{1}, \ldots, p_{k-1})</span>, <span class="math inline">(\theta_{1}, \ldots, \theta_{k-1})</span></li>
+</ol>
+</blockquote>
+<ol type="1">
+<li>The only slight difference is line 3, which is essentially doing the same thing with general Birkhoff algorithm.
+<ol type="1">
+<li>Since <span class="math inline">x^{\star} - x_{k-1} \in [0, 1]</span>, its ceiling (<span class="math inline">\lceil x^{\star} - x_{k-1} \rceil</span>) makes all nonzero elements to be 1, which makes <span class="math inline">\mathrm{LP}</span> treat all nonzero elements equally.</li>
+</ol></li>
+</ol>
+</section>
+</section>
+<section id="frank-wolfe-fw-algorithm-algorithm-5" class="level3">
+<h3 class="anchored" data-anchor-id="frank-wolfe-fw-algorithm-algorithm-5">Frank-Wolfe (FW) algorithm (Algorithm 5)</h3>
+<blockquote class="blockquote">
+<ol type="1">
+<li><span class="math inline">x_{0} \in \mathcal{P}, k = 0</span></li>
+<li><strong>while</strong> <span class="math inline">\lVert x^{\star} - x_{k-1} \rVert_{2} &gt; \epsilon</span> and <span class="math inline">k \leq k_{max}</span> <strong>do</strong></li>
+<li>  <span class="math inline">p_k \gets \mathrm{LP}(-(x^{\star} - x_{k-1}), \mathcal{B})</span> // Get the next extreme point</li>
+<li>  <span class="math inline">\theta_{k} \gets (x^{\star} - x_{k-1})^{T}(p_{k} - x_{k-1}) \mathbin{/} \lVert p_{k} - x_{k-1} \rVert_{2}^{2}</span> // Calculate the step size</li>
+<li>  <span class="math inline">x_{k} \gets x_{k-1} + \theta_{k}(p_{k} - x_{k-1})</span> // Update x</li>
+<li>  <span class="math inline">k \gets k + 1</span></li>
+<li><strong>end while</strong></li>
+<li><strong>return</strong> <span class="math inline">(p_{1}, \ldots, p_{k-1})</span>, <span class="math inline">(\theta_{1}, \ldots, \theta_{k-1})</span></li>
+</ol>
+</blockquote>
+<ol type="1">
+<li>The assumption of the FW algorithm is that there always exists an extreme point in the Birkhoff polytope (permutation matrix <span class="math inline">p_{k}</span>) that is a direction (<span class="math inline">p_{k} - x_{k-1}</span>) in which it is possible to improve the objective function.
+<ol type="1">
+<li>Since each extreme point of the Birkhoff polytope is an permutation matrix and thus the each step size can be considered as the weight of the permutation matrix, FW algorithm can be used to solve Birkhoff problem.</li>
+</ol></li>
+<li>The paper selects the objective function to be <span class="math inline">f(x) = \frac{1}{2} \lVert x - x^{\star} \rVert_{2}^{2}</span>, which measures the square of the <span class="math inline">l_{2}</span> norm of the difference between the current matrix <span class="math inline">x_{k}</span> and the objective matrix <span class="math inline">x^{\star}</span>.
+<ol type="1">
+<li>The solving of <span class="math inline">\mathrm{LP}</span> at line 3 is essentially trying to find an extreme point <span class="math inline">p_{k}</span> in the Birkhoff polytope by solving <span class="math inline">{\mathrm{argmin}_{u \in \mathcal{P}}}\nabla f(x_{k-1})^{T}u</span>, in which <span class="math inline">\nabla f(x_{k-1}) = -(x^{\star} - x_{k-1})</span>.</li>
+<li>The way to calculate <span class="math inline">\theta_{k}</span> at line 4 is derived by solving <span class="math inline">f(x_{k}) - f(x_{k-1})</span>.</li>
+<li>Note at line 5 <span class="math inline">x_{k} = x_{k-1} + \theta_{k}(p_{k} - x_{k-1}) = (1 - \theta)x_{k-1} + \theta_{k}p_{k}</span>, so <span class="math inline">x_{k}</span> is still a linear combination of permutation matrices.</li>
+</ol></li>
+<li>Difference with the Birkhoff algorithm:
+<ol type="1">
+<li>FW uses a random extreme point instead of 0 as the starting point, since it requires <span class="math inline">x_{k} \in \mathcal{B}</span> at all time.</li>
+<li>FW does not require that <span class="math inline">x_{k} \leq x^{\star}</span> and thus <span class="math inline">x^{\star}</span> can be approximated from any direction.</li>
+</ol></li>
+</ol>
+<section id="fully-corrective-frank-wolfe-algorithm-6" class="level4">
+<h4 class="anchored" data-anchor-id="fully-corrective-frank-wolfe-algorithm-6">Fully Corrective Frank-Wolfe (Algorithm 6)</h4>
+<ol type="1">
+<li>FCFW provides the best approximation with the number of extreme points selected up to iteration k</li>
+</ol>
+<div class="cell" data-jupyter="{&quot;source_hidden&quot;:true}" data-tags="[&quot;remove-input&quot;]" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>from IPython.display <span class="im">import</span> <span class="bu">Image</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Image</span>(filename<span class="op">=</span><span class="ch">'1.png'</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<p><img src="Birkhoff+_files/figure-html/cell-2-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="birkhoff-algorithm-algorithm-7" class="level2">
+<h2 class="anchored" data-anchor-id="birkhoff-algorithm-algorithm-7">Birkhoff+ algorithm (Algorithm 7)</h2>
+<blockquote class="blockquote">
+<ol type="1">
+<li><span class="math inline">x_{0} = 0, k = 0</span></li>
+<li><strong>while</strong> <span class="math inline">\lVert x^{\star} - x_{k-1} \rVert_{2} &gt; \epsilon</span> and <span class="math inline">k \leq k_{max}</span> <strong>do</strong></li>
+<li>  <span class="math inline">\alpha \gets (1 - \sum_{i=1}^{k-1} \theta_i) \mathbin{/} n^2</span></li>
+<li>  <span class="math inline">p_{k} \gets \mathrm{LP}(\nabla f_{\beta}(x_{k-1}), \mathrm{conv}(\mathcal{I}_{k}(\alpha)))</span></li>
+<li>  <span class="math inline">\theta_{k} \gets</span> <span class="math inline">\mathrm{STEP}(x^{\star}, x_{k-1}, p_k)</span></li>
+<li>  <span class="math inline">x_{k} \gets x_{k-1} + \theta_{k}p_{k}</span></li>
+<li>  <span class="math inline">k \gets k + 1</span></li>
+<li><strong>end while</strong></li>
+<li><strong>return</strong> <span class="math inline">(p_{1}, \ldots, p_{k-1})</span>, <span class="math inline">(\theta_{1}, \ldots, \theta_{k-1})</span></li>
+</ol>
+</blockquote>
+<ol type="1">
+<li>Birkhoff+ combines Birkhoff algorithm and FW algorithm. This approach wants to use the path or permutations that FW would select while remaining in the box that characterizes the Birkhoff’s approach.</li>
+<li>The only real difference between Birkhoff+ and Birkhoff is the way to compute <span class="math inline">p_{k}</span> (line 4).</li>
+<li><span class="math inline">f_{\beta}(x) = f(x) - \beta \sum_{j=1}^{d} \log(x^{\star}(j) - x(j) + \frac{\epsilon}{d})</span>, which consists <span class="math inline">f(x)</span> (same as what is used in FW) and <span class="math inline">- \beta \sum_{j=1}^{d} \log(x^{\star}(j) - x(j) + \frac{\epsilon}{d})</span> (the barrier).
+<ol type="1">
+<li>The barrier is a penalty term that restricts the <span class="math inline">x_{k}</span> to always remain in the Birkhoff box.
+<ol type="1">
+<li>If we ignore <span class="math inline">\frac{\epsilon}{d}</span> and <span class="math inline">\beta</span>, <span class="math inline">-\sum_{j=1}^{d} \log(x^{\star}(j) - x(j)) \to \infty</span> if any <span class="math inline">x^{\star}(j) \approx x(j)</span>. That is, the penalty will be very high if any of the element of <span class="math inline">x</span> is closed to <span class="math inline">x^{\star}</span>.</li>
+<li>Since <span class="math inline">x_{0} = 0 &lt; x^{\star}</span> at the starting point and the barrier will prevent all elements of <span class="math inline">x</span> getting closed to <span class="math inline">x^{\star}</span>, the barrier can prevent <span class="math inline">x &gt; x^{\star}</span>.</li>
+</ol></li>
+<li><span class="math inline">\beta</span> is a hyper-parameter that balances the objective function and the barrier. In the code, it is tuned smaller and smaller as the <span class="math inline">x_{k}</span> is getting closed to <span class="math inline">x^{\star}</span>.</li>
+<li><span class="math inline">\frac{\epsilon}{d}</span> is used to avoid <span class="math inline">\log \to \infty</span>.</li>
+</ol></li>
+<li><span class="math inline">\mathrm{LP}(\nabla f_{\beta}(x_{k-1}), \mathrm{conv}(\mathcal{I}_{k}(\alpha))) = \mathrm{LP}(\nabla f_{\beta}(x_{k-1}) + b_{k}, \mathcal{B})</span>, where <span class="math inline">b_{k} = \frac{\epsilon}{d} \cdot \mathbb{1}(x^{\star} - x_{k-1} \leq \alpha)</span> is a penalty vector to force the solver to do not select the elements of vector <span class="math inline">(x^{\star} - x_{k})</span> smaller than <span class="math inline">\alpha</span>.
+<ol type="1">
+<li>For all elements of vector <span class="math inline">(x^{\star} - x_{k})</span> smaller than <span class="math inline">\alpha</span>, <span class="math inline">b_{k} = \frac{\epsilon}{d}</span>. Otherwise, <span class="math inline">b_{k} = 0</span>.</li>
+</ol></li>
+</ol>
+<section id="birkhoff-max_rep-algorithm-algorithm-8" class="level3">
+<h3 class="anchored" data-anchor-id="birkhoff-max_rep-algorithm-algorithm-8">Birkhoff+ (max_rep) algorithm (Algorithm 8)</h3>
+<blockquote class="blockquote">
+<ol type="1">
+<li><span class="math inline">x_{0} = 0, k = 0</span></li>
+<li><strong>while</strong> <span class="math inline">\lVert x^{\star} - x_{k-1} \rVert_{2} &gt; \epsilon</span> and <span class="math inline">k \leq k_{max}</span> <strong>do</strong></li>
+<li>  <span class="math inline">\alpha \gets (1 - \sum_{i=1}^{k-1} \theta_i) \mathbin{/} n^2</span></li>
+<li>  <strong>for</strong> <span class="math inline">i = 1,\ldots, \mathrm{max\_rep}</span> <strong>do</strong></li>
+<li>    <span class="math inline">p_{i} \gets \mathrm{LP}(\nabla f_{\beta}(x_{k-1}), \mathrm{conv}(\mathcal{I}_{k}(\alpha)))</span></li>
+<li>    <span class="math inline">\theta_{i} \gets \mathrm{STEP}(x^{\star}, x_{k-1}, p_{k})</span></li>
+<li>    <strong>if</strong> <span class="math inline">(\theta_{i} &gt; \alpha)</span> <span class="math inline">\alpha \gets \mathrm{STEP}(x^{\star}, x_{k-1}, p_{k})</span></li>
+<li>    <strong>else</strong> exit while loop</li>
+<li>    <span class="math inline">p_{k} \gets p_{i}</span></li>
+<li>  <strong>end for</strong></li>
+<li>  <span class="math inline">\theta_{k} \gets</span> <span class="math inline">\mathrm{STEP}(x^{\star}, x_{k-1}, p_k)</span></li>
+<li>  <span class="math inline">x_{k} \gets x_{k-1} + \theta_{k}p_{k}</span></li>
+<li>  <span class="math inline">k \gets k + 1</span></li>
+<li><strong>end while</strong></li>
+<li><strong>return</strong> <span class="math inline">(p_{1}, \ldots, p_{k-1})</span>, <span class="math inline">(\theta_{1}, \ldots, \theta_{k-1})</span></li>
+</ol>
+</blockquote>
+<ol type="1">
+<li>Instead of using a constant <span class="math inline">\alpha</span>, Birkhoff+ (max_rep) searches the largest <span class="math inline">\alpha</span> in each iteration by alternatively updating <span class="math inline">\alpha</span> and <span class="math inline">p_{k}</span> until <span class="math inline">\alpha</span> cannot be updated larger or <span class="math inline">\mathrm{max\_rep}</span> iterations is reached.
+<ol type="1">
+<li>Larger <span class="math inline">\alpha</span> <span class="math inline">\to</span> larger <span class="math inline">\theta</span> <span class="math inline">\to</span> less number of permutation matrices.</li>
+<li><span class="math inline">\alpha</span> is set to be the largest step size (weight from <span class="math inline">\mathrm{STEP}</span> function) found so far.</li>
+</ol></li>
+</ol>
+<div class="cell" data-jupyter="{&quot;source_hidden&quot;:true}" data-tags="[&quot;remove-input&quot;]" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>from IPython.display <span class="im">import</span> <span class="bu">Image</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Image</span>(filename<span class="op">=</span><span class="ch">'2.png'</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<p><img src="Birkhoff+_files/figure-html/cell-3-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="source-code-with-comment" class="level3">
+<h3 class="anchored" data-anchor-id="source-code-with-comment">Source code with comment</h3>
+<p>https://github.com/vvalls/BirkhoffDecomposition.jl</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">JuMP</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Clp</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Random</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">SparseArrays</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># functionsBD.jl</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> polytope</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    A;</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    b;</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    l;</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    u;</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    model;</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    x;</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="pp">@doc</span> <span class="st">raw"""</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="st">Solve a linear programing problem</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">LP</span>(c, P)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@objective</span>(P.model, Min, c<span class="op">'*</span> P.x)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">optimize!</span>(P.model)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">value</span>.(P.x)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="pp">@doc</span> <span class="st">raw"""</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="st">Get a random stochastic matrix</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">randomDoublyStochasticMatrix</span>(n; num_perm<span class="op">=</span>n<span class="op">^</span><span class="fl">2</span>)</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    M <span class="op">=</span> <span class="fu">zeros</span>(n, n);</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    α <span class="op">=</span> <span class="fu">rand</span>(num_perm)</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    α <span class="op">=</span> α <span class="op">/</span> <span class="fu">sum</span>(α);</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="op">=</span> <span class="fl">1</span><span class="op">:</span>num_perm</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>        perm <span class="op">=</span> <span class="fu">randperm</span>(n);</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="op">=</span> <span class="fl">1</span><span class="op">:</span>n</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>            M[perm[j], j] <span class="op">+=</span> α[i];</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> M;</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="pp">@doc</span> <span class="st">raw"""</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="st">Create Birkhoff polytope ``\mathcal{B}`` (Section V-A), which contains all possible doublely stochastic matrices.</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="st">Since the paper assumes that the solutions by solving linear programs over are Birkhoff polytope extreme points, </span></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="st">the solutions are permutation matrices (which are also doublely stochastic). </span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">birkhoffPolytope</span>(n)</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>    <span class="co"># x is a doublely stochastic matrix that is represented by a vector (flattened).</span></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Use a constant matrix A(M') and a constant vector b to specify that x is doublely stochastic.</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>    M <span class="op">=</span> <span class="fu">zeros</span>(n<span class="op">*</span>n, <span class="fl">2</span><span class="op">*</span>n);</span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Specify the sum of each row of x equals to 1</span></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="op">=</span> <span class="fl">1</span><span class="op">:</span>n</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>        M[(i<span class="op">-</span><span class="fl">1</span>)<span class="op">*</span>n<span class="op">*</span>n <span class="op">+</span> (i<span class="op">-</span><span class="fl">1</span>)<span class="op">*</span>n <span class="op">+</span> <span class="fl">1</span> <span class="op">:</span> (i<span class="op">-</span><span class="fl">1</span>)<span class="op">*</span>n<span class="op">*</span>n <span class="op">+</span> (i<span class="op">-</span><span class="fl">1</span>)<span class="op">*</span>n <span class="op">+</span> n] <span class="op">=</span> <span class="fu">ones</span>(n,<span class="fl">1</span>);</span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Specify the sum of each col of x equals to 1</span></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="op">=</span> <span class="fl">1</span><span class="op">:</span>n</span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j<span class="op">=</span><span class="fl">1</span><span class="op">:</span>n</span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>            M[n<span class="op">*</span>n<span class="op">*</span>n <span class="op">+</span> (i<span class="op">-</span><span class="fl">1</span>)<span class="op">*</span>n<span class="op">*</span>n <span class="op">+</span> (j<span class="op">-</span><span class="fl">1</span>)<span class="op">*</span>n <span class="op">+</span> i] <span class="op">=</span> <span class="fl">1</span>;</span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> <span class="fu">sparse</span>(M<span class="op">'</span>);</span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> <span class="fu">ones</span>(<span class="fl">2</span><span class="op">*</span>n);</span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> <span class="fu">Model</span>(Clp.Optimizer)</span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_silent</span>(model)</span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@variable</span>(model, <span class="fl">0</span> <span class="op">&lt;=</span> x[<span class="fl">1</span><span class="op">:</span>n<span class="op">*</span>n] <span class="op">&lt;=</span> <span class="fl">1</span>)</span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@constraint</span>(model, A <span class="op">*</span> x <span class="op">.==</span> b)</span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">polytope</span>(A, b, <span class="fl">0</span>, <span class="fl">1</span>, model, x)</span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>birkhoffPolytope</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># stepsizes.jl</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="pp">@doc</span> <span class="st">raw"""</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="st">Get the step size (weight) by taking the minimum non-zero entry of the difference matrix </span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="st">(masked by the permutation matrix y) between x_star and x.</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">getBirkhoffStepSize</span>(x_star, x, y)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">minimum</span>((x_star <span class="op">-</span> x)<span class="op">.*</span>y <span class="op">-</span> (y<span class="op">.-</span><span class="fl">1</span>));</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>getBirkhoffStepSize</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extremepoints.jl</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="pp">@doc</span> <span class="st">raw"""</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="st">Birkhoff+ (max_rep) Psudocode line 4-10</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">getEPBplus</span>(x_star, x, B, max_rep, ε)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="fu">sqrt</span>(<span class="fu">size</span>(x_star, <span class="fl">1</span>))</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    d <span class="op">=</span> <span class="fu">size</span>(x_star, <span class="fl">1</span>);</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> <span class="fl">1</span>;</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> <span class="fl">0</span>;</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    α <span class="op">=</span> <span class="fl">0</span>;</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span>(i <span class="op">&lt;=</span> max_rep)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Calculate \beta for this iteration.</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># \beta should become smaller and smaller.</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>        z <span class="op">=</span> <span class="fu">Int16</span>.(x_star <span class="op">-</span> x <span class="op">.&gt;</span> ε)</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>        s <span class="op">=</span> <span class="fu">getBirkhoffStepSize</span>(x_star, x, z)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>        beta <span class="op">=</span> (s <span class="op">+</span> ε<span class="op">/</span>d)<span class="op">*</span><span class="fl">0.5</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>        <span class="co"># c is the gradient of the objective function with barrier.</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>        <span class="co"># b is an iterm added to make I_k(\alpha) to be B (Birkhoff polytope).</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>        <span class="co"># See the paragraph in section VI.B after Corollary 2 for b.</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>        c <span class="op">=</span> <span class="fu">-ones</span>(d) <span class="op">+</span> beta <span class="op">./</span> (x_star <span class="op">-</span> x <span class="op">.+</span> ε<span class="op">/</span>d)</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>        b <span class="op">=</span> (n<span class="op">/</span>ε)<span class="op">.*</span><span class="fu">Int16</span>.(x_star <span class="op">-</span> x <span class="op">.&lt;=</span> α)</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>        y_iter <span class="op">=</span> <span class="fu">LP</span>(c <span class="op">+</span> b, B);</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>        <span class="co"># If new solution (y_iter) makes objective function larger/worse (c'*y_iter &gt; c'*y_z),</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>        <span class="co"># fall back to the solution from the last iteration (y_z/x).</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>        y_z <span class="op">=</span> x;</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span>(c<span class="op">'*</span>y_iter <span class="op">&gt;</span> c<span class="op">'*</span>y_z)</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>            y_iter <span class="op">=</span> y_z</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>        <span class="co"># \alpha should be the largest step size found. </span></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Algorithm terminates when \alpha doesn't increase</span></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>        α_iter <span class="op">=</span> <span class="fu">getBirkhoffStepSize</span>(x_star, x, y_iter);</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span>(α <span class="op">&lt;</span> α_iter)</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>            α <span class="op">=</span> α_iter;</span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>            y <span class="op">=</span> y_iter;</span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span></span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> y;</span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>        i <span class="op">=</span> i <span class="op">+</span> <span class="fl">1</span>;</span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> y</span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>getEPBplus (generic function with 1 method)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># birkdecomp.jl</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="pp">@doc</span> <span class="st">raw"""</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="st">Birkhoff+ (max_rep)</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">birkdecomp</span>(X, ε<span class="op">=</span><span class="fl">1e-12</span>; max_rep<span class="op">=</span><span class="fl">1</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="fu">size</span>(X, <span class="fl">1</span>);                                 <span class="co"># get size of Birkhoff polytope</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    x_star <span class="op">=</span> <span class="fu">reshape</span>(X, n<span class="op">*</span>n);                       <span class="co"># reshape doubly stochastic to vector</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    B <span class="op">=</span> <span class="fu">birkhoffPolytope</span>(n);                        <span class="co"># Birkhoff polytope</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    ε <span class="op">=</span> <span class="fu">max</span>(ε, <span class="fl">1e-15</span>);                              <span class="co"># fix the maximum minimum precision</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    max_iter <span class="op">=</span> (n<span class="op">-</span><span class="fl">1</span>)<span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="fl">1</span>;</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> <span class="fu">zeros</span>(n<span class="op">*</span>n);                                 <span class="co"># initial point</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    extreme_points <span class="op">=</span> <span class="fu">zeros</span>(n<span class="op">*</span>n, max_iter);          <span class="co"># extreme points (permutation) matrix</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    θ <span class="op">=</span> <span class="fu">zeros</span>(max_iter);                            <span class="co"># weights vector</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    approx <span class="op">=</span> <span class="cn">Inf</span>;                                   <span class="co"># approximation error</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> <span class="fl">1</span>;                                          <span class="co"># iteration index</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span>(approx <span class="op">&gt;</span> ε)</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Get next extreme point </span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> <span class="fu">getEPBplus</span>(x_star, x, B, max_rep, ε)</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Get next weight (step size)</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>        θi <span class="op">=</span> <span class="fu">getBirkhoffStepSize</span>(x_star, x, y)</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Update x_k</span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> x <span class="op">+</span> θi<span class="op">*</span>y;</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Store the new weight</span></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>        θ[i] <span class="op">=</span> θi;</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Update the Frobenius norm</span></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>        approx <span class="op">=</span> <span class="fu">sqrt</span>(<span class="fu">sum</span>((<span class="fu">abs</span>.(x_star<span class="op">-</span>x))<span class="op">.^</span><span class="fl">2</span>));</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Store the new extreme point matrix</span></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>        extreme_points[<span class="op">:</span>,i] <span class="op">=</span> y;</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>        i <span class="op">=</span> i <span class="op">+</span> <span class="fl">1</span>;</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> extreme_points[<span class="op">:</span>, <span class="fl">1</span><span class="op">:</span>i<span class="op">-</span><span class="fl">1</span>], θ[<span class="fl">1</span><span class="op">:</span>i<span class="op">-</span><span class="fl">1</span>]</span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>birkdecomp (generic function with 2 methods)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a random doubly stochastic matrix (n is the dimension)</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="fl">3</span>;</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fu">randomDoublyStochasticMatrix</span>(n);</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>P, w <span class="op">=</span> <span class="fu">birkdecomp</span>(x);</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>(x)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>(P);</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>(w);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>3×3 Array{Float64,2}:
+ 0.0607488  0.590595   0.348656
+ 0.70177    0.0291194  0.269111
+ 0.237482   0.380286   0.382233</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre><code>9×5 Array{Float64,2}:
+ 0.0  0.0  0.0  1.0  0.0
+ 1.0  1.0  0.0  0.0  0.0
+ 0.0  0.0  1.0  0.0  1.0
+ 1.0  0.0  1.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  1.0
+ 0.0  1.0  0.0  1.0  0.0
+ 0.0  1.0  0.0  0.0  1.0
+ 0.0  0.0  1.0  1.0  0.0
+ 1.0  0.0  0.0  0.0  0.0</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre><code>5-element Array{Float64,1}:
+ 0.38223288955133716
+ 0.31953666864401353
+ 0.20836217653438616
+ 0.06074883235172196
+ 0.029119432918541188</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>x_new <span class="op">=</span> <span class="fu">zeros</span>(n, n)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fu">length</span>(w)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    x_new <span class="op">=</span> x_new <span class="op">+</span> w[i] <span class="op">*</span> <span class="fu">reshape</span>(P[<span class="op">:</span>, i], n, n) </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>(x_new)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>3×3 Array{Float64,2}:
+ 0.0607488  0.590595   0.348656
+ 0.70177    0.0291194  0.269111
+ 0.237482   0.380286   0.382233</code></pre>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

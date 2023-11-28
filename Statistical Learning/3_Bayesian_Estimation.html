@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Joeyonng - Bayesian Estimation</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Joeyonng</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../notes.html" rel="" target="">
+ <span class="menu-text">Notes</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../ML Q&amp;A.html" rel="" target="" aria-current="page">
+ <span class="menu-text">ML Q &amp; A</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Statistical Learning/1_Bayesian_Decision_Theory.html">Statistical Learning</a></li><li class="breadcrumb-item"><a href="../Statistical Learning/3_Bayesian_Estimation.html">Bayesian Estimation</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+ <span class="menu-text">Learning Theory</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Learning Theory/1_Statistical_Learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statistical Learning Framework</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Learning Theory/2_Bayesian_Decision_Theory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Decision Theory</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Learning Theory/3_Effective_Class_Size.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Effective Class Size</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Learning Theory/3_PAC_Learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PAC Learning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Learning Theory/4_Agnostic_Learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Agnostic Learning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Learning Theory/4_Empirical_Risk_Minimization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Empirical Risk Minimization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Learning Theory/5_Rademacher_Complexity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Rademacher Complexity</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Statistical Learning</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Statistical Learning/1_Bayesian_Decision_Theory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Decision Theory (BDT)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Statistical Learning/2_Maximum_Likelihood_Estimation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Maximum Likelihood Estimation (MLE)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Statistical Learning/3_Bayesian_Estimation.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Bayesian Estimation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Statistical Learning/4_Expectation_Maximization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Expectation-maximization</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ML Q&amp;A.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ML Q &amp; A</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#preliminary" id="toc-preliminary" class="nav-link active" data-scroll-target="#preliminary">Preliminary</a>
+  <ul class="collapse">
+  <li><a href="#statistical-learning" id="toc-statistical-learning" class="nav-link" data-scroll-target="#statistical-learning">Statistical Learning</a></li>
+  </ul></li>
+  <li><a href="#views-on-parameter-estimation" id="toc-views-on-parameter-estimation" class="nav-link" data-scroll-target="#views-on-parameter-estimation">Views on parameter estimation</a>
+  <ul class="collapse">
+  <li><a href="#frequentist-view" id="toc-frequentist-view" class="nav-link" data-scroll-target="#frequentist-view">Frequentist view</a></li>
+  <li><a href="#bayesian-view" id="toc-bayesian-view" class="nav-link" data-scroll-target="#bayesian-view">Bayesian view</a></li>
+  </ul></li>
+  <li><a href="#bayesian-estimation" id="toc-bayesian-estimation" class="nav-link" data-scroll-target="#bayesian-estimation">Bayesian estimation</a>
+  <ul class="collapse">
+  <li><a href="#maximum-a-posteriori-map-estimation" id="toc-maximum-a-posteriori-map-estimation" class="nav-link" data-scroll-target="#maximum-a-posteriori-map-estimation">Maximum a posteriori (MAP) estimation</a></li>
+  </ul></li>
+  <li><a href="#bayesian-bdr" id="toc-bayesian-bdr" class="nav-link" data-scroll-target="#bayesian-bdr">Bayesian BDR</a></li>
+  <li><a href="#example-mean-of-the-univariate-gaussian" id="toc-example-mean-of-the-univariate-gaussian" class="nav-link" data-scroll-target="#example-mean-of-the-univariate-gaussian">Example: mean of the univariate Gaussian</a>
+  <ul class="collapse">
+  <li><a href="#posterior-distribution-of-mean-parameter" id="toc-posterior-distribution-of-mean-parameter" class="nav-link" data-scroll-target="#posterior-distribution-of-mean-parameter">Posterior distribution of mean parameter</a></li>
+  <li><a href="#predictive-distribution-function" id="toc-predictive-distribution-function" class="nav-link" data-scroll-target="#predictive-distribution-function">Predictive distribution function</a></li>
+  <li><a href="#selecting-parameter-priors" id="toc-selecting-parameter-priors" class="nav-link" data-scroll-target="#selecting-parameter-priors">Selecting parameter priors</a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-body" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Bayesian Estimation</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p><em>Updated 01-11-2023 (First commited 01-08-2023)</em></p>
+<p>(bayesian-estimation)=</p>
+<ul>
+<li><p>The form of the density <span class="math inline">\mathbb{P}_{\mathbf{X} \mid \boldsymbol{\Theta}}(\mathbf{x} \mid \boldsymbol{\theta})</span> is assumed to be known, but the value of the parameter vector <span class="math inline">\boldsymbol{\theta}</span> is not known exactly.</p></li>
+<li><p>Our initial knowledge about <span class="math inline">\boldsymbol{\theta}</span> is assumed to be contained in a known a priori density <span class="math inline">\mathbb{P}_{\boldsymbol{\Theta}}(\boldsymbol{\theta})</span>.</p></li>
+<li><p>The rest of our knowledge about <span class="math inline">\boldsymbol{\theta}</span> is contained in a set <span class="math inline">\mathcal{D}</span> of n samples <span class="math inline">\mathbf{x}_{1}, \dots, \mathbf{x}_{n}</span> drawn independently according to the unknown probability density <span class="math inline">\mathbb{P}_{\mathbf{X}}(\mathbf{x})</span>.</p></li>
+</ul>
+<section id="preliminary" class="level2">
+<h2 class="anchored" data-anchor-id="preliminary">Preliminary</h2>
+<section id="statistical-learning" class="level3">
+<h3 class="anchored" data-anchor-id="statistical-learning">Statistical Learning</h3>
+<ul>
+<li><p><a href="bayesian-decision-theory">Bayesian Decision Theory (BDT)</a></p></li>
+<li><p><a href="maximum-likelihood-estimation">Maximum Likelihood Estimation (MLE)</a></p></li>
+</ul>
+</section>
+</section>
+<section id="views-on-parameter-estimation" class="level2">
+<h2 class="anchored" data-anchor-id="views-on-parameter-estimation">Views on parameter estimation</h2>
+<p>There are two different frameworks on statistical inferences: frequentist view and Bayesian view. Both views have the same definition of the probability, but they have different views on how probability of an event should be calculated or accessed. Thus, the way to do parameter estimation is different under the two frameworks.</p>
+<section id="frequentist-view" class="level3">
+<h3 class="anchored" data-anchor-id="frequentist-view">Frequentist view</h3>
+<p>Frequentists believe that the probability of an event is a measure of relative frequency and should be calculated by observing how many times the event happens in a large number of trials.</p>
+<ul>
+<li><p>Probability: the probability of any event is objective and doesn’t change with different beliefs to the event.</p></li>
+<li><p>Parameters: if the parameters of the distribution are unknown, the parameters must be fixed constants. That is, they must be certain determined values.</p></li>
+<li><p>Estimation: the single best estimation of the parameter can be derived using single dataset and its goodness (bias and variance) can be measured by sampling different datasets.</p></li>
+</ul>
+</section>
+<section id="bayesian-view" class="level3">
+<h3 class="anchored" data-anchor-id="bayesian-view">Bayesian view</h3>
+<p>Bayesian approach believes that a probability of an event includes not only the relative frequency, but also the subjective beliefs. That is, the degree of belief on the outcomes of the experiment.</p>
+<ul>
+<li><p>Probability: the subjective beliefs can be very different from person to person, and thus the probability of any event is very subjective.</p></li>
+<li><p>Parameters: the unknown parameters of the distribution are viewed as random variables, and thus include subjective beliefs.</p></li>
+<li><p>Estimation: the subjective beliefs of the parameters are specified using a prior distribution, which is then updated using the single dataset observed. The result of the estimation is a posterior probabilities of a range of parameter values, which include both prior beliefs and relative frequency.</p></li>
+</ul>
+</section>
+</section>
+<section id="bayesian-estimation" class="level2">
+<h2 class="anchored" data-anchor-id="bayesian-estimation">Bayesian estimation</h2>
+<p>In Bayesian estimation, the unknown parameters are treated as random variables.</p>
+<ul>
+<li><p>The subjective beliefs about the parameters that we want to estimate before observing any dataset are encoded using a distribution</p>
+<p><span class="math display">
+  \mathbb{P}_{\boldsymbol{\Theta}} (\boldsymbol{\theta}),
+  </span></p>
+<p>which specifies the prior probabilities of all possible values of the parameters.</p></li>
+<li><p>The likelihood of a dataset <span class="math inline">\mathcal{X} = \{ \mathbf{x}_{1}, \dots, \mathbf{x}_{n} \}</span> given parameters <span class="math inline">\boldsymbol{\theta}</span> is a conditional probability</p>
+<p><span class="math display">
+  \mathbb{P}_{\mathbf{X} \mid \boldsymbol{\Theta}} \left(
+      \mathcal{X} \mid \boldsymbol{\theta}
+  \right).
+  </span></p></li>
+</ul>
+<p>Unlike maximum likelihood estimation, which is under frequentist view and gives only the single best parameter, the result of Bayesian estimation is a posterior distribution that informs us how the observed data update the prior. According to Bayes Theorem, the posterior distribution can be calculated by:</p>
+<p><span class="math display">
+\mathbb{P}_{\boldsymbol{\Theta} \mid \mathbf{X}} \left(
+    \boldsymbol{\theta} \mid \mathcal{X}
+\right) = \frac{
+    \mathbb{P}_{\mathbf{X} \mid \boldsymbol{\Theta}} \left (
+        \mathcal{X} \mid \boldsymbol{\theta}
+    \right) \mathbb{P}_{\boldsymbol{\Theta}} \left(
+        \boldsymbol{\theta}
+    \right)
+}{
+    \mathbb{P}_{\mathbf{X}} \left(
+        \mathcal{X}
+    \right)
+}.
+</span></p>
+<section id="maximum-a-posteriori-map-estimation" class="level3">
+<h3 class="anchored" data-anchor-id="maximum-a-posteriori-map-estimation">Maximum a posteriori (MAP) estimation</h3>
+<p>In the case where we want a single estimate for the parameter using Bayesian estimation, MAP estimation chooses the value of the parameter that has the largest probability in the posterior distribution</p>
+<p><span class="math display">
+\boldsymbol{\theta}_{MAP} = \arg\max_{\boldsymbol{\theta}} \mathbb{P}_{\boldsymbol{\Theta} \mid \mathbf{X}} \left(
+    \boldsymbol{\theta} \mid \mathcal{X}
+\right).
+</span></p>
+</section>
+</section>
+<section id="bayesian-bdr" class="level2">
+<h2 class="anchored" data-anchor-id="bayesian-bdr">Bayesian BDR</h2>
+<blockquote class="blockquote">
+<p>TODO</p>
+</blockquote>
+</section>
+<section id="example-mean-of-the-univariate-gaussian" class="level2">
+<h2 class="anchored" data-anchor-id="example-mean-of-the-univariate-gaussian">Example: mean of the univariate Gaussian</h2>
+<p>Here we shows an example of estimating the posterior probability of the mean parameter of a univariate normal distribution using Bayesian estimation.</p>
+<p>Consider the univariate case where the probability of the instance <span class="math inline">x</span> follows a normal distribution with unknown mean <span class="math inline">\mu</span> and known variance <span class="math inline">\sigma^{2}</span>:</p>
+<p><span class="math display">
+\mathbb{P}_{X \mid \mu} (x \mid \mu) \sim \mathcal{N} (\mu, \sigma^{2}) = \mathcal{G} (x, \mu, \sigma^{2}),
+</span></p>
+<p>and we assume whatever prior knowledge we have about <span class="math inline">\mu</span> can be expressed by another normal distribution with known mean <span class="math inline">\mu_{0}</span> and known variance <span class="math inline">\sigma_{0}^{2}</span>:</p>
+<p><span class="math display">
+\mathbb{P}_{\mu} (\mu) \sim \mathcal{N} (\mu_{0}, \sigma_{0}^{2}) = \mathcal{G} (\mu, \mu_{0}, \sigma_{0}^{2}).
+</span></p>
+<section id="posterior-distribution-of-mean-parameter" class="level3">
+<h3 class="anchored" data-anchor-id="posterior-distribution-of-mean-parameter">Posterior distribution of mean parameter</h3>
+<p>Suppose now that <span class="math inline">n</span> samples <span class="math inline">\mathcal{X} = \{x_{1}, \dots, x_{n}\}</span> are independently sampled. We can use Bayes formula to obtain the posterior probability:</p>
+<p><span class="math display">
+\mathbb{P}_{\mu \mid \mathcal{X}} (\mu \mid \mathcal{X}) = \frac{
+    \mathbb{P}_{X \mid \mu} (\mathcal{X} \mid \mu) \mathbb{P}_{\mu} (\mu)
+}{
+    \mathbb{P}_{X} (\mathcal{X})
+}.
+</span></p>
+<p>Since <span class="math inline">\mathbb{P}_{X}(\mathcal{X})</span> is a normalization factor that doesn’t depend on <span class="math inline">\mu</span>, we now omit it for simplicity:</p>
+<p><span class="math display">
+\begin{aligned}
+\mathbb{P}_{\mu \mid X} (\mu \mid \mathcal{X})
+&amp; \propto \mathbb{P}_{X \mid \mu} (\mathcal{X} \mid \mu) \mathbb{P}_{\mu} (\mu)
+\\
+&amp; = \prod_{i=1}^{n} \mathbb{P}_{X \mid \mu} (x_{i} \mid \mu) \mathbb{P}_{\mu} (\mu)
+&amp; [\text{independent assumption}].
+\\
+\end{aligned}
+</span></p>
+<p>After expanding the normal distribution definition and some simplifications, we can see that <span class="math inline">\mathbb{P}_{\mu \mid X} (\mu \mid \mathcal{X})</span> also follows a normal distribution:</p>
+<p><span class="math display">
+\mathbb{P}_{\mu \mid X} (\mu \mid \mathcal{X}) \sim \mathcal{N} (\mu_{n}, \sigma_{n}^{2})
+</span></p>
+<p>where</p>
+<p><span class="math display">
+\mu_{n} = \frac{
+    \sigma_{0}^{2} \sum_{i=1}^{n} x_{i} + \mu_{0} \sigma^{2}
+}{
+    \sigma^{2} + n \sigma_{0}^{2}
+},
+</span></p>
+<p><span class="math display">
+\sigma_{n}^{2} = \frac{
+    \sigma_{0}^{2} \sigma^{2}
+}{
+    n \sigma_{0}^{2} + \sigma^{2}
+}.
+</span></p>
+<p>:::{admonition} Proof: <span class="math inline">\mathbb{P}_{\mu \mid X} (\mu \mid \mathcal{X}) \sim \mathcal{N} (\mu_{n}, \sigma_{n}^{2})</span> :class: dropdown</p>
+<p><span class="math display">
+\begin{aligned}
+\mathbb{P}_{\mu \mid \mathcal{D}}(\mu \mid \mathcal{D})
+&amp; \propto \mathbb{P}_{\mathcal{D} \mid \mu}(\mathcal{D} \mid \mu) \mathbb{P}_{\mu}(\mu) \\
+&amp; = \prod_{i=1}^{n} \mathbb{P}_{X \mid \mu}(x_{i} \mid \mu) \mathbb{P}_{\mu}(\mu) \\
+&amp; = \prod_{i=1}^{n} \frac{ 1 }{\sqrt{2 \pi \sigma^{2}}} \exp{ - \frac{ (x_{i} - \mu)^{2} }{ 2 \sigma^{2} } } \frac{ 1 }{ \sqrt{2 \pi \sigma_{0}^{2}} } \exp{ - \frac{ (\mu - \mu_{0})^{2} }{ 2 \sigma_{0}^{2} } } \\
+&amp; = \frac{ 1 }{ \sqrt{4 \pi^{2} \sigma^{2} \sigma_{0}^{2}} } \prod_{i=1}^{n} \exp{ \left[ - \frac{ (x_{i} - \mu)^{2} }{ 2 \sigma^{2}} - \frac{ (\mu - \mu_{0})^{2} }{ 2 \sigma_{0}^{2} } \right] } &amp; [\text{merging constants and exponentials}] \\
+&amp; = \frac{ 1 }{ \sqrt{4 \pi^{2} \sigma^{2} \sigma_{0}^{2}} } \exp{ \left[ \sum_{i=1}^{n} - \frac{ (x_{i} - \mu)^{2} }{ 2 \sigma^{2} } - \frac{ (\mu - \mu_{0})^{2} }{ 2 \sigma_{0}^{2} } \right] } \\
+&amp; = \frac{ 1 }{ \sqrt{4 \pi^{2} \sigma^{2} \sigma_{0}^{2}} } \exp{ \left[ \sum_{i=1}^{n} - \frac{ x_{i}^{2} - 2 x_{i} \mu + \mu^{2}}{2 \sigma^{2} } - \frac{ \mu^{2} - 2 \mu \mu_{0} + \mu_{0}^{2} }{ 2 \sigma_{0}^{2} } \right] } &amp; [\text{expanding squares}] \\
+&amp; = \frac{ 1 }{\sqrt{4 \pi^{2} \sigma^{2} \sigma_{0}^{2}} } \exp{ \left[ - \frac{ \sum_{i=1}^{n} \left[ x_{i}^{2} - 2 x_{i} \mu + \mu^{2} \right] }{ 2 \sigma^{2} } - \frac{ \mu^{2} - 2 \mu \mu_{0} + \mu_{0}^{2} }{ 2 \sigma_{0}^{2}} \right] } \\
+&amp; = \frac{ 1 }{\sqrt{4 \pi^{2} \sigma^{2} \sigma_{0}^{2}} } \exp{ \left[ - \frac{ \sum_{i=1}^{n} x_{i}^{2} - \sum_{i=1}^{n} 2 x_{i} \mu + n \mu^{2} }{2 \sigma^{2}} - \frac{ \mu^{2} - 2 \mu \mu_{0} + \mu_{0}^{2} }{ 2 \sigma_{0}^{2} } \right] } &amp; [\text{reordering sums}] \\
+&amp; = \frac{ 1 }{ \sqrt{4 \pi^{2} \sigma^{2} \sigma_{0}^{2}} } \exp{ \left[ - \frac{ \sum_{i=1}^{n} x_{i}^{2} }{ 2 \sigma^{2} } + \frac{ \sum_{i=1}^{n} 2 x_{i} \mu }{ 2 \sigma^{2} } - \frac{ n \mu^{2} }{ 2 \sigma^{2} } - \frac{ \mu^{2} }{ 2 \sigma_{0}^{2} } + \frac{ 2 \mu \mu_{0} }{ 2 \sigma_{0}^{2} } - \frac{ \mu_{0}^{2} }{ 2 \sigma_{0}^{2} } \right] } \\
+&amp; = \frac{ 1 }{ \sqrt{4 \pi^{2} \sigma^{2} \sigma_{0}^{2}} } \exp{ \left[ - \left( \frac{ n }{ 2 \sigma^{2} } + \frac{ 1 }{ 2 \sigma_{0}^{2} } \right) \mu^{2} + 2 \left( \frac{ \sum_{i=1}^{n} x_{i} }{ 2 \sigma^{2} } - \frac{ \mu_{0} }{ 2 \sigma_{0}^{2} } \right) \mu - \frac{ \sum_{i=1}^{n} x_{i}^{2} }{ 2 \sigma^{2} } - \frac{ \mu_{0}^{2} }{ 2 \sigma_{0}^{2} } \right] } &amp; [\text{grouping } \mu] \\
+&amp; = \frac{ \exp{ \left[ - \frac{ \sum_{i=1}^{n} x_{i}^{2} }{ 2 \sigma^{2} } - \frac{ \mu_{0}^{2} }{ 2 \sigma_{0}^{2} } \right] } }{ \sqrt{4 \pi^{2} \sigma^{2} \sigma_{0}^{2}} } \exp{ \left[ - \left( \frac{ n }{ 2 \sigma^{2} } + \frac{ 1 }{ 2 \sigma_{0}^{2} } \right) \mu^{2} + 2 \left( \frac{ \sum_{i=1}^{n} x_{i} }{ 2 \sigma^{2} } - \frac{ \mu_{0} }{ 2 \sigma_{0}^{2} } \right) \mu \right] } &amp; [\text{extracting out terms without } \mu] \\
+&amp; \propto \exp{ \left[ - \left( \frac{ n }{ 2 \sigma^{2} } + \frac{ 1 }{ 2 \sigma_{0}^{2} } \right) \mu^{2} + 2 \left( \frac{ \sum_{i=1}^{n} x_{i} }{ 2 \sigma^{2} } - \frac{ \mu_{0} }{ 2 \sigma_{0}^{2} } \right) \mu \right] } &amp; [\text{removing terms without } \mu] \\
+\end{aligned}
+</span></p>
+<p>Using the <em>completing the squares</em> trick</p>
+<p><span class="math display">
+\begin{aligned}
+ax^{2} + 2bx + c  
+&amp; = a \left( x^{2} + 2 \frac{ b }{ a } x + \frac{ c }{ a } \right) \\
+&amp; = a \left( x^{2} + 2 \frac{ b }{ a } x + \left( \frac{ b }{ a } \right)^{2} - \left( \frac{ b }{ a } \right)^{2} + \frac{ c }{ a } \right) \\
+&amp; = a \left( x + \frac{ b }{ a } \right)^{2} + c - \frac{ b^{2} }{ a }, \\
+\end{aligned}
+</span></p>
+<p>and treating</p>
+<p><span class="math display"> a = - \left( \frac{ n }{ 2 \sigma^{2} } + \frac{ 1 }{ 2 \sigma_{0}^{2} } \right), </span></p>
+<p><span class="math display"> b = \left( \frac{ \sum_{i=1}^{n} x_{i} }{ 2 \sigma^{2} } - \frac{ \mu_{0} }{ 2 \sigma_{0}^{2} } \right), </span></p>
+<p>we can have</p>
+<p><span class="math display">
+\begin{aligned}
+\mathbb{P}_{\mu \mid \mathcal{D}}(\mu \mid \mathcal{D})
+&amp; \propto \exp{ \left[
+    - \left(
+        \frac{ n }{ 2 \sigma^{2} } + \frac{ 1 }{ 2 \sigma_{0}^{2} }
+    \right) \mu^{2}
+    + 2 \left(
+        \frac{ \sum_{i=1}^{n} x_{i} }{ 2 \sigma^{2} } - \frac{ \mu_{0} }{ 2 \sigma_{0}^{2} }
+    \right) \mu
+\right] }
+\\
+&amp; \propto \exp{ \left[
+    - \left(
+        \frac{ n }{ 2 \sigma^{2} } + \frac{ 1 }{ 2 \sigma_{0}^{2} }
+    \right)
+    \left(
+        \mu - \frac{
+            \frac{ \sum_{i=1}^{n} x_{i} }{ 2 \sigma^{2} } - \frac{ \mu_{0} }{ 2 \sigma_{0}^{2} }
+        }{
+            \frac{ n }{ 2 \sigma^{2} } + \frac{ 1 }{ 2 \sigma_{0}^{2} }
+        }
+    \right)^{2}
+\right] }
+&amp; [\text{remove } \frac{ b^{2} }{ a } \text{ as it doesn't depend on } \mu]
+\\
+&amp; = \exp{ \left[
+    - \left(
+        \frac{ n }{ 2 \sigma^{2} } + \frac{ 1 }{ 2 \sigma_{0}^{2} }
+    \right)
+    \left(
+        \mu - \frac{
+            \frac{
+                \sigma_{0}^{2} \sum_{i=1}^{n} x_{i} + \mu_{0} \sigma^{2}
+            }{
+                2 \sigma^{2} \sigma_{0}^{2}
+            }
+        }{
+            \frac{
+                \sigma^{2} + n \sigma_{0}^{2}
+            }{
+                2 \sigma^{2} \sigma_{0}^{2}
+            }
+        }
+    \right)^{2}
+\right] }
+\\
+&amp; = \exp{ \left[
+    - \left(
+        \frac{ 2 \sigma^{2} \sigma_{0}^{2} }{ \sigma^{2} + n \sigma_{0}^{2} }
+    \right)^{-1}
+    \left(
+        \mu - \frac{
+            \sigma_{0}^{2} \sum_{i=1}^{n} x_{i} + \mu_{0} \sigma^{2}
+        }{
+            \sigma^{2} + n \sigma_{0}^{2}
+        }
+    \right)^{2}
+\right] }
+.
+\\
+\end{aligned}
+</span></p>
+<p>:::</p>
+<p>This means that the unknown parameter <span class="math inline">\mu</span> estimated by a set of instances <span class="math inline">\mathcal{X}</span> using Bayesian estimation has a probability <span class="math inline">\mathbb{P}_{\mu \mid X} (\mu \mid \mathcal{X})</span> that follows a normal distribution that has mean <span class="math inline">\mu_{n}</span> and variance <span class="math inline">\sigma_{n}^{2}</span>.</p>
+<ul>
+<li><p>Since <span class="math inline">\mathbb{P}_{\mu \mid X} (\mu \mid \mathcal{X})</span> is a normal distribution, <span class="math inline">\mathbb{P}_{\mu \mid X} (\mu_{n} \mid \mathcal{X})</span> is largest and thus we can view <span class="math inline">\mu_{n}</span> as our best guess for <span class="math inline">\mu</span> after observing <span class="math inline">\mathcal{X}</span>.</p></li>
+<li><p>Then we can view the variance <span class="math inline">\sigma_{n}^{2}</span> as the uncertainty about this best guess.</p></li>
+<li><p>Since <span class="math inline">\sigma_{n}^{2}</span> decreases monotonically with <span class="math inline">n</span>, each additional observation decreases our uncertainty of the best guess.</p></li>
+</ul>
+<p>%%markdown</p>
+<p>Since <span class="math inline">\mu_{n}</span> can be further rewritten as</p>
+<p><span class="math display">
+\begin{aligned}
+\mu_{n}
+&amp; = \frac{
+    \sigma_{0}^{2} \sum_{i=1}^{n} x_{i} + \mu_{0} \sigma^{2}
+}{
+    \sigma^{2} + n \sigma_{0}^{2}
+}
+\\
+&amp; = \frac{
+    \sigma_{0}^{2}
+}{
+    \sigma^{2} + n \sigma_{0}^{2}
+} \sum_{i=1}^{n} x_{i} + \frac{
+    \sigma^{2}
+}{
+    \sigma^{2} + n \sigma_{0}^{2}
+} \mu_{0}
+\\
+&amp; = \frac{
+    n \sigma_{0}^{2}
+}{
+    n \sigma_{0}^{2} + \sigma^{2}
+} \bar{x}_{n} + \left(
+    1 - \frac{
+        n \sigma_{0}^{2}
+    }{
+        n \sigma_{0}^{2} + \sigma^{2}
+    }
+\right) \mu_{0}
+&amp; [\bar{x}_{n} = \frac{1}{n} \sum_{i=1}^{n} x_{i}]
+\\
+&amp; = \alpha_{n} \bar{x}_{n} + (1 - \alpha_{n}) \mu_{0}
+&amp; [\alpha_{n} = \frac{n \sigma_{0}^{2}}{n \sigma_{0}^{2} + \sigma^{2}}]
+,
+\\
+\end{aligned}
+</span></p>
+<p>the final equation shows that <span class="math inline">\mu_{n}</span> is a combination of the maximum likelihood estimate <span class="math inline">\bar{x}_{n}</span> and the prior information <span class="math inline">\mu_{0}</span>.</p>
+<p>Since</p>
+<p><span class="math display">  
+\begin{aligned}
+\lim_{n \to \infty} \mu_{n}
+&amp; = \bar{x}_{n}
+&amp; [\lim_{n \to \infty} \frac{n \sigma_{0}^{2}}{n \sigma_{0}^{2} + \sigma^{2}} = 1]
+\\
+\lim_{n \to 0} \mu_{n}
+&amp; = \mu_{0}
+&amp; [\lim_{n \to 0} \frac{n \sigma_{0}^{2}}{n \sigma_{0}^{2} + \sigma^{2}} = 0],
+\end{aligned}
+</span></p>
+<ul>
+<li><p>If there is large amount of data, <span class="math inline">\mu_{n}</span> converges to maximum likelihood estimate.</p></li>
+<li><p>If there is no observed data, <span class="math inline">\mu_{n}</span> converges to the mean of the prior knowledge.</p></li>
+</ul>
+<p>If the number of sampled data <span class="math inline">n</span> is fixed,</p>
+<p><span class="math display">  
+\begin{aligned}
+\lim_{\sigma_{0} \to \infty} \mu_{n}
+&amp; = \bar{x}_{n}
+&amp; [\lim_{\sigma_{0} \to \infty} \frac{n \sigma_{0}^{2}}{n \sigma_{0}^{2} + \sigma^{2}} = 1]
+\\
+\lim_{\sigma_{0} \to 0} \mu_{n}
+&amp; = \mu_{0}
+&amp; [\lim_{\sigma \to \infty} \frac{n \sigma_{0}^{2}}{n \sigma_{0}^{2} + \sigma^{2}} = 0],
+\end{aligned}
+</span></p>
+<p>which means</p>
+<ul>
+<li><p><span class="math inline">\mu_{n}</span> will converge to the maximum likelihood estimate <span class="math inline">\bar{x}_{n}</span> if our prior knowledge of the <span class="math inline">\mu</span> indicates that we have no certainty about <span class="math inline">\mu_{n}</span> (infinite variance).</p></li>
+<li><p><span class="math inline">\mu_{n}</span> will converge to the mean of our prior knowledge <span class="math inline">\mu_{0}</span> if our prior knowledge of the <span class="math inline">\mu</span> indicates that we are very certain about <span class="math inline">\mu_{0}</span> (zero variance).</p></li>
+</ul>
+</section>
+<section id="predictive-distribution-function" class="level3">
+<h3 class="anchored" data-anchor-id="predictive-distribution-function">Predictive distribution function</h3>
+<p><span class="math display">
+\begin{aligned}
+\mathbb{P}_{X \mid X}(x \mid \mathcal{X})
+&amp; = \int \mathbb{P}_{X \mid \mu}(x \mid \mu) \mathbb{P}_{\mu \mid X} (\mu \mid \mathcal{X}) \mathop{d \mu}
+\\
+&amp; \sim \mathcal{N}(\mu_{n}, \sigma^{2} + \sigma_{n}^{2})
+\end{aligned}
+</span></p>
+</section>
+<section id="selecting-parameter-priors" class="level3">
+<h3 class="anchored" data-anchor-id="selecting-parameter-priors">Selecting parameter priors</h3>
+<p>When the number of samples <span class="math inline">n</span> is large, the predictive distribution will not change much if we select different mean parameter priors. Consider the 2 extreme cases of the mean parameter priors.</p>
+<ol type="1">
+<li><p>Uniform prior (normal distribution with infinite variance).</p>
+<p>Since</p>
+<p><span class="math display">
+\begin{aligned}
+\lim_{\sigma_{0}^{2} \to \infty} \mu_{n}
+&amp; = \bar{x}_{n},
+\\
+\lim_{\sigma_{0}^{2} \to \infty} \sigma_{n}
+&amp; = \frac{\sigma^{2}}{n},
+\end{aligned}
+</span></p>
+<p>the predictive distribution is</p>
+<p><span class="math display">
+\mathbb{P}_{X \mid X}(x \mid \mathcal{X}) \sim \mathcal{N} \left(
+     \bar{x}_{n}, \sigma^{2} + \frac{\sigma^{2}}{n}
+\right).
+</span></p></li>
+<li><p>Dirac delta prior (normal distribution with zero variance).</p>
+<p>Since</p>
+<p><span class="math display">
+\begin{aligned}
+\lim_{\sigma_{0} \to 0} \mu_{n}
+&amp; = \mu_{0},
+\\
+\lim_{\sigma_{0} \to 0} \sigma_{n}
+&amp; = 0,
+\end{aligned}
+</span></p>
+<p>the predictive distribution is</p>
+<p><span class="math display">
+\mathbb{P}_{X \mid X}(x \mid \mathcal{X}) \sim \mathcal{N} \left(
+     \mu_{0}, \sigma^{2} \right
+).
+</span></p>
+<p>Since <span class="math inline">\mu_{0}</span> is <span class="math inline">\bar{x}_{n}</span> with extra points, <span class="math inline">\mu_{0} = \bar{x}_{n}</span> when <span class="math inline">n</span> is large.</p></li>
+</ol>
+</section>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<ul>
+<li>https://www.bu.edu/sph/files/2014/05/Bayesian-Statistics_final_20140416.pdf</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

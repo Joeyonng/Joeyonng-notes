@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Joeyonng - L0 Regularization</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@*/dist/embed-amd.js" crossorigin="anonymous"></script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Joeyonng</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../Knowledge" rel="" target="">
+ <span class="menu-text">Knowledge</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../Notes" rel="" target="">
+ <span class="menu-text">Notes</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://joeyonng.github.io/joeyonng-backyard/" rel="" target="">
+ <span class="menu-text">Backyard</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#problem-formulation" id="toc-problem-formulation" class="nav-link active" data-scroll-target="#problem-formulation">Problem formulation</a></li>
+  <li><a href="#general-recipe-of-l_0-regularization" id="toc-general-recipe-of-l_0-regularization" class="nav-link" data-scroll-target="#general-recipe-of-l_0-regularization">General recipe of <span class="math inline">L_{0}</span> regularization</a></li>
+  <li><a href="#hard-concrete-distribution" id="toc-hard-concrete-distribution" class="nav-link" data-scroll-target="#hard-concrete-distribution">Hard concrete distribution</a>
+  <ul class="collapse">
+  <li><a href="#binary-concrete-distribution" id="toc-binary-concrete-distribution" class="nav-link" data-scroll-target="#binary-concrete-distribution">Binary Concrete distribution</a></li>
+  <li><a href="#from-binary-concrete-to-hard-concrete" id="toc-from-binary-concrete-to-hard-concrete" class="nav-link" data-scroll-target="#from-binary-concrete-to-hard-concrete">From binary concrete to hard concrete</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">L0 Regularization</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell" data-jupyter="{&quot;source_hidden&quot;:true}" data-slideshow="{&quot;slide_type&quot;:&quot;skip&quot;}" data-tags="[&quot;remove-input&quot;]" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ipywidgets <span class="im">import</span> interact</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>plt.style.use(<span class="st">"ggplot"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sigmoid(x):</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> np.exp(<span class="op">-</span>x))</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> hard_sigmoid(x):</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">min</span>(<span class="dv">1</span>, <span class="bu">max</span>(<span class="dv">0</span>, x))</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> logit_dist():</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    u <span class="op">=</span> np.random.random()</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    logit <span class="op">=</span> np.log(u) <span class="op">-</span> np.log(<span class="dv">1</span> <span class="op">-</span> u)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> logit</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> binary_concrete(loc, temp):</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    logit <span class="op">=</span> logit_dist()</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    bc <span class="op">=</span> sigmoid((logit <span class="op">+</span> loc) <span class="op">/</span> temp) </span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> bc</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> stretch_binary_concrete(loc, temp, gamma<span class="op">=-</span><span class="fl">0.1</span>, zeta<span class="op">=</span><span class="fl">1.1</span>):</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    bc <span class="op">=</span> binary_concrete(loc, temp)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    stretch_bc <span class="op">=</span> bc <span class="op">*</span> (zeta <span class="op">-</span> gamma) <span class="op">+</span> gamma</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> stretch_bc</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> hard_concrete(loc, temp, gamma<span class="op">=-</span><span class="fl">0.1</span>, zeta<span class="op">=</span><span class="fl">1.1</span>):</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    stretch_bc <span class="op">=</span> stretch_binary_concrete(loc, temp, gamma, zeta)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    hc <span class="op">=</span> hard_sigmoid(stretch_bc) </span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> hc</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_probability(list_samples, bins<span class="op">=</span><span class="dv">100</span>, <span class="op">**</span>kwargs):</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">16</span>, <span class="dv">8</span>))</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> samples <span class="kw">in</span> list_samples:</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>        weights <span class="op">=</span> np.ones_like(samples) <span class="op">/</span> <span class="bu">len</span>(samples)</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>        plt.hist(samples, weights<span class="op">=</span>weights, bins<span class="op">=</span>bins, alpha<span class="op">=</span><span class="fl">0.5</span>, <span class="op">**</span>kwargs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><em>05-03-2021 (Updated 06-02-2022)</em></p>
+<p>This page contains my reading notes on</p>
+<ul>
+<li><a href="https://www.semanticscholar.org/paper/Learning-Sparse-Neural-Networks-through-L0-Louizos-Welling/572f5d18a3943dce4e14f937ef66977a01891096"><strong>Learning Sparse Neural Networks through <span class="math inline">L_{0}</span> Regularization</strong></a></li>
+</ul>
+<section id="problem-formulation" class="level2">
+<h2 class="anchored" data-anchor-id="problem-formulation">Problem formulation</h2>
+<p>Given a vector <span class="math inline">x</span> of length <span class="math inline">n</span> (matrix can also be seen as a vector by stacking up the rows/cols), the common vector norms are:</p>
+<ul>
+<li><p><span class="math inline">L_{0}</span> norm:</p>
+<p><span class="math display"> \sum_{i=1}^{n} \mathbb{1}[x_{i} \neq 0] </span></p></li>
+<li><p><span class="math inline">L_{1}</span> norm:</p>
+<p><span class="math display"> \sum_{i=1}^{n} \lvert x_{i} \rvert </span></p>
+<p>which is also called ridge regularization in neural network.</p></li>
+<li><p><span class="math inline">L_{2}</span> norm:</p>
+<p><span class="math display"> \sum_{i=1}^{n} x_{i}^2 </span></p>
+<p>which is also called lasso regularization in neural network.</p></li>
+<li><p><span class="math inline">L_{\infty}</span> norm:</p>
+<p><span class="math display"> \max_{i=1}^{n} \lvert x_i \rvert </span></p></li>
+</ul>
+<p>The normal way to prune the edges of the neural network is to use <span class="math inline">L_{1}</span> or <span class="math inline">L_{2}</span> regularization to drive weights to near 0 (not exactly 0), and then directly set all weights that are less than threshold to 0.</p>
+<ul>
+<li><p><span class="math inline">L_{0}</span> is not used because the operation of counting the number of 0s is not differentiable.</p></li>
+<li><p>However, <span class="math inline">L_{0}</span> regularization is still desired because it won’t affect the magnitude of the weights in the pruning process.</p></li>
+</ul>
+</section>
+<section id="general-recipe-of-l_0-regularization" class="level2">
+<h2 class="anchored" data-anchor-id="general-recipe-of-l_0-regularization">General recipe of <span class="math inline">L_{0}</span> regularization</h2>
+<p>The loss function used to train a neural network with <span class="math inline">L_{0}</span> regularization is:</p>
+<p><span class="math display"> \mathcal{L}(f(x, \theta), y) + \lambda \sum_{i=1}^{\lvert \theta \rvert} \mathbb{1}[\theta_{i} \neq 0] </span></p>
+<p>where</p>
+<ul>
+<li><span class="math inline">\mathcal{L}</span> is a standard loss function (cross-entropy loss, softmax)</li>
+<li><span class="math inline">\theta</span> are the parameters in the network</li>
+<li><span class="math inline">x, y</span> are training instances</li>
+<li><span class="math inline">\lambda</span> is a hyper-parameter that balance loss and the regularization.</li>
+</ul>
+<p>If we attach a <strong>trainable</strong> binary random variable <span class="math inline">z_{i}</span> to each element of the model parameter <span class="math inline">\theta_{i}</span>, then the weights used in the feed-forward operation of the neural network can be replaced by <span class="math inline">\theta \odot z</span>. The loss function then becomes:</p>
+<p><span class="math display"> \mathcal{L}(f(x, \theta \odot z), y) + \lambda \sum_{i=1}^{\lvert \theta \rvert} \mathbb{1}[z_{i} \neq 0]</span></p>
+<p>where</p>
+<ul>
+<li><span class="math inline">z \in \{0, 1\}^{\lvert \theta \rvert}</span> is <strong>randomly sampled in each forward propagation</strong> according to some distribution.</li>
+<li><span class="math inline">\odot</span> corresponds to the elementwise product.</li>
+</ul>
+<p>If we assume each <span class="math inline">z_{i}</span> as a binary random variable with a <strong>Bernoulli distribution</strong> that has a parameter <span class="math inline">\pi_{i}</span>, i.e.&nbsp;<span class="math inline">z_{i} = \mathrm{Bern}(\pi_{i})</span>, then the loss function becomes:</p>
+<p><span class="math display"> \mathbb{E}_{z=\mathrm{Bern}(\pi)} \big[ \mathcal{L}(f(x, \theta \odot z), y) \big] + \lambda \sum_{i=1}^{\lvert \theta \rvert} \pi_{i} </span></p>
+<p>where <span class="math inline">\mathbb{E}_{z=\mathrm{Bern}(\pi)} [\cdot]</span> gives an expectation value of a function that has a Bernoulli distribution <span class="math inline">z</span> as the input.</p>
+<p>The reformulation of the above loss function can be established because</p>
+<ol type="1">
+<li><p>Since the minimum of a function is upper bounded by the expectation of the function, minimizing <span class="math inline">\mathbb{E}_{z=\mathrm{Bern}(\pi)} \big[ \mathcal{L}(f(x, \theta \odot z), y) \big]</span> is the same as minimizing the upper bound of <span class="math inline">\mathcal{L}(f(x, \theta \odot z), y)</span>.</p></li>
+<li><p>According to the definition of the Bernoulli distribution, <span class="math inline">\pi</span> gives the probability of <span class="math inline">z</span> being 1 (non zero). Thus, <strong>minimizing <span class="math inline">\pi</span> is to increase the probability of <span class="math inline">z</span> being 0</strong>.</p></li>
+</ol>
+<p>In the equation above,</p>
+<ul>
+<li><p><span class="math inline">\pi_{i}</span> is a parameter that we want to be learned using gradient descent.</p></li>
+<li><p>Thus, the second term <span class="math inline">\lambda \sum_{i=1}^{\lvert \theta \rvert} \pi_{i}</span> can be directly minimized to regularize <span class="math inline">\pi</span> because gradient of the second term w.r.t to <span class="math inline">pi_{i}</span> can be easily calculated.</p></li>
+<li><p>However, the first term <span class="math inline">\mathbb{E}_{z=\mathrm{Bern}(\pi)} \big[ \mathcal{L}(f(x, \theta \odot z), y) \big]</span> is still problematic because <span class="math inline">z</span> as a categorical random variable cannot be differentiated with respect to <span class="math inline">\pi</span>.</p></li>
+</ul>
+</section>
+<section id="hard-concrete-distribution" class="level2">
+<h2 class="anchored" data-anchor-id="hard-concrete-distribution">Hard concrete distribution</h2>
+<section id="binary-concrete-distribution" class="level3">
+<h3 class="anchored" data-anchor-id="binary-concrete-distribution">Binary Concrete distribution</h3>
+<p>The binary concrete distribution can be seen as a <strong>continuous</strong> approximation of the Bernoulli distribution. It has 2 parameters:</p>
+<ul>
+<li><p>location <span class="math inline">\alpha</span>: similar to the probability parameter of the Bernoulli distribution.</p></li>
+<li><p>temperature <span class="math inline">\beta</span>: it controls how similar the binary concrete distribution is with the Bernoulli distribution.</p></li>
+</ul>
+<p>Using the the reparametrization trick, the binary concrete distribution <span class="math inline">s</span> can be represented as:</p>
+<p><span class="math display"> s = \operatorname{sigmoid} \left( \frac{\alpha + l}{\beta} \right) </span></p>
+<p>where <span class="math inline">l</span> is a sample from the logistic distribution.</p>
+<div class="cell" data-jupyter="{&quot;source_hidden&quot;:true}" data-slideshow="{&quot;slide_type&quot;:&quot;subslide&quot;}" data-tags="[&quot;remove-input&quot;]" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_logit(size<span class="op">=</span><span class="dv">100000</span>, <span class="op">**</span>kwargs):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    logit_samples <span class="op">=</span> [logit_dist() <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(size)]</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    plot_probability([logit_samples])</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>interact(plot_logit)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"7c609ff46804483cbbc078626eeecb7c","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+</div>
+<div class="cell" data-jupyter="{&quot;source_hidden&quot;:true}" data-slideshow="{&quot;slide_type&quot;:&quot;subslide&quot;}" data-tags="[&quot;remove-input&quot;]" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_bc(size<span class="op">=</span><span class="dv">100000</span>, <span class="op">**</span>kwargs):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    ber_samples <span class="op">=</span> np.random.binomial(<span class="dv">1</span>, <span class="fl">0.5</span>, size<span class="op">=</span>size)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    bc_samples <span class="op">=</span> [binary_concrete(kwargs[<span class="st">'loc'</span>], kwargs[<span class="st">'temp'</span>]) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(size)]</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    plot_probability([ber_samples, bc_samples])</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>interact(plot_bc, loc<span class="op">=</span>(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>), temp<span class="op">=</span>(<span class="fl">0.001</span>, <span class="dv">1</span>))<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"f73042ad6690425c87a36d14a2d92437","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+</div>
+</section>
+<section id="from-binary-concrete-to-hard-concrete" class="level3">
+<h3 class="anchored" data-anchor-id="from-binary-concrete-to-hard-concrete">From binary concrete to hard concrete</h3>
+<p>We cannot use <span class="math inline">s</span> (binary concrete distribution) to directly replace <span class="math inline">z</span> (Bernoulli distribution) - The range of <span class="math inline">s</span> is <span class="math inline">(0, 1)</span> and <strong>never touches 0 or 1</strong>. - However, we want <span class="math inline">z</span> to be either 0 or 1.</p>
+<p>A simple trick to solve this problem is</p>
+<ol type="1">
+<li><p>First “stretch” the binary concrete distribution from interval <span class="math inline">(0, 1)</span> to interval <span class="math inline">(\gamma, \zeta)</span> with <span class="math inline">\gamma &lt; 0</span> and <span class="math inline">\zeta &gt; 1</span></p>
+<p><span class="math display"> \bar{s} = s(\zeta - \gamma) + \gamma </span></p></li>
+<li><p>Then clip the stretch binary concrete distribution into the range <span class="math inline">[0, 1]</span></p>
+<p><span class="math display"> \bar{z} = \mathrm{clip}(\bar{s}, 0, 1) </span></p>
+<p>where</p>
+<ul>
+<li><p><span class="math inline">\mathrm{clip}(x, \mathrm{min}, \mathrm{max})</span> means to clip <span class="math inline">x</span> between the range <span class="math inline">[\mathrm{min}, \mathrm{max}]</span>.</p></li>
+<li><p><strong><span class="math inline">\bar{z}</span> is a random variable that follows the hard concrete distribution and it can be used to replace <span class="math inline">z</span></strong>.</p></li>
+</ul></li>
+</ol>
+<div class="cell" data-jupyter="{&quot;source_hidden&quot;:true}" data-slideshow="{&quot;slide_type&quot;:&quot;subslide&quot;}" data-tags="[&quot;remove-input&quot;]" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_sbc(size<span class="op">=</span><span class="dv">100000</span>, <span class="op">**</span>kwargs):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    bc_samples <span class="op">=</span> [binary_concrete(kwargs[<span class="st">'loc'</span>], kwargs[<span class="st">'temp'</span>]) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(size)]</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    sbc_samples <span class="op">=</span> [stretch_binary_concrete(kwargs[<span class="st">'loc'</span>], kwargs[<span class="st">'temp'</span>]) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(size)]</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    plot_probability([bc_samples, sbc_samples])</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>interact(plot_sbc, loc<span class="op">=</span>(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>), temp<span class="op">=</span>(<span class="fl">0.001</span>, <span class="dv">1</span>))<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"fb32e219e9ed4ec3bf2b3c3cb4efa4fa","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+</div>
+<div class="cell" data-jupyter="{&quot;source_hidden&quot;:true}" data-slideshow="{&quot;slide_type&quot;:&quot;subslide&quot;}" data-tags="[&quot;remove-input&quot;]" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_hc(size<span class="op">=</span><span class="dv">100000</span>, <span class="op">**</span>kwargs):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    hc_samples <span class="op">=</span> [hard_concrete(kwargs[<span class="st">'loc'</span>], kwargs[<span class="st">'temp'</span>]) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(size)]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    sbc_samples <span class="op">=</span> [stretch_binary_concrete(kwargs[<span class="st">'loc'</span>], kwargs[<span class="st">'temp'</span>]) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(size)]</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    plot_probability([hc_samples, sbc_samples])</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>interact(plot_hc, loc<span class="op">=</span>(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>), temp<span class="op">=</span>(<span class="fl">0.001</span>, <span class="dv">1</span>))<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"f5aaf3b071be48fcb4546c3430a449d8","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+</div>
+<p>Also, we cannot use <span class="math inline">\alpha</span> (location parameter of binary concrete distribution) to replace <span class="math inline">\pi</span> (probability parameter of Bernoulli distribution) in the regularization term of the loss function. - Remember that the regularization term above measures the sum of the probabilities of the <span class="math inline">z</span> (Bernoulli distribution) being non-zero.</p>
+<pre><code>$$ \sum_{i=1}^{\lvert \theta \rvert} \pi_{i} $$</code></pre>
+<p>Measuring the probability of <span class="math inline">\bar{z}</span> of being non-zero is the same as <strong>measuring the probability of <span class="math inline">\bar{s}</span> being positive</strong>.</p>
+<ul>
+<li><p>Because all negative values of <span class="math inline">\bar{s}</span> is clipped to be 0.</p></li>
+<li><p>Since we know that the total probability of a random variable being all values is 1, the probability of <span class="math inline">\bar{s}</span> being positive is written as:</p>
+<p><span class="math display"> \textrm{q}(\bar{s} &gt; 0 | \phi) = 1 - \mathrm{Q}(\bar{s} \leq 0 | \phi) </span></p>
+<p>where</p>
+<ul>
+<li><span class="math inline">\textrm{Q}(\cdot)</span> is the cumulative density function (CDF)</li>
+<li><span class="math inline">\mathrm{Q}(s \leq 0 | \phi)</span> gives the probability of <span class="math inline">s</span> being negative.</li>
+</ul></li>
+</ul>
+<p>Thus, the loss function above can be rewritten using the hard concrete distribution by:</p>
+<p><span class="math display"> \mathbb{E}_{\bar{s}} \big[ \mathcal{L}(f(x, \theta \odot \bar{z}), y) \big] + \lambda \sum_{i=1}^{\lvert \theta \rvert} (1 - \mathrm{Q}(\bar{s} \leq 0 | \phi)) </span></p>
+<p><strong>The loss function is “fully” differentiable with respect to <span class="math inline">\alpha</span></strong></p>
+<ul>
+<li><p><span class="math inline">\bar{z} = \mathrm{clip}(\bar{s}, 0, 1)</span> and <span class="math inline">\bar{s}</span> is a differentiable function with respect to <span class="math inline">\alpha</span>.</p></li>
+<li><p><span class="math inline">\mathrm{Q}(\bar{s} \leq 0 | \phi)</span> can be written as a differentiable function with respect to <span class="math inline">\alpha</span>.</p></li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

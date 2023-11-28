@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Joeyonng - Bayesian Decision Theory (BDT)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Joeyonng</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../Knowledge" rel="" target="">
+ <span class="menu-text">Knowledge</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../Notes" rel="" target="">
+ <span class="menu-text">Notes</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://joeyonng.github.io/joeyonng-backyard/" rel="" target="">
+ <span class="menu-text">Backyard</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Bayesian Decision Theory (BDT)</li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+ <span class="menu-text">Learning Theory</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Learning Theory/1_Statistical_Learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statistical Learning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Learning Theory/2_Bayesian_Classifier.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Classifier</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Learning Theory/3_Effective_Class_Size.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Effective Class Size</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Learning Theory/4_Empirical_Risk_Minimization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Empirical Risk Minimization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Learning Theory/5_Uniform_Convergence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Uniform Convergence</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Learning Theory/6_PAC_Learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PAC Learning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Learning Theory/7_Rademacher_Complexity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Rademacher Complexity</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#preliminary" id="toc-preliminary" class="nav-link active" data-scroll-target="#preliminary">Preliminary</a>
+  <ul class="collapse">
+  <li><a href="#statistics" id="toc-statistics" class="nav-link" data-scroll-target="#statistics">Statistics</a></li>
+  </ul></li>
+  <li><a href="#basic-concepts" id="toc-basic-concepts" class="nav-link" data-scroll-target="#basic-concepts">Basic concepts</a>
+  <ul class="collapse">
+  <li><a href="#probability-view-of-machine-learning" id="toc-probability-view-of-machine-learning" class="nav-link" data-scroll-target="#probability-view-of-machine-learning">Probability view of machine learning</a></li>
+  <li><a href="#decision-function" id="toc-decision-function" class="nav-link" data-scroll-target="#decision-function">Decision function</a></li>
+  <li><a href="#loss-function" id="toc-loss-function" class="nav-link" data-scroll-target="#loss-function">Loss function</a></li>
+  </ul></li>
+  <li><a href="#bayes-decision-rule" id="toc-bayes-decision-rule" class="nav-link" data-scroll-target="#bayes-decision-rule">Bayes decision rule</a>
+  <ul class="collapse">
+  <li><a href="#risk" id="toc-risk" class="nav-link" data-scroll-target="#risk">Risk</a></li>
+  <li><a href="#bayes-decision-rule-bdr" id="toc-bayes-decision-rule-bdr" class="nav-link" data-scroll-target="#bayes-decision-rule-bdr">Bayes decision rule (BDR)</a></li>
+  </ul></li>
+  <li><a href="#example-bdr-with-0-1-loss" id="toc-example-bdr-with-0-1-loss" class="nav-link" data-scroll-target="#example-bdr-with-0-1-loss">Example: BDR with 0-1 loss</a>
+  <ul class="collapse">
+  <li><a href="#loss" id="toc-loss" class="nav-link" data-scroll-target="#loss">0-1 loss</a></li>
+  <li><a href="#map-rule" id="toc-map-rule" class="nav-link" data-scroll-target="#map-rule">MAP rule</a></li>
+  <li><a href="#the-log-trick" id="toc-the-log-trick" class="nav-link" data-scroll-target="#the-log-trick">The log trick</a></li>
+  </ul></li>
+  <li><a href="#example-bdr-with-squared-error-loss" id="toc-example-bdr-with-squared-error-loss" class="nav-link" data-scroll-target="#example-bdr-with-squared-error-loss">Example: BDR with squared error loss</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-body" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Bayesian Decision Theory (BDT)</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p><em>Updated 01-11-2023 (First commited 01-08-2023)</em></p>
+<p>(bayesian-decision-theory)=</p>
+<p><strong>Bayesian decision theory</strong> is a <strong>statistical</strong> view to the machine learning problems. It makes the assumption that the decision problem is posed in probabilistic terms, and that all of the relevant probability values are known. The classifiers obtained under the framework of BDT will always give the best decision rule for each given test instance to minimize the expected total cost defined by the loss function.</p>
+<section id="preliminary" class="level2">
+<h2 class="anchored" data-anchor-id="preliminary">Preliminary</h2>
+<section id="statistics" class="level3">
+<h3 class="anchored" data-anchor-id="statistics">Statistics</h3>
+<ul>
+<li><p><a href="">Joint Probability</a></p></li>
+<li><p><a href="">Chain rule (probability)</a></p></li>
+<li><p><a href="">Bayes Theorem</a></p></li>
+<li><p><a href="">The log trick</a></p></li>
+</ul>
+</section>
+</section>
+<section id="basic-concepts" class="level2">
+<h2 class="anchored" data-anchor-id="basic-concepts">Basic concepts</h2>
+<section id="probability-view-of-machine-learning" class="level3">
+<h3 class="anchored" data-anchor-id="probability-view-of-machine-learning">Probability view of machine learning</h3>
+<p>When modeling a machine learning problem in the probability setting, both instances <span class="math inline">\mathbf{x}</span> and labels <span class="math inline">y</span> are sampled from different random variables.</p>
+<ul>
+<li><p>All instances with <span class="math inline">d</span> features are sampled from a random process of <span class="math inline">d</span> random variables <span class="math inline">\mathbf{X} = \{ X_{1}, \dots, X_{d} \}</span>.</p></li>
+<li><p>All possible labels are also sampled from a random variable <span class="math inline">Y</span>.</p></li>
+</ul>
+<p>Thus, there is always a probability associated with each term:</p>
+<ul>
+<li><p><span class="math inline">\mathbb{P}_{\mathbf{X}}(\mathbf{x})</span>: the probability that the instance <span class="math inline">\mathbf{x}</span> happens in the real world (the joint probability of different features that happen in the real world).</p></li>
+<li><p><span class="math inline">\mathbb{P}_{Y}(y)</span>: the probability that label <span class="math inline">y</span> happens in the real world.</p></li>
+<li><p><span class="math inline">\mathbb{P}_{\mathbf{X}, Y}(\mathbf{x}, y)</span>: the joint probability that the both <span class="math inline">\mathbf{x}</span> and <span class="math inline">y</span> happens in the real world.</p></li>
+</ul>
+<p>We are particularly interested in <span class="math inline">\mathbb{P}_{\mathbf{X}, Y}(\mathbf{x}, y)</span>, as we can know what should be the correct label <span class="math inline">y_{t}</span> for the test instance <span class="math inline">\mathbf{x}_{t}</span> by selecting <span class="math inline">y</span> that has the highest <span class="math inline">\mathbb{P}_{\mathbf{X}, Y}(\mathbf{x}_{t}, y)</span>.</p>
+<p>We can decompose the joint probability according to the chain rule:</p>
+<p><span class="math display">
+\mathbb{P}_{\mathbf{X}, Y}(\mathbf{x}, y) = \mathbb{P}_{\mathbf{X} \mid Y}(\mathbf{x} \mid y) \mathbb{P}_{Y}(y),
+</span></p>
+<p>where</p>
+<ul>
+<li><p><span class="math inline">\mathbb{P}_{\mathbf{X} \mid Y}(\mathbf{x} \mid y)</span> is called class conditional probability, which gives the probability of the instance if we know the label is <span class="math inline">y</span>.</p></li>
+<li><p><span class="math inline">\mathbb{P}_{Y}(y)</span> is the class probability.</p></li>
+</ul>
+</section>
+<section id="decision-function" class="level3">
+<h3 class="anchored" data-anchor-id="decision-function">Decision function</h3>
+<p>Given an instance <span class="math inline">\mathbf{x}</span>, the decision function <span class="math inline">g(\cdot)</span> determines its label <span class="math inline">\hat{y}</span> according to some rules.</p>
+<p><span class="math display">
+\hat{y} = g(\mathbf{x}).
+</span></p>
+</section>
+<section id="loss-function" class="level3">
+<h3 class="anchored" data-anchor-id="loss-function">Loss function</h3>
+<p>Given two labels, which usually are the predicted label from the decision function <span class="math inline">\hat{y}</span> and an arbitrary label <span class="math inline">y</span>, the loss function <span class="math inline">L(\hat{y}, y)</span> defines the cost of predicting label <span class="math inline">\hat{y}</span> with respect to the label <span class="math inline">y</span>.</p>
+<ul>
+<li><p>The cost returned by loss functions should be a non-negative value.</p></li>
+<li><p>For classification problems where the label is a discrete random variable, the loss function can be specified by a matrix <span class="math inline">\mathbf{L} = \mathbb{R}^{d \times d}</span>, where the cost of predicting label 1 with respect to the label 2 is <span class="math inline">\mathbf{L}_{1, 2}</span>.</p></li>
+</ul>
+</section>
+</section>
+<section id="bayes-decision-rule" class="level2">
+<h2 class="anchored" data-anchor-id="bayes-decision-rule">Bayes decision rule</h2>
+<section id="risk" class="level3">
+<h3 class="anchored" data-anchor-id="risk">Risk</h3>
+<p>Assuming we have a probability model <span class="math inline">\mathbb{P}_{\mathbf{X}, Y}(\mathbf{x}, y)</span> of the joint probability of <span class="math inline">\mathbf{X}</span> and <span class="math inline">Y</span>, the <strong>risk</strong> function of the decision function <span class="math inline">g</span> is defined as the expectation of the loss function over the joint probability</p>
+<p><span class="math display">
+\begin{aligned}
+R(g)
+&amp; = \mathbb{E}_{\mathbf{X}, Y} \left[
+    L (g(\mathbf{x}), y)
+\right]
+\\
+&amp; = \int \int \mathbb{P}_{\mathbf{X}, Y} (\mathbf{X}, y) L (g(x), y) \mathop{d \mathbf{x}} \mathop{dy}
+&amp; [\text{definition of expectation}]
+\\
+&amp; = \int \int \mathbb{P}_{Y \mid \mathbf{X}} (y \mid \mathbf{X}) \mathbb{P}_{\mathbf{X}} (\mathbf{x}) L (g(x), y) \mathop{d \mathbf{x}} \mathop{dy}
+&amp; [\text{probability chain rule}]
+\\
+&amp; = \int \mathbb{P}_{\mathbf{X}} (\mathbf{x}) \int \mathbb{P}_{Y \mid \mathbf{X}} (y \mid \mathbf{X}) L (g(x), y) \mathop{dy} \mathop{d \mathbf{x}}
+\\
+&amp; = \mathbb{E}_{\mathbf{X}} \left[
+    \mathbb{E}_{Y \mid \mathbf{X}} \left[
+        L (g(x), y)
+    \right]
+\right]
+\\
+&amp; = \mathbb{E}_{\mathbf{X}} \left[
+    R \left(
+        \mathbf{x}, g
+    \right)
+\right],
+\\
+\end{aligned}
+</span></p>
+<p>where <span class="math inline">R(\mathbf{x}, g)</span> is <strong>conditional risk</strong> (Bayes risk?), which is the risk given that <span class="math inline">\mathbf{x}</span> is known.</p>
+</section>
+<section id="bayes-decision-rule-bdr" class="level3">
+<h3 class="anchored" data-anchor-id="bayes-decision-rule-bdr">Bayes decision rule (BDR)</h3>
+<p><strong>Bayes decision rule</strong> is the particular decision function <span class="math inline">g^{*}(\mathbf{x})</span> that minimizes the risk</p>
+<p><span class="math display">
+\begin{aligned}
+g^{*} (\mathbf{x})
+&amp; = \arg\min_{g (\mathbf{x})} R (g)
+\\
+&amp; = \arg\min_{g (\mathbf{x})} R (\mathbf{x}, g) &amp; [\text{only } R (\mathbf{x}, g) \text{ contains } g (\mathbf{x})].
+\\
+\end{aligned}
+</span></p>
+<p>The risk that Bayes decision rule achieves is called <strong>Bayes Risk</strong>, which is the minimum risk that any decision function can achieve, if we know the true probability model and its parameters <span class="math inline">\mathbb{P}_{Y \mid \mathbf{X}}(y \mid \mathbf{x})</span>.</p>
+</section>
+</section>
+<section id="example-bdr-with-0-1-loss" class="level2">
+<h2 class="anchored" data-anchor-id="example-bdr-with-0-1-loss">Example: BDR with 0-1 loss</h2>
+<p>Often time, we are dealing with the classification problem where <span class="math inline">\mathbf{X}</span> is a group of continuous random variables and <span class="math inline">Y</span> is a discrete random variable with <span class="math inline">m</span> unique values. 0-1 loss is frequently used for the classification problem.</p>
+<section id="loss" class="level3">
+<h3 class="anchored" data-anchor-id="loss">0-1 loss</h3>
+<p>The 0-1 loss is a simple and robust loss function for the classification problems. The 0-1 loss function can be written as:</p>
+<p><span class="math display">
+L(g(\mathbf{x}), y) =
+\begin{cases}
+1 &amp; g(\mathbf{x}) \neq y \\
+0 &amp; g(\mathbf{x}) = y, \\
+\end{cases}
+</span></p>
+<p>which can also be written as a matrix of <span class="math inline">\mathbb{R}^{m}</span>, where the entries in the diagonal are all <span class="math inline">0</span> (<span class="math inline">g(\mathbf{x}) = y</span>) and rest are all <span class="math inline">1</span> (<span class="math inline">g(\mathbf{x}) \neq y</span>).</p>
+</section>
+<section id="map-rule" class="level3">
+<h3 class="anchored" data-anchor-id="map-rule">MAP rule</h3>
+<p>If we choose 0-1 loss as the loss function for BDR,</p>
+<p><span class="math display">
+\begin{aligned}
+g^{*} (\mathbf{x})
+&amp; = \arg\min_{g(\mathbf{x})} \mathbb{E}_{Y \mid \mathbf{X}} \left[
+    L (g(x), y)
+\right]
+\\
+&amp; = \arg\min_{g (\mathbf{x})} \sum_{y=1}^{m} \mathbb{P}_{Y \mid \mathbf{X}} (y \mid \mathbf{x}) L (g(\mathbf{x}), y)
+\\
+&amp; = \arg\min_{g (\mathbf{x})} \sum_{y = g (\mathbf{x})}^{m} \mathbb{P}_{Y \mid \mathbf{X}} (y \mid \mathbf{x}) \times 0 + \sum_{y \neq g(\mathbf{x})}^{m} \mathbb{P}_{Y \mid \mathbf{X}}(y \mid \mathbf{x}) \times 1
+\\
+&amp; = \arg\min_{g (\mathbf{x})} \sum_{y \neq g (\mathbf{x})}^{m} \mathbb{P}_{Y \mid \mathbf{X}} (y \mid \mathbf{x})
+\\
+&amp; = \arg\min_{g (\mathbf{x})} 1 - \mathbb{P}_{Y \mid \mathbf{X}} (g (\mathbf{x}) \mid \mathbf{x})
+\\
+&amp; = \arg\max_{g (\mathbf{x})} \mathbb{P}_{Y \mid \mathbf{X}} (g (\mathbf{x}) \mid \mathbf{x}) &amp; [\arg\min_{x} (1 - f(x)) = \arg\max_{x} (f(x))]
+\\
+&amp; = \arg\max_{y} \mathbb{P}_{Y \mid \mathbf{X}} (y \mid \mathbf{x}).
+\end{aligned}
+</span></p>
+<p>Since the last equation is maximizing the posterior probability according to Bayes Theorem, the optimal decision rule for 0-1 loss is also called <strong>maximum a-posteriori probability (MAP) rule</strong>.</p>
+<p>According to Bayes Theorem,</p>
+<p><span class="math display">
+\begin{aligned}
+\arg\max_{y} \mathbb{P}_{Y \mid \mathbf{X}}(y \mid \mathbf{x})
+&amp; = \arg\max_{y} \frac{\mathbb{P}_{\mathbf{X} \mid Y}(\mathbf{x} \mid y) \mathbb{P}_{Y}(y)}{\mathbb{P}_{\mathbf{X}}(\mathbf{x})}
+\\
+&amp; = \arg\max_{y} \mathbb{P}_{\mathbf{X} \mid Y}(\mathbf{x} \mid y) \mathbb{P}_{Y}(y) &amp; [\mathbb{P}_{\mathbf{X}}(\mathbf{x}) \text{ doesn't depend on } y],
+\\
+\end{aligned}
+</span></p>
+<p>MAP rule can thus be computed using the class conditional probability (likelihood) and the class probability (prior).</p>
+<p>In practice, the class conditional probability and class probability can be more easily obtained from the data than the posterior probability.</p>
+</section>
+<section id="the-log-trick" class="level3">
+<h3 class="anchored" data-anchor-id="the-log-trick">The log trick</h3>
+<p>Using the log trick, the BDR for 0-1 loss is often calculated using:</p>
+<p><span class="math display">
+\begin{aligned}
+\arg\max_{y} \ln \mathbb{P}_{Y \mid \mathbf{X}}(y \mid \mathbf{x})
+&amp; = \arg\max_{y} \ln \mathbb{P}_{\mathbf{X} \mid Y}(\mathbf{x} \mid y) \mathbb{P}_{Y}(y)
+\\
+&amp; = \arg\max_{y} \ln \mathbb{P}_{\mathbf{X} \mid Y}(\mathbf{x} \mid y) + \ln \mathbb{P}_{Y}(y).
+\\
+\end{aligned}
+</span></p>
+</section>
+</section>
+<section id="example-bdr-with-squared-error-loss" class="level2">
+<h2 class="anchored" data-anchor-id="example-bdr-with-squared-error-loss">Example: BDR with squared error loss</h2>
+<p>For regression problems where the labels are continuous values, a common loss function is squared error loss</p>
+<p><span class="math display">
+L (g(x), y) = (g(x) - y)^{2}.
+</span></p>
+<p>Plug the loss function in BDR</p>
+<p><span class="math display">
+\begin{aligned}
+g^{*} (\mathbf{x})
+&amp; = \arg\min_{g(\mathbf{x})} \mathbb{E}_{Y \mid \mathbf{X}} \left[
+    L (g(x), y)
+\right]
+\\
+&amp; = \arg\min_{g(\mathbf{x})} \mathbb{E}_{Y \mid \mathbf{X}} \left[
+    (g (\mathbf{x}) - y)^{2}
+\right]
+\\
+&amp; = \arg\min_{g(\mathbf{x})} \mathbb{E}_{Y \mid \mathbf{X}} \left[
+    (g (\mathbf{x})^{2} - 2 g (\mathbf{x})^{2} y + y^{2}
+\right]
+\\
+&amp; = \arg\min_{g(\mathbf{x})} g (\mathbf{x})^{2} - 2 g (\mathbf{x}) \mathbb{E}_{Y \mid \mathbf{X}} \left[
+    y
+\right] + \mathbb{E}_{Y \mid \mathbf{X}} \left[
+    y^{2}
+\right].
+\end{aligned}
+</span></p>
+<p>The minimization problem can be solved by setting the its derivative w.r.t <span class="math inline">g (\mathbf{x})</span> to 0</p>
+<p><span class="math display">
+\begin{aligned}
+\frac{
+    \mathop{d}
+}{
+    \mathop{d g (\mathbf{x})}
+} \left[
+    g (\mathbf{x})^{2} - 2 g (\mathbf{x}) \mathbb{E}_{Y \mid \mathbf{X}} \left[
+        y
+    \right] + \mathbb{E}_{Y \mid \mathbf{X}} \left[
+        y^{2}
+    \right]
+\right]
+&amp; = 0
+\\
+2 g (\mathbf{x}) - 2 \mathbb{E}_{Y \mid \mathbf{X}} \left[
+    y
+\right]
+&amp; = 0
+\\
+g (\mathbf{x})
+&amp; = \mathbb{E}_{Y \mid \mathbf{X}} \left[
+    y
+\right]
+\\
+\end{aligned}
+</span></p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<ul>
+<li>http://pillowlab.princeton.edu/teaching/mathtools16/slides/lec18_BayesianEstim.pdf</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

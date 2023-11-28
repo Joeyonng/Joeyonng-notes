@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>joeyonng-notebook - Expectation-maximization</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Statistical Learning/1_Bayesian_Decision_Theory.html">Statistical Learning</a></li><li class="breadcrumb-item"><a href="../Statistical Learning/4_Expectation_Maximization.html">Expectation-maximization</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Joeyonng’s Notebook</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+ <span class="menu-text">Learning Theory</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Learning Theory/1_Statistical_Learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statistical Learning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Learning Theory/2_Effective_Class_Size.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Effective Class Size</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Learning Theory/3_PAC_Learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PAC Learning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Learning Theory/4_Agnostic_Learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Agnostic Learning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Learning Theory/5_Rademacher_Complexity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Rademacher Complexity</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Statistical Learning</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Statistical Learning/1_Bayesian_Decision_Theory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Decision Theory (BDT)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Statistical Learning/2_Maximum_Likelihood_Estimation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Maximum Likelihood Estimation (MLE)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Statistical Learning/3_Bayesian_Estimation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Estimation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Statistical Learning/4_Expectation_Maximization.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Expectation-maximization</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ML Q&amp;A.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ML Q &amp; A</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#preliminary" id="toc-preliminary" class="nav-link active" data-scroll-target="#preliminary">Preliminary</a>
+  <ul class="collapse">
+  <li><a href="#statistics" id="toc-statistics" class="nav-link" data-scroll-target="#statistics">Statistics</a></li>
+  <li><a href="#statistical-learning" id="toc-statistical-learning" class="nav-link" data-scroll-target="#statistical-learning">Statistical Learning</a></li>
+  </ul></li>
+  <li><a href="#the-em-algorithm" id="toc-the-em-algorithm" class="nav-link" data-scroll-target="#the-em-algorithm">The EM algorithm</a>
+  <ul class="collapse">
+  <li><a href="#problem-statements" id="toc-problem-statements" class="nav-link" data-scroll-target="#problem-statements">Problem statements</a></li>
+  <li><a href="#em-procedures" id="toc-em-procedures" class="nav-link" data-scroll-target="#em-procedures">EM procedures</a></li>
+  </ul></li>
+  <li><a href="#derivation-of-em" id="toc-derivation-of-em" class="nav-link" data-scroll-target="#derivation-of-em">Derivation of EM</a>
+  <ul class="collapse">
+  <li><a href="#lower-bound" id="toc-lower-bound" class="nav-link" data-scroll-target="#lower-bound">Lower bound</a></li>
+  <li><a href="#em-as-coordinate-ascent-on-lower-bound" id="toc-em-as-coordinate-ascent-on-lower-bound" class="nav-link" data-scroll-target="#em-as-coordinate-ascent-on-lower-bound">EM as coordinate ascent on lower bound</a></li>
+  <li><a href="#e-step-1" id="toc-e-step-1" class="nav-link" data-scroll-target="#e-step-1">E-step</a></li>
+  <li><a href="#m-step-1" id="toc-m-step-1" class="nav-link" data-scroll-target="#m-step-1">M-step</a></li>
+  </ul></li>
+  <li><a href="#example-mixture-model" id="toc-example-mixture-model" class="nav-link" data-scroll-target="#example-mixture-model">Example: mixture model</a>
+  <ul class="collapse">
+  <li><a href="#mixture-model" id="toc-mixture-model" class="nav-link" data-scroll-target="#mixture-model">Mixture model</a></li>
+  <li><a href="#em-for-mixture-model" id="toc-em-for-mixture-model" class="nav-link" data-scroll-target="#em-for-mixture-model">EM for mixture model</a></li>
+  </ul></li>
+  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference">Reference</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-body" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Expectation-maximization</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p><em>Updated 01-11-2023 (First commited 01-08-2023)</em></p>
+<p>(expectation-maximization)=</p>
+<p>Expectation-maximization (EM) is an iterative algorithm that solves <strong>maximum likelihood (ML)</strong> problems of estimating parameters in case there are <strong>missing or latent (unobserved) variables</strong> (features or labels). EM iterates between E-step and M-step until the convergence criterion is met. In E-step, the expected value of the complete data log-likelihood with respect to the probability of the missing variables is computed as a function of the unknown parameters. In M-step, we choose the parameters that maximize the expected value derived in the E-step. EM is proved to converge to a local minimum while the global minimum is not guaranteed.</p>
+<section id="preliminary" class="level2">
+<h2 class="anchored" data-anchor-id="preliminary">Preliminary</h2>
+<section id="statistics" class="level3">
+<h3 class="anchored" data-anchor-id="statistics">Statistics</h3>
+<ul>
+<li><p><a href="">KL-divergence</a></p></li>
+<li><p><a href="">Entropy</a></p></li>
+</ul>
+</section>
+<section id="statistical-learning" class="level3">
+<h3 class="anchored" data-anchor-id="statistical-learning">Statistical Learning</h3>
+<ul>
+<li><a href="maximum-likelihood-estimation">Maximum Likelihood Estimation</a></li>
+</ul>
+</section>
+</section>
+<section id="the-em-algorithm" class="level2">
+<h2 class="anchored" data-anchor-id="the-em-algorithm">The EM algorithm</h2>
+<section id="problem-statements" class="level3">
+<h3 class="anchored" data-anchor-id="problem-statements">Problem statements</h3>
+<p>In EM problems, we have two types of variables:</p>
+<ul>
+<li><p>Observed variables: a set of random variables <span class="math inline">\mathbf{X}</span> from which we can draw samples.</p></li>
+<li><p>Hidden variables: another set of random variables <span class="math inline">\mathbf{Z}</span> from which we cannot draw samples.</p></li>
+</ul>
+<p>Although we cannot draw samples from <span class="math inline">\mathbf{Z}</span>, we assume there exists a <span class="math inline">\mathbf{z}</span> for each <span class="math inline">\mathbf{x}</span> observed. Thus we define two types of datasets.</p>
+<ul>
+<li><p>Incomplete data: samples drawn from the observed variables</p>
+<p><span class="math display">
+  \mathcal{X} = \{ \mathbf{x}_{1}, \dots, \mathbf{x}_{n} \}.
+  </span></p></li>
+<li><p>Complete data: the sample pairs of the observed and hidden variables that we never be able to observe</p>
+<p><span class="math display">
+  \mathcal{X}, \mathcal{Z} = \{ (\mathbf{x}_{1}, \mathbf{z}_{1}), \dots, (\mathbf{x}_{n}, \mathbf{z}_{n}) \}.
+  </span></p></li>
+</ul>
+<p>Given the incomplete data <span class="math inline">\mathcal{X}</span>, the goal is to find the <strong>maximum likelihood estimate</strong> of parameters <span class="math inline">\Psi</span> for the log-likelihood of the <strong>incomplete data</strong> <span class="math inline">\mathcal{X}</span></p>
+<p><span class="math display">
+\Psi^{*} = \arg\max_{\Psi} \log \mathbb{P}_{\mathbf{X}} (\mathcal{X}; \Psi).
+</span></p>
+<ul>
+<li><p>If we knew what the model <span class="math inline">\mathbb{P}_{\mathbf{X}} (\mathbf{x})</span> is without introducing other variables, the problem is a standard MLE problem and usually can be easily solved.</p></li>
+<li><p>If instead the joint probability <span class="math inline">\mathbb{P}_{\mathbf{X}, \mathbf{Z}} (\mathbf{x}, \mathbf{z})</span> is known or can be derived, we can still solve the problem by maximizing the equation that marginalizes out the latent variables from the joint probability</p>
+<p><span class="math display">
+  \log \mathbb{P}_{\mathbf{X}} (\mathcal{X}; \Psi) = \log \int \mathbb{P}_{\mathbf{X}, \mathbf{Z}} (
+      \mathcal{X}, \mathcal{Z}; \Psi
+  ) \partial \mathbf{z},
+  </span></p>
+<p>which in most of the cases doesn’t have a closed-form solution and thus needs to be solved using iterative algorithms.</p></li>
+<li><p>EM is one of such algorithm with some unique properties that other algorithms don’t have.</p></li>
+</ul>
+</section>
+<section id="em-procedures" class="level3">
+<h3 class="anchored" data-anchor-id="em-procedures">EM procedures</h3>
+<section id="e-step" class="level4">
+<h4 class="anchored" data-anchor-id="e-step">1. E-Step</h4>
+<p>Given parameters <span class="math inline">\hat{\Psi}</span> estimated at the current iteration and incomplete data <span class="math inline">\mathcal{X}</span>, compute the <span class="math inline">Q</span> function, which is the expected value of the log likelihood of the complete data <span class="math inline">\mathcal{X}, \mathcal{Z}</span> over the distribution of <span class="math inline">\mathbf{Z}</span></p>
+<p><span class="math display">
+Q_{\hat{\Psi}} (\Psi) = \mathbb{E}_{\mathbf{Z} \mid \mathbf{X}; \hat{\Psi}} \left[
+    \log \mathbb{P}_{\mathbf{X}, \mathbf{Z}} (\mathcal{X}, \mathcal{Z} ; \Psi) \mid \mathcal{X}
+\right].
+</span></p>
+<ul>
+<li><p>Since <span class="math inline">\mathcal{X}</span> is given but we never be able to see <span class="math inline">\mathcal{Z}</span>, the log-likelihood is a function of both <span class="math inline">\Psi</span> and <span class="math inline">\mathbf{Z}</span>,</p>
+<p><span class="math display">
+  L(\mathcal{Z}, \Psi) = \log \mathbb{P}_{\mathbf{X}, \mathbf{Z}} (\mathcal{X}, \mathcal{Z}; \Psi) \mid \mathcal{X}.
+  </span></p></li>
+<li><p>The <span class="math inline">Q</span> function only depend on <span class="math inline">\Psi</span> but not <span class="math inline">\mathcal{Z}</span> because taking the expected value of <span class="math inline">L(\mathcal{Z}, \Psi)</span> over the distribution of <span class="math inline">\mathbf{Z}</span> eliminates <span class="math inline">\mathcal{Z}</span> in the expression.</p></li>
+<li><p>The estimate of the parameter <span class="math inline">\hat{\Psi}</span> in the current iteration is used in calculating the probability of <span class="math inline">\mathcal{Z}</span> given <span class="math inline">\mathcal{X}</span>, which is needed in the expectation calculation process.</p></li>
+<li><p>Depending the problem setups, the expressions for both <span class="math inline">\mathbb{P}_{\mathbf{X}, \mathbf{Z}} (\mathcal{X}, \mathcal{Z}; \Psi)</span> and <span class="math inline">\mathbb{P}_{\mathbf{Z} \mid \mathbf{X}} (\mathcal{Z} \mid \mathcal{X}; \hat{\Psi})</span> (used in <span class="math inline">\mathbb{E}_{\mathbf{Z} \mid \mathbf{X}; \hat{\Psi}} [\cdot]</span>) should be already known or can be derived from the known probabilistic models between <span class="math inline">\mathbf{X}</span> and <span class="math inline">\mathbf{Z}</span>.</p></li>
+</ul>
+</section>
+<section id="m-step" class="level4">
+<h4 class="anchored" data-anchor-id="m-step">2. M-Step</h4>
+<p>Find the parameter <span class="math inline">\hat{\Psi}</span> that maximizes the expected value derived in the E-step.</p>
+<p><span class="math display">
+\hat{\Psi} = \arg\max_{\Psi} Q_{\hat{\Psi}} (\Psi)
+</span></p>
+<p>Repeat procedure 1 and 2 until convergence.</p>
+</section>
+</section>
+</section>
+<section id="derivation-of-em" class="level2">
+<h2 class="anchored" data-anchor-id="derivation-of-em">Derivation of EM</h2>
+<p>The log-likelihood of the incomplete data can be decomposed into 2 components</p>
+<p><span class="math display">
+\log \mathbb{P}_{\mathbf{X}} (\mathcal{X}; \Psi) = G (\Psi, q) +  D (\Psi, q)
+</span></p>
+<p>where <span class="math inline">q</span> is an arbitrary distribution of the latent variables.</p>
+<ul>
+<li><p>The lower bound of EM</p>
+<p><span class="math display">
+  G (\Psi, q) = \mathbb{E}_{\mathbf{Z}} \left[
+      \log \frac{
+          \mathbb{P}_{\mathbf{X}, \mathbf{Z}} (\mathcal{X}, \mathcal{Z}; \Psi)
+      }{
+          q (\mathcal{Z})
+      }
+  \right]
+  </span></p></li>
+<li><p>The KL-divergence of between two distributions of <span class="math inline">\mathbf{Z}</span>, i.e.&nbsp;<span class="math inline">q(\mathcal{Z})</span> and <span class="math inline">\mathbb{P}_{\mathbf{Z} \mid \mathbf{X}} (\mathcal{Z} \mid \mathcal{X}; \Psi)</span></p>
+<p><span class="math display">
+  D (\Psi, q) = \mathrm{KL} \left[
+      q \mathrel{\Vert} \mathbb{P}_{\mathbf{X} \mid \mathbf{Z}}
+  \right] = \mathbb{E}_{\mathbf{Z}} \left[
+      \log \frac{
+          q (\mathcal{Z})
+      }{
+          \mathbb{P}_{\mathbf{Z} \mid \mathbf{X}} (\mathcal{Z} \mid \mathcal{X}; \Psi)
+      }
+  \right].
+  </span></p></li>
+</ul>
+<p>:::{admonition} Proof: <span class="math inline">\log \mathbb{P}_{\mathbf{X}} (\mathcal{X}; \Psi) = Q (\Psi, q) + \mathrm{H} (q) + D (\Psi, q)</span> :class: dropdown</p>
+<p>Since <span class="math inline">\log \mathbb{P}_\mathbf{X} (\mathbf{x})</span> is not dependent on <span class="math inline">\mathbf{Z}</span>, taking its expectation over any distribution of <span class="math inline">\mathbf{Z}</span> is equal to itself. Thus,</p>
+<p><span class="math display">
+\begin{aligned}
+\log \mathbb{P}_{\mathbf{X}} (\mathcal{X}; \Psi)
+&amp; = \mathbb{E}_{\mathbf{Z}} \left[
+    \log \mathbb{P}_{\mathbf{X}} (\mathcal{X}; \Psi)
+\right]
+\\
+&amp; = \mathbb{E}_{\mathbf{Z}} \left[
+    \log \frac{
+        \mathbb{P}_{\mathbf{X}, \mathbf{Z}} (\mathcal{X}, \mathcal{Z}; \Psi)
+    }{
+        \mathbb{P}_{\mathbf{Z} \mid \mathbf{X}} (\mathcal{Z} \mid \mathcal{X}; \Psi)
+    }
+\right]
+\\
+&amp; = \mathbb{E}_{\mathbf{Z}} \left[
+    \log \frac{
+        q (\mathcal{Z})
+    }{
+        q (\mathcal{Z})
+    } \frac{
+        \mathbb{P}_{\mathbf{X}, \mathbf{Z}} (\mathcal{X}, \mathcal{Z}; \Psi)
+    }{
+        \mathbb{P}_{\mathbf{Z} \mid \mathbf{X}} (\mathcal{Z} \mid \mathcal{X}; \Psi)
+    }
+\right]
+\\
+&amp; = \mathbb{E}_{\mathbf{Z}} \left[
+    \log \frac{
+        \mathbb{P}_{\mathbf{X}, \mathbf{Z}} (\mathcal{X}, \mathcal{Z}; \Psi)
+    }{
+        q (\mathcal{Z})
+    } \frac{
+        q (\mathcal{Z})
+    }{
+        \mathbb{P}_{\mathbf{Z} \mid \mathbf{X}} (\mathcal{Z} \mid \mathcal{X}; \Psi)
+    }
+\right]
+\\
+&amp; = \mathbb{E}_{\mathbf{Z}} \left[
+    \log \frac{
+        \mathbb{P}_{\mathbf{X}, \mathbf{Z}} (\mathcal{X}, \mathcal{Z}; \Psi)
+    }{
+        q (\mathcal{Z})
+    }
+\right] + \mathbb{E}_{\mathbf{Z}} \left[
+    \log \frac{
+        q (\mathcal{Z})
+    }{
+        \mathbb{P}_{\mathbf{Z} \mid \mathbf{X}} (\mathcal{Z} \mid \mathcal{X}; \Psi)
+    }
+\right]
+\\
+&amp; = G (\Psi, q) + D (\Psi, q)
+\\
+&amp; = \mathbb{E}_{\mathbf{Z}} \left[
+    \log \mathbb{P}_{\mathbf{X}, \mathbf{Z}} (\mathcal{X}, \mathcal{Z}; \Psi)
+\right] - \mathbb{E}_{\mathbf{Z}} \left[
+    \log q (\mathcal{Z})
+\right] + \mathbb{E}_{\mathbf{Z}} \left[
+    \log \frac{
+        q (\mathcal{Z})
+    }{
+        \mathbb{P}_{\mathbf{Z} \mid \mathbf{X}} (\mathcal{Z} \mid \mathcal{X}; \Psi)
+    }
+\right]
+\\
+&amp; = Q (\Psi, q) + \mathrm{H} (q) + D (\Psi, q)
+\end{aligned}
+</span></p>
+<p>:::</p>
+<section id="lower-bound" class="level3">
+<h3 class="anchored" data-anchor-id="lower-bound">Lower bound</h3>
+<p>Since KL-divergence <span class="math inline">D (\Psi, q)</span> is proved to be non-negative, <span class="math inline">G(\Psi, q)</span> can be seen as a lower bound of <span class="math inline">\log \mathbb{P}_{\mathbf{X}} (\mathcal{X}; \Psi)</span></p>
+<p><span class="math display">
+\log \mathbb{P}_{\mathbf{X}} (\mathcal{X}; \Psi) \geq G(\Psi, q),
+</span></p>
+<p>which can also be proven using Jensen’s inequality.</p>
+<p>:::{admonition} Proof: <span class="math inline">\log \mathbb{P}_{\mathbf{X}} (\mathcal{X}; \Psi) \geq G(\Psi, q)</span> using Jensen’s inequality. :class: dropdown</p>
+<p><span class="math display">
+\begin{aligned}
+\log \mathbb{P}_{\mathbf{X}} (\mathcal{X}; \Psi)
+&amp; = \log \int \mathbb{P}_{\mathbf{X}, \mathbf{Z}} (
+    \mathcal{X}, \mathcal{Z}; \Psi
+) \partial \mathbf{z}
+\\
+&amp; = \log \int q (\mathcal{Z}) \frac{
+    \mathbb{P}_{\mathbf{X}, \mathbf{Z}} (
+        \mathcal{X}, \mathcal{Z}; \Psi
+    )
+}{
+    q (\mathcal{Z})
+} \partial \mathbf{z}
+\\
+&amp; = \log \mathbb{E}_{\mathbf{Z}} \left[
+    \frac{
+        \mathbb{P}_{\mathbf{X}, \mathbf{Z}} (
+            \mathcal{X}, \mathcal{Z}; \Psi
+    )
+    }{
+        q (\mathcal{Z})
+    }
+\right]
+\\
+&amp; \geq \mathbb{E}_{\mathbf{Z}} \left[ \log
+    \frac{
+        \mathbb{P}_{\mathbf{X}, \mathbf{Z}} (
+            \mathcal{X}, \mathcal{Z}; \Psi
+        )
+    }{
+        q (\mathcal{Z})
+    }
+\right]
+\\
+&amp; \geq G (\Psi, q)
+\\
+\end{aligned}
+</span></p>
+<p>:::</p>
+</section>
+<section id="em-as-coordinate-ascent-on-lower-bound" class="level3">
+<h3 class="anchored" data-anchor-id="em-as-coordinate-ascent-on-lower-bound">EM as coordinate ascent on lower bound</h3>
+<p>The EM is essentially doing <strong>coordinate ascent</strong> on <span class="math inline">G (\Psi, q)</span>, which is believed to be easier to optimize than directly optimizing <span class="math inline">\log \mathbb{P}_{\mathbf{X}} (\mathcal{X}; \Psi)</span>, while guaranteeing the <span class="math inline">\log \mathbb{P}_{\mathbf{X}} (\mathcal{X}; \Psi)</span> is non-decreasing as <span class="math inline">G (\Psi, q)</span> is optimized.</p>
+<p>Coordinate ascent is a optimization method that optimize a single variable or 1 dimension of the variable at a time, while fixing the values of the rest of the variables from the last iteration unchanged. In the case of applying to <span class="math inline">G (\Psi, q)</span> function, <span class="math inline">\Psi</span> and <span class="math inline">q</span> are separately maximized in different steps of each iteration.</p>
+<ul>
+<li><p>E-step: given the parameter <span class="math inline">\hat{\Psi}</span> estimated in the last iteration, the choice of the <span class="math inline">q</span> function is optimized to maximize the value of <span class="math inline">G (\Psi, q)</span>.</p></li>
+<li><p>M-step: given the <span class="math inline">\hat{q}</span> function selected in E-step, <span class="math inline">\Psi</span> is optimized to maximize the value of <span class="math inline">G (\Psi, \hat{q})</span> and will be used in the E-step of the next iteration.</p></li>
+</ul>
+</section>
+<section id="e-step-1" class="level3">
+<h3 class="anchored" data-anchor-id="e-step-1">E-step</h3>
+<p>Since the value of <span class="math inline">\log \mathbb{P}_{\mathbf{X}} (\mathcal{X}; \Psi)</span> doesn’t depend on the choice of <span class="math inline">q</span>, the choice of <span class="math inline">q</span> only affect the balance between <span class="math inline">G (\Psi, q)</span> and <span class="math inline">D (\Psi, q)</span> when the <span class="math inline">\Psi</span> is fixed.</p>
+<p>Thus, given the parameters <span class="math inline">\hat{\Psi}</span> estimated in the last iteration, <span class="math inline">G (\hat{\Psi}, q)</span> is maximized with respect to <span class="math inline">q</span> when <span class="math inline">D (\hat{\Psi}, q)</span> is minimized. Since the minimized value of <span class="math inline">D (\Psi, q)</span> is 0, we have</p>
+<p><span class="math display">
+\begin{aligned}
+D (\hat{\Psi}, q)
+&amp; = 0
+\\
+\mathbb{E}_{\mathbf{Z}} \left[
+    \log \frac{
+        q (\mathcal{Z})
+    }{
+        \mathbb{P}_{\mathbf{Z} \mid \mathbf{X}} (\mathcal{Z} \mid \mathcal{X}; \hat{\Psi})
+    }
+\right]
+&amp; = 0
+\\
+q (\mathcal{Z})
+&amp; = \mathbb{P}_{\mathbf{Z} \mid \mathbf{X}} (\mathcal{Z} \mid \mathcal{X}; \hat{\Psi}),
+\end{aligned}
+</span></p>
+<p>which shows that <span class="math inline">G (\hat{\Psi})</span> is maximized when the distribution of latent variables is chosen to be the probability of the latent variables given the observed data and the current estimate of the parameters.</p>
+<p>A nice property of optimizing <span class="math inline">q</span>, even though it doesn’t affect the value of <span class="math inline">\log \mathbb{P}_{\mathbf{X}} (\mathcal{X}; \Psi)</span> at all, is that the value of KL-divergence <span class="math inline">D (\Psi, \hat{q})</span> will also be non-decreasing no matter what <span class="math inline">\Psi</span> is selected in the M-step by maximizing <span class="math inline">G (\Psi, \hat{q})</span>.</p>
+<ul>
+<li><p>This can be seen from the fact that <span class="math inline">D (\Psi, \hat{q}) = 0</span> when <span class="math inline">\hat{p}</span> is selected to maximize <span class="math inline">G (\hat{\Psi}, q)</span>, and thus any <span class="math inline">\Psi</span> will guarantee that the value of <span class="math inline">D (\Psi, \hat{q})</span> is larger or equal to 0.</p></li>
+<li><p>This property implicitly prove the convergence of the EM algorithm in that both <span class="math inline">G (\Psi, q)</span> and <span class="math inline">D (\Psi, q)</span> will be non-decreasing during each iteration, and therefore, the value of <span class="math inline">\log \mathbb{P}_{\mathbf{X}} (\mathcal{X}; \Psi)</span> is non-decreasing in each iteration.</p></li>
+</ul>
+</section>
+<section id="m-step-1" class="level3">
+<h3 class="anchored" data-anchor-id="m-step-1">M-step</h3>
+<p><span class="math inline">G (\Psi, q)</span> can be further decomposed into two components</p>
+<p><span class="math display">
+G (\Psi, q) = Q (\Psi, q) + \mathrm{H} (q).
+</span></p>
+<ul>
+<li><p>The expected value of the complete data with respect to the distribution <span class="math inline">q</span></p>
+<p><span class="math display">
+  Q (\Psi, q) = \mathbb{E}_{\mathbf{Z}} \left[
+      \log \mathbb{P}_{\mathbf{X}, \mathbf{Z}} (\mathcal{X}, \mathcal{Z}; \Psi)
+  \right].
+  </span></p></li>
+<li><p>The entropy of the latent variables</p>
+<p><span class="math display">
+  \mathrm{H} (q) = - \mathbb{E}_{\mathbf{Z}} \left[
+      \log q (\mathcal{Z})
+  \right].
+  </span></p></li>
+</ul>
+<p>Since <span class="math inline">\mathrm{H} (q)</span> doesn’t depend on <span class="math inline">\Psi</span>, it will stay as a constant in the process of maximizing <span class="math inline">G (\Psi, q)</span> with respect to <span class="math inline">\Psi</span>.</p>
+<p>Given <span class="math inline">\hat{q} = \mathbb{P}_{\mathbf{Z} \mid \mathbf{X}} (\mathcal{Z} \mid \mathcal{X}; \hat{\Psi})</span>, maximizing <span class="math inline">G (\Psi, \hat{q})</span> is the same as maximizing <span class="math inline">Q</span> function we defined above:</p>
+<p><span class="math display">
+\begin{aligned}
+\arg\max_{\Psi} G (\Psi, \hat{q})
+&amp; = \arg\max_{\Psi} Q_{\hat{\Psi}} (\Psi)
+\\
+&amp; = \arg\max_{\Psi} \mathbb{E}_{\mathbf{Z} \mid \mathbf{X}; \hat{\Psi}} \left[
+    \log \mathbb{P}_{\mathbf{X}, \mathbf{Z}} (\mathcal{X}, \mathcal{Z} ; \Psi)
+\right].
+\end{aligned}
+</span></p>
+</section>
+</section>
+<section id="example-mixture-model" class="level2">
+<h2 class="anchored" data-anchor-id="example-mixture-model">Example: mixture model</h2>
+<p>One application of EM algorithm is to obtain MLE of the parameters in a mixture models.</p>
+<section id="mixture-model" class="level3">
+<h3 class="anchored" data-anchor-id="mixture-model">Mixture model</h3>
+<p>We say random variable <span class="math inline">\mathbf{X}</span> follows a mixture model if its distribution is a weighted combination of multiple components, where each component has a simple parametric distributions. Thus mixture model can represent distributions that cannot be expressed using a single parametric distribution.</p>
+<p>Each sample <span class="math inline">\mathbf{x}</span> is associated with a latent random variable <span class="math inline">z</span> that indicates which component (parametric distribution) that <span class="math inline">\mathbf{x}</span> should be drawn. Thus the sample <span class="math inline">\mathbf{x}</span> has the conditional probability in a parametric form with parameters <span class="math inline">\boldsymbol{\theta}</span></p>
+<p><span class="math display"> \mathbb{P}_{\mathbf{X} \mid Z} (\mathbf{x} \mid z ; \boldsymbol{\theta}) </span></p>
+<p>if we know the latent variable <span class="math inline">z</span> for the sample.</p>
+<p>Assuming in total we have <span class="math inline">c</span> latent variables for all samples and each latent variable has the probability <span class="math inline">\mathbb{P}_{Z} (z)</span>, the probability of the sample is</p>
+<p><span class="math display"> \mathbb{P}_{\mathbf{X}} (\mathbf{x}) = \sum_{z=1}^{c} \mathbb{P}_{\mathbf{X} \mid Z} (\mathbf{x} \mid z) \mathbb{P}_{Z} (z). </span></p>
+<p>The Gaussian mixture model is simply a mixture model in which all components are Gaussian distributions.</p>
+</section>
+<section id="em-for-mixture-model" class="level3">
+<h3 class="anchored" data-anchor-id="em-for-mixture-model">EM for mixture model</h3>
+<p>If we knew what <span class="math inline">z</span> is for each <span class="math inline">\mathbf{x}</span>, the estimate of parameters for each component can be easily derived by sampling a dataset <span class="math inline">\mathcal{X}_{z}</span> from the conditional distribution and applying MLE.</p>
+<p>However, in practice, we never know which component each sample belongs to, and thus we apply EM by treating <span class="math inline">\mathbf{X}</span> as observed variables and <span class="math inline">Z</span> as the hidden variable.</p>
+<p>The goal of applying EM is to find the parameters <span class="math inline">\Psi</span> in the mixture model including:</p>
+<ul>
+<li><p>The parameters for the parametric distribution of each component <span class="math inline">\{ \boldsymbol{\theta}_{1}, \dots, \boldsymbol{\theta}_{c} \}</span>.</p></li>
+<li><p>The probability of each component <span class="math inline">\{ \pi_{1}, \dots, \pi_{c} \}</span>.</p></li>
+</ul>
+<section id="e-step-complete-data-likelihood" class="level4">
+<h4 class="anchored" data-anchor-id="e-step-complete-data-likelihood">E-step: complete data likelihood</h4>
+<p>To derive the EM procedure, we first need to write out the log-likelihood of the complete data in terms of the known parametric distributions</p>
+<p><span class="math display">
+\begin{aligned}
+L(\mathcal{Z}, \Psi)
+&amp; = \log \mathbb{P}_{\mathbf{X}, Z} (\mathcal{X}, \mathcal{Z}; \Psi)
+\\
+&amp; = \log \mathbb{P}_{\mathbf{X} \mid Z} (\mathcal{X} \mid \mathcal{Z} ; \boldsymbol{\theta}) \mathbb{P}_{Z} (\mathcal{Z})
+\\
+&amp; = \log \prod_{i=1}^{n} \mathbb{P}_{\mathbf{X} \mid Z} (\mathbf{x}_{i} \mid z_{i} ; \boldsymbol{\theta}_{z_{i}}) \pi_{z_{i}}
+&amp; [\text{i.i.d assumption}],
+\\
+\end{aligned}
+</span></p>
+<p>where <span class="math inline">x_{i}</span> is a sample, <span class="math inline">z_{i}</span> indicates the component that <span class="math inline">x_{i}</span> belongs to, <span class="math inline">\boldsymbol{\theta}_{z_{i}}</span> is the parameters of the component <span class="math inline">z_{i}</span>, and <span class="math inline">\pi_{z_{i}}</span> is the probability of the component <span class="math inline">z_{i}</span>.</p>
+<p>Since <span class="math inline">z</span> is discrete and range from <span class="math inline">1</span> to <span class="math inline">c</span>, any function of <span class="math inline">z</span> can be written as</p>
+<p><span class="math display"> f(z) = \prod_{i=1}^{c} f(i)^{\mathbb{1}(z = i)}, </span></p>
+<p>where <span class="math inline">z</span> is extracted out from the function to the power of the function.</p>
+<p>Thus, the complete data likelihood can be further simplified to <span class="math display">
+\begin{aligned}
+L(\mathcal{Z}, \Psi)
+&amp; = \log \prod_{i=1}^{n} \mathbb{P}_{\mathbf{X} \mid Z} (\mathbf{x}_{i} \mid z_{i} ; \boldsymbol{\theta}_{z_{i}}) \pi_{z_{i}}
+\\
+&amp; = \log \prod_{i=1}^{n} \prod_{j=1}^{c} \left[
+    \mathbb{P}_{\mathbf{X} \mid Z} (\mathbf{x}_{i} \mid j ; \boldsymbol{\theta}_{j}) \pi_{j}
+\right]^{\mathbb{1}(z_{i} = j)}
+&amp; [f(z_{i}) = \mathbb{P}_{\mathbf{X} \mid Z} (\mathbf{x}_{i} \mid z_{i} ; \boldsymbol{\theta}_{z_{i}}) \pi_{z_{i}}]
+\\
+&amp; = \sum_{i=1}^{n} \sum_{j=1}^{c} \log \left[
+    \mathbb{P}_{\mathbf{X} \mid Z} (\mathbf{x}_{i} \mid j ; \boldsymbol{\theta}_{j}) \pi_{j}
+\right]^{\mathbb{1}(z_{i} = j)}
+\\
+&amp; = \sum_{i=1}^{n} \sum_{j=1}^{c} \mathbb{1}(z_{i} = j) \log \mathbb{P}_{\mathbf{X} \mid Z} (\mathbf{x}_{i} \mid j ; \boldsymbol{\theta}_{j}) \pi_{j}.
+\end{aligned}
+</span></p>
+</section>
+<section id="e-step-q-function" class="level4">
+<h4 class="anchored" data-anchor-id="e-step-q-function">E-step: <span class="math inline">Q</span> function</h4>
+<p>Taking the expectation of complete data log-likelihood over <span class="math inline">Z</span> gives us the <span class="math inline">Q</span> function that doesn’t depend on <span class="math inline">Z</span></p>
+<p><span class="math display">
+\begin{aligned}
+Q_{\hat{\Psi}} (\Psi)
+&amp; = \mathbb{E}_{Z \mid \mathbf{X}; \hat{\Psi}} \left[
+    L(\mathcal{Z}, \Psi)
+\right]
+\\
+&amp; = \mathbb{E}_{Z \mid \mathbf{X}; \hat{\Psi}} \left[
+    \sum_{i=1}^{n} \sum_{j=1}^{c} \mathbb{1}(z_{i} = j) \log \mathbb{P}_{\mathbf{X} \mid Z} \left(
+        \mathbf{x}_{i} \mid j ; \boldsymbol{\theta}_{j}
+    \right) \pi_{j}
+\right]
+\\
+&amp; = \sum_{i=1}^{n} \sum_{j=1}^{c} \mathbb{E}_{Z \mid \mathbf{X}; \hat{\Psi}} \left[
+    \mathbb{1}(z_{i} = j)
+\right] \log \mathbb{P}_{\mathbf{X} \mid Z} \left(
+    \mathbf{x}_{i} \mid j ; \boldsymbol{\theta}_{j}
+\right) \pi_{j}
+\\
+&amp; = \sum_{i=1}^{n} \sum_{j=1}^{c} h_{i, j} \log \mathbb{P}_{\mathbf{X} \mid Z} \left(
+    \mathbf{x}_{i} \mid j ; \boldsymbol{\theta}_{j}
+\right) \pi_{j},
+\\
+\end{aligned}
+</span></p>
+<p>where $h_{i, j} = _{Z ; } $ is a constant value that can be computed given that we have parameter <span class="math inline">\hat{\Psi}</span> estimated in the last iteration.</p>
+<p>%%markdown</p>
+<p><span class="math display">
+\begin{aligned}
+h_{i, j}
+&amp; = \mathbb{E}_{Z \mid \mathbf{X}; \hat{\Psi}} \left[
+    \mathbb{1} (z_{i} = j)
+\right]
+\\
+&amp; = \sum_{k=1}^{c} \mathbb{P}_{Z \mid \mathbf{X}; \hat{\Psi}} \left(
+    k \mid \mathbf{x}_{i}
+\right)
+\mathbb{1} (k = j)
+\\
+&amp; = \mathbb{P}_{Z \mid \mathbf{X}; \hat{\Psi}} \left(
+    j \mid \mathbf{x}_{i}
+\right)
+&amp; [\mathbb{1} (k = j) = 0 \text{ for } k \neq j]
+\\
+&amp; = \frac{
+    \mathbb{P}_{\mathbf{X} \mid Z} \left(
+        \mathbf{x}_{i} \mid j; \hat{\boldsymbol{\theta}}_{j}
+    \right) \hat{\pi}_{j}
+}{
+    \mathbb{P}_{\mathbf{X}} (\mathbf{x}_{i})
+}
+&amp; [\text{Bayes' Theorem}]
+\\
+&amp; = \frac{
+    \mathbb{P}_{\mathbf{X} \mid Z} \left(
+        \mathbf{x}_{i} \mid j ; \hat{\boldsymbol{\theta}}_{j}
+    \right) \hat{\pi}_{j}
+}{
+    \sum_{k=1}^{c} \mathbb{P}_{\mathbf{X}, Z} \left(
+        \mathbf{x}_{i}, k
+    \right)
+}
+&amp; [\text{marginalization}]
+\\
+&amp; = \frac{
+    \mathbb{P}_{\mathbf{X} \mid Z} \left(
+        \mathbf{x}_{i} \mid j; \hat{\boldsymbol{\theta}}_{j}
+    \right) \hat{\pi}_{j}
+}{
+    \sum_{k=1}^{c} \mathbb{P}_{\mathbf{X} \mid Z} \left(
+        \mathbf{x}_{i} \mid k; \hat{\boldsymbol{\theta}}_{k}
+    \right) \hat{\pi}_{k}
+}
+\end{aligned}
+</span></p>
+</section>
+<section id="m-step-maximizes-q-function" class="level4">
+<h4 class="anchored" data-anchor-id="m-step-maximizes-q-function">M-step: maximizes <span class="math inline">Q</span> function</h4>
+<p>Computing <span class="math inline">\hat{\Psi}_{\text{new}}</span> that maximizes <span class="math inline">Q</span> function for the next iteration is an optimization problem</p>
+<p><span class="math display">
+\hat{\Psi}_{\text{new}} = \arg\max_{\Psi} \sum_{i=1}^{n} \sum_{j=1}^{c} h_{i, j} \log \mathbb{P}_{\mathbf{X} \mid Z} \left(
+    \mathbf{x}_{i} \mid j ; \boldsymbol{\theta}_{j}
+\right) \pi_{j},
+</span></p>
+<p>which can usually be solved analytically depending on the mathematical form of the parametric distribution of the component <span class="math inline">\mathbb{P}_{\mathbf{X} \mid Z} (\mathbf{x} \mid z)</span>.</p>
+<p>Again, <span class="math inline">\hat{\Psi}_{\text{new}}</span> is the estimated parameters that include</p>
+<ul>
+<li><p>parameters <span class="math inline">\{ \hat{\boldsymbol{\theta}}_{1}, \dots, \hat{\boldsymbol{\theta}}_{c} \}</span> in the <span class="math inline">c</span> components of the mixture model.</p></li>
+<li><p>probability parameters <span class="math inline">\{ \hat{\pi}_{1}, \dots, \hat{\pi}_{c} \}</span> of <span class="math inline">c</span> components.</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="reference" class="level2">
+<h2 class="anchored" data-anchor-id="reference">Reference</h2>
+<ul>
+<li>http://www.columbia.edu/~mh2078/MachineLearningORFE/EM_Algorithm.pdf</li>
+<li>https://gregorygundersen.com/blog/2019/11/10/em/</li>
+<li>https://academicworks.cuny.edu/cgi/viewcontent.cgi?article=1268&amp;context=gc_cs_tr</li>
+<li>https://mbernste.github.io/posts/em/</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

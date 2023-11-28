@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>joeyonng-notebook – empirical_risk_minimization</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Learning Theory/1_Statistical_Learning.html">Learning Theory</a></li><li class="breadcrumb-item"><a href="../Learning Theory/3_Empirical_Risk_Minimization.html">Empirical Risk Minimization</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Joeyonng’s Notebook</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Learning Theory</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Learning Theory/1_Statistical_Learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statistical Learning Framework</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Learning Theory/2_Bayesian_Decision_Theory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Decision Theory</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Learning Theory/3_Effective_Class_Size.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Effective Class Size</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Learning Theory/3_Empirical_Risk_Minimization.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Empirical Risk Minimization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Learning Theory/3_PAC_Learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PAC Learning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Learning Theory/4_Agnostic_Learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Agnostic Learning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Learning Theory/5_Rademacher_Complexity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Rademacher Complexity</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">Statistical Learning</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Statistical Learning/1_Bayesian_Decision_Theory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Decision Theory (BDT)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Statistical Learning/2_Maximum_Likelihood_Estimation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Maximum Likelihood Estimation (MLE)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Statistical Learning/3_Bayesian_Estimation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Estimation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Statistical Learning/4_Expectation_Maximization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Expectation-maximization</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ML Q&amp;A.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ML Q &amp; A</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#empirical-risk-minimization" id="toc-empirical-risk-minimization" class="nav-link active" data-scroll-target="#empirical-risk-minimization">Empirical Risk Minimization</a>
+  <ul class="collapse">
+  <li><a href="#no-free-lunch-theorem" id="toc-no-free-lunch-theorem" class="nav-link" data-scroll-target="#no-free-lunch-theorem">No free lunch theorem</a></li>
+  <li><a href="#realizable-case-pac-learning" id="toc-realizable-case-pac-learning" class="nav-link" data-scroll-target="#realizable-case-pac-learning">Realizable case (PAC learning)</a>
+  <ul class="collapse">
+  <li><a href="#consistency-model" id="toc-consistency-model" class="nav-link" data-scroll-target="#consistency-model">Consistency model</a></li>
+  <li><a href="#probably-approximately-correct-pac-model" id="toc-probably-approximately-correct-pac-model" class="nav-link" data-scroll-target="#probably-approximately-correct-pac-model">Probably Approximately Correct (PAC) model</a></li>
+  <li><a href="#some-sample-complexity-results" id="toc-some-sample-complexity-results" class="nav-link" data-scroll-target="#some-sample-complexity-results">Some sample complexity results</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-body" id="quarto-document-content">
+
+
+
+<section id="empirical-risk-minimization" class="level1">
+<h1>Empirical Risk Minimization</h1>
+<p>Since the underlying distribution <span class="math inline">\mathbb{P}_{X, Y}</span> is unknown, the true risk cannot be calculated and therefore Bayesian decision theory can not be applied in practice.</p>
+<p>Instead, we use the <strong>empirical risk minimization</strong> (ERM) algorithm in practice, which produces the empirical risk minimizer that is similar to Bayer’s classifier as it minimizes the empirical risk instead of the unknown true risk.</p>
+<section id="no-free-lunch-theorem" class="level2">
+<h2 class="anchored" data-anchor-id="no-free-lunch-theorem">No free lunch theorem</h2>
+<p>The <strong>no-free-lunch</strong> (NFL) theorem for machine learning states that there is no algorithm that can generate perfect hypothesis for any distribution using a finite training set.</p>
+<div id="thm-nfl" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 1 </strong></span>TODO</p>
+</div>
+<p>Another interpretation of the NFL theorem is that any two algorithms are equivalent when their performance is averaged across all possible distributions. Therefore, one must make some biased assumptions about the underlying distribution about the targeted problems, so that the algorithm can be designed to have good performance on the interested problem but having bad performance on the problems that we don’t care.</p>
+<p>To apply the theorem to ERM, we make assumptions about the underlying distribution by restricting the hypothesis class that ERM considers. Therefore, instead of looking for the best hypothesis over all possible functions, ERM method minimizes the risk over a selected hypothesis class <span class="math inline">\mathcal{H}</span>.</p>
+</section>
+<section id="realizable-case-pac-learning" class="level2">
+<h2 class="anchored" data-anchor-id="realizable-case-pac-learning">Realizable case (PAC learning)</h2>
+<p>Under the realizable assumption, it is assumed that there exists a perfect concept from a concept class <span class="math inline">c \in \mathcal{C}</span> such that all labels of the instances are labeled according to <span class="math inline">c</span> and the hypothesis class <span class="math inline">\mathcal{H} = \mathcal{C}</span> that our algorithm ERM considers is the concept class.</p>
+<div id="def-consistent" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 1 (Consistent) </strong></span>We say that a hypothesis <span class="math inline">h</span> is <strong>consistent</strong> with a set of labeled instances <span class="math inline">\mathcal{S} = \{ (\mathbf{x}_{1}, y_{1}), \dots, (\mathbf{x}_{n}, y_{n}) \}</span> if <span class="math inline">h (\mathbf{x}_{i}) = y_{i}</span> for all <span class="math inline">i</span>.</p>
+</div>
+<p>Therefore, under the realizable assumption, ERM can always find a hypothesis that is consistent with any given training set, and therefore we say that ERM learns in the consistency model.</p>
+<section id="consistency-model" class="level3">
+<h3 class="anchored" data-anchor-id="consistency-model">Consistency model</h3>
+<p>Learning in the consistency model requires the algorithm to always predict correctly on the training set, but doesn’t care much about the generalization of the performance on the test set.</p>
+<div id="def-consistency-model" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 2 (Consistency model) </strong></span>An algorithm <span class="math inline">A</span> learns the hypothesis class <span class="math inline">\mathcal{H} = \mathcal{C}</span> in the <strong>consistency model</strong> if</p>
+<ul>
+<li><p>given any set of labeled instances <span class="math inline">\mathcal{S} = \{ z_{1}, \dots, z_{n} \}</span>, where instances are sampled from <em>any distribution</em> <span class="math inline">\mathbb{P}_{\mathbf{X}}</span> over the instance space and are labeled by <em>any concept</em> <span class="math inline">c \in \mathcal{C}</span>,</p></li>
+<li><p><span class="math inline">A</span> can find a concept <span class="math inline">h \in \mathcal{H}</span> that is consistent with <span class="math inline">\mathcal{S}</span> if <span class="math inline">h</span> exists, or <span class="math inline">A</span> outputs False if no such concept exists.</p></li>
+</ul>
+</div>
+</section>
+<section id="probably-approximately-correct-pac-model" class="level3">
+<h3 class="anchored" data-anchor-id="probably-approximately-correct-pac-model">Probably Approximately Correct (PAC) model</h3>
+<p>Learning in the PAC model is more applicable in real world, as it emphasizes more on the generalization ability of the learned function from the algorithm.</p>
+<div id="def-pac-model" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 3 (PAC model) </strong></span>An algorithm <span class="math inline">A</span> learns the concept class <span class="math inline">\mathcal{C}</span> in the <strong>PAC model</strong> by the hypothesis class <span class="math inline">\mathcal{H} = \mathcal{C}</span> if,</p>
+<ul>
+<li><p>given a set of labeled instances <span class="math inline">\mathcal{S} = \{ z_{1}, \dots, z_{n} \}</span>, where instances are sampled from <em>any distribution</em> <span class="math inline">\mathbb{P}_{\mathbf{X}}</span> over the instance space and are labeled by <em>any concept</em> <span class="math inline">c \in \mathcal{C}</span>, and there exists a function for some $&gt; 0 $ and <span class="math inline">\delta &gt; 0</span> such that</p>
+<p><span class="math display">
+  n \geq n_{\mathcal{H}} (\epsilon, \delta),
+  </span></p></li>
+<li><p><span class="math inline">A</span> returns a hypothesis <span class="math inline">h \in \mathcal{H}</span>, where <strong>its true risk</strong> is no greater than <span class="math inline">\epsilon</span> with probability at least <span class="math inline">1 - \delta</span></p>
+<p><span class="math display">
+  \mathbb{P} (R (h) \leq \epsilon) \geq 1 - \delta.
+  </span></p></li>
+</ul>
+</div>
+<p>Note that this definition is stated using the sample complexity <span class="math inline">n_{\mathcal{H}} (\epsilon, \delta)</span>, which is the size of the training set that we need to supply to the algorithm, so that with an arbitrarily high probability <span class="math inline">1 - \delta</span>, the hypothesis returned by the algorithm has an arbitrarily small error <span class="math inline">\epsilon</span>.</p>
+</section>
+<section id="some-sample-complexity-results" class="level3">
+<h3 class="anchored" data-anchor-id="some-sample-complexity-results">Some sample complexity results</h3>
+<p>The following theorems state some closed-form results about the generalization error of the algorithms using the definitions of consistency model and PAC model. Since ERM learns the hypothesis class in the consistency model, the following theorems naturally apply to it.</p>
+<p>The following theorem states that a <strong>finite concept class</strong> <span class="math inline">\mathcal{C}</span> is PAC learnable by the same hypothesis class <span class="math inline">\mathcal{H} = \mathcal{C}</span> if <span class="math inline">\mathcal{C}</span> is learnable in the consistency model, and proves its sample complexity as a function of the size of the hypothesis class.</p>
+<div id="thm-" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 2 </strong></span>If an algorithm <span class="math inline">A</span> learns a finite concept class <span class="math inline">\mathcal{C}</span> in the consistency model, then <span class="math inline">A</span> learns the concept class <span class="math inline">\mathcal{C}</span> by the hypothesis class <span class="math inline">\mathcal{C} = \mathcal{H}</span> in the PAC model with</p>
+<p><span class="math display">
+n_{\mathcal{H}} (\epsilon, \delta) = \frac{
+    \log \lvert \mathcal{H} \rvert + \log \frac{ 1 }{ \delta }
+}{
+    \epsilon
+}.
+</span></p>
+</div>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Another way to state the PAC learnability with the consistency model is</p>
+<p><span class="math display">
+\mathbb{P}_{\mathcal{S}} (\exist h \in \mathcal{H}: R_{\mathcal{S}} (h) = 0, R (h) \geq \epsilon) \leq \delta
+</span></p>
+<p>when <span class="math inline">n \geq n_{\mathcal{H}} (\epsilon, \delta)</span>.</p>
+<p>Given <span class="math inline">h \in \mathcal{H}</span>, by definition of the empirical risk we can write the probability that <span class="math inline">h</span> is consistent with <span class="math inline">\mathcal{S}</span> as</p>
+<p><span class="math display">
+\begin{aligned}
+\mathbb{P}_{\mathcal{S}} (R_{\mathcal{S}} (h) = 0)
+&amp; = \mathbb{P}_{\mathcal{S}} (h (\mathbf{x_{i}}) = y_{i}, \forall (\mathbf{x}_{i}, y_{i}) \in \mathcal{S})
+\\
+&amp; \stackrel{(1)}{=} \prod_{i = 1}^{n} \mathbb{P}_{\mathbf{X}} (h (\mathbf{x}_{i}) = y_{i})
+\\
+&amp; = \prod_{i = 1}^{n} 1 - \mathbb{P}_{\mathbf{X}} (h (\mathbf{x}_{i}) \neq y_{i})
+\\
+&amp; \stackrel{(2)}{=} \prod_{i = 1}^{n} 1 - R (h)
+\\
+&amp; = (1 - R (h))^{n}.
+\end{aligned}
+</span></p>
+<ol type="1">
+<li><ol type="1">
+<li>follows because the labeled instances in <span class="math inline">\mathcal{S}</span> are independent.</li>
+</ol></li>
+<li><ol start="2" type="1">
+<li>follows because the true risk of <span class="math inline">h</span> is the probability of <span class="math inline">h</span> makes a mistake on a given labeled instance when the loss function is the 0-1 loss.</li>
+</ol></li>
+</ol>
+<p>If we add the fact that <span class="math inline">R (h) \geq \epsilon</span>,</p>
+<p><span class="math display">
+\begin{aligned}
+\mathbb{P}_{\mathcal{S}} (R_{\mathcal{S}} (h) = 0, R (h) \geq \epsilon)
+&amp; \leq (1 - \epsilon)^{n}
+\\
+&amp; \leq e^{- n \epsilon}
+\end{aligned}
+</span></p>
+<p>where the last inequality uses the fact that</p>
+<p><span class="math display">
+1 - x &lt; e^{-x}, \forall x \in [0, 1].
+</span></p>
+<p>We can add the part <span class="math inline">\exists h \in \mathcal{H}</span> by applying the union bound</p>
+<p><span class="math display">
+\mathbb{P}_{\mathcal{S}} (\exists h \in \mathcal{H}: R_{\mathcal{S}} (h) = 0, R (h) \geq \epsilon)
+\leq \lvert \mathcal{H} \rvert e^{- n \epsilon},
+</span></p>
+<p>and make <span class="math inline">\delta = \lvert \mathcal{H} \rvert e^{- n \epsilon}</span>, we can derive</p>
+<p><span class="math display">
+n \geq \frac{
+    \log \lvert \mathcal{H} \rvert + \log \frac{ 1 }{ \delta }
+}{
+    \epsilon
+}.
+</span></p>
+</div>
+</div>
+</div>
+<p>The following theorem states a similar results as above: an <strong>infinite concept class</strong> <span class="math inline">\mathcal{C}</span> it is PAC learnable by the same hypothesis class <span class="math inline">\mathcal{H} = \mathcal{C}</span> if <span class="math inline">\mathcal{H}</span> is learnable in the consistency model, and proves the sample complexity as a function of the growth function of <span class="math inline">\mathcal{H}</span>.</p>
+<div id="thm-" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 3 </strong></span>If an algorithm <span class="math inline">A</span> learns an infinite concept class <span class="math inline">\mathcal{C}</span> in the consistency model, then <span class="math inline">A</span> learns the concept class <span class="math inline">\mathcal{C}</span> by the hypothesis class <span class="math inline">\mathcal{H} = \mathcal{C}</span> in the PAC model with</p>
+<p><span class="math display">
+n_{\mathcal{H}} (\epsilon, \delta) = 2 \frac{
+    \log \Pi_{\mathcal{H}} (2 n) + \log \frac{ 2 }{ \delta }
+}{
+    \epsilon
+}.
+</span></p>
+</div>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Let’s first define 3 “bad” events that are useful in the following proof.</p>
+<p>Given any set of labeled instances <span class="math inline">\mathcal{S} = \{ z_{1}, \dots, z_{n} \}</span>, the difference between its true risk and empirical risk on <span class="math inline">\mathcal{S}</span> is larger than <span class="math inline">\epsilon</span>, let <span class="math inline">B (\mathcal{S})</span> denote the event that there exists a hypothesis <span class="math inline">h \in \mathcal{H}</span> that is consistent with <span class="math inline">\mathcal{S}</span> but has the true risk larger than <span class="math inline">\epsilon</span></p>
+<p><span class="math display">
+B (\mathcal{S}) \coloneqq \exist h \in \mathcal{H}: R_{\mathcal{S}} (h) = 0,  R (h) \geq \epsilon.
+</span></p>
+<p>and therefore we want to prove</p>
+<p><span class="math display">
+\mathbb{P}_{\mathcal{S}} (B (\mathcal{S})) \leq \delta.
+</span></p>
+<p>Now let’s draw the “ghost samples”, which is another set of i.i.d labeled instances <span class="math inline">\mathcal{S}' = \{ z_{1}', \dots, z_{n}' \}</span> from the distribution <span class="math inline">\mathbb{P}_{Z}</span>, and define another event <span class="math inline">B'</span> as a function of <span class="math inline">\mathcal{S}</span> and <span class="math inline">\mathcal{S}'</span>, which states that there exists a hypothesis <span class="math inline">h \in \mathcal{H}</span> that is consistent with <span class="math inline">\mathcal{S}</span> but has empirical risk on <span class="math inline">\mathcal{S}'</span> larger than <span class="math inline">\frac{ \epsilon }{ 2 }</span></p>
+<p><span class="math display">
+B' (\mathcal{S}, \mathcal{S}') \coloneqq \exist h \in \mathcal{H}: R_{\mathcal{S}} (h) = 0,  R_{S'} (h) \geq \frac{ \epsilon }{ 2 }.
+</span></p>
+<p>Finally, let’s define an event <span class="math inline">B (\mathcal{S}, \mathcal{S}', \sigma)</span> as a function of <span class="math inline">\mathcal{S}, \mathcal{S}'</span>, and a set of independent Rademacher random variables <span class="math inline">\sigma_{1}, \dots, \sigma_{n}</span> that takes values <span class="math inline">-1</span> or <span class="math inline">1</span> with equal probabilities</p>
+<p><span class="math display">
+B'' (\mathcal{S}, \mathcal{S}', \sigma) \coloneqq \exist h \in \mathcal{H}: R_{\mathcal{S}_{\sigma}} (h) = 0, R_{\mathcal{S}_{\sigma}'} (h) \geq \frac{ \epsilon }{ 2 }.
+</span></p>
+<p>where the samples <span class="math inline">\mathcal{S}_{\sigma}, \mathcal{S}_{\sigma}'</span> are created by swapping the labeled instances in <span class="math inline">\mathcal{S}, \mathcal{S}'</span> based on the values of <span class="math inline">\sigma</span></p>
+<ul>
+<li><p><span class="math inline">z_{i}</span> and <span class="math inline">z_{i}'</span> are swapped if the corresponding <span class="math inline">\sigma_{i} = 1</span>,</p></li>
+<li><p>and <span class="math inline">z_{i}</span> and <span class="math inline">z_{i}'</span> are not swapped if the corresponding <span class="math inline">\sigma_{i} = -1</span>.</p></li>
+</ul>
+<p>The event <span class="math inline">B'' (\mathcal{S}, \mathcal{S}', \sigma)</span> states that there exists a hypothesis <span class="math inline">h \in \mathcal{H}</span> such that the difference between its empirical risk on <span class="math inline">\mathcal{S}_{\sigma}</span> and empirical risk on <span class="math inline">\mathcal{S}_{\sigma}'</span> is larger than <span class="math inline">\frac{ \epsilon }{ 2 }</span>.</p>
+<p><strong>Claim 1</strong>: <span class="math inline">\mathbb{P}_{\mathcal{S}} (B (\mathcal{S}))</span> is upper-bounded by <span class="math inline">2 \mathbb{P}_{\mathcal{S}, \mathcal{S}'} (B' (\mathcal{S}, \mathcal{S}'))</span>,</p>
+<p><span class="math display">
+\mathbb{P}_{\mathcal{S}} (B (\mathcal{S})) \leq 2 \mathbb{P}_{\mathcal{S}, \mathcal{S}'} (B' (\mathcal{S}, \mathcal{S}')).
+</span></p>
+<p>Since the probability of an event cannot be larger than its conjunction with another event,</p>
+<p><span class="math display">
+\begin{aligned}
+\mathbb{P}_{\mathcal{S}, \mathcal{S}'} (B' (\mathcal{S}, \mathcal{S}'))
+&amp; \geq \mathbb{P}_{\mathcal{S}, \mathcal{S}'} (B' (\mathcal{S}, \mathcal{S}') \cap B (\mathcal{S}))
+\\
+&amp; = \mathbb{P}_{\mathcal{S}, \mathcal{S}'} (B' (\mathcal{S}, \mathcal{S}') \mid B (\mathcal{S})) \mathbb{P}_{\mathcal{S}} (B (\mathcal{S}))
+\end{aligned}
+</span></p>
+<p>Now consider the probability of the event</p>
+<p><span class="math display">
+\mathbb{P}_{\mathcal{S}, \mathcal{S}'} (B' (\mathcal{S}, \mathcal{S}') \mid B (\mathcal{S})),
+</span></p>
+<p>which can be written as</p>
+<p><span class="math display">
+\mathbb{P}_{\mathcal{S}, \mathcal{S}'} \left(
+    R_{\mathcal{S}'} (h) \geq \frac{ \epsilon }{ 2 }
+\right)
+</span></p>
+<p>because the event <span class="math inline">B' (\mathcal{S}, \mathcal{S}')</span> is the event <span class="math inline">R_{\mathcal{S}'} (h) \geq \frac{ \epsilon }{ 2 }</span> if the event <span class="math inline">B (\mathcal{S})</span> is given.</p>
+<p>Since <span class="math inline">R (h)</span> is the mean of <span class="math inline">R_{\mathcal{S}'} (h)</span>, we can apply the lower tail case of the Chernoff bound for the average of Bernoulli variables and set <span class="math inline">X = R_{\mathcal{S}'} (h), \mu = R (h), \delta = \frac{ 1 }{ 2 }</span></p>
+<p><span class="math display">
+\begin{aligned}
+\mathbb{P}_{X} (X \leq (1 - \delta) \mu)
+&amp; \leq \exp \left[
+    -\frac{ n \delta^{2} \mu }{ 2 }
+\right]
+\\
+\mathbb{P} \left(
+    R_{\mathcal{S}'} (h) \leq \frac{ R (h) }{ 2 }
+\right)
+&amp; \leq \exp \left[
+    -\frac{ n R (h) }{ 8 }
+\right].
+\end{aligned}
+</span></p>
+<p>Since <span class="math inline">R (h) \geq \epsilon</span> and the assumption states that <span class="math inline">n &gt; \frac{ 8 }{ \epsilon }</span></p>
+<p><span class="math display">
+\mathbb{P} \left(
+    R_{\mathcal{S}'} (h) \leq \frac{ \epsilon }{ 2 }
+\right) \leq \mathbb{P} \left(
+    R_{\mathcal{S}'} (h) \leq \frac{ R (h) }{ 2 }
+\right) \leq \exp \left[
+    \frac{ - n R(h) }{ 8 }
+\right] \leq \exp \left[
+    \frac{ - R(h) }{ \epsilon }
+\right] \leq \frac{ 1 }{ e } \leq \frac{ 1 }{ 2 }
+\\
+\mathbb{P} \left(
+    R_{\mathcal{S}'} (h) \geq \frac{ \epsilon }{ 2 }
+\right) \geq \frac{ 1 }{ 2 }
+</span></p>
+<p>Then we have proved the claim</p>
+<p><span class="math display">
+\begin{aligned}
+\mathbb{P}_{\mathcal{S}, \mathcal{S}'} (B' (\mathcal{S}, \mathcal{S}') \mid B (\mathcal{S})) \mathbb{P}_{\mathcal{S}} (B (\mathcal{S}))
+&amp; \leq \mathbb{P}_{\mathcal{S}, \mathcal{S}'} (B' (\mathcal{S}, \mathcal{S}'))
+\\
+\frac{ 1 }{ 2 } \mathbb{P}_{\mathcal{S}} (B (\mathcal{S}))
+&amp; \leq \mathbb{P}_{\mathcal{S}, \mathcal{S}'} (B' (\mathcal{S}, \mathcal{S}'))
+\\
+\mathbb{P}_{\mathcal{S}} (B (\mathcal{S}))
+&amp; \leq 2 \mathbb{P}_{\mathcal{S}, \mathcal{S}'} (B' (\mathcal{S}, \mathcal{S}')).
+\end{aligned}
+</span></p>
+<p><strong>Claim 2</strong>: the probability of event <span class="math inline">B' (\mathcal{S}, \mathcal{S}')</span> is the same as the expectation of the probability that <span class="math inline">B'' (\mathcal{S}, \mathcal{S}', \sigma)</span> happens given <span class="math inline">\mathcal{S}, \mathcal{S}'</span></p>
+<p><span class="math display">
+\mathbb{P}_{\mathcal{S}, \mathcal{S}'} (B' (\mathcal{S}, \mathcal{S}'))
+= \mathbb{E}_{\mathcal{S}, \mathcal{S}'} \left[
+    \mathbb{P}_{\sigma} (B'' (\mathcal{S}, \mathcal{S}', \sigma) \mid \mathcal{S}, \mathcal{S}')
+\right].
+</span></p>
+<p>Since the event <span class="math inline">B' (\mathcal{S}, \mathcal{S}')</span> and <span class="math inline">B'' (\mathcal{S}, \mathcal{S}', \sigma)</span> only differ on the set of instances <span class="math inline">\mathcal{S}, \mathcal{S}'</span> and <span class="math inline">\mathcal{S}_{\sigma}, \mathcal{S}_{\sigma}'</span> and they can both be seen as the set of instances i.i.d sampled from the <span class="math inline">\mathbb{P}_{Z}</span>, their probability should be the same</p>
+<p><span class="math display">
+\mathbb{P}_{\mathcal{S}, \mathcal{S}'} (B' (\mathcal{S}, \mathcal{S}')) = \mathbb{P}_{\mathcal{S}, \mathcal{S}', \sigma} (B'' (\mathcal{S}, \mathcal{S}', \sigma)).
+</span></p>
+<p>Then, we can prove the claim by using marginalization of the probability</p>
+<p><span class="math display">
+\mathbb{P}_{\mathcal{S}, \mathcal{S}', \sigma} (B'' (\mathcal{S}, \mathcal{S}', \sigma)) = \mathbb{E}_{\mathcal{S}, \mathcal{S}'} [\mathbb{P}_{\sigma} (B'' (\mathcal{S}, \mathcal{S}', \sigma) \mid \mathcal{S}, \mathcal{S}')].
+</span></p>
+<p><strong>Claim 3</strong>: <span class="math inline">\mathbb{E}_{\mathcal{S}, \mathcal{S}'} [\mathbb{P}_{\sigma} (B'' (\mathcal{S}, \mathcal{S}', \sigma) \mid \mathcal{S}, \mathcal{S}')]</span> is upper-bounded by <span class="math inline">\Pi_{\mathcal{H}} (2 n) \exp \left[ - \frac{ n \epsilon }{ 2 } \right]</span></p>
+<p><span class="math display">
+\mathbb{E}_{\mathcal{S}, \mathcal{S}} \left[
+    \mathbb{P}_{\sigma} (B'' (\mathcal{S}, \mathcal{S}', \sigma) \mid \mathcal{S}, \mathcal{S}')
+\right] \leq \Pi_{\mathcal{H}} (2 n) \exp \left[
+    - \frac{ n \epsilon }{ 2 }
+\right].
+</span></p>
+<p>Remember that <span class="math inline">\mathcal{S}, \mathcal{S}'</span> all have <span class="math inline">n</span> instances and therefore there are <span class="math inline">n</span> pairs of instances <span class="math inline">(\mathbf{x}_{1}, \mathbf{x}_{1}'), \dots, (\mathbf{x}_{n}, \mathbf{x}_{n}')</span>. There are 3 cases for the corrections of the predictions made by <span class="math inline">h</span> for each pair <span class="math inline">(h (\mathbf{x}_{i}), h (\mathbf{x}_{i}'))</span>.</p>
+<ol type="1">
+<li><p>Both <span class="math inline">h (\mathbf{x}_{i}), h (\mathbf{x}_{i}')</span> are incorrect.</p></li>
+<li><p>Either <span class="math inline">h (\mathbf{x}_{i})</span> or <span class="math inline">h (\mathbf{x}_{i}')</span> is incorrect (correct).</p></li>
+<li><p>Both <span class="math inline">h (\mathbf{x}_{i}), h (\mathbf{x}_{i}')</span> are correct.</p></li>
+</ol>
+<p>First if there is a pair in <span class="math inline">\mathcal{S}, \mathcal{S}'</span> with case 1, then</p>
+<p><span class="math display">
+\mathbb{P}_{\sigma} \left(
+    R_{\mathcal{S}_{\sigma}} (h) = 0, R_{\mathcal{S}_{\sigma}'} (h) \geq \frac{ \epsilon }{ 2 } \mid \mathcal{S}, \mathcal{S}'
+\right) = 0
+</span></p>
+<p>because <span class="math inline">R_{\mathcal{S}_{\sigma}} (h) &gt; 0</span> no matter how to generate <span class="math inline">\mathcal{S}_{\sigma}</span> by swapping instances in <span class="math inline">\mathcal{S}, \mathcal{S}'</span>.</p>
+<p>Then denoted by <span class="math inline">r</span> the number of pairs in <span class="math inline">\mathcal{S}, \mathcal{S}'</span> that case 2 is true, if <span class="math inline">r &lt; \frac{ \epsilon n }{ 2 }</span>,</p>
+<p><span class="math display">
+\mathbb{P}_{\sigma} \left(
+    R_{\mathcal{S}_{\sigma}} (h) = 0, R_{\mathcal{S}_{\sigma}'} (h) \geq \frac{ \epsilon }{ 2 } \mid \mathcal{S}, \mathcal{S}'
+\right) = 0
+</span></p>
+<p>because <span class="math inline">R_{\mathcal{S}_{\sigma}'} (h) &lt; \frac{ \epsilon }{2}</span> no matter how to generate <span class="math inline">\mathcal{S}_{\sigma}'</span> by swapping instances in <span class="math inline">\mathcal{S}, \mathcal{S}'</span>.</p>
+<p>When <span class="math inline">r \geq \frac{ \epsilon n }{ 2 }</span>, the event <span class="math inline">R_{\mathcal{S}_{\sigma}} (h) = 0, R_{\mathcal{S}_{\sigma}'} (h) \geq \frac{ \epsilon }{ 2 }</span> is possible and its possibility is</p>
+<p><span class="math display">
+\mathbb{P}_{\sigma} \left(
+    R_{\mathcal{S}_{\sigma}} (h) = 0, R_{\mathcal{S}_{\sigma}'} (h) \geq \frac{ \epsilon }{ 2 } \mid \mathcal{S}, \mathcal{S}'
+\right) = \left(
+    \frac{ 1 }{ 2 }
+\right)^{r} \leq 2^{- \frac{ \epsilon n }{ 2 }}
+</span></p>
+<p>because the independent Rademacher random variables in <span class="math inline">\sigma</span> must take <span class="math inline">1</span> with probability <span class="math inline">\frac{ 1 }{ 2 }</span> for all <span class="math inline">r'</span> mistakes that were in <span class="math inline">\mathcal{S}</span> and swapped to be in <span class="math inline">\mathcal{S}_{\sigma}'</span>, and take <span class="math inline">-1</span> with probability <span class="math inline">\frac{ 1 }{ 2 }</span> for the <span class="math inline">r - r'</span> mistakes that were in <span class="math inline">\mathcal{S}'</span> and are stayed in <span class="math inline">\mathcal{S}_{\sigma}'</span>.</p>
+<p>Since the probability of the case 3 is already included in the calculation of the above probabilities, we can prove the claim by adding probabilities for all cases</p>
+<p><span class="math display">
+\mathbb{P}_{\sigma} \left(
+    R_{\mathcal{S}_{\sigma}} (h) = 0, R_{\mathcal{S}_{\sigma}'} (h) \geq \frac{ \epsilon }{ 2 } \mid \mathcal{S}, \mathcal{S}'
+\right) \leq 2^{- \frac{ \epsilon n }{ 2 }}.
+</span></p>
+<p>To get the probability for any <span class="math inline">h \in \mathcal{H}</span>, we apply union bound on all possible label assignments that <span class="math inline">\mathcal{H}</span> can make over the set <span class="math inline">\mathcal{S} \cup \mathcal{S}'</span>,</p>
+<p><span class="math display">
+\begin{aligned}
+\mathbb{P}_{\sigma} (B'' (\mathcal{S}, \mathcal{S}', \sigma) \mid \mathcal{S}, \mathcal{S}')
+&amp; = \mathbb{P}_{\sigma} \left(
+    \exist h \in \mathcal{H}: R_{\mathcal{S}_{\sigma}} (h) = 0, R_{\mathcal{S}_{\sigma}'} (h) \geq \frac{ \epsilon }{ 2 } \mid \mathcal{S}, \mathcal{S}'
+\right)
+\\
+&amp; = \mathbb{P}_{\sigma} \left(
+    \exist h \in \mathcal{H} (\mathcal{S} \cup \mathcal{S}'): R_{\mathcal{S}_{\sigma}} (h) = 0, R_{\mathcal{S}_{\sigma}'} (h) \geq \frac{ \epsilon }{ 2 } \mid \mathcal{S}, \mathcal{S}'
+\right)
+\\
+&amp; \leq \sum_{h \in \mathcal{H} (\mathcal{S} \cup \mathcal{S}')} \mathbb{P}_{\sigma} \left(
+    R_{\mathcal{S}_{\sigma}} (h) = 0, R_{\mathcal{S}_{\sigma}'} (h) \geq \frac{ \epsilon }{ 2 } \mid \mathcal{S}, \mathcal{S}'
+\right)
+\\
+&amp; \leq \Pi_{\mathcal{H}} (2 n) 2^{- \frac{ \epsilon n }{ 2 }},
+\\
+\end{aligned}
+</span></p>
+<p>where the last inequality is because of the definition of the growth function states that</p>
+<p><span class="math display">
+\lvert \mathcal{H} (\mathcal{S} \cup \mathcal{S}') \rvert \leq \Pi_{H} (\lvert \mathcal{S} \rvert + \lvert \mathcal{S}' \rvert) = \Pi_{\mathcal{H}} (2 n).
+</span></p>
+<p>Note that the term <span class="math inline">\Pi_{\mathcal{H}} (2 n) 2^{- \frac{ n \epsilon }{ 2 }}</span> doesn’t depend on <span class="math inline">\mathcal{S}, \mathcal{S}'</span>. Since the expectation of a constant is that constant, we have proved the claim</p>
+<p><span class="math display">
+\mathbb{E}_{\mathcal{S}, \mathcal{S}} \left[
+    \mathbb{P}_{\sigma} (B'' (\mathcal{S}, \mathcal{S}', \sigma) \mid \mathcal{S}, \mathcal{S}')
+\right] \leq \mathbb{E}_{\mathcal{S}, \mathcal{S}} \left[
+    \Pi_{\mathcal{H}} (2 n) \exp \left[
+        - \frac{ n \epsilon }{ 2 }
+    \right]
+\right] \leq \Pi_{\mathcal{H}} (2 n) \exp \left[
+    - \frac{ n \epsilon }{ 2 }
+\right].
+</span></p>
+<p>Finally we can prove the theorem by using all of the claims above</p>
+<p><span class="math display">
+\begin{aligned}
+\mathbb{P}_{\mathcal{S}} (B (\mathcal{S}))
+&amp; \leq 2 \mathbb{P}_{\mathcal{S}, \mathcal{S}'} (B' (\mathcal{S}, \mathcal{S}'))
+\\
+&amp; = 2 \mathbb{E}_{\mathcal{S}, \mathcal{S}'} \left[
+    \mathbb{P}_{\sigma} (B' (\mathcal{S}, \mathcal{S}', \sigma) \mid \mathcal{S}, \mathcal{S}')
+\right]
+\\
+&amp; \leq 2 \Pi_{\mathcal{H}} (2 n) 2^{- \frac{ n \epsilon }{ 2 }}.
+\end{aligned}
+</span></p>
+<p>By setting <span class="math inline">\delta = 2 \Pi_{\mathcal{H}} (2 n) 2^{- \frac{ n \epsilon }{ 2 }}</span>,</p>
+<p><span class="math display">
+\begin{aligned}
+\delta
+&amp; = 2 \Pi_{\mathcal{H}} (2 n) 2^{- \frac{ n \epsilon }{ 2 }}
+\\
+n
+&amp; = 2 \frac{
+    \log \Pi_{\mathcal{H}} (2 n) + \log \frac{ 2 }{ \delta }
+}{
+    \epsilon
+}.
+\end{aligned}
+</span></p>
+</div>
+</div>
+</div>
+<p>Now we can use the Sauer’s lemma to get a nice closed form expression on sample complexity result for the infinite class.</p>
+<div id="thm-" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 4 </strong></span>If an algorithm <span class="math inline">A</span> learns an infinite concept class <span class="math inline">\mathcal{C}</span> in the consistency model, then <span class="math inline">A</span> learns the concept class <span class="math inline">\mathcal{C}</span> by the hypothesis class <span class="math inline">\mathcal{H} = \mathcal{C}</span> in the PAC model with</p>
+<p><span class="math display">
+n_{\mathcal{H}} (\epsilon, \delta) = \frac{
+    8 d \log \frac{ 16 }{ \epsilon} + 4 \log \frac{ 2 }{ \delta }
+}{
+    \epsilon
+},
+</span></p>
+<p>where <span class="math inline">d = \mathrm{VC} (\mathcal{H})</span>.</p>
+</div>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>By applying Sauer’s lemma to the sample complexity results for the infinite classes</p>
+<p><span class="math display">
+\begin{aligned}
+\frac{
+    4 \log \Pi_{\mathcal{H}} (2 n) + 2 \log \frac{ 2 }{ \delta }
+}{
+    \epsilon
+}
+&amp; \leq \frac{
+    4 \log \left(
+        \frac{ 2 e n }{ d }
+    \right)^{d} + 2 \log \frac { 2 }{ \delta }
+}{
+    \epsilon
+}
+\\
+&amp; = \frac{ 4 d }{ \epsilon } \log n
++ \frac{ 4 d  }{ \epsilon } \log \frac{ 2 e }{ d }
++ \frac { 2 }{ \epsilon }\log \frac { 2 }{ \delta }
+\end{aligned}
+</span></p>
+<p>Since <span class="math inline">\log x \leq a x - \log a - 1</span> for <span class="math inline">a, x &gt; 0</span>, we can show that</p>
+<p><span class="math display">
+\begin{aligned}
+\log n
+&amp; \leq \frac{ \epsilon n }{ 8 d } - \log \frac{ \epsilon }{ 8 d  } - 1
+\\
+\frac{ 4 d }{ \epsilon } \log n
+&amp; \leq \frac{ 4 d }{ \epsilon } \left(
+    \frac{ \epsilon n }{ 8 d } + \log \frac{ 8 d }{ \epsilon } - 1
+\right)
+\\
+&amp; = \frac{ n }{ 2 } + \frac{ 4 d }{ \epsilon } \log \frac{ 8 d }{\epsilon e }.
+\end{aligned}
+</span></p>
+<p>By combining the results above,</p>
+<p><span class="math display">
+\begin{aligned}
+\frac{
+    4 \log \Pi_{\mathcal{H}} (2 n) + 2 \log \frac{ 2 }{ \delta }
+}{
+    \epsilon
+}
+&amp; \leq \frac{ 4 d }{ \epsilon } \log n
++ \frac{ 4 d }{ \epsilon } \log \frac{ 2 e }{ d }
++ \frac { 2 }{ \epsilon }\log \frac { 2 }{ \delta }
+\\
+&amp; \leq \frac{ n }{ 2 }
++ \frac{ 4 d }{ \epsilon } \log \frac{ 8 d }{\epsilon e }
++ \frac{ 4 d }{ \epsilon } \log \frac{ 2 e }{ d }
++ \frac { 2 }{ \epsilon }\log \frac { 2 }{ \delta }
+\\
+&amp; \leq \frac{ n }{ 2 }
++ \frac{ 4 d }{ \epsilon } \log \frac{ 16 }{\epsilon }
++ \frac { 2 }{ \epsilon }\log \frac { 2 }{ \delta }.
+\end{aligned}
+</span></p>
+<p>Therefore, if we have a training set that has a number of instances</p>
+<p><span class="math display">
+\begin{aligned}
+n
+&amp; \geq \frac{ n }{ 2 }
++ \frac{ 4 d }{ \epsilon } \log \frac{ 16 }{\epsilon }
++ \frac { 2 }{ \epsilon }\log \frac { 2 }{ \delta }
+\\
+\frac{ n }{ 2 }
+&amp; \geq \frac{ 4 d }{ \epsilon } \log \frac{ 16 }{\epsilon }
++ \frac { 2 }{ \epsilon }\log \frac { 2 }{ \delta }
+\\
+n
+&amp; \geq \frac{
+    8 d \log \frac{ 16 }{ \epsilon} + 4 \log \frac{ 2 }{ \delta }
+}{
+    \epsilon
+}.
+\end{aligned}
+</span></p>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
