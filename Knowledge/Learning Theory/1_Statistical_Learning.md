@@ -1,6 +1,5 @@
-# Statistical Learning Framework
+# Statistical Learning
 
-## Learning problem
 
 The goal of machine learning is to use algorithms to learn from the data.
 The data here refers to labeled instances $(x, y) \in \mathcal{X} \times \mathcal{Y}$, 
@@ -17,6 +16,8 @@ Machine learning problems usually have two sets of data:
 - Training set: the training set consists of a finite number of labeled instances from which the algorithms can learn. 
 
 - Test set: the test set may consist of an infinite number of labeled instances that are used to evaluate the performance of the algorithm in a real-world setting. 
+
+## Functions
 
 ### Decision function
 

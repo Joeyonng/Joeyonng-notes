@@ -37,9 +37,11 @@ website:
       search: true
       alignment: center
       contents: 
+        # - section: "Linear Algebra"
+        #   contents: "Knowledge/Linear Algebra/*"
         - section: "Learning Theory"
           contents: Knowledge/Learning Theory/*
         - text: "---"
-        - section: "Statistical Learning"
-          contents: Knowledge/Statistical Learning/*
-        - text: "---"
+        # - section: "Statistical Learning"
+        #   contents: Knowledge/Statistical Learning/*
+        # - text: "---"

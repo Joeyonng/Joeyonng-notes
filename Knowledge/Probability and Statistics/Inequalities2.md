@@ -391,7 +391,7 @@ $$
 Y_{n} = f (X_{1}, \dots, X_{n}).
 $$
 
-For all $Y_{n}$, if $E_{Y_{n}} [y_{n}]$ is finite and 
+For all $Y_{n}$, if $\mathbb{E}_{Y_{n}} [y_{n}]$ is finite and 
 
 $$
 \mathbb{E}_{Y_{n + 1} \mid X_{1}, \dots, X_{n}} [Y_{n + 1} \mid X_{1}, \dots, X_{n}] = Y_{n},

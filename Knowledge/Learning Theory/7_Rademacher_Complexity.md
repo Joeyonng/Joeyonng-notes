@@ -1,10 +1,19 @@
 # Rademacher Complexity
 
-## Rademacher distribution
+Rademacher complexity measures the complexity of a function class in a sense that 
+if $\mathcal{F}$ contains so many functions such that there exists some functions in $\mathcal{F}$ that can always output the same signs with the random generated Rademacher random variables,
+then $\mathcal{F}$ will have a high Rademacher complexity. 
 
-A Rademacher distribution is a discrete probability distribution where a random variate $X$ has the equal probability of being +1 and -1.
+## Definitions
 
-## Rademacher complexity
+:::{#def-}
+
+A **Rademacher variable** has a discrete probability distribution where $X$ has the equal probability of being +1 and -1.
+
+:::
+
+The empirical Rademacher complexity measures the ability of the functions in a function class $\mathcal{F}$ to fit the random noise for a fixed sample $\mathcal{S}$,
+which is described by the maximum correlation over all $f \in \mathcal{F}$ between $f (z_{i})$ and $\sigma_{i}$.
 
 :::{#def-}
 
@@ -12,7 +21,7 @@ Given an i.i.d sample $\mathcal{S} = \{ z_{1}, \dots, z_{n} \}$ from the distrib
 the **empirical Rademacher complexity** of a class of binary function $\mathcal{F}$ is defined as
 
 $$
-\mathrm{Rad}_{\mathcal{F}} (\mathcal{S}) = \mathbb{E}_{\sigma} \left[
+\mathrm{Rad}_{\mathcal{S}} (\mathcal{F}) = \mathbb{E}_{\sigma} \left[
     \sup_{f \in \mathcal{F}} \frac{ 1 }{ n } \sum_{i = 1}^{n} \sigma_{i} f (z_{i}) 
 \right],
 $$
@@ -21,13 +30,15 @@ which is a function of the random variable $\mathcal{S}$ and therefore is a rand
 
 :::
 
+Therefore,  the Rademacher complexity of $\mathcal{F}$ measures the expected noise-fitting-ability of $\mathcal{F}$ over all data sets $\mathcal{S} \in \mathcal{Z}^{n}$ that could be drawn according to the distribution $\mathbb{P}_{\mathcal{Z}^{n}}$.
+
 :::{#def-}
 
 Then the **Rademacher complexity** is defined as the expectation of the empirical Rademacher complexity over all i.i.d samples of size $n$
 
 $$
-\mathrm{Rad}_{\mathcal{F}} (n) = \mathbb{E}_{\mathcal{S}} \left[
-    \mathrm{Rad}_{\mathcal{F}} (\mathcal{S})
+\mathrm{Rad}_{n} (\mathcal{F}) = \mathbb{E}_{\mathcal{S}} \left[
+    \mathrm{Rad}_{\mathcal{S}} (\mathcal{F})
 \right] = \mathbb{E}_{\mathcal{S}} \left[
     \mathbb{E}_{\sigma} \left[
         \sup_{f \in \mathcal{F}} \frac{ 1 }{ n } \sum_{i = 1}^{n} \sigma_{i} f (z_{i}) 
@@ -37,19 +48,24 @@ $$
 
 :::
 
-### Intuitions
+For completeness, we include the definition of Rademacher average of a set of vectors.
 
-If $\mathcal{F}$ contains so many functions such that there exists some functions in $\mathcal{F}$ that can always output the same signs with the random generated Rademacher random variables,
-then $\mathcal{F}$ will have a high Rademacher complexity according to the definition. 
+:::{#def-}
 
-The empirical Rademacher complexity measures the ability of the functions in a function class $\mathcal{F}$ to fit the random noise for a fixed sample $\mathcal{S}$,
-which is described by the maximum correlation over all $f \in \mathcal{F}$ between $f (z_{i})$ and $\sigma_{i}$.
+Given $n$ independent Rademacher random variables $\sigma = \{ \sigma_{1}, \dots, \sigma_{n} \}$,
+the **Rademacher average** of a set of vectors $\mathcal{A} \subseteq \mathbb{R}^{n}$ is 
 
-Therefore,  the Rademacher complexity of $\mathcal{F}$ measures the expected noise-fitting-ability of $\mathcal{F}$ over all data sets $\mathcal{S} \in \mathcal{Z}^{n}$ that could be drawn according to the distribution $\mathbb{P}_{\mathcal{Z}^{n}}$.
+$$
+\mathrm{Rad}_{\mathcal{A}} = \mathbb{E}_{\sigma} \left[
+    \sup_{\mathbf{a} \in \mathcal{A}} \frac{ 1 }{ n } \sum_{i = 1}^{n} \sigma_{i} a_{i}
+\right].
+$$
 
-### Properties
+:::
 
-#### Non-negativity
+## Rademacher complexity properties
+
+### Non-negativity
 
 The empirical Rademacher complexity and Rademacher complexity are non-negative.
 
@@ -57,7 +73,7 @@ The empirical Rademacher complexity and Rademacher complexity are non-negative.
 
 $$
 \begin{aligned}
-\mathrm{Rad}_{\mathcal{F}} (\mathcal{S}) 
+\mathrm{Rad}_{\mathcal{S}} (\mathcal{F}) 
 & = \mathbb{E}_{\sigma} \left[
     \sup_{f \in \mathcal{F}} \frac{ 1 }{ n } \sum_{i = 1}^{n} \sigma_{i} f (z_{i}) 
 \right]
@@ -80,16 +96,16 @@ Explanations in the derivations
 
 :::
 
-#### Scaling and translation
+### Scaling and translation
 
 Given any function class $\mathcal{F}$ and constants $a, b \in \mathbb{R}$, denote the function class $\mathcal{G} = \{ g (x) = a f (x) + b \}$.
 
 $$
-\mathrm{Rad}_{\mathcal{G}} (\mathcal{S}) = \lvert a \rvert \mathrm{Rad}_{\mathcal{F}} (\mathcal{S})
+\mathrm{Rad}_{\mathcal{S}} (\mathcal{G}) = \lvert a \rvert \mathrm{Rad}_{\mathcal{S}} (\mathcal{F})
 $$
 
 $$
-\mathrm{Rad}_{\mathcal{G}} (n) = \lvert a \rvert \mathrm{Rad}_{\mathcal{F}} (n).
+\mathrm{Rad}_{n} (\mathcal{G}) = \lvert a \rvert \mathrm{Rad}_{n} (\mathcal{F}).
 $$
 
 :::{.callout-note collapse="true" title="Proof"}
@@ -98,7 +114,7 @@ By definition of $\mathcal{G}$ and the empirical Rademacher complexity,
 
 $$
 \begin{aligned}
-\mathrm{Rad}_{\mathcal{G}} (\mathcal{S}) 
+\mathrm{Rad}_{\mathcal{S}} (\mathcal{G}) 
 & = \mathbb{E}_{\sigma} \left[
     \sup_{f \in \mathcal{F}} \left(
         \frac{ 1 }{ n } \sum_{i = 1}^{n} \sigma_{i} (a f (z_{i}) + b)
@@ -133,7 +149,7 @@ $$
     \right)
 \right]
 \\
-& = \lvert a \rvert \mathrm{Rad}_{\mathcal{F}} (\mathcal{S}).
+& = \lvert a \rvert \mathrm{Rad}_{\mathcal{S}} (\mathcal{F}).
 \end{aligned}
 $$
 
@@ -164,7 +180,7 @@ $$
     \sup_{f \in \mathcal{F}} \left\lvert
         E_{\mathcal{S}} (f) - \mathbb{E}_{Z} [f (z_{i})]
     \right\rvert
-\right] \leq 2 \mathrm{Rad}_{\mathcal{F}} (n)
+\right] \leq 2 \mathrm{Rad}_{n} (\mathcal{F})
 $$
 
 where $E_{\mathcal{S}} (f) = \frac{ 1 }{ n } \sum_{i = 1}^{n} f (z_{i})$ is the estimated expectation of $f$ on the sample $\mathcal{S}$.
@@ -251,7 +267,7 @@ $$
     \right\rvert
 \right]
 \\
-& \stackrel{(2)}{=} 2 \mathrm{Rad}_{\mathcal{F}} (n).
+& \stackrel{(2)}{=} 2 \mathrm{Rad}_{n} (\mathcal{F}).
 \end{aligned}
 $$
 
@@ -269,7 +285,7 @@ $$
         E_{\mathcal{S}} (f) - \mathbb{E}_{Z} [f (z_{i})]
     \right\rvert
 \right] 
-\leq 2 \mathrm{Rad}_{\mathcal{F}} (n).
+\leq 2 \mathrm{Rad}_{n} (\mathcal{F}).
 $$
 
 :::
@@ -290,7 +306,7 @@ $$
 where the error $\epsilon$ is
 
 $$
-\epsilon = 2 \mathrm{Rad}_{\mathcal{F}} (n) + \sqrt{\frac{ \log \frac{ 1 }{ \delta }}{ 2 n }}.
+\epsilon = 2 \mathrm{Rad}_{n} (\mathcal{F}) + \sqrt{\frac{ \log \frac{ 1 }{ \delta }}{ 2 n }}.
 $$
 
 :::
@@ -422,7 +438,7 @@ $$
 & \leq \mathbb{E}_{\mathcal{S}} [\phi (\mathcal{S})]
 + \sqrt{\frac{ \log{\frac{ 1 }{ \delta }} }{ 2 n }}
 \\
-& \leq 2 \mathrm{Rad}_{\mathcal{F}} (n)
+& \leq 2 \mathrm{Rad}_{n} (\mathcal{F})
 + \sqrt{\frac{ \log{\frac{ 1 }{ \delta }} }{ 2 n }}
 \end{aligned}
 $$
@@ -433,7 +449,7 @@ with the probability larger than $1 - \delta$.
 
 ### Results for risks 
 
-Given a hypothesis class $\mathcal{H}$, a corresponding 0-1 loss class can be defined as 
+Given a hypothesis class $\mathcal{H}$, a corresponding loss class with the 0-1 loss can be defined as 
 
 $$
 \mathcal{L} = \{ l_{h} \mid l_{h} (z) = L (h (\mathbf{x}), y), h \in \mathcal{H}, z \sim \mathcal{Z} \}
@@ -448,11 +464,13 @@ $$
 Since all the loss functions $l_{h} \in \mathcal{L}$ have output range $[0, 1]$,
 we can apply the uniform theorem above to the loss class $\mathcal{L}$ to derive the uniform convergence results for risks.
 
-
-:::{#thm-}
+:::{#cor-}
 
 Given a sample $\mathcal{S}$ that is drawn i.i.d from any distribution $\mathbb{P}_{\mathcal{Z}^{n}}$,
-for every hypothesis $h \in \mathcal{H}$, the *difference between its true risk and estimated risk* is no greater than the error $\epsilon$ with probability at least $1 - \delta$
+a hypothesis class $\mathcal{H}$, 
+and the corresponding 0-1 loss class $\mathcal{L}$,
+for every hypothesis $h \in \mathcal{H}$, 
+the *difference between its true risk and estimated risk* is no greater than the error $\epsilon$ with probability at least $1 - \delta$
 
 $$
 \mathbb{P} (\lvert R_{\mathcal{S}} (h) - R (h) \rvert \leq \epsilon) \geq 1 - \delta, 
@@ -462,25 +480,103 @@ $$
 where the error $\epsilon$ is
 
 $$
-\epsilon = 2 \mathrm{Rad}_{\mathcal{L}} (n) + \sqrt{\frac{ \log \frac{ 1 }{ \delta }}{ 2 n }}.
+\epsilon = 2 \mathrm{Rad}_{n} (\mathcal{L}) + \sqrt{\frac{ \log \frac{ 1 }{ \delta }}{ 2 n }}.
+$$
+
+:::
+
+By using the following lemma, we can write the results in terms of the Rademacher complexity the hypothesis class $\mathcal{H}$ instead of the loss class $\mathcal{L}$.
+
+:::{#lem-}
+
+Given a hypothesis class $\mathcal{H}$ and the corresponding loss class $\mathcal{L}$,
+we have
+
+$$
+\mathrm{Rad}_{n} (\mathcal{H}) = 2 \mathrm{Rad}_{n} (\mathcal{L}).
+$$
+
+:::
+
+:::{.callout-note collapse="true" title="Proof"}
+
+By the definition of Rademacher complexity and 0-1 loss,
+we have
+
+$$
+\begin{aligned}
+\mathrm{Rad}_{S} (\mathcal{H}) 
+& = \mathbb{E}_{\sigma} \left[
+    \sup_{h \in \mathcal{H}} \frac{ 1 }{ m } \sum_{i=1}^{m} \sigma_{i} \mathbb{1} (h(x_{i}) \neq y_{i})
+    
+\right] 
+\\
+& = \mathbb{E}_{\sigma} \left[
+    \sup_{h \in \mathcal{H}} \frac{ 1 }{ m } \sum_{i=1}^{m} \sigma_{i} \left(
+        \frac{ 1 }{ 2 } - y_{i} h (x_{i})
+    \right)
+\right] 
+\\
+& = \frac{ 1 }{ 2 } \mathbb{E}_{\sigma} \left[ 
+    \sup_{h \in \mathcal{H}} \left[
+        \frac{ 1 }{ m } \sum_{i=1}^{m} \sigma_{i} 
+        + \frac{ 1 }{ m } \sum_{i=1}^{m} \sigma_{i} (-y_{i} h (x_{i}))
+    \right]
+\right] 
+\\
+& = \frac{ 1 }{ 2 } \mathbb{E}_{\sigma} \left[
+    \frac{1}{m} \sum_{i=1}^{m} \sigma_{i} 
+    + \sup_{h \in \mathcal{H}} \frac{ 1 }{ m } \sum_{i=1}^{m} \sigma_{i} (- y_{i} h (x_{i}))
+\right] 
+\\
+& = \frac{ 1 }{ 2 } \mathbb{E}_{\sigma} \left[
+    \sup_{h \in \mathcal{H}} \frac{ 1 }{ m } \sum_{i=1}^{m} \sigma_{i} h (x_{i})
+\right] 
+& \quad [\mathbb{E}\left[\sum_{i=1}^{m}\sigma_{i}\right] = 0] 
+\\
+& = \frac{ 1 }{ 2 }\text{Rad}_{S}(\mathcal{H}).
+\end{aligned}
+$$
+
+:::
+
+:::{#cor-}
+
+Given a sample $\mathcal{S}$ that is drawn i.i.d from any distribution $\mathbb{P}_{\mathcal{Z}^{n}}$ and a hypothesis class $\mathcal{H}$, 
+for every hypothesis $h \in \mathcal{H}$, 
+the *difference between its true risk and estimated risk* is no greater than the error $\epsilon$ with probability at least $1 - \delta$
+
+$$
+\mathbb{P} (\lvert R_{\mathcal{S}} (h) - R (h) \rvert \leq \epsilon) \geq 1 - \delta, 
+\quad \forall h \in \mathcal{H}
+$$
+
+where the error $\epsilon$ is
+
+$$
+\epsilon = 2 \mathrm{Rad}_{n} (\mathcal{H}) + \sqrt{\frac{ \log \frac{ 1 }{ \delta }}{ 2 n }}.
 $$
 
 :::
 
 ## Bounding Rademacher complexity
 
+The Rademacher complexity can be upper bounded for any function class with a finite VC dimension. 
+
 ### Massart’s lemma
 
-:::{#thm-}
+:::{#lem-massarts-lemma}
 
-Given any finite function class $\mathcal{F}$ and a sample $\mathcal{S} = \{ z_{1}, \dots, z_{n} \}$,
-the empirical Rademacher complexity is upper-bounded 
+#### Massart's lemma
+
+Given any set of vectors $\mathcal{A} \subseteq \mathbb{R}^{n}$ 
+the empirical Rademacher average is upper-bounded 
 
 $$
-\mathrm{Rad}_{\mathcal{F}} (\mathcal{S}) \leq \frac{ R \sqrt{2 \log \lvert \mathcal{F} \rvert} }{ n }
+\mathrm{Rad} (\mathcal{A}) \leq \frac{ R \sqrt{2 \log \lvert \mathcal{A} \rvert} }{ n }
 $$
 
-where $R = \sup_{f \in \mathcal{F}} \sqrt{\sum_{i = 1}^{n} f^{2} (z_{i})}$.
+where $R = \sup_{\mathbf{a} \in \mathcal{A}} \lVert \mathbf{a} \rVert_{2}$.
 
 :::
 
@@ -493,36 +589,36 @@ $$
 \begin{aligned}
 \exp \left[
     s \mathbb{E}_{\sigma} \left[
-        \sup_{f \in \mathcal{F}} \sum_{i = 1}^{n} \sigma_{i} f (z_{i})
+        \sup_{\mathbf{a} \in \mathcal{A}} \sum_{i = 1}^{n} \sigma_{i} a_{i}
     \right]
 \right]
 & \leq \mathbb{E}_{\sigma} \left[ 
     \exp \left[
-        s \sup_{f \in \mathcal{F}} \sum_{i = 1}^{n} \sigma_{i} f (z_{i})
+        s \sup_{\mathbf{a} \in \mathcal{A}} \sum_{i = 1}^{n} \sigma_{i} a_{i}
     \right]
 \right]
 \\
 & = \mathbb{E}_{\sigma} \left[ 
-    \sup_{f \in \mathcal{F}} \exp \left[
-        s \sum_{i = 1}^{n} \sigma_{i} f (z_{i})
+    \sup_{\mathbf{a} \in \mathcal{A}} \exp \left[
+        s \sum_{i = 1}^{n} \sigma_{i} a_{i}
     \right]
 \right]
 \\
 & \stackrel{(1)}{\leq} \mathbb{E}_{\sigma} \left[ 
-    \sum_{f \in \mathcal{F}} \exp \left[
-        s \sum_{i = 1}^{n} \sigma_{i} f (z_{i})
+    \sum_{\mathbf{a} \in \mathcal{A}} \exp \left[
+        s \sum_{i = 1}^{n} \sigma_{i} a_{i}
     \right]
 \right]
 \\
-& = \sum_{f \in \mathcal{F}} \mathbb{E}_{\sigma} \left[ 
+& = \sum_{\mathbf{a} \in \mathcal{A}} \mathbb{E}_{\sigma} \left[ 
     \prod_{i = 1}^{n} \exp \left[
-        s \sigma_{i} f (z_{i})
+        s \sigma_{i} a_{i}
     \right]
 \right]
 \\
-& \stackrel{(2)}{=} \sum_{f \in \mathcal{F}} \prod_{i = 1}^{n} \mathbb{E}_{\sigma} \left[ 
+& \stackrel{(2)}{=} \sum_{\mathbf{a} \in \mathcal{A}} \prod_{i = 1}^{n} \mathbb{E}_{\sigma} \left[ 
     \exp \left[
-        s \sigma_{i} f (z_{i})
+        s \sigma_{i} a_{i}
     \right]
 \right]
 \end{aligned}
@@ -534,20 +630,20 @@ Explanations in the derivations
 
 1. (2) follows because of the independence between $\sigma_{i}$. 
 
-Since $\mathbb{E}_{\sigma_{i} f (z_{i})} = 0$, 
+Since $\mathbb{E}_{\sigma_{i} a_{i}} = 0$, 
 we can apply Hoeffding's lemma with $\mu = 0$ 
 
 $$
 \begin{aligned}
 \exp \left[
-    s \sigma_{i} f (z_{i})
+    s \sigma_{i} a_{i}
 \right]
 & \leq \exp \left[
-    \frac{ s^{2} (2 f (z_{i}))^{2}}{ 8 }
+    \frac{ s^{2} (2 a_{i})^{2}}{ 8 }
 \right]
 \\
 & = \exp \left[
-    \frac{ s^{2} f^{2} (z_{i}) }{ 2 }
+    \frac{ s^{2} a_{i}^{2} }{ 2 }
 \right],
 \end{aligned}
 $$
@@ -556,28 +652,26 @@ and therefore
 
 $$
 \begin{aligned}
-\sum_{f \in \mathcal{F}} \prod_{i = 1}^{n} \mathbb{E}_{\sigma} \left[ 
+\sum_{\mathbf{a} \in \mathcal{A}} \prod_{i = 1}^{n} \mathbb{E}_{\sigma} \left[ 
     \exp \left[
-        s \sigma_{i} f (z_{i})
+        s \sigma_{i} a_{i}
     \right]
 \right] 
-& \leq \sum_{f \in \mathcal{F}} \prod_{i = 1}^{n} \exp \left[
-    \frac{ s^{2} f^{2} (z_{i}) }{ 2 }
+& \leq \sum_{\mathbf{a} \in \mathcal{A}} \prod_{i = 1}^{n} \exp \left[
+    \frac{ s^{2} a_{i}^{2} }{ 2 }
 \right]
 \\
-& = \sum_{f \in \mathcal{F}} \exp \left[
-    \frac{ s^{2} }{ 2 } \sum_{i = 1}^{n} f^{2} (z_{i})
+& = \sum_{\mathbf{a} \in \mathcal{A}} \exp \left[
+    \frac{ s^{2} }{ 2 } \sum_{i = 1}^{n} a_{i}^{2}
 \right]
 \\
-& \stackrel{(1)}{\leq} \lvert \mathcal{F} \rvert \exp \left[
-    \frac{ s^{2} }{ 2 } \sup_{f \in \mathcal{F}} \sum_{i = 1}^{n} f^{2} (z_{i})
+& \leq \lvert \mathcal{A} \rvert \exp \left[
+    \frac{ s^{2} }{ 2 } \sup_{\mathbf{a} \in \mathcal{A}} \sum_{i = 1}^{n} a_{i}^{2}
 \right].
 \end{aligned}
 $$
 
-Explanations in the derivations
-
-1. (1) follows since $\sum_{i = 1}^{n} f (a_{i}) \leq n \sup_{a_{i}} f (a_{i})$.
+where the last inequality follows because $\sum_{i = 1}^{n} f (a_{i}) \leq n \sup_{a_{i}} f (a_{i}), \forall f$.
 
 Combining all pieces together,
 
@@ -585,35 +679,35 @@ $$
 \begin{aligned}
 \exp \left[
     s \mathbb{E}_{\sigma} \left[
-        \sup_{f \in \mathcal{F}} \sum_{i = 1}^{n} \sigma_{i} f (z_{i})
+        \sup_{\mathbf{a} \in \mathcal{A}} \sum_{i = 1}^{n} \sigma_{i} a_{i}
     \right]
 \right]
-& \leq \lvert \mathcal{F} \rvert \exp \left[
-    \frac{ s^{2} }{ 2 } \sup_{f \in \mathcal{F}} \sum_{i = 1}^{n} f^{2} (z_{i})
+& \leq \lvert \mathcal{A} \rvert \exp \left[
+    \frac{ s^{2} }{ 2 } \sup_{\mathbf{a} \in \mathcal{A}} \sum_{i = 1}^{n} a_{i}^{2}
 \right]
 \\
 \mathbb{E}_{\sigma} \left[
-    \sup_{f \in \mathcal{F}} \sum_{i = 1}^{n} \sigma_{i} f (z_{i})
+    \sup_{\mathbf{a} \in \mathcal{A}} \sum_{i = 1}^{n} \sigma_{i} a_{i}
 \right]
-& \leq \frac{ \log \lvert \mathcal{F} \rvert }{ s } + \frac{ s R^{2} }{ 2 } 
+& \leq \frac{ \log \lvert \mathcal{A} \rvert }{ s } + \frac{ s R^{2} }{ 2 } 
 \end{aligned}
 $$
 
-where $R^{2} = \sup_{f \in \mathcal{F}} \sum_{i = 1}^{n} f^{2} (z_{i})$.
+where $R^{2} = \sup_{\mathbf{a} \in \mathcal{A}} \sum_{i = 1}^{n} a_{i}^{2}$.
 
-Since $\log \frac{ \lvert \mathcal{F} \rvert }{ s } + \frac{ s R^{2} }{ 2 }$ is a convex function, 
+Since $\log \frac{ \lvert \mathcal{A} \rvert }{ s } + \frac{ s R^{2} }{ 2 }$ is a convex function, 
 we can minimize it with respect to $s$ 
 
 $$
 \begin{aligned}
-\frac{ d }{ d s } \frac{ \log \lvert \mathcal{F} \rvert }{ s } + \frac{ s R^{2} }{ 2 } 
+\frac{ d }{ d s } \frac{ \log \lvert \mathcal{A} \rvert }{ s } + \frac{ s R^{2} }{ 2 } 
 & = 0
 \\
-- \frac{ \log \lvert \mathcal{F} \rvert }{ s^{2} } + \frac{ R^{2} }{ 2 } 
+- \frac{ \log \lvert \mathcal{A} \rvert }{ s^{2} } + \frac{ R^{2} }{ 2 } 
 & = 0
 \\
 s 
-& = \frac{ \sqrt{ 2 \log \lvert \mathcal{F} \rvert } }{ R }. 
+& = \frac{ \sqrt{ 2 \log \lvert \mathcal{A} \rvert } }{ R }. 
 \end{aligned}
 $$
 
@@ -622,26 +716,26 @@ Plugging it back
 $$
 \begin{aligned}
 \mathbb{E}_{\sigma} \left[
-    \sup_{f \in \mathcal{F}} \sum_{i = 1}^{n} \sigma_{i} f (z_{i})
+    \sup_{\mathbf{a} \in \mathcal{A}} \sum_{i = 1}^{n} \sigma_{i} a_{i}
 \right]
-& \leq \frac{ \log \lvert \mathcal{F} \rvert }{ s } + \frac{ s R^{2} }{ 2 } 
+& \leq \frac{ \log \lvert \mathcal{A} \rvert }{ s } + \frac{ s R^{2} }{ 2 } 
 \\
 & = \frac{ 
-    \log \lvert \mathcal{F} \rvert 
+    \log \lvert \mathcal{A} \rvert 
 }{ 
-    \frac{ \sqrt{ 2 \log \lvert \mathcal{F} \rvert } }{ R }
+    \frac{ \sqrt{ 2 \log \lvert \mathcal{A} \rvert } }{ R }
 } + \frac{ 
-    \frac{ \sqrt{ 2 \log \lvert \mathcal{F} \rvert } }{ R } R^{2} 
+    \frac{ \sqrt{ 2 \log \lvert \mathcal{A} \rvert } }{ R } R^{2} 
 }{ 
     2 
 } 
 \\
-& = R \sqrt{ 2 \log \lvert \mathcal{F} \rvert }
+& = R \sqrt{ 2 \log \lvert \mathcal{A} \rvert }
 \\
 \mathbb{E}_{\sigma} \left[
-    \sup_{f \in \mathcal{F}} \frac{ 1 }{ n } \sum_{i = 1}^{n} \sigma_{i} f (z_{i})
+    \sup_{\mathbf{a} \in \mathcal{A}} \frac{ 1 }{ n } \sum_{i = 1}^{n} \sigma_{i} a_{i}
 \right]
-& \leq \frac{ R \sqrt{ 2 \log \lvert \mathcal{F} \rvert } }{ n },
+& \leq \frac{ R \sqrt{ 2 \log \lvert \mathcal{A} \rvert } }{ n },
 \end{aligned}
 $$
 
@@ -651,21 +745,36 @@ where the last equation is derived by dividing both sides by $n$.
 
 ### Connection with VC theory
 
-If $\mathcal{F}$ in Massart’s lemma is a finite hypothesis class $\mathcal{H}$,
-then $R = \sup_{h \in \mathcal{H}} \sqrt{\sum_{i = 1}^{n} h^{2} (z_{i})} = \sqrt{n}$ since $h^{2} (z_{i}) = 1, \forall z_{i}$. Therefore, 
+:::{#lem-}
+
+The Rademacher complexity of the hypothesis class $\mathcal{H}$ with the finite VC dimension $d$ is upper-bounded 
 
 $$
-\mathrm{Rad}_{\mathcal{H}} (\mathcal{S}) \leq \frac{ \sqrt{n} \sqrt{2 \log \lvert \mathcal{H} \rvert} }{ n } = \sqrt{\frac{ 2 \log \lvert \mathcal{H} \rvert }{ n }}.
+\mathrm{Rad}_{n} (\mathcal{H}) 
+\leq \sqrt{\frac{ 2 d \log \frac{ e n }{ d } }{ n }}.
 $$
 
-When $\mathcal{H}$ is an infinite class, 
-$\log \lvert \mathcal{H} \rvert$ can be replaced with $\log \lvert \mathcal{H} (\mathcal{S}) \rvert$, 
-the number of projections of $\mathcal{H}$ on the sample $\mathcal{S}$, 
+:::
+
+:::{.callout-note collapse="true" title="Proof"}
+
+If $\mathcal{H}$ has a finite VC dimension, 
+its projection to any sample $\mathcal{S}$ with size $n$ is finite. 
+Since each $\mathcal{H} (\mathcal{S})$ can be seen as a set of vectors of length $n$,
+we can replace the set of vectors $\mathcal{A}$ in @lem-massarts-lemma with $\mathcal{H} (\mathcal{S})$. 
+
+Since $h^{2} (z_{i}) = 1, \forall z_{i}, \forall h \in \mathcal{H}$,
+
+$$
+R = \sup_{h \in \mathcal{H}} \sqrt{\sum_{i = 1}^{n} h^{2} (z_{i})} = \sqrt{n}.
+$$ 
+
 so we have 
 
 $$
-\mathrm{Rad}_{\mathcal{H}} (\mathcal{S}) 
-\leq \sqrt{\frac{ 2 \log \lvert \mathcal{H} (\mathcal{S}) \rvert }{ n }}.
+\mathrm{Rad}_{\mathcal{S}} (\mathcal{H} (\mathcal{S})) 
+\leq \frac{ \sqrt{n} \sqrt{2 \log \lvert \mathcal{H} (\mathcal{S}) \rvert} }{ n } 
+= \sqrt{\frac{ 2 \log \lvert \mathcal{H} (\mathcal{S}) \rvert }{ n }}.
 $$
 
 By the definition of growth function and Sauer's lemma $\lvert \mathcal{H} (\mathcal{S}) \rvert \leq \Pi_{\mathcal{H}} (\mathcal{S}) \leq \left( \frac{ e }{ d } n \right)^{d}$,
@@ -673,7 +782,10 @@ where $d$ is the VC dimension of $\mathcal{H}$,
 we can derive
 
 $$
-\mathrm{Rad}_{\mathcal{H}} (\mathcal{S}) \leq \sqrt{\frac{ 2 \log \lvert \mathcal{H} (\mathcal{S}) \rvert }{ n }} 
+\mathrm{Rad}_{\mathcal{S}} (\mathcal{H}) 
+\leq \sqrt{\frac{ 2 \log \lvert \mathcal{H} (\mathcal{S}) \rvert }{ n }} 
 \leq \sqrt{\frac{ 2 \log \Pi_{\mathcal{H}} (\mathcal{n}) }{ n }} 
 \leq \sqrt{\frac{ 2 d \log \frac{ e n }{ d } }{ n }}.
 $$
+
+:::

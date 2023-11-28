@@ -1,11 +1,8 @@
-# Agnostic Learning
+# Uniform Convergence
 
-Agnostic learning is the PAC learning in the unrealizable setting.
-That is, the perfect concept cannot be realized because either one of the following events happens
-
-- the concept that the algorithm $A$ learns is not in the hypothesis class that $A$ considers,
-
-- any instance can have contradictory labels, amd therefore there doesn't exist a concept that can perfectly label all instances in the input space. 
+**Uniform convergence** means convergence with respect to the difference between the empirical error and the true error, 
+which is uniform with respect to all hypotheses in the class.
+That is, uniform convergence bound the difference between true and empirical error across all hypotheses in the class simultaneously.
 
 ## Uniform convergence property
 
@@ -14,7 +11,9 @@ there exists a large enough sample size such that for all hypotheses in the clas
 the empirical risk is close to the true risk with high probability,
 regardless of the underlying distribution $\mathbb{P}_{Z}$. 
 
-:::{#def-}
+:::{#def-uniform-convergence-property}
+
+#### Uniform convergence property
 
 A hypothesis class $\mathcal{H}$ has the **uniform convergence property** if, 
 
@@ -29,77 +28,26 @@ A hypothesis class $\mathcal{H}$ has the **uniform convergence property** if,
     the *difference between its true risk and estimated risk* is no greater than $\epsilon$ with probability at least $1 - \delta$
 
     $$
-    \mathbb{P} (\lvert R (h) - R_{n} (h) \rvert \leq \epsilon) \geq 1 - \delta.
+    \mathbb{P}_{\mathcal{S}} (\lvert R (h) - R_{\mathcal{S}} (h) \rvert \leq \epsilon) \geq 1 - \delta.
     $$
 
 :::
 
-## Empirical risk minimizer (ERM)
+Note that this definition is stated using the **sample complexity** $n_{\mathcal{H}} (\epsilon, \delta)$,
+which is the sample size that we need to supply, 
+so that with an arbitrarily high probability $1 - \delta$, 
+the considered event has an arbitrarily small error $\epsilon$.
 
-Since there is no way for any algorithm to learn a perfect concept that works any dataset in the agnostic settings,
-the best hypothesis an algorithm can learn is the one that minimizes the empirical risk 
 
-$$
-h_{n} = \argmin_{h \in \mathcal{H}} R_{n} (h).
-$$
+## Uniform convergence results 
 
-A special property of the empirical risk minimizer is that 
+The following theorems state that a hypothesis class has the uniform convergence property if either it has a finite number of hypotheses or has a finite VC dimension.
 
-$$
-R (h) - R (h_{n}) \leq 2 \max_{h \in \mathcal{H}} \lvert R (h) - R_{n} (h) \rvert.
-$$
+:::{#thm-uniform-convergence}
 
-:::{.callout-note collapse="true" title="Proof"}
+#### Uniform convergence theorem
 
-$$
-\begin{aligned}
-R (h) - R (h_{n}) 
-& = (R (h) + R_{n} (h) - R_{n} (h)) - (R (h_{n}) + R_{n} (h_{n}) - R_{n} (h_{n}))
-\\
-& = (R_{n} (h) - R_{n} (h_{n})) + (R (h) - R_{n} (h)) + (R_{n} (h_{n}) - R (h_{n}))
-\end{aligned}
-$$
-
-Since $h_{n}$ is the one that minimizes $R_{n}$, 
-$R_{n} (h) - R_{n} (h_{n}) \geq 0$, 
-and therefore
-
-$$
-\begin{aligned}
-R (h) - R (h_{n}) 
-& \leq (R (h) - R_{n} (h)) + (R_{n} (h_{n}) - R (h_{n}))
-\\
-& \leq 2 \max_{h \in \mathcal{H}} \lvert R (h) - R_{n} (h) \rvert.
-\end{aligned}
-$$
-
-:::
-
-## Agnostic PAC model
-
-:::{#def-}
-
-An algorithm $A$ learns the concept class $\mathcal{C}$ in the **agnostic PAC model** by the hypothesis class $\mathcal{H}$ if, 
-
-- given a set of labeled instances $\mathcal{S}$, where instances and labels are sampled from *any joint distribution* $\mathbb{P}_{Z}$ over the instance space and the label space, and there exists a function for some $\epsilon > 0 $ and $\delta > 0$ such that 
-
-    $$
-    n \geq n_{\mathcal{H}} (\epsilon, \delta),
-    $$
-
-- $A$ returns a hypothesis $h \in \mathcal{H}$, where the *difference between its true risk and the minimum true risk achieved by any hypothesis in $\mathcal{H}$* is no greater than $\epsilon$ with probability at least $1 - \delta$
-
-    $$
-    \mathbb{P} (\lvert R (h) - \min_{h \in \mathcal{H}} R (h) \rvert \leq \epsilon) \geq 1 - \delta.
-    $$
-
-:::
-
-## Sample complexity results 
-
-:::{#thm-}
-
-An $A$ has the uniform convergence property over the hypothesis class $\mathcal{H}$ with the sample complexity
+Any finite hypothesis class $\mathcal{H}$ has the uniform convergence property with the sample complexity
 
 $$
 n_{\mathcal{H}} (\epsilon, \delta) = \frac{
@@ -217,99 +165,19 @@ $$
 
 :::
 
-The uniform convergence result guarantees the agnostic PAC learnability of ERM.
-
 :::{#thm-}
 
-If $A$ learns the concept by minimizing the empirical risk, 
-then $A$ learns the concept class $\mathcal{C}$ by the finite hypothesis class $\mathcal{H}$ in the agnostic PAC model with the sample complexity
-
-$$
-n_{\mathcal{H}} (\epsilon, \delta) = 2 \frac{
-    \log \lvert \mathcal{H} \rvert + \log \frac{ 2 }{ \delta } 
-}{
-    \epsilon^{2}
-}.
-$$
-
-:::
-
-:::{.callout-note collapse="true" title="Proof"}
-
-We can prove this using the uniform convergence result,
-which states that if we have 
-
-$$
-n \geq \frac{
-    \log \lvert \mathcal{H} \rvert + \log \frac{ 2 }{ \delta } 
-}{
-    2 \hat{\epsilon}^{2}
-},
-$$
-
-then for any $h \in \mathcal{H}$ we have
-
-$$
-\mathbb{P} (\lvert R (h) - R_{n} (h) \rvert \leq \hat{\epsilon}) \geq 1 - \delta.
-$$
-
-According the property of the empirical risk minimizer
-
-$$
-R (h) - R (h_{n}) \leq 2 \max_{h \in \mathcal{H}} \lvert R (h) - R_{n} (h) \rvert,
-$$
-
-to the uniform convergence result,
-we have
-
-$$
-\mathbb{P} (\lvert R (h) - R (h_{n}) \rvert \leq 2 \hat{\epsilon}) \geq 1 - \delta.
-$$
-
-Rewriting the statement by replacing $\hat{\epsilon} = \frac{ \epsilon }{ 2 }$,
-we have the statement that if
-
-$$
-n \geq \frac{
-    \log \lvert \mathcal{H} \rvert + \log \frac{ 2 }{ \delta } 
-}{
-    2 \hat{\epsilon}^{2}
-} = 
-\frac{
-    \log \lvert \mathcal{H} \rvert + \log \frac{ 2 }{ \delta } 
-}{
-    2 \left(
-        \frac{ 1 }{ 2 } \epsilon
-    \right)^{2}
-} = 2 \frac{
-    \log \lvert \mathcal{H} \rvert + \log \frac{ 2 }{ \delta } 
-}{
-    \epsilon^{2}
-},
-$$
-
-then the hypothesis learned by minimizing the empirical risk $h_{n}$ has the following property for any $h \in \mathcal{H}$
-
-$$
-\mathbb{P} (\lvert R (h_{n}) - R(h) \rvert \leq \epsilon) \geq 1 - \delta.
-$$
-
-:::
-
-The agnostic PAC learnability can also be established for the ERM algorithm over the infinite hypothesis classes by the following theorem.
-
-:::{#thm-}
-
-If $A$ learns the concept by minimizing the empirical risk, 
-then $A$ learns the concept class $\mathcal{C}$ by the infinite hypothesis class $\mathcal{H}$ in the agnostic PAC model with the sample complexity
+Any infinite hypothesis class $\mathcal{H}$ with a finite VC dimension has the uniform convergence property with the sample complexity
 
 $$
 n_{\mathcal{H}} (\epsilon, \delta) = 8 \frac{
     \log \Pi_{\mathcal{H}} (2 n) + \log \frac{ 4 }{ \delta } 
 }{
     \epsilon^{2}
-}.
+}
 $$
+
+where $n$ is the number of samples in the training set.
 
 :::
 

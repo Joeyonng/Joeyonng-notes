@@ -1,6 +1,4 @@
-# Bayesian Decision Theory
-
-## Bayes classifier
+# Bayesian Classifier
 
 **Bayes classifier** is the particular hypothesis $h^{*} (x)$ that minimizes the risk
 
@@ -16,7 +14,7 @@ $$
 
 which is the minimum risk that any hypothesis can achieve if we know the true probabilities $\mathbb{P}_{X, Y}$.
 
-### MAP rule
+## MAP rule
 
 Since the true risk $R (h)$ does not depend on $X$ and @lem-risk shows that $R(h) = \mathbb{E}_{X} \left[ \mathbb{E}_{Y \mid X} \left[ L (h (X), Y) \right] \right]$,
 the Bayes classifier can also be written as the hypothesis that minimizes the conditional expectation

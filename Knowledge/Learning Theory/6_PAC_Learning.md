@@ -1,32 +1,60 @@
 # PAC Learning
 
-## Consistency model
+Probably approximately correct (PAC) learning is a statistical learning objective that requires that the algorithm learns a hypothesis $h$ from a hypothesis class $\mathcal{H}$ using a given sample set $\mathcal{S}$ with the following properties.
+
+- Correct: $h$ should achieve low true risk $R (h)$.
+
+- Approximately: $R (h)$ should be approximately closed to the lowest true risk that any hypothesis can achieve $R (h) \approx \min_{\hat{h}} R (\hat{h})$.
+
+- Probably: the event $R (h) \approx \min_{\hat{h}} R (\hat{h})$ should have high probability.
+
+## Realizable case
+
+Under the realizable assumption, 
+it is assumed that there exists a perfect concept from a concept class $c \in \mathcal{C}$ such that all labels of the instances are labeled according to $c$ and 
+the hypothesis class that our algorithm ERM considers is the concept class $\mathcal{H} = \mathcal{C}$.
+
+:::{#def-consistent}
+
+#### Consistent
+
+We say that a hypothesis $h$ is **consistent** with a set of labeled instances $\mathcal{S} = \{ (\mathbf{x}_{1}, y_{1}), \dots, (\mathbf{x}_{n}, y_{n}) \}$ if $h (\mathbf{x}_{i}) = y_{i}$ for all $i$.
+
+:::
+
+Therefore, under the realizable assumption, 
+ERM can always find a hypothesis that is consistent with any given training set,
+and therefore we say that ERM learns in the consistency model.
+
+### Consistency model
 
 Learning in the consistency model requires the algorithm to always predict correctly on the training set,
 but doesn't care much about the generalization of the performance on the test set. 
 
-We say that a concept $c$ is **consistent** with a set of labeled instances $\mathcal{S} = \{ (\mathbf{x}_{1}, y_{1}), \dots, (\mathbf{x}_{n}, y_{n}) \}$ if $c (\mathbf{x}_{i}) = y_{i}$ for all $i$.
+:::{#def-consistency-model}
 
-:::{#def-}
+#### Consistency model
 
-An algorithm $A$ learns the concept class $\mathcal{C}$ in the **consistency model** if
+An algorithm $A$ learns the hypothesis class $\mathcal{H} = \mathcal{C}$ in the **consistency model** if
 
-- given a set of labeled instances $\mathcal{S} = \{ \mathbf{x}_{1}, y_{1}), \dots, (\mathbf{x}_{n}, y_{n}) \}$, where instances are sampled from *any distribution* $\mathbb{P}_{\mathbf{X}}$ over the instance space, 
+- given any set of labeled instances $\mathcal{S} = \{ z_{1}, \dots, z_{n} \}$, where instances are sampled from *any distribution* $\mathbb{P}_{\mathbf{X}}$ over the instance space and are labeled by *any concept* $c \in \mathcal{C}$, 
 
-- $A$ can find a concept $c \in \mathcal{C}$ that is consistent with $\mathcal{S}$ if $c$ exists, or $A$ outputs False if no such concept exists.
+- $A$ can find a concept $h \in \mathcal{H}$ that is consistent with $\mathcal{S}$ if $h$ exists, or $A$ outputs False if no such concept exists.
 
 :::
 
-## Probably Approximately Correct (PAC) model
+### Probably Approximately Correct (PAC) model
 
 Learning in the PAC model is more applicable in real world,
 as it emphasizes more on the generalization ability of the learned function from the algorithm. 
 
-:::{#def-}
+:::{#def-pac-model}
 
-An algorithm $A$ learns the concept class $\mathcal{C}$ in the **PAC model** by the hypothesis class $\mathcal{H} \supseteq \mathcal{C}$ if, 
+#### PAC model
 
-- given a set of labeled instances $\mathcal{S}$, where instances are sampled from *any distribution* $\mathbb{P}_{\mathbf{X}}$ over the instance space and are labeled by *any concept* $c \in \mathcal{C}$, and there exists a function for some $\epsilon > 0 $ and $\delta > 0$ such that 
+An algorithm $A$ learns the concept class $\mathcal{C}$ in the **PAC model** by the hypothesis class $\mathcal{H} = \mathcal{C}$ if, 
+
+- given a set of labeled instances $\mathcal{S} = \{ z_{1}, \dots, z_{n} \}$, where instances are sampled from *any distribution* $\mathbb{P}_{\mathbf{X}}$ over the instance space and are labeled by *any concept* $c \in \mathcal{C}$, and there exists a function for some $\epsilon > 0 $ and $\delta > 0$ such that 
 
     $$
     n \geq n_{\mathcal{H}} (\epsilon, \delta),
@@ -40,7 +68,10 @@ An algorithm $A$ learns the concept class $\mathcal{C}$ in the **PAC model** by 
 
 :::
 
-## Sample complexity results 
+### ERM as a PAC learner
+
+Here we present some results about the generalization error of the algorithms using the definitions of consistency model and PAC model. 
+Since ERM learns the hypothesis class in the consistency model, the following theorems naturally apply to it.
 
 The following theorem states that a **finite concept class** $\mathcal{C}$ is PAC learnable by the same hypothesis class $\mathcal{H} = \mathcal{C}$ if $\mathcal{C}$ is learnable in the consistency model,
 and proves its sample complexity as a function of the size of the hypothesis class.
@@ -544,3 +575,92 @@ n
 $$
 
 :::
+
+## Unrealizable case
+
+The PAC learning in the unrealizable setting is also called agnostic PAC learning
+where the perfect concept cannot be realized because either one of the following events happens
+
+- the concept that the algorithm $A$ learns is not in the hypothesis class that $A$ considers,
+
+- any instance can have contradictory labels, amd therefore there doesn't exist a concept that can perfectly label all instances in the input space. 
+
+### Agnostic PAC model
+
+:::{#def-}
+
+An algorithm $A$ learns the concept class $\mathcal{C}$ in the **agnostic PAC model** by the hypothesis class $\mathcal{H}$ if, 
+
+- given a set of labeled instances $\mathcal{S}$, where instances and labels are sampled from *any joint distribution* $\mathbb{P}_{Z}$ over the instance space and the label space, and there exists a function for some $\epsilon > 0 $ and $\delta > 0$ such that 
+
+    $$
+    n \geq n_{\mathcal{H}} (\epsilon, \delta),
+    $$
+
+- $A$ returns a hypothesis $h \in \mathcal{H}$, where the *difference between its true risk and the minimum true risk achieved by any hypothesis in $\mathcal{H}$* is no greater than $\epsilon$ with probability at least $1 - \delta$
+
+    $$
+    \mathbb{P} (\lvert R (h) - \min_{h \in \mathcal{H}} R (h) \rvert \leq \epsilon) \geq 1 - \delta.
+    $$
+
+:::
+
+### Uniform convergence implies agnostic PAC of ERM
+
+The uniform convergence result guarantees the agnostic PAC learnability of ERM.
+
+:::{#lem-uc-pac-erm}
+
+If $A$ is the ERM algorithm that learns the hypothesis class $\mathcal{H}$,
+which satisfies uniform convergence with sample complexity $n_{\mathcal{H}}^{u}$,
+then $A$ learns $\mathcal{H}$ in the agnostic PAC model with the sample complexity
+
+$$
+n_{\mathcal{H}} (\epsilon, \delta) = n_{\mathcal{H}}^{u} (\frac{ \epsilon }{ 2 }, \delta).
+$$
+
+:::
+
+:::{.callout-note collapse="true" title="Proof"}
+
+Let $h_{n}$ be the hypothesis learned by ERM. 
+According the property of the ERM, we have
+
+$$
+R (h) - R (h_{n}) \leq 2 \max_{h \in \mathcal{H}} \lvert R (h) - R_{n} (h) \rvert.
+$$
+
+Since $\mathcal{H}$ has @def:uniform-convergence-property,
+if $n \geq n_{\mathcal{H}}^{u} (\hat{\epsilon}, \delta)$,
+then
+
+$$
+\forall h \in \mathcal{H}, \mathbb{P} (\lvert R (h) - R_{n} (h) \rvert \leq \hat{\epsilon}) \geq 1 - \delta,
+$$
+
+which is equivalent of 
+
+$$
+\begin{aligned}
+\mathbb{P} (\max_{h \in \mathcal{H}} \lvert R (h) - R_{n} (h) \rvert \leq \hat{\epsilon}) 
+& \geq 1 - \delta
+\\
+\mathbb{P} (R (h) - R (h_{n}) \leq 2 \hat{\epsilon}) 
+& \geq 1 - \delta.
+\end{aligned}
+$$
+
+By setting $\epsilon = 2 \hat{\epsilon}$,
+we have the conclusion that if $n \geq n_{\mathcal{H}}^{u} (\frac{ \epsilon }{ 2 }, \delta)$,
+then
+
+$$
+\mathbb{P} (R (h) - R (h_{n}) \leq \epsilon) \geq 1 - \delta,
+$$
+
+which is the definition of agonistic PAC learning.
+
+:::
+
+By the lemma @lem-uc-pac-erm, 
+we can easily derive the sample complexity results for agnostic PAC by plugging $ \epsilon = \frac{ \epsilon }{ 2 }$ to the sample complexity results of the uniform convergence.

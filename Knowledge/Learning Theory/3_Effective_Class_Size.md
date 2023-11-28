@@ -28,10 +28,11 @@ Note that $\Pi_{\mathcal{H}} (n) \leq 2^{n}$ for any $\mathcal{H}$ with binary l
 
 ## Vapnik-Chervonenkis (VC) dimension
 
-We say that $\mathcal{X}^{n}$ is **shattered** by $\mathcal{H}$ if a hypothesis class $\mathcal{H}$ can label a set of instances $\mathcal{X}^{n}$ in every possible way, that is, $\mathcal{X}^{n}$ is shattered by $\mathcal{H}$ if
+We say that a sample $\mathcal{S}$ is **shattered** by the hypothesis class $\mathcal{H}$ if a $\mathcal{H}$ can label $\mathcal{S}$ in every possible way. 
+That is, $\mathcal{S}$ is shattered by $\mathcal{H}$ if
 
 $$
-\mathcal{H} (\mathcal{X}^{n}) = 2^{n}.
+\mathcal{H} (\mathcal{S}) = 2^{\lvert \mathcal{S} \rvert}.
 $$
 
 ::: {prf:definition}
@@ -39,7 +40,7 @@ $$
 The **Vapnik-Chervonenkis (VC) dimension** of $\mathcal{H}$ is the size of the largest set that is shattered by $\mathcal{H}$
 
 $$
-\mathrm{VC} (\mathcal{H}) = \max_{n: \mathcal{H} (\mathcal{X}^{n}) = 2^{n}} n.
+\mathrm{VC} (\mathcal{H}) = \max_{n: \mathcal{H} (\mathcal{S}) = 2^{n}} n.
 $$
 
 :::
