@@ -1,45 +1,95 @@
----
-title: "Litao Qiao 乔立涛"
-about:
-  id: hero-heading
-  template: jolla
-  links:
-      - icon: github
-        text: Github
-        url: https://github.com/joeyonng
-      - icon: envelope-at-fill
-        text: Email
-        url: mailto:checkpppp@gmail.com
-      - icon: file-earmark-pdf-fill
-        text: Resume
-        url: resume.pdf
-comments: false
-sidebar: false
-format:
-  html:
-    grid:
-      body-width: 640px
----
+# Joeyonng's Notebook
 
-:::{#hero-heading}
+## Notations
 
-Hello! I'm Litao Qiao, also known online as Joeyonng. I'm currently a PhD student in ECE department of University of California, San Diego (UCSD) since 2020.
-UCSD is also where I earned my bachelor's in 2018. 
+### Mathematical definitions
 
-My primary research interest is [Explainable machine learning](https://en.wikipedia.org/wiki/Explainable_artificial_intelligence) and my expertise extends to general machine learning theory, combinatorial logic, and deep learning. 
+| Symbol | Name | Description |
+|:---:|:---:|:---:|
+| $x$ | Scalar | Variables are scalars (numbers). |
+| $\mathbf{x}$ | Vector | Bold non-capitalized variables are vectors. |
+| $\hat{\mathbf{x}}$ | Unit vector | Vectors that have a hat are unit vectors. |
+| $\mathbf{X}$ | Matrix | Bold capitalized variables are matrices. |
+| $X$ | Random variable | Capitalized variables are random variables. |
+| $\mathcal{X}$ | Set | Calligraphic variables are sets. |
 
-This website serves as a platform for sharing my learned knowledge and research notes. 
-Additionally, I enjoy developing web applications and you can find some of my side projects in my Github.
+### Mathematical operations
 
-:::
+| Symbol | Name | Description |
+|:---:|:---:|:---:|
+| $\mathbf{a} \cdot \mathbf{b}$ | Dot product | Dot product between vector $\mathbf{a}$ and $\mathbf{b}$ (same as $\mathbf{a}^{T} \mathbf{b}$). |
+| $\mathbf{A}\mathbf{b}$ | Matrix vector product | Matrix product between matrix $\mathbf{A}$ and vector $\mathbf{b}$ (column matrix). |
+| $\mathbf{a}^{T}$ | Vector transpose | The transposed vector is a matrix of size $1 \times d$  |
+| $\mathbf{A}^{T}$ | Matrix transpose | Transpose a matrix. |
 
-## Selected Papers
+### Mathematical indexing
 
+| Symbol | Name | Description |
+|:---:|:---:|:---:|
+| $\mathbf{A}_{i, j}$ | Matrix element selection | Select the scalar at row $i$ and column $j$ of matrix $\mathbf{A}$. |
+| $\mathbf{A}_{i, *}$ | Matrix row selection | Select the vector at row $i$ of matrix $\mathbf{A}$. |
+| $\mathbf{A}_{*, j}$ | Matrix column selection | Select the vector at column $j$ of matrix $\mathbf{A}$. |
+| $\mathbf{a}_{i}$ | Vector element selection | Select the scalar at index $i$ of vector $\mathbf{a}$. |
 
-**Qiao, Litao**, Weijia Wang, Sanjoy Dasgupta and Bill Lin. “Rethinking Logic Minimization for Tabular Machine Learning.” *IEEE Transactions on Artificial Intelligence* 4 (2023): 1129-1140.
+### Others
 
-**Qiao, Litao**, Weijia Wang and Bill Lin. “Alternative Formulations of Decision Rule Learning from Neural Networks.” *Mach. Learn. Knowl. Extr.* 5 (2023): 937-956.
+| Symbol | Name | Description |
+|:---:|:---:|:---:|
+| $\mathbb{1}_{cond}$ | Conditional operator | Evaluates to 1 if $cond$ is true, 0 otherwise. |
 
-Wang, Weijia, **Litao Qiao** and Bill Lin. “Disjunctive Threshold Networks for Tabular Data Classification.” *IEEE Open Journal of the Computer Society* 4 (2023): 185-194.
+## Cheat sheet
 
-**Qiao, Litao**, Weijia Wang and Bill Lin. “Learning Accurate and Interpretable Decision Rule Sets from Neural Networks.” *AAAI Conference on Artificial Intelligence* (2021).
+### Logarithm
+
+1. Product
+
+    $$ \ln(xy) = \ln(x) + \ln(y) $$ 
+
+1. Quotient
+
+    $$ \ln \left( \frac{x}{y} \right) = \ln(x) - \ln(y) $$
+
+1. Log of power
+
+    $$ \ln(x^{y}) = y \ln(x) $$
+
+1. Log reciprocal	
+
+    $$ \ln \left( \frac{1}{x} \right) = \ln(1) - \ln(x) = 0 - \ln(x) = -\ln(x) $$
+
+### Linear algebra
+
+1. The squared norm of vector $\mathbf{x}$
+
+    $$ \lVert \mathbf{x} \rVert^{2} = \mathbf{x} \cdot \mathbf{x} = \mathbf{x}^{T} \mathbf{x}$$
+    
+1. The squared norm of a vector difference between $\mathbf{a}$ and $\mathbf{b}$
+
+    $$ \lVert \mathbf{a} - \mathbf{b} \rVert^{2} = (\mathbf{a} - \mathbf{b})^{T} (\mathbf{a} - \mathbf{b}) = \mathbf{a}^{T}\mathbf{a} - 2 \mathbf{a}^T\mathbf{b} + \mathbf{b}^{T}\mathbf{b} $$
+
+1. The matrix form of the dot product between two vectors $\mathbf{a}$ and $\mathbf{b}$ with a coefficient $\lambda$
+
+    $$ \lambda(\mathbf{a} \cdot \mathbf{b}) = \mathbf{a}^{T} \mathbf{\Lambda} \mathbf{b} $$
+
+    where $\mathbf{\Lambda}$ is a diagonal matrix with value $\lambda$.
+    
+1. The transpose of the product of two matrices $\mathbf{A}$ and $\mathbf{B}$
+
+    $$ (\mathbf{A}\mathbf{B})^{T} = \mathbf{B}^{T}\mathbf{A}^{T} $$
+
+### Calculus
+
+1. The derivative of the sigmoid function $\sigma$ is $\sigma (1 - \sigma)$
+
+    $$ 
+    \begin{align}
+    \frac{\partial \sigma}{\partial x} & = \frac{\partial}{\partial x} \frac{1}{1 + e^{-x}} \\
+    & = \frac{\partial}{\partial x} (1 + e^{-x})^{-1} \\
+    & = -(1 + e^{-x})^{-2} \times -e^{-x} \\
+    & = \frac{e^{-x}}{(1 + e^{-x})^{2}} \\
+    & = \frac{e^{-x}}{1 + e^{-x}} \frac{1}{1 + e^{-x}} \\
+    & = \frac{e^{-x}}{1 + e^{-x}} \left( \frac{1 + e^{-x}}{1 + e^{-x}} - \frac{e^{-x}}{1 + e^{-x}} \right) \\
+    & = \frac{e^{-x}}{1 + e^{-x}} \left( 1 - \frac{e^{-x}}{1 + e^{-x}} \right) \\
+    & = \sigma (1 - \sigma) \\
+    \end{align}
+    $$

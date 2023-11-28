@@ -23,11 +23,11 @@ website:
   navbar:
     left:
       - href: "index.md"
-        text: "Home"
-      - href: "Knowledge"
         text: "Knowledge"
       - href: "Notes"
         text: "Notes"
+      - href: "about.md"
+        text: "About"
       - href: "https://joeyonng.github.io/joeyonng-backyard/"
         text: "Backyard"
 
