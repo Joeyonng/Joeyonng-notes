@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Joeyonng - Basis</title>
+<title>Joeyonng - Basis and Dimension</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -44,7 +44,7 @@ ul.task-list li input[type="checkbox"] {
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "end",
-  "type": "overlay",
+  "type": "textbox",
   "limit": 20,
   "language": {
     "search-no-results-text": "No results",
@@ -77,7 +77,6 @@ ul.task-list li input[type="checkbox"] {
   </script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
-<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
@@ -102,19 +101,22 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Knowledge</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../Notes" rel="" target="">
+    <a class="nav-link" href="../../Notes/index.html" rel="" target="">
  <span class="menu-text">Notes</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="https://joeyonng.github.io/joeyonng-backyard/" rel="" target="">
+    <a class="nav-link" href="https://joeyonng.github.io/joeyonng-backyard/" rel="" target=""><i class="bi bi-House" role="img">
+</i> 
  <span class="menu-text">Backyard</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools ms-auto">
+            <div class="quarto-navbar-tools">
 </div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
@@ -124,7 +126,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Basis</li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Knowledge/Linear Algebra/01_Fields_and_Spaces.html">Linear Algebra</a></li><li class="breadcrumb-item"><a href="../../Knowledge/Linear Algebra/04_Basis_and_Dimension.html">Basis and Dimension</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -146,13 +148,115 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
- <span class="menu-text">Learning Theory</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Linear Algebra</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/01_Fields_and_Spaces.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fields and Spaces</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/02_Vectors_and_Matrices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vectors and Matrices</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/03_Span_and_Linear_Independence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Span and Linear Independence</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/04_Basis_and_Dimension.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Basis and Dimension</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/05_Linear_Map_and_Rank.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Linear Map and Rank</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/06_Inner_Product_and_Norm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Inner Product and Norm</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/07_Orthogonality_and_Unitary_Matrix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Orthogonality and Unitary Matrix</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/08_Complementary_Subspaces_and_Projection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Complementary Subspaces and Projection</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/09_Orthogonal_Complement_and_Decomposition.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Orthogonal Complement and Decomposition</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/10_URV_Fractorization_and_SVD.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">URV Factorization and SVD</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/11_Pseudoinverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pseudoinverse</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/12_Orthogonal_and_Affine_Projection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Orthogonal and Affine Projection</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/13_Determinants_and_Eigensystems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Determinants and Eigensystems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/14_Similarity_and_Diagonalization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Similarity and Diagonalization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/15_Normal_and_Positive_Definite_Matrices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Normal and Positive Definite Matrices</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">Learning Theory</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Knowledge/Learning Theory/1_Statistical_Learning.html" class="sidebar-item-text sidebar-link">
@@ -208,7 +312,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#properties-of-basis" id="toc-properties-of-basis" class="nav-link active" data-scroll-target="#properties-of-basis">Properties of basis</a></li>
+  <li><a href="#basis" id="toc-basis" class="nav-link active" data-scroll-target="#basis">Basis</a>
+  <ul class="collapse">
+  <li><a href="#properties-of-basis" id="toc-properties-of-basis" class="nav-link" data-scroll-target="#properties-of-basis">Properties of basis</a></li>
+  </ul></li>
   <li><a href="#dimension" id="toc-dimension" class="nav-link" data-scroll-target="#dimension">Dimension</a>
   <ul class="collapse">
   <li><a href="#properties-of-dimension" id="toc-properties-of-dimension" class="nav-link" data-scroll-target="#properties-of-dimension">Properties of dimension</a></li>
@@ -222,7 +329,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Basis</h1>
+<h1 class="title">Basis and Dimension</h1>
 </div>
 
 
@@ -237,6 +344,8 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<section id="basis" class="level1">
+<h1>Basis</h1>
 <p>A set of vectors <span class="math inline">v_{1}, \dots, v_{k}</span> is a basis of a subspace <span class="math inline">\mathcal{W}</span> of a vector space <span class="math inline">\mathcal{V}</span> over a field <span class="math inline">\mathbb{F}</span>, if</p>
 <ul>
 <li><p><span class="math inline">\mathcal{W} = \text{span} (v_{1}, \dots, v_{k})</span>, and</p></li>
@@ -246,30 +355,67 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="properties-of-basis">Properties of basis</h2>
 <ul>
 <li><p>If <span class="math inline">\mathcal{B} = \{ b_{1}, \dots, b_{n} \}</span> is a basis of the subspace <span class="math inline">\mathcal{W}</span>, <span class="math inline">\mathcal{B}</span> is a minimal spanning set for <span class="math inline">\mathcal{W}</span>. That is, there is no vector in <span class="math inline">\mathcal{B}</span> that can be removed such that <span class="math inline">\mathcal{B}</span> is still a spanning set.</p>
-<p>:::{prf:proof} :class: dropdown</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>We will prove by contradiction. Assume <span class="math inline">\mathcal{B}</span> is a basis of the subspace <span class="math inline">\mathcal{W}</span> but is not a minimal spanning set, which means that the vectors in <span class="math inline">\mathcal{B}</span> are linear independent and <span class="math inline">\mathcal{B}</span> contains at least one vector <span class="math inline">b</span> such that <span class="math inline">\hat{\mathcal{B}} = \mathcal{B} \setminus \{ b \}</span> is still a spanning set.</p>
 <p>Therefore, there exists a set of coefficients <span class="math inline">\alpha_{1}, \dots, \alpha_{n - 1}</span> such that <span class="math inline">b</span> is a linear combination of the vectors in <span class="math inline">\hat{\mathcal{B}}</span></p>
 <p><span class="math display">
   b = \sum_{b_{i} \in \hat{\mathcal{B}}} \alpha_{i} b_{i}.
   </span></p>
 <p>However, this means that the vectors in <span class="math inline">\mathcal{B}</span> are linear dependent, which violates our assumption.</p>
-<p>:::</p></li>
+</div>
+</div>
+</div></li>
 <li><p>If <span class="math inline">\mathcal{B} = \{ b_{1}, \dots, b_{n} \}</span> is a basis of the subspace <span class="math inline">\mathcal{W}</span>, <span class="math inline">\mathcal{B}</span> is a maximal linearly independent subset of <span class="math inline">\mathcal{W}</span>. That is, there is no vector in <span class="math inline">\mathcal{W}</span> that can be added to <span class="math inline">\mathcal{B}</span> such that <span class="math inline">\mathcal{B}</span> is still a linearly independent set.</p>
-<p>:::{prf:proof} :class: dropdown</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>We will prove by contradiction. Assume <span class="math inline">\mathcal{B}</span> is a basis of the subspace <span class="math inline">\mathcal{W}</span> but is not a maximal linearly independent set, which means that <span class="math inline">\mathcal{B}</span> is a spanning set of <span class="math inline">\mathcal{W}</span> and there exists a vector <span class="math inline">b \in \mathcal{W}</span> that can be added to <span class="math inline">\mathcal{B}</span> such that <span class="math inline">\hat{\mathcal{B}} = \mathcal{B} \cup \{ b \}</span> is still a linearly independent set.</p>
 <p>However, since <span class="math inline">\mathcal{B}</span> is a spanning set of <span class="math inline">\mathcal{W}</span>, there exists a set of coefficients <span class="math inline">\alpha_{1}, \dots, \alpha_{n}</span> such that <span class="math inline">b</span> is a linear combination of the vectors in <span class="math inline">\mathcal{B}</span></p>
 <p><span class="math display">
   b = \sum_{b_{i} \in \mathcal{B}} \alpha_{i} b_{i}.
   </span></p>
 <p>which means that the vectors in <span class="math inline">\hat{\mathcal{B}}</span> are linear dependent, which violates our assumption.</p>
-<p>:::</p></li>
+</div>
+</div>
+</div></li>
 </ul>
 <p>(existence-of-basis)=</p>
 <ul>
 <li><p>Existence of basis</p>
 <p>A subspace may NOT have a basis e.g.&nbsp;<span class="math inline">\mathcal{W} = \{ 0 \}</span> has no linearly independent vector, but a subspace must have a basis if it has a finite spanning set.</p>
 <p>That is, every finite spanning set of a subspace contains a basis.</p>
-<p>:::{prf:proof} existence of basis :class: dropdown</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>Suppose the subspace <span class="math inline">\mathcal{W}</span> has a finite spanning set of</p>
 <p><span class="math display">
   \mathcal{A}_{0} = \{ v_{i}, \dots, v_{n} \}.
@@ -285,13 +431,27 @@ ul.task-list li input[type="checkbox"] {
   </span></p>
 <p>is still a spanning set.</p>
 <p>We can continue removing such <span class="math inline">v_{j}</span> if the resulting set <span class="math inline">\mathcal{A}_{i}</span> is not linearly independent.</p>
-<p>Since the resulting set <span class="math inline">\mathcal{A}_{i}</span> is always a spanning set of <span class="math inline">\mathcal{W}</span>, we will eventually get to the step <span class="math inline">i</span> where the <span class="math inline">\mathcal{A}_{i}</span> is linearly dependent and <span class="math inline">\mathcal{A}_{i}</span> will be the basis for the subspace <span class="math inline">\mathcal{W}</span>. :::</p></li>
+<p>Since the resulting set <span class="math inline">\mathcal{A}_{i}</span> is always a spanning set of <span class="math inline">\mathcal{W}</span>, we will eventually get to the step <span class="math inline">i</span> where the <span class="math inline">\mathcal{A}_{i}</span> is linearly dependent and <span class="math inline">\mathcal{A}_{i}</span> will be the basis for the subspace <span class="math inline">\mathcal{W}</span>.</p>
+</div>
+</div>
+</div></li>
 </ul>
 <p>(cardinality-of-basis)=</p>
 <ul>
 <li><p>Cardinality of basis</p>
 <p>The numbers of elements of all bases of a given subspace are the same.</p>
-<p>:::{prf:proof} cardinality of basis :class: dropdown</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>Suppose <span class="math inline">\mathcal{A}</span> is a basis of a subspace <span class="math inline">\mathcal{S}</span> and <span class="math inline">\mathcal{B}</span> is another basis of <span class="math inline">\mathcal{S}</span>. Thus, <span class="math inline">\mathcal{A}</span> and <span class="math inline">\mathcal{B}</span> are both linearly independent and spanning sets.</p>
 <p>Since <span class="math inline">\mathcal{A}</span> is a spanning set and <span class="math inline">\mathcal{B}</span> is linearly independent,</p>
 <p><span class="math display">
@@ -305,7 +465,9 @@ ul.task-list li input[type="checkbox"] {
 <p><span class="math display">
   \lvert \mathcal{A} \rvert = \lvert \mathcal{B} \rvert.
   </span></p>
-<p>:::</p></li>
+</div>
+</div>
+</div></li>
 </ul>
 <p>(extension-of-a-basis)=</p>
 <ul>
@@ -315,10 +477,24 @@ ul.task-list li input[type="checkbox"] {
   \{ b_{1}, \dots, b_{k}, b_{k + 1}, \dots, b_{n} \}
   </span></p>
 <p>that is a basis for <span class="math inline">\mathcal{V}</span></p>
-<p>:::{prf:proof} extension of a basis :class:dropdown</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p><span class="math inline">\{ b_{1}, \dots, b_{k}, b_{k + 1}, \dots, b_{n} \}</span> is a basis for <span class="math inline">\mathcal{V}</span> if <span class="math inline">\mathcal{U} \subseteq \mathcal{V}</span> and <span class="math inline">\{ b_{1}, \dots, b_{k} \}</span> is a basis of <span class="math inline">\mathcal{U}</span>.</p>
-<p>:::</p></li>
+</div>
+</div>
+</div></li>
 </ul>
+</section>
 </section>
 <section id="dimension" class="level1">
 <h1>Dimension</h1>
@@ -331,7 +507,18 @@ ul.task-list li input[type="checkbox"] {
 <p><span class="math display">
   \text{dim} (\mathcal{U}) \leq \text{dim} (\mathcal{V}).
   </span></p>
-<p>:::{prf:proof} $ () () $ if $ $ :class: dropdown</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>Suppose there is a basis</p>
 <p><span class="math display">
   \mathcal{A} = \{ b_{1}, \dots, b_{n} \}
@@ -346,7 +533,9 @@ ul.task-list li input[type="checkbox"] {
 <p><span class="math display">
   x \notin \text{span} (\mathcal{A}).
   </span></p>
-<p>:::</p></li>
+</div>
+</div>
+</div></li>
 </ul>
 <p>(dimension-property-2)=</p>
 <ul>
@@ -354,7 +543,18 @@ ul.task-list li input[type="checkbox"] {
 <p><span class="math display">
   \mathcal{U} = \mathcal{V}.
   </span></p>
-<p>:::{prf:proof} <span class="math inline">\mathcal{U} = \mathcal{V}</span> if <span class="math inline">\mathcal{U} \subseteq \mathcal{V}</span> and <span class="math inline">\text{dim} (\mathcal{U}) = \text{dim} (\mathcal{V})</span>. :class: dropdown</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>Since <span class="math inline">\mathcal{U} \subset \mathcal{V}</span> and according to the property of <a href="extension-of-a-basis">extension of the basis</a>, there exists a basis <span class="math inline">b_{\mathcal{U}}</span> for <span class="math inline">\mathcal{U}</span> and <span class="math inline">b_{\mathcal{V}}</span> for <span class="math inline">\mathcal{V}</span> such that</p>
 <p><span class="math display">
   \mathcal{B}_{\mathcal{U}} \subset \mathcal{B}_{\mathcal{V}}.
@@ -367,7 +567,9 @@ ul.task-list li input[type="checkbox"] {
 <p><span class="math display">
   \mathcal{U} = \mathcal{V}.
   </span></p>
-<p>:::</p></li>
+</div>
+</div>
+</div></li>
 </ul>
 <p>(dimension-property-3)=</p>
 <ul>
@@ -375,7 +577,18 @@ ul.task-list li input[type="checkbox"] {
 <p><span class="math display">
   \text{dim} (\mathcal{U} + \mathcal{V}) = \text{dim} (\mathcal{U}) + \text{dim} (\mathcal{V}) - \text{dim} (\mathcal{U} \cap \mathcal{V}).
   </span></p>
-<p>:::{prf:proof} <span class="math inline">\text{dim} (\mathcal{U} + \mathcal{V}) = \text{dim} (\mathcal{U}) + \text{dim} (\mathcal{V}) - \text{dim} (\mathcal{U} \cap \mathcal{V})</span>. :class: dropdown</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>Suppose <span class="math inline">\text{dim} (\mathcal{U} \cap \mathcal{V}) = k</span>, <span class="math inline">\text{dim} (\mathcal{U}) = m</span>, and <span class="math inline">\text{dim} (\mathcal{V}) = n</span>.</p>
 <p>Assume there is a basis</p>
 <p><span class="math display">
@@ -429,7 +642,9 @@ ul.task-list li input[type="checkbox"] {
   \end{aligned}
   </span></p>
 <p>Suppose <span class="math inline">x = 0</span>, then because</p>
-<p>:::</p></li>
+</div>
+</div>
+</div></li>
 </ul>
 </section>
 <section id="types-of-the-subspaces" class="level2">

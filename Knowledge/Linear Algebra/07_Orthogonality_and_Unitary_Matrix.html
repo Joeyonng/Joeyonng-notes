@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Joeyonng - Orthogonality</title>
+<title>Joeyonng - Orthogonality and Unitary Matrix</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -44,7 +44,7 @@ ul.task-list li input[type="checkbox"] {
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "end",
-  "type": "overlay",
+  "type": "textbox",
   "limit": 20,
   "language": {
     "search-no-results-text": "No results",
@@ -77,7 +77,6 @@ ul.task-list li input[type="checkbox"] {
   </script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
-<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
@@ -102,19 +101,22 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Knowledge</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../Notes" rel="" target="">
+    <a class="nav-link" href="../../Notes/index.html" rel="" target="">
  <span class="menu-text">Notes</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="https://joeyonng.github.io/joeyonng-backyard/" rel="" target="">
+    <a class="nav-link" href="https://joeyonng.github.io/joeyonng-backyard/" rel="" target=""><i class="bi bi-House" role="img">
+</i> 
  <span class="menu-text">Backyard</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools ms-auto">
+            <div class="quarto-navbar-tools">
 </div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
@@ -124,7 +126,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Orthogonality</li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Knowledge/Linear Algebra/01_Fields_and_Spaces.html">Linear Algebra</a></li><li class="breadcrumb-item"><a href="../../Knowledge/Linear Algebra/07_Orthogonality_and_Unitary_Matrix.html">Orthogonality and Unitary Matrix</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -146,13 +148,115 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
- <span class="menu-text">Learning Theory</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Linear Algebra</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/01_Fields_and_Spaces.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fields and Spaces</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/02_Vectors_and_Matrices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vectors and Matrices</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/03_Span_and_Linear_Independence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Span and Linear Independence</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/04_Basis_and_Dimension.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Basis and Dimension</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/05_Linear_Map_and_Rank.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Linear Map and Rank</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/06_Inner_Product_and_Norm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Inner Product and Norm</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/07_Orthogonality_and_Unitary_Matrix.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Orthogonality and Unitary Matrix</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/08_Complementary_Subspaces_and_Projection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Complementary Subspaces and Projection</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/09_Orthogonal_Complement_and_Decomposition.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Orthogonal Complement and Decomposition</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/10_URV_Fractorization_and_SVD.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">URV Factorization and SVD</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/11_Pseudoinverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pseudoinverse</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/12_Orthogonal_and_Affine_Projection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Orthogonal and Affine Projection</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/13_Determinants_and_Eigensystems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Determinants and Eigensystems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/14_Similarity_and_Diagonalization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Similarity and Diagonalization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/15_Normal_and_Positive_Definite_Matrices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Normal and Positive Definite Matrices</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">Learning Theory</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Knowledge/Learning Theory/1_Statistical_Learning.html" class="sidebar-item-text sidebar-link">
@@ -208,9 +312,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#properties-of-orthogonality" id="toc-properties-of-orthogonality" class="nav-link active" data-scroll-target="#properties-of-orthogonality">Properties of orthogonality</a></li>
+  <li><a href="#orthogonality" id="toc-orthogonality" class="nav-link active" data-scroll-target="#orthogonality">Orthogonality</a>
+  <ul class="collapse">
+  <li><a href="#properties-of-orthogonality" id="toc-properties-of-orthogonality" class="nav-link" data-scroll-target="#properties-of-orthogonality">Properties of orthogonality</a></li>
   <li><a href="#representing-vectors-using-orthogonal-basis" id="toc-representing-vectors-using-orthogonal-basis" class="nav-link" data-scroll-target="#representing-vectors-using-orthogonal-basis">Representing vectors using orthogonal basis</a></li>
   <li><a href="#orthonormal-vectors" id="toc-orthonormal-vectors" class="nav-link" data-scroll-target="#orthonormal-vectors">Orthonormal vectors</a></li>
+  </ul></li>
   <li><a href="#unitary-matrix" id="toc-unitary-matrix" class="nav-link" data-scroll-target="#unitary-matrix">Unitary matrix</a>
   <ul class="collapse">
   <li><a href="#properties-of-unitary-matrix" id="toc-properties-of-unitary-matrix" class="nav-link" data-scroll-target="#properties-of-unitary-matrix">Properties of unitary matrix</a></li>
@@ -223,7 +330,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Orthogonality</h1>
+<h1 class="title">Orthogonality and Unitary Matrix</h1>
 </div>
 
 
@@ -238,6 +345,8 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<section id="orthogonality" class="level1">
+<h1>Orthogonality</h1>
 <p>A set of non-zero vectors <span class="math inline">v_{1}, \dots, v_{k}</span> are orthogonal if</p>
 <p><span class="math display">
 \langle v_{i}, v_{j} \rangle = 0, \quad \forall i \neq j.
@@ -248,16 +357,42 @@ ul.task-list li input[type="checkbox"] {
 <p>(orthogonality-property-1)=</p>
 <ul>
 <li><p><span class="math inline">v_{1}, \dots, v_{k}</span> are also linearly independent.</p>
-<p>:::{prf:proof} <span class="math inline">v_{1}, \dots, v_{k}</span> are also linearly independent :class: dropdown</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>TODO</p>
-<p>:::</p></li>
+</div>
+</div>
+</div></li>
 </ul>
 <p>(orthogonality-property-2)=</p>
 <ul>
 <li><p>Suppose <span class="math inline">\mathcal{S}</span> is a subspace with <span class="math inline">\text{dim} (S) = n</span> and <span class="math inline">v_{1}, \dots, v_{k} \in \mathcal{S}</span>, then the set <span class="math inline">\{ v_{1}, \dots, v_{k} \}</span> forms a basis of <span class="math inline">\mathcal{S}</span>. Then, <span class="math inline">\{ v_{1}, \dots, v_{k} \}</span> is an orthogonal basis of <span class="math inline">\mathcal{S}</span>.</p>
-<p>:::{prf:proof} Orthogonal basis :class: dropdown</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>TODO</p>
-<p>:::</p></li>
+</div>
+</div>
+</div></li>
 </ul>
 </section>
 <section id="representing-vectors-using-orthogonal-basis" class="level2">
@@ -275,9 +410,22 @@ v = \sum_{i=1}^{n} \alpha_{i} v_{i},
     \lVert v_{i} \rVert_{ip}^{2}
 }
 </span></p>
-<p>:::{prf:proof} coefficients of orthogonal representation :class: dropdown</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>TODO</p>
-<p>:::</p>
+</div>
+</div>
+</div>
 </section>
 <section id="orthonormal-vectors" class="level2">
 <h2 class="anchored" data-anchor-id="orthonormal-vectors">Orthonormal vectors</h2>
@@ -287,6 +435,7 @@ v = \sum_{i=1}^{n} \alpha_{i} v_{i},
 \mathbf{A}^{H} \mathbf{A} = \mathbf{I}.
 </span></p>
 </section>
+</section>
 <section id="unitary-matrix" class="level1">
 <h1>Unitary matrix</h1>
 <p>A <em>square</em> complex (real) matrix <span class="math inline">\mathbf{U}</span> is <strong>unitary (orthogonal)</strong> if and only if <span class="math inline">\mathbf{U}</span> has orthonormal columns.</p>
@@ -295,7 +444,18 @@ v = \sum_{i=1}^{n} \alpha_{i} v_{i},
 <p>(unitary-matrix-property-1)=</p>
 <ul>
 <li><p>The matrix <span class="math inline">\mathbf{U}</span> is unitary if and only if <span class="math inline">\mathbf{U}^{H} = \mathbf{U}^{-1}</span>.</p>
-<p>:::{prf:proof} <span class="math inline">\mathbf{U}</span> is unitary if and only if <span class="math inline">\mathbf{U}^{H} = \mathbf{U}^{-1}</span> :class: dropdown</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>By definition, <span class="math inline">\mathbf{U}</span> has orthogonal columns and thus linearly independent columns. By the <a href="rank-property-5">rank property</a>, <span class="math inline">\mathbf{U}</span> has a unique inverse matrix <span class="math inline">\mathbf{U}^{-1}</span> such that</p>
 <p><span class="math display">
   \mathbf{U}^{-1} \mathbf{U} = \mathbf{I}_{n \times n}.
@@ -309,12 +469,25 @@ v = \sum_{i=1}^{n} \alpha_{i} v_{i},
   \mathbf{U}^{H} = \mathbf{U}^{-1}.
   </span></p>
 <p>The reverse can be proved backward following the procedure above.</p>
-<p>:::</p></li>
+</div>
+</div>
+</div></li>
 </ul>
 <p>(unitary-matrix-property-2)=</p>
 <ul>
 <li><p>The matrix <span class="math inline">\mathbf{U}</span> is unitary if and only if <span class="math inline">\mathbf{U}^{H} \mathbf{U} = \mathbf{U} \mathbf{U}^{H} = \mathbf{I}_{n \times n}.</span></p>
-<p>:::{prf:proof} <span class="math inline">\mathbf{U}</span> is unitary if and only if <span class="math inline">\mathbf{U}^{H} \mathbf{U} = \mathbf{U} \mathbf{U}^{H} = \mathbf{I}_{n \times n}.</span> :class: dropdown</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>Following the <a href="unitary-matrix-property-1">unitary matrix property</a>, the inverse <span class="math inline">\mathbf{U}^{-1}</span> can be both left and right inverse</p>
 <p><span class="math display">
   \mathbf{U}^{-1} \mathbf{U} = \mathbf{U} \mathbf{U}^{-1} = \mathbf{I}.
@@ -323,7 +496,9 @@ v = \sum_{i=1}^{n} \alpha_{i} v_{i},
 <p><span class="math display">
   \mathbf{U}^{H} \mathbf{U} = \mathbf{U} \mathbf{U}^{H} = \mathbf{I}.
   </span></p>
-<p>:::</p></li>
+</div>
+</div>
+</div></li>
 </ul>
 <p>(unitary-matrix-property-3)=</p>
 <ul>
@@ -331,7 +506,18 @@ v = \sum_{i=1}^{n} \alpha_{i} v_{i},
 <p><span class="math display">
   \lVert \mathbf{U} \mathbf{x} \rVert = \lVert \mathbf{x} \rVert.
   </span></p>
-<p>:::{prf:proof} <span class="math inline">\mathbf{U}</span> is unitary if and only if <span class="math inline">\lVert \mathbf{U} \mathbf{x} \rVert = \lVert \mathbf{x} \rVert, \forall \mathbf{x}</span> :class: dropdown</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p><span class="math display">
   \begin{aligned}
   \lVert \mathbf{U} \mathbf{x} \rVert
@@ -349,7 +535,9 @@ v = \sum_{i=1}^{n} \alpha_{i} v_{i},
   &amp; = \lVert \mathbf{x} \rVert
   \end{aligned}
   </span></p>
-<p>:::</p></li>
+</div>
+</div>
+</div></li>
 </ul>
 
 

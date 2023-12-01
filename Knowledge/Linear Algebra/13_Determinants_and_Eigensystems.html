@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Joeyonng - Determinants</title>
+<title>Joeyonng - Determinants and Eigensystems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -44,7 +44,7 @@ ul.task-list li input[type="checkbox"] {
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "end",
-  "type": "overlay",
+  "type": "textbox",
   "limit": 20,
   "language": {
     "search-no-results-text": "No results",
@@ -77,7 +77,6 @@ ul.task-list li input[type="checkbox"] {
   </script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
-<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
@@ -102,19 +101,22 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Knowledge</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../Notes" rel="" target="">
+    <a class="nav-link" href="../../Notes/index.html" rel="" target="">
  <span class="menu-text">Notes</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="https://joeyonng.github.io/joeyonng-backyard/" rel="" target="">
+    <a class="nav-link" href="https://joeyonng.github.io/joeyonng-backyard/" rel="" target=""><i class="bi bi-House" role="img">
+</i> 
  <span class="menu-text">Backyard</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools ms-auto">
+            <div class="quarto-navbar-tools">
 </div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
@@ -124,7 +126,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Determinants</li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Knowledge/Linear Algebra/01_Fields_and_Spaces.html">Linear Algebra</a></li><li class="breadcrumb-item"><a href="../../Knowledge/Linear Algebra/13_Determinants_and_Eigensystems.html">Determinants and Eigensystems</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -146,13 +148,115 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
- <span class="menu-text">Learning Theory</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Linear Algebra</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/01_Fields_and_Spaces.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fields and Spaces</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/02_Vectors_and_Matrices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vectors and Matrices</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/03_Span_and_Linear_Independence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Span and Linear Independence</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/04_Basis_and_Dimension.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Basis and Dimension</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/05_Linear_Map_and_Rank.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Linear Map and Rank</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/06_Inner_Product_and_Norm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Inner Product and Norm</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/07_Orthogonality_and_Unitary_Matrix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Orthogonality and Unitary Matrix</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/08_Complementary_Subspaces_and_Projection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Complementary Subspaces and Projection</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/09_Orthogonal_Complement_and_Decomposition.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Orthogonal Complement and Decomposition</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/10_URV_Fractorization_and_SVD.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">URV Factorization and SVD</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/11_Pseudoinverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pseudoinverse</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/12_Orthogonal_and_Affine_Projection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Orthogonal and Affine Projection</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/13_Determinants_and_Eigensystems.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Determinants and Eigensystems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/14_Similarity_and_Diagonalization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Similarity and Diagonalization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/15_Normal_and_Positive_Definite_Matrices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Normal and Positive Definite Matrices</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">Learning Theory</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Knowledge/Learning Theory/1_Statistical_Learning.html" class="sidebar-item-text sidebar-link">
@@ -208,7 +312,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#eigensystems" id="toc-eigensystems" class="nav-link active" data-scroll-target="#eigensystems">Eigensystems</a>
+  <li><a href="#determinants" id="toc-determinants" class="nav-link active" data-scroll-target="#determinants">Determinants</a></li>
+  <li><a href="#eigensystems" id="toc-eigensystems" class="nav-link" data-scroll-target="#eigensystems">Eigensystems</a>
   <ul class="collapse">
   <li><a href="#eigenspace" id="toc-eigenspace" class="nav-link" data-scroll-target="#eigenspace">Eigenspace</a></li>
   <li><a href="#characteristic-polynomial-and-equation" id="toc-characteristic-polynomial-and-equation" class="nav-link" data-scroll-target="#characteristic-polynomial-and-equation">Characteristic polynomial and equation</a></li>
@@ -227,7 +332,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Determinants</h1>
+<h1 class="title">Determinants and Eigensystems</h1>
 </div>
 
 
@@ -242,6 +347,8 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<section id="determinants" class="level1">
+<h1>Determinants</h1>
 <p>For an matrix <span class="math inline">\mathbf{A} \in \mathbb{C}^{n \times n}</span>, the determinant of A is defined to be the scalar</p>
 <p><span class="math display">
 \text{det} (\mathbf{A}) = \lvert \mathbf{A} \rvert = \sum_{p \in \mathcal{P}} \sigma (p) \prod_{i=1}^{n} a_{i, p_{i}}
@@ -252,6 +359,7 @@ ul.task-list li input[type="checkbox"] {
 <li><p><span class="math inline">\sigma (p)</span> is the parity of the permutation <span class="math inline">p</span>.</p></li>
 </ul>
 <p>Note that each term a1p1a2p2 · · · anpn in (6.1.1) contains exactly one entry from each row and each column of A.</p>
+</section>
 <section id="eigensystems" class="level1">
 <h1>Eigensystems</h1>
 <p>For a matrix <span class="math inline">\mathbf{A} \in \mathbb{C}^{n \times n}</span>, <span class="math inline">(\lambda, \mathbf{x})</span> is an <strong>eigenpair</strong> for <span class="math inline">\mathbf{A}</span> if</p>
@@ -344,8 +452,22 @@ p (\lambda) = 0.
 <p><span class="math display">
   \text{geo mult}_{\mathbf{A}} (\lambda_{i}) \leq \text{alg mult}_{\mathbf{A}} (\lambda_{i}).
   </span></p>
-<p>:::{prf:proof} $ <em>{} (</em>{i}) <em>{} (</em>{i})$. :class: dropdown</p>
-<p>:::</p></li>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>TODO</p>
+</div>
+</div>
+</div></li>
 </ul>
 </section>
 </section>
@@ -354,7 +476,18 @@ p (\lambda) = 0.
 <p>Let <span class="math inline">\{ \lambda_{1}, \dots, \lambda_{k} \}</span> be a set of distinct eigenvalues for <span class="math inline">\mathbf{A}</span>.</p>
 <ul>
 <li><p>If <span class="math inline">\{ (\lambda_{1}, \mathbf{x}_{1}), \dots, (\lambda_{k}, \mathbf{x}_{k}) \}</span> is a set of eigenpairs for <span class="math inline">\mathbf{A}</span>, then <span class="math inline">\{ \mathbf{x}_{1}, \dots, \mathbf{x}_{k} \}</span> is a linearly independent set.</p>
-<p>:::{prf:proof} :class: dropdown</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>We prove by contradiction.</p>
 <p>Suppose <span class="math inline">\{ \mathbf{x}_{1}, \dots, \mathbf{x}_{k} \}</span> is linearly dependent, but has been reordered so that the first <span class="math inline">r</span> eigenvectors <span class="math inline">\{ \mathbf{x}_{1}, \dots, \mathbf{x}_{k} \}</span> is linearly independent.</p>
 <p>Thus, the <span class="math inline">r + 1</span>th eigenvector is</p>
@@ -401,10 +534,27 @@ p (\lambda) = 0.
 <p><span class="math display">
   \mathbf{x}_{r + 1} = \sum_{i=1}^{r} \alpha_{i} \mathbf{x}_{i} = 0.
   </span></p>
-<p>However, eigenvectors are all non-zero vectors and thus an contradiction occurs. :::</p></li>
+<p>However, eigenvectors are all non-zero vectors and thus an contradiction occurs.</p>
+</div>
+</div>
+</div></li>
 <li><p>If <span class="math inline">\mathcal{B}_{i}</span> is a basis for <span class="math inline">N (\mathbf{A} - \lambda_{i} \mathbf{I})</span>, then <span class="math inline">\mathcal{B} = \mathcal{B}_{1} \cup \dots, \cup \mathcal{B}_{k}</span> is a linearly independent set.</p>
-<p>:::{prf:proof} :class: dropdown</p>
-<p>TODO :::</p></li>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>TODO</p>
+</div>
+</div>
+</div></li>
 </ul>
 
 

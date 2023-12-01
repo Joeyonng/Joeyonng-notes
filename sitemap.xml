@@ -2,254 +2,254 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://github.com/Joeyonng/joeyonng/index.html</loc>
-    <lastmod>2023-11-28T06:34:33.288Z</lastmod>
+    <lastmod>2023-12-01T11:56:55.739Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Calculus/Derivative.html</loc>
-    <lastmod>2023-11-28T06:34:32.752Z</lastmod>
+    <lastmod>2023-12-01T11:56:55.183Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Information Theory/ECE 255A notes.html</loc>
-    <lastmod>2023-11-28T06:34:32.184Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Linear Algebra/02_Vectors_and_Matrices.html</loc>
-    <lastmod>2023-11-28T06:34:31.676Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Linear Algebra/14_Similarity_and_Diagonalization.html</loc>
-    <lastmod>2023-11-28T06:34:31.108Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Linear Algebra/07_Orthogonality_and_Unitary_Matrix.html</loc>
-    <lastmod>2023-11-28T06:34:30.604Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Linear Algebra/08_Complementary_Subspaces_and_Projection.html</loc>
-    <lastmod>2023-11-28T06:34:30.064Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Linear Algebra/05_Linear_Map_and_Rank.html</loc>
-    <lastmod>2023-11-28T06:34:29.428Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Linear Algebra/03_Span_and_Linear_Independence.html</loc>
-    <lastmod>2023-11-28T06:34:28.616Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Linear Algebra/06_Inner_Product_and_Norm.html</loc>
-    <lastmod>2023-11-28T06:34:27.976Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Linear Algebra/12_Orthogonal_Projection_and_Affine_Projection.html</loc>
-    <lastmod>2023-11-28T06:34:27.404Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Supervised Learning/Generalized Additive (Linear) Models (GAM).html</loc>
-    <lastmod>2023-11-28T06:34:26.824Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Supervised Learning/Logistic Regression (LR).html</loc>
-    <lastmod>2023-11-28T06:34:26.024Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Supervised Learning/Adaboost (ADA).html</loc>
-    <lastmod>2023-11-28T06:34:25.027Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Supervised Learning/Random Forest (RF).html</loc>
-    <lastmod>2023-11-28T06:34:24.379Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Supervised Learning/Gradient Boosting (GB).html</loc>
-    <lastmod>2023-11-28T06:34:23.819Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Supervised Learning/0_Linear_Discriminant.html</loc>
-    <lastmod>2023-11-28T06:34:23.243Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Learning Theory/3_Effective_Class_Size.html</loc>
-    <lastmod>2023-11-28T06:34:22.779Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Learning Theory/4_Empirical_Risk_Minimization.html</loc>
-    <lastmod>2023-11-28T06:34:22.119Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Learning Theory/6_PAC_Learning.html</loc>
-    <lastmod>2023-11-28T06:34:21.395Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Learning Theory/5_Uniform_Convergence.html</loc>
-    <lastmod>2023-11-28T06:34:20.535Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Unsupervised Learning/K-means.html</loc>
-    <lastmod>2023-11-28T06:34:19.775Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Statistical Learning/1_Bayesian_Decision_Theory.html</loc>
-    <lastmod>2023-11-28T06:34:19.047Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Statistical Learning/2_Maximum_Likelihood_Estimation.html</loc>
-    <lastmod>2023-11-28T06:34:18.295Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Probability and Statistics/Inequalities1.html</loc>
-    <lastmod>2023-11-28T06:34:17.667Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Probability and Statistics/Random Variables.html</loc>
-    <lastmod>2023-11-28T06:34:17.087Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Notes/Birkhoff+.html</loc>
-    <lastmod>2023-11-28T06:34:16.587Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Notes/MLIC IMLI.html</loc>
-    <lastmod>2023-11-28T06:34:15.463Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Notes/Quantization Survey.html</loc>
-    <lastmod>2023-11-28T06:34:14.891Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Notes/SGD Warm Restarts.html</loc>
-    <lastmod>2023-11-28T06:34:14.255Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Notes/ML Q&A.html</loc>
-    <lastmod>2023-11-28T06:34:13.615Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Notes/SSGD.html</loc>
-    <lastmod>2023-11-28T06:34:11.807Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Notes/RIPPER.html</loc>
-    <lastmod>2023-11-28T06:34:12.287Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Notes/CG Decision Rules.html</loc>
-    <lastmod>2023-11-28T06:34:13.947Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Notes/L0 Regularization.html</loc>
-    <lastmod>2023-11-28T06:34:14.631Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Notes/Confident Learning.html</loc>
-    <lastmod>2023-11-28T06:34:15.195Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Notes/MobileNets.html</loc>
-    <lastmod>2023-11-28T06:34:15.911Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Notes/index.html</loc>
-    <lastmod>2023-11-28T06:34:16.883Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Probability and Statistics/Discrete Distributions.html</loc>
-    <lastmod>2023-11-28T06:34:17.339Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Probability and Statistics/Inequalities2.html</loc>
-    <lastmod>2023-11-28T06:34:18.003Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Statistical Learning/4_Expectation_Maximization.html</loc>
-    <lastmod>2023-11-28T06:34:18.735Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Statistical Learning/3_Bayesian_Estimation.html</loc>
-    <lastmod>2023-11-28T06:34:19.399Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Unsupervised Learning/Principle Component Analysis (PCA).html</loc>
-    <lastmod>2023-11-28T06:34:20.183Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Learning Theory/1_Statistical_Learning.html</loc>
-    <lastmod>2023-11-28T06:34:20.867Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Learning Theory/7_Rademacher_Complexity.html</loc>
-    <lastmod>2023-11-28T06:34:21.875Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Learning Theory/2_Bayesian_Classifier.html</loc>
-    <lastmod>2023-11-28T06:34:22.427Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Supervised Learning/1_Perceptron.html</loc>
-    <lastmod>2023-11-28T06:34:22.999Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Supervised Learning/4_Boosting.html</loc>
-    <lastmod>2023-11-28T06:34:23.575Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Supervised Learning/Naive Bayes Classifier (NBC).html</loc>
-    <lastmod>2023-11-28T06:34:24.151Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Supervised Learning/2_Logistic_Regression.html</loc>
-    <lastmod>2023-11-28T06:34:24.699Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Supervised Learning/Support Vector Machine (SVM).html</loc>
-    <lastmod>2023-11-28T06:34:25.660Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Supervised Learning/Decision Tree (DT).html</loc>
-    <lastmod>2023-11-28T06:34:26.548Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Supervised Learning/3_Multi_Layer_Perceptron.html</loc>
-    <lastmod>2023-11-28T06:34:27.024Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Linear Algebra/15_Normal_Matrices_and_Positive_Definite_Matrices.html</loc>
-    <lastmod>2023-11-28T06:34:27.744Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Linear Algebra/13_Determinants_and_Eigensystems.html</loc>
-    <lastmod>2023-11-28T06:34:28.292Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Linear Algebra/01_Fields_and_Spaces.html</loc>
-    <lastmod>2023-11-28T06:34:29.028Z</lastmod>
+    <lastmod>2023-12-01T11:56:54.559Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Linear Algebra/04_Basis_and_Dimension.html</loc>
-    <lastmod>2023-11-28T06:34:29.784Z</lastmod>
+    <lastmod>2023-12-01T11:56:54.019Z</lastmod>
   </url>
   <url>
-    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Linear Algebra/11_Pseudoinverse.html</loc>
-    <lastmod>2023-11-28T06:34:30.328Z</lastmod>
+    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Linear Algebra/15_Normal_and_Positive_Definite_Matrices.html</loc>
+    <lastmod>2023-12-01T11:56:53.295Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Linear Algebra/03_Span_and_Linear_Independence.html</loc>
+    <lastmod>2023-12-01T11:56:52.535Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Linear Algebra/05_Linear_Map_and_Rank.html</loc>
+    <lastmod>2023-12-01T11:56:51.887Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Linear Algebra/02_Vectors_and_Matrices.html</loc>
+    <lastmod>2023-12-01T11:56:51.123Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Linear Algebra/12_Orthogonal_and_Affine_Projection.html</loc>
+    <lastmod>2023-12-01T11:56:50.471Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Linear Algebra/10_URV_Fractorization_and_SVD.html</loc>
-    <lastmod>2023-11-28T06:34:30.864Z</lastmod>
+    <lastmod>2023-12-01T11:56:49.546Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Linear Algebra/08_Complementary_Subspaces_and_Projection.html</loc>
+    <lastmod>2023-12-01T11:56:48.990Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Supervised Learning/Generalized Additive (Linear) Models (GAM).html</loc>
+    <lastmod>2023-12-01T11:56:48.418Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Supervised Learning/Logistic Regression (LR).html</loc>
+    <lastmod>2023-12-01T11:56:47.566Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Supervised Learning/Adaboost (ADA).html</loc>
+    <lastmod>2023-12-01T11:56:46.554Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Supervised Learning/Random Forest (RF).html</loc>
+    <lastmod>2023-12-01T11:56:45.878Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Supervised Learning/Gradient Boosting (GB).html</loc>
+    <lastmod>2023-12-01T11:56:45.286Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Supervised Learning/0_Linear_Discriminant.html</loc>
+    <lastmod>2023-12-01T11:56:44.686Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Learning Theory/3_Effective_Class_Size.html</loc>
+    <lastmod>2023-12-01T11:56:44.194Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Learning Theory/4_Empirical_Risk_Minimization.html</loc>
+    <lastmod>2023-12-01T11:56:43.514Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Learning Theory/6_PAC_Learning.html</loc>
+    <lastmod>2023-12-01T11:56:42.766Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Learning Theory/5_Uniform_Convergence.html</loc>
+    <lastmod>2023-12-01T11:56:41.906Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Unsupervised Learning/K-means.html</loc>
+    <lastmod>2023-12-01T11:56:41.090Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Statistical Learning/1_Bayesian_Decision_Theory.html</loc>
+    <lastmod>2023-12-01T11:56:40.314Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Statistical Learning/2_Maximum_Likelihood_Estimation.html</loc>
+    <lastmod>2023-12-01T11:56:39.530Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Probability and Statistics/Inequalities1.html</loc>
+    <lastmod>2023-12-01T11:56:38.882Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Probability and Statistics/Random Variables.html</loc>
+    <lastmod>2023-12-01T11:56:38.286Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Notes/Birkhoff+.html</loc>
+    <lastmod>2023-12-01T11:56:37.746Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Notes/MLIC IMLI.html</loc>
+    <lastmod>2023-12-01T11:56:36.582Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Notes/Quantization Survey.html</loc>
+    <lastmod>2023-12-01T11:56:35.994Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Notes/SGD Warm Restarts.html</loc>
+    <lastmod>2023-12-01T11:56:35.362Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Notes/ML Q&A.html</loc>
+    <lastmod>2023-12-01T11:56:34.710Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Notes/SSGD.html</loc>
+    <lastmod>2023-12-01T11:56:32.870Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Notes/RIPPER.html</loc>
+    <lastmod>2023-12-01T11:56:33.362Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Notes/CG Decision Rules.html</loc>
+    <lastmod>2023-12-01T11:56:35.054Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Notes/L0 Regularization.html</loc>
+    <lastmod>2023-12-01T11:56:35.734Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Notes/Confident Learning.html</loc>
+    <lastmod>2023-12-01T11:56:36.310Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Notes/MobileNets.html</loc>
+    <lastmod>2023-12-01T11:56:37.054Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Notes/index.html</loc>
+    <lastmod>2023-12-01T11:56:38.066Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Probability and Statistics/Discrete Distributions.html</loc>
+    <lastmod>2023-12-01T11:56:38.534Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Probability and Statistics/Inequalities2.html</loc>
+    <lastmod>2023-12-01T11:56:39.226Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Statistical Learning/4_Expectation_Maximization.html</loc>
+    <lastmod>2023-12-01T11:56:39.986Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Statistical Learning/3_Bayesian_Estimation.html</loc>
+    <lastmod>2023-12-01T11:56:40.698Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Unsupervised Learning/Principle Component Analysis (PCA).html</loc>
+    <lastmod>2023-12-01T11:56:41.522Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Learning Theory/1_Statistical_Learning.html</loc>
+    <lastmod>2023-12-01T11:56:42.238Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Learning Theory/7_Rademacher_Complexity.html</loc>
+    <lastmod>2023-12-01T11:56:43.262Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Learning Theory/2_Bayesian_Classifier.html</loc>
+    <lastmod>2023-12-01T11:56:43.826Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Supervised Learning/1_Perceptron.html</loc>
+    <lastmod>2023-12-01T11:56:44.422Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Supervised Learning/4_Boosting.html</loc>
+    <lastmod>2023-12-01T11:56:45.030Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Supervised Learning/Naive Bayes Classifier (NBC).html</loc>
+    <lastmod>2023-12-01T11:56:45.630Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Supervised Learning/2_Logistic_Regression.html</loc>
+    <lastmod>2023-12-01T11:56:46.210Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Supervised Learning/Support Vector Machine (SVM).html</loc>
+    <lastmod>2023-12-01T11:56:47.190Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Supervised Learning/Decision Tree (DT).html</loc>
+    <lastmod>2023-12-01T11:56:48.130Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Supervised Learning/3_Multi_Layer_Perceptron.html</loc>
+    <lastmod>2023-12-01T11:56:48.634Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Linear Algebra/06_Inner_Product_and_Norm.html</loc>
+    <lastmod>2023-12-01T11:56:49.266Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Linear Algebra/01_Fields_and_Spaces.html</loc>
+    <lastmod>2023-12-01T11:56:50.022Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Linear Algebra/09_Orthogonal_Complement_and_Decomposition.html</loc>
-    <lastmod>2023-11-28T06:34:31.364Z</lastmod>
+    <lastmod>2023-12-01T11:56:50.775Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Linear Algebra/14_Similarity_and_Diagonalization.html</loc>
+    <lastmod>2023-12-01T11:56:51.403Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Linear Algebra/11_Pseudoinverse.html</loc>
+    <lastmod>2023-12-01T11:56:52.167Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Linear Algebra/13_Determinants_and_Eigensystems.html</loc>
+    <lastmod>2023-12-01T11:56:52.871Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Linear Algebra/07_Orthogonality_and_Unitary_Matrix.html</loc>
+    <lastmod>2023-12-01T11:56:53.607Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Information Theory/Entropy.html</loc>
-    <lastmod>2023-11-28T06:34:31.912Z</lastmod>
+    <lastmod>2023-12-01T11:56:54.275Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/Joeyonng/joeyonng/Knowledge/Calculus/Chain_rule.html</loc>
-    <lastmod>2023-11-28T06:34:32.420Z</lastmod>
+    <lastmod>2023-12-01T11:56:54.823Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/Joeyonng/joeyonng/about.html</loc>
-    <lastmod>2023-11-28T06:34:32.984Z</lastmod>
+    <lastmod>2023-12-01T11:56:55.427Z</lastmod>
   </url>
 </urlset>

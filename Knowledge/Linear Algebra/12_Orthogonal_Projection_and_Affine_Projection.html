@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Joeyonng - Orthogonal projection</title>
+<title>Joeyonng – orthogonal_projection_and_affine_projection</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -124,7 +124,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Orthogonal projection</li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Knowledge/Linear Algebra/01_Fields_and_Spaces.html">Linear Algebra</a></li><li class="breadcrumb-item"><a href="../../Knowledge/Linear Algebra/12_Orthogonal_Projection_and_Affine_Projection.html">Orthogonal projection</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -146,13 +146,115 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
- <span class="menu-text">Learning Theory</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Linear Algebra</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/01_Fields_and_Spaces.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fields</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/02_Vectors_and_Matrices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vectors</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/03_Span_and_Linear_Independence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Span</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/04_Basis_and_Dimension.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Basis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/05_Linear_Map_and_Rank.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Linear Map</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/06_Inner_Product_and_Norm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Inner Product</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/07_Orthogonality_and_Unitary_Matrix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Orthogonality</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/08_Complementary_Subspaces_and_Projection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Complementary Subspaces</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/09_Orthogonal_Complement_and_Decomposition.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Orthogonal Complement</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/10_URV_Fractorization_and_SVD.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">URV Factorization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/11_Pseudoinverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pseudoinverse</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/12_Orthogonal_Projection_and_Affine_Projection.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Orthogonal projection</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/13_Determinants_and_Eigensystems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Determinants</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/14_Similarity_and_Diagonalization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Similarity</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/15_Normal_Matrices_and_Positive_Definite_Matrices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Normal Matrices</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">Learning Theory</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Knowledge/Learning Theory/1_Statistical_Learning.html" class="sidebar-item-text sidebar-link">
@@ -208,10 +310,13 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#properties-of-orthogonal-projection" id="toc-properties-of-orthogonal-projection" class="nav-link active" data-scroll-target="#properties-of-orthogonal-projection">Properties of orthogonal projection</a></li>
+  <li><a href="#orthogonal-projection" id="toc-orthogonal-projection" class="nav-link active" data-scroll-target="#orthogonal-projection">Orthogonal projection</a>
+  <ul class="collapse">
+  <li><a href="#properties-of-orthogonal-projection" id="toc-properties-of-orthogonal-projection" class="nav-link" data-scroll-target="#properties-of-orthogonal-projection">Properties of orthogonal projection</a></li>
   <li><a href="#orthogonal-projection-matrix" id="toc-orthogonal-projection-matrix" class="nav-link" data-scroll-target="#orthogonal-projection-matrix">Orthogonal projection matrix</a></li>
   <li><a href="#properties-of-orthogonal-projection-matrix" id="toc-properties-of-orthogonal-projection-matrix" class="nav-link" data-scroll-target="#properties-of-orthogonal-projection-matrix">Properties of orthogonal projection matrix</a></li>
   <li><a href="#application-least-square-problem" id="toc-application-least-square-problem" class="nav-link" data-scroll-target="#application-least-square-problem">Application: least square problem</a></li>
+  </ul></li>
   <li><a href="#affine-projection" id="toc-affine-projection" class="nav-link" data-scroll-target="#affine-projection">Affine projection</a>
   <ul class="collapse">
   <li><a href="#affine-space" id="toc-affine-space" class="nav-link" data-scroll-target="#affine-space">Affine space</a></li>
@@ -224,23 +329,10 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Orthogonal projection</h1>
-</div>
 
 
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-</header>
-
+<section id="orthogonal-projection" class="level1">
+<h1>Orthogonal projection</h1>
 <p>Suppose <span class="math inline">\mathcal{M}</span> is a subspace in the vector space <span class="math inline">\mathcal{V}</span>. Since <span class="math inline">\mathcal{M}^{\perp}</span> is a orthogonal complementary subspace of <span class="math inline">\mathcal{M}</span>, we have <span class="math inline">\mathcal{M} \oplus \mathcal{M}^{\perp} = \mathcal{V}</span>.</p>
 <p>For <span class="math inline">v \in \mathcal{V}</span>, let <span class="math inline">v = m + n</span>, where <span class="math inline">m \in \mathcal{M}</span> and <span class="math inline">n \in \mathcal{M}^{\perp}</span>. We define a linear operator <span class="math inline">\mathbf{P}_{\mathcal{M}} \in \mathbb{C}^{n \times n}</span> such that</p>
 <p><span class="math display">
@@ -260,9 +352,22 @@ m = \mathbf{P}_{\mathcal{M}} v.
 <p>(orthogonal-projection-property-1)=</p>
 <ul>
 <li><p><span class="math inline">m</span> always exists and is unique.</p>
-<p>:::{prf:proof} Existence and uniqueness of <span class="math inline">m</span> :class: dropdown</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>TODO</p>
-<p>:::</p></li>
+</div>
+</div>
+</div></li>
 </ul>
 <p>(orthogonal-projection-property-2)=</p>
 <ul>
@@ -270,7 +375,18 @@ m = \mathbf{P}_{\mathcal{M}} v.
 <p><span class="math display">
   \langle v - m, x \rangle = 0, \quad \forall x \in \mathcal{M}
   </span></p>
-<p>:::{prf:proof} <span class="math inline">\langle v - m, x \rangle = 0, \forall x \in \mathcal{M}</span> :class: dropdown</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>Since <span class="math inline">n \in \mathcal{M}^{\perp}</span>, by definition of the orthogonal complement of subspaces,</p>
 <p><span class="math display">
   \langle n, x \rangle = 0, \quad \forall x \in \mathcal{M}.
@@ -279,7 +395,9 @@ m = \mathbf{P}_{\mathcal{M}} v.
 <p><span class="math display">
   \langle v - m, x \rangle = 0, \quad \forall x \in \mathcal{M}.
   </span></p>
-<p>:::</p></li>
+</div>
+</div>
+</div></li>
 </ul>
 <p>(orthogonal-projection-property-3)=</p>
 <ul>
@@ -287,7 +405,18 @@ m = \mathbf{P}_{\mathcal{M}} v.
 <p><span class="math display">
   m = \min_{x \in \mathcal{M}} \lVert v - x \rVert.
   </span></p>
-<p>:::{prf:proof} <span class="math inline">m</span> minimizes <span class="math inline">\lVert v - x \rVert</span> :class: dropdown</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>According to the <a href="orthogonal-projection-property-1">property of orthogonal projection</a>, the projection <span class="math inline">m</span> always exists.</p>
 <p>Thus, we can add and subtract <span class="math inline">m</span>,</p>
 <p><span class="math display">
@@ -323,7 +452,9 @@ m = \mathbf{P}_{\mathcal{M}} v.
   \lVert v - m \rVert^{2}
   </span></p>
 <p>minimizes the distances between <span class="math inline">v</span> to all vectors <span class="math inline">x</span> in the subspace <span class="math inline">\mathcal{M}</span>.</p>
-<p>:::</p></li>
+</div>
+</div>
+</div></li>
 </ul>
 </section>
 <section id="orthogonal-projection-matrix" class="level2">
@@ -332,7 +463,18 @@ m = \mathbf{P}_{\mathcal{M}} v.
 <p><span class="math display">
 \mathbf{P}_{\mathcal{M}} = \mathbf{M} (\mathbf{M}^{H} \mathbf{M})^{-1} \mathbf{M}^{H}.
 </span></p>
-<p>:::{prf:proof} <span class="math inline">\mathbf{P}_{\mathcal{M}} = \mathbf{M} (\mathbf{M}^{H} \mathbf{M})^{-1} \mathbf{M}^{H}</span> :class: dropdown</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>Since <span class="math inline">\text{rank} (\mathbf{M}^{H} \mathbf{H}) = \text{rank} (\mathcal{M}) = r</span> and <span class="math inline">\mathbf{M}^{H} \mathbf{H} \in \mathbb{C}^{r \times r}</span>, according to the <a href="rank-property-5">property of rank</a>, <span class="math inline">(\mathbf{M}^{H} \mathbf{H})^{-1}</span> exists.</p>
 <p>Suppose the columns of <span class="math inline">\mathbf{N} \in \mathbb{C}^{n \times s}</span> are orthonormal bases for <span class="math inline">\mathcal{M}^{\perp}</span>, where <span class="math inline">s = n - r</span> according to the <a href="complementary-subspaces-property-2">property of complementary subspaces</a>.</p>
 <p>Thus, we can construct the below matrix</p>
@@ -392,7 +534,9 @@ m = \mathbf{P}_{\mathcal{M}} v.
 &amp; = \mathbf{M} (\mathbf{M}^{H} \mathbf{H})^{-1} \mathbf{M}^{H}.
 \end{aligned}
 </span></p>
-<p>:::</p>
+</div>
+</div>
+</div>
 </section>
 <section id="properties-of-orthogonal-projection-matrix" class="level2">
 <h2 class="anchored" data-anchor-id="properties-of-orthogonal-projection-matrix">Properties of orthogonal projection matrix</h2>
@@ -402,9 +546,22 @@ m = \mathbf{P}_{\mathcal{M}} v.
 <p><span class="math display">
   R (\mathbf{P}) = N (\mathbf{P})^{\perp}.
   </span></p>
-<p>:::{prf:proof} <span class="math inline">R (\mathbf{P}) = N (\mathbf{P})^{\perp}</span> :class: dropdown</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>TODO</p>
-<p>:::</p></li>
+</div>
+</div>
+</div></li>
 </ul>
 <p>(orthogonal-projection-matrix-property-2)=</p>
 <ul>
@@ -412,7 +569,18 @@ m = \mathbf{P}_{\mathcal{M}} v.
 <p><span class="math display">
   \mathbf{P}^{H} = \mathbf{P}.
   </span></p>
-<p>:::{prf:proof} <span class="math inline">\mathbf{P}^{H} = \mathbf{P}</span> :class: dropdown</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>According to the orthogonal decomposition theorem,</p>
 <p><span class="math display">
   \begin{aligned}
@@ -424,7 +592,8 @@ m = \mathbf{P}_{\mathcal{M}} v.
   \\
   \end{aligned}
   </span></p>
-<p>According to the property of the <a href="orthogonal-projection-matrix-property-1">orthogonal projection matrix</a>, <span class="math display">
+<p>According to the property of the <a href="orthogonal-projection-matrix-property-1">orthogonal projection matrix</a>,</p>
+<p><span class="math display">
   \begin{aligned}
   N (\mathbf{P})^{\perp}
   &amp; = N (\mathbf{P}^{H})^{\perp}
@@ -434,7 +603,9 @@ m = \mathbf{P}_{\mathcal{M}} v.
   \\
   \end{aligned}
   </span></p>
-<p>:::</p></li>
+</div>
+</div>
+</div></li>
 </ul>
 </section>
 <section id="application-least-square-problem" class="level2">
@@ -476,7 +647,18 @@ m = \mathbf{P}_{\mathcal{M}} v.
 <p><span class="math display">
 \mathbf{A} \mathbf{x}^{*} = \mathbf{P}_{R (\mathbf{A})} \mathbf{y} \iff \mathbf{A}^{H} \mathbf{A} \mathbf{x}^{*} = \mathbf{A}^{H} \mathbf{y}.
 </span></p>
-<p>:::{prf:proof} Normal equations from orthogonal projection :class: dropdown</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>First multiplying both ends by <span class="math inline">\mathbf{P}_{R (\mathbf{A})}</span> and use the <a href="projector-property-3">projector property</a>,</p>
 <p><span class="math display">
 \begin{aligned}
@@ -521,8 +703,11 @@ N (\mathbf{P}_{R (\mathbf{A})}) = R (\mathbf{A})^{\perp} = N (\mathbf{A}^{H}),
 &amp; = \mathbf{A}^{H} \mathbf{y}.
 \end{aligned}
 </span></p>
-<p>:::</p>
+</div>
+</div>
+</div>
 <p>(affine-projection)=</p>
+</section>
 </section>
 <section id="affine-projection" class="level1">
 <h1>Affine projection</h1>
@@ -546,7 +731,18 @@ N (\mathbf{P}_{R (\mathbf{A})}) = R (\mathbf{A})^{\perp} = N (\mathbf{A}^{H}),
 a = v + \mathbf{P}_{\mathcal{M}} (b - v),
 </span></p>
 <p>where <span class="math inline">\mathbf{P}_{\mathcal{M}}</span> is the orthogonal projection matrix of <span class="math inline">\mathcal{M}</span>.</p>
-<p>:::{prf:proof} Affine projection :class: dropdown</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>Since the affine space <span class="math inline">\mathcal{A}</span> is the set of vectors translated from <span class="math inline">\mathcal{M}</span> through the vector <span class="math inline">v</span>, the affine projection <span class="math inline">a</span> of <span class="math inline">b</span> onto <span class="math inline">\mathcal{A}</span> is the translated version of orthogonal projection of the translated version of <span class="math inline">b</span> onto the translated version of <span class="math inline">\mathcal{A}</span>.</p>
 <p>Thus, the affine projection onto <span class="math inline">\mathcal{A}</span> is a orthogonal projection onto <span class="math inline">\mathcal{M}</span> with a translated input and output.</p>
 <p>By the definition of the orthogonal projection,</p>
@@ -558,7 +754,9 @@ a - v = \mathbf{P}_{\mathcal{M}} (b - v)
 <p><span class="math display">
 a = v + \mathbf{P}_{\mathcal{M}} (b - v).
 </span></p>
-<p>:::</p>
+</div>
+</div>
+</div>
 </section>
 <section id="hyperplanes" class="level2">
 <h2 class="anchored" data-anchor-id="hyperplanes">Hyperplanes</h2>
@@ -575,7 +773,18 @@ a = v + \mathbf{P}_{\mathcal{M}} (b - v).
 <p><span class="math display">
 \mathbf{v} = \frac{\beta}{\mathbf{w}^{T} \mathbf{w}} \mathbf{w}.
 </span></p>
-<p>:::{prf:proof} <span class="math inline">\mathcal{H} = \{ \mathbf{x} | \mathbf{w}^{T} \mathbf{x} = \beta \}</span> represents an affine space in <span class="math inline">\mathbb{R}^{n}</span> :class: dropdown</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>The set <span class="math inline">\mathcal{H}</span> contains the general solutions of the linear system <span class="math inline">\mathbf{w}^{T} \mathbf{x} = \beta</span>.</p>
 <p>A particular solution to the linear system is</p>
 <p><span class="math display">
@@ -627,7 +836,9 @@ N (\mathbf{w}^{T})
 \mathcal{M} = \mathbf{w}^{\perp}.
 </span></p>
 <p>TODO: explain the general solution of any linear system.</p>
-<p>:::</p>
+</div>
+</div>
+</div>
 <p>The orthogonal projection <span class="math inline">\mathbf{a}</span> of a point <span class="math inline">\mathbf{b} \in \mathbb{R}^{n}</span> onto the hyperplane <span class="math inline">\mathcal{H}</span> is given by</p>
 <p><span class="math display">
 \mathbf{a} = \mathbf{b} - \left(
@@ -638,7 +849,18 @@ N (\mathbf{w}^{T})
     }
 \right) \mathbf{w}.
 </span></p>
-<p>:::{prf:proof} Orthogonal projection onto a hyperplane is $ = - ( {^{T}} ) $ :class: dropdown</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>Since we know that <span class="math inline">\mathcal{H}</span> is an affine space with <span class="math inline">\mathcal{W} = \mathbf{w}^{\perp}</span> and <span class="math inline">\mathbf{v} = \frac{\beta}{\mathbf{w}^{T} \mathbf{w}} \mathbf{w}</span>, the affine projection can be expressed as</p>
 <p><span class="math display">
 \begin{aligned}
@@ -713,7 +935,9 @@ N (\mathbf{w}^{T})
 + \frac{\beta}{\mathbf{w}^{T} \mathbf{w}} \mathbf{w}
 \end{aligned}
 </span></p>
-<p>:::</p>
+</div>
+</div>
+</div>
 
 
 </section>

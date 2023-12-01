@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Joeyonng - Linear Map</title>
+<title>Joeyonng - Linear Map and Rank</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -44,7 +44,7 @@ ul.task-list li input[type="checkbox"] {
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "end",
-  "type": "overlay",
+  "type": "textbox",
   "limit": 20,
   "language": {
     "search-no-results-text": "No results",
@@ -77,7 +77,6 @@ ul.task-list li input[type="checkbox"] {
   </script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
-<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
@@ -102,19 +101,22 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Knowledge</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../Notes" rel="" target="">
+    <a class="nav-link" href="../../Notes/index.html" rel="" target="">
  <span class="menu-text">Notes</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="https://joeyonng.github.io/joeyonng-backyard/" rel="" target="">
+    <a class="nav-link" href="https://joeyonng.github.io/joeyonng-backyard/" rel="" target=""><i class="bi bi-House" role="img">
+</i> 
  <span class="menu-text">Backyard</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools ms-auto">
+            <div class="quarto-navbar-tools">
 </div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
@@ -124,7 +126,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Linear Map</li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Knowledge/Linear Algebra/01_Fields_and_Spaces.html">Linear Algebra</a></li><li class="breadcrumb-item"><a href="../../Knowledge/Linear Algebra/05_Linear_Map_and_Rank.html">Linear Map and Rank</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -146,13 +148,115 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
- <span class="menu-text">Learning Theory</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Linear Algebra</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/01_Fields_and_Spaces.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fields and Spaces</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/02_Vectors_and_Matrices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vectors and Matrices</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/03_Span_and_Linear_Independence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Span and Linear Independence</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/04_Basis_and_Dimension.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Basis and Dimension</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/05_Linear_Map_and_Rank.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Linear Map and Rank</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/06_Inner_Product_and_Norm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Inner Product and Norm</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/07_Orthogonality_and_Unitary_Matrix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Orthogonality and Unitary Matrix</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/08_Complementary_Subspaces_and_Projection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Complementary Subspaces and Projection</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/09_Orthogonal_Complement_and_Decomposition.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Orthogonal Complement and Decomposition</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/10_URV_Fractorization_and_SVD.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">URV Factorization and SVD</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/11_Pseudoinverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pseudoinverse</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/12_Orthogonal_and_Affine_Projection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Orthogonal and Affine Projection</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/13_Determinants_and_Eigensystems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Determinants and Eigensystems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/14_Similarity_and_Diagonalization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Similarity and Diagonalization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Knowledge/Linear Algebra/15_Normal_and_Positive_Definite_Matrices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Normal and Positive Definite Matrices</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">Learning Theory</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Knowledge/Learning Theory/1_Statistical_Learning.html" class="sidebar-item-text sidebar-link">
@@ -208,8 +312,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#properties-of-linear-map" id="toc-properties-of-linear-map" class="nav-link active" data-scroll-target="#properties-of-linear-map">Properties of linear map</a></li>
+  <li><a href="#linear-map" id="toc-linear-map" class="nav-link active" data-scroll-target="#linear-map">Linear Map</a>
+  <ul class="collapse">
+  <li><a href="#properties-of-linear-map" id="toc-properties-of-linear-map" class="nav-link" data-scroll-target="#properties-of-linear-map">Properties of linear map</a></li>
   <li><a href="#generalization-of-null-space-and-range-space" id="toc-generalization-of-null-space-and-range-space" class="nav-link" data-scroll-target="#generalization-of-null-space-and-range-space">Generalization of null space and range space</a></li>
+  </ul></li>
   <li><a href="#rank" id="toc-rank" class="nav-link" data-scroll-target="#rank">Rank</a>
   <ul class="collapse">
   <li><a href="#properties-of-rank" id="toc-properties-of-rank" class="nav-link" data-scroll-target="#properties-of-rank">Properties of rank</a></li>
@@ -223,7 +330,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Linear Map</h1>
+<h1 class="title">Linear Map and Rank</h1>
 </div>
 
 
@@ -238,6 +345,8 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<section id="linear-map" class="level1">
+<h1>Linear Map</h1>
 <p>Let <span class="math inline">\mathcal{U}</span> and <span class="math inline">\mathcal{V}</span> be the vector spaces over the same filed <span class="math inline">\mathbb{F}</span>. A map <span class="math inline">T: \mathcal{U} \to \mathcal{V}</span> is linear if</p>
 <ul>
 <li><p><span class="math inline">T (u + v) = T (u) + T (v) \quad u, v \in \mathcal{U}, T (u), T (v) \in \mathcal{V}</span>, and</p></li>
@@ -248,7 +357,18 @@ ul.task-list li input[type="checkbox"] {
 <p>Let <span class="math inline">\mathcal{U}</span> and <span class="math inline">\mathcal{V}</span> be two vector spaces over the same filed <span class="math inline">\mathbb{F}</span>, and suppose <span class="math inline">T</span> is a linear map <span class="math inline">T: \mathcal{U} \to \mathcal{V}</span>.</p>
 <ul>
 <li><p>A linear map must satisfy <span class="math inline">T (0) = 0</span>.</p>
-<p>:::{prf:proof} <span class="math inline">T (0) = 0</span> :class: dropdown</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>We prove by contradiction. Suppose there exists a linear map such that</p>
 <p><span class="math display">
   T (0) \neq 0.
@@ -267,9 +387,23 @@ ul.task-list li input[type="checkbox"] {
 <p><span class="math display">
   \alpha = 1, \forall \alpha \in \mathbb{F},
   </span></p>
-<p>which raises a contradiction. :::</p></li>
+<p>which raises a contradiction.</p>
+</div>
+</div>
+</div></li>
 <li><p>There exists a matrix representation of <span class="math inline">T</span>.</p>
-<p>:::{prf:proof} a matrix representation exists for any linear map :class: dropdown</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>Suppose <span class="math inline">\text{dim} (\mathcal{U}) = n</span> and <span class="math inline">\text{dim} (\mathcal{V}) = m</span>.</p>
 <p>Let <span class="math inline">\{ u_{1}, \dots, u_{n} \}</span> be a basis of <span class="math inline">\mathcal{U}</span>, and <span class="math inline">\{ v_{1}, \dots, v_{m} \}</span> be a basis of <span class="math inline">\mathcal{V}</span>.</p>
 <p>Suppose any vector <span class="math inline">x \in \mathcal{U}</span> satisfies that</p>
@@ -353,7 +487,9 @@ ul.task-list li input[type="checkbox"] {
 <p><span class="math display">
   \mathbf{b} = \mathbf{C} \mathbf{a}.
   </span></p>
-<p>:::</p></li>
+</div>
+</div>
+</div></li>
 </ul>
 </section>
 <section id="generalization-of-null-space-and-range-space" class="level2">
@@ -372,6 +508,7 @@ R (T) = \left\{
 \right\}.
 </span></p>
 </section>
+</section>
 <section id="rank" class="level1">
 <h1>Rank</h1>
 <p>Consider matrix <span class="math inline">\mathbf{A} \in \mathbb{F}^{m \times n}</span>, the rank of matrix <span class="math inline">\mathbf{A}</span> is</p>
@@ -384,7 +521,18 @@ R (T) = \left\{
 <p>(rank-property-1)=</p>
 <ul>
 <li><p>rank-nullity theorem: <span class="math inline">\text{rank} (\mathbf{A}) + \text{dim} (N (\mathbf{A})) = n</span></p>
-<p>:::{prf:proof} the rank-nullity theorem :class: dropdown</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>Since <span class="math inline">\mathbf{A}</span> represents a linear transform <span class="math inline">T: \mathcal{U} \to \mathcal{V}</span> with <span class="math inline">\mathrm{dim} (\mathcal{U}) = m, \mathrm{dim} (\mathcal{V}) = n</span> the rank-nullity theorem can also be stated as</p>
 <p><span class="math display">
   \mathrm{dim} (R (T)) + \mathrm{dim} (N (T)) = \mathrm{dim} (\mathcal{U}).
@@ -487,12 +635,25 @@ R (T) = \left\{
 <p><span class="math display">
   \text{dim} (N (T)) + \text{dim} (R (T)) = \text{dim} (\mathcal{U}).
   </span></p>
-<p>:::</p></li>
+</div>
+</div>
+</div></li>
 </ul>
 <p>(rank-property-2)=</p>
 <ul>
 <li><p><span class="math inline">\text{rank} (\mathbf{A}) \leq \min (m, n)</span></p>
-<p>:::{prf:proof} <span class="math inline">\text{rank} (\mathbf{A}) \leq \min (m, n)</span> :class: dropdown</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>According to the <a href="rank-property-1">rank property</a></p>
 <p><span class="math display">
   \text{dim} (N (\mathbf{\mathbf{A}})) = n - \text{rank} (\mathbf{A}).
@@ -512,7 +673,10 @@ R (T) = \left\{
 <p>Thus,</p>
 <p><span class="math display">
   \text{rank} (\mathbf{A}) \leq \min(m, n).
-  </span> :::</p>
+  </span></p>
+</div>
+</div>
+</div>
 <ul>
 <li><p>If <span class="math inline">\text{rank} (\mathbf{A}) = \min (m, n)</span>, matrix is called a full (row or column) rank matrix.</p></li>
 <li><p>If <span class="math inline">\text{rank} (\mathbf{A}) = n</span>, <span class="math inline">\mathbf{a}_{*, 1}, \dots, \mathbf{a}_{*, n}</span> are linearly independent.</p></li>
@@ -521,7 +685,18 @@ R (T) = \left\{
 <p>(rank-property-3)=</p>
 <ul>
 <li><p><span class="math inline">\text{rank} (\mathbf{A}) = \text{rank} (\mathbf{A}^{T})</span></p>
-<p>:::{prf:proof} <span class="math inline">\text{rank} (\mathbf{A}) = \text{rank} (\mathbf{A}^{T})</span> :class: dropdown</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>Suppose <span class="math inline">\mathbf{A} \in \mathbb{F}^{m \times n}</span>. Let <span class="math inline">\{ \mathbf{a}_{1}, \dots, \mathbf{a}_{n} \in \mathbb{F}^{m} \}</span> be the columns of <span class="math inline">\mathbf{A}</span></p>
 <p><span class="math display">
   \mathbf{A} =
@@ -583,7 +758,10 @@ R (T) = \left\{
 <p>Since <span class="math inline">\text{rank} (\mathbf{A}^{T}) \leq \text{rank} (\mathbf{A})</span> and $ () (^{T})$ at the same time, we can prove</p>
 <p><span class="math display">
   \text{rank} (\mathbf{A}) = \text{rank} (\mathbf{A}^{T}).
-  </span> :::</p></li>
+  </span></p>
+</div>
+</div>
+</div></li>
 </ul>
 <p>(rank-property-6)=</p>
 <ul>
@@ -591,9 +769,22 @@ R (T) = \left\{
 <p><span class="math display">
   \text{rank} (\mathbf{A}) = \text{rank} (\mathbf{A}^{T} \mathbf{A}).
   </span></p>
-<p>:::{prf:proof} <span class="math inline">\text{rank} (\mathbf{A}) = \text{rank} (\mathbf{A}^{T} \mathbf{A}), \mathbf{A} \in \mathbb{R}^{m \times n}</span> :class: dropdown</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>TODO</p>
-<p>:::</p></li>
+</div>
+</div>
+</div></li>
 </ul>
 <p>(rank-property-4)=</p>
 <ul>
@@ -601,9 +792,22 @@ R (T) = \left\{
 <p><span class="math display">
   \text{rank} (\mathbf{A}) = \text{rank} (\mathbf{B} \mathbf{A}) = \text{rank} (\mathbf{A} \mathbf{C}).
   </span></p>
-<p>:::{prf:proof} Multiplication by a full-rank square matrix preserves rank :class: dropdown</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>TODO</p>
-<p>:::</p></li>
+</div>
+</div>
+</div></li>
 </ul>
 </section>
 <section id="rank-and-matrix-inverse" class="level2">
@@ -621,7 +825,18 @@ R (T) = \left\{
   \mathbf{A} \mathbf{C} = \mathbf{I}_{m \times m}.
   </span></p>
 <p>if and only if <span class="math inline">\text{rank} (\mathbf{A}) = m</span>.</p>
-<p>:::{prf:proof} <span class="math inline">\mathbf{A} \mathbf{C} = \mathbf{I}_{m \times m} \iff \text{rank} (\mathbf{A}) = m</span> :class: dropdown</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>To prove this, we first prove that there exists a matrix <span class="math inline">\mathbf{C}</span> such that</p>
 <p><span class="math display">
   \mathbf{A} \mathbf{C} = \mathbf{I}_{m \times m} \iff \mathbf{e}_{1}, \dots \mathbf{e}_{m} \in R (A).
@@ -675,8 +890,21 @@ R (T) = \left\{
 <p><span class="math display">
   \mathbf{A} \mathbf{C} = \mathbf{I}_{m \times m} \iff \mathbf{e}_{1}, \dots \mathbf{e}_{m} \in R (A) \iff \text{rank} (\mathbf{A}) = m.
   </span></p>
-<p>:::</p>
-<p>:::{prf:proof} <span class="math inline">\mathbf{B} \mathbf{A} = \mathbf{I}_{n \times n} \iff \text{rank} (\mathbf{A}) = n</span>. :class: dropdown</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>We first notice that</p>
 <p><span class="math display">
   \begin{aligned}
@@ -695,7 +923,9 @@ R (T) = \left\{
 <p><span class="math display">
   \text{rank} (\mathbf{A}^{T}) = \text{rank} (\mathbf{A}) = n.
   </span></p>
-<p>:::</p></li>
+</div>
+</div>
+</div></li>
 </ul>
 <p>(rank-property-5)=</p>
 <ul>
@@ -703,9 +933,22 @@ R (T) = \left\{
 <p><span class="math display">
   \mathbf{A} \mathbf{A}^{-1} = \mathbf{A}^{-1} \mathbf{A} = \mathbf{I}_{n \times n}.
   </span></p>
-<p>:::{prf:proof} <span class="math inline">\text{rank} (\mathbf{A}) = n \iff \mathbf{A} \mathbf{A}^{-1} = \mathbf{A}^{-1} \mathbf{A} = \mathbf{I}_{n \times n}</span> :class: dropdown</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>TODO</p>
-<p>:::</p></li>
+</div>
+</div>
+</div></li>
 </ul>
 
 

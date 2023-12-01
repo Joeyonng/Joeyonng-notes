@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Joeyonng - Span and Linear Independence</title>
+<title>Joeyonng - Orthogonal and Affine Projection</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -126,7 +126,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Knowledge/Linear Algebra/01_Fields_and_Spaces.html">Linear Algebra</a></li><li class="breadcrumb-item"><a href="../../Knowledge/Linear Algebra/03_Span_and_Linear_Independence.html">Span and Linear Independence</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Knowledge/Linear Algebra/01_Fields_and_Spaces.html">Linear Algebra</a></li><li class="breadcrumb-item"><a href="../../Knowledge/Linear Algebra/12_Orthogonal_and_Affine_Projection.html">Orthogonal and Affine Projection</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -169,7 +169,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Knowledge/Linear Algebra/03_Span_and_Linear_Independence.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../Knowledge/Linear Algebra/03_Span_and_Linear_Independence.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Span and Linear Independence</span></a>
   </div>
 </li>
@@ -223,7 +223,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Knowledge/Linear Algebra/12_Orthogonal_and_Affine_Projection.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Knowledge/Linear Algebra/12_Orthogonal_and_Affine_Projection.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Orthogonal and Affine Projection</span></a>
   </div>
 </li>
@@ -312,15 +312,18 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#span" id="toc-span" class="nav-link active" data-scroll-target="#span">Span</a>
+  <li><a href="#orthogonal-projection" id="toc-orthogonal-projection" class="nav-link active" data-scroll-target="#orthogonal-projection">Orthogonal projection</a>
   <ul class="collapse">
-  <li><a href="#spanning-set" id="toc-spanning-set" class="nav-link" data-scroll-target="#spanning-set">Spanning set</a></li>
-  <li><a href="#properties-of-the-spanning-set" id="toc-properties-of-the-spanning-set" class="nav-link" data-scroll-target="#properties-of-the-spanning-set">Properties of the spanning set</a></li>
+  <li><a href="#properties-of-orthogonal-projection" id="toc-properties-of-orthogonal-projection" class="nav-link" data-scroll-target="#properties-of-orthogonal-projection">Properties of orthogonal projection</a></li>
+  <li><a href="#orthogonal-projection-matrix" id="toc-orthogonal-projection-matrix" class="nav-link" data-scroll-target="#orthogonal-projection-matrix">Orthogonal projection matrix</a></li>
+  <li><a href="#properties-of-orthogonal-projection-matrix" id="toc-properties-of-orthogonal-projection-matrix" class="nav-link" data-scroll-target="#properties-of-orthogonal-projection-matrix">Properties of orthogonal projection matrix</a></li>
+  <li><a href="#application-least-square-problem" id="toc-application-least-square-problem" class="nav-link" data-scroll-target="#application-least-square-problem">Application: least square problem</a></li>
   </ul></li>
-  <li><a href="#linear-independence" id="toc-linear-independence" class="nav-link" data-scroll-target="#linear-independence">Linear independence</a>
+  <li><a href="#affine-projection" id="toc-affine-projection" class="nav-link" data-scroll-target="#affine-projection">Affine projection</a>
   <ul class="collapse">
-  <li><a href="#properties-of-linear-independence" id="toc-properties-of-linear-independence" class="nav-link" data-scroll-target="#properties-of-linear-independence">Properties of linear independence</a></li>
-  <li><a href="#linear-dependence" id="toc-linear-dependence" class="nav-link" data-scroll-target="#linear-dependence">Linear dependence</a></li>
+  <li><a href="#affine-space" id="toc-affine-space" class="nav-link" data-scroll-target="#affine-space">Affine space</a></li>
+  <li><a href="#affine-projection-1" id="toc-affine-projection-1" class="nav-link" data-scroll-target="#affine-projection-1">Affine projection</a></li>
+  <li><a href="#hyperplanes" id="toc-hyperplanes" class="nav-link" data-scroll-target="#hyperplanes">Hyperplanes</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -330,7 +333,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Span and Linear Independence</h1>
+<h1 class="title">Orthogonal and Affine Projection</h1>
 </div>
 
 
@@ -345,47 +348,27 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="span" class="level1">
-<h1>Span</h1>
-<p>Given a vector space <span class="math inline">\mathcal{V}</span> over a field <span class="math inline">\mathbb{F}</span>, the span of a set of vectors <span class="math inline">v_{1}, \dots, v_{n} \in \mathcal{V}</span> is the set of all possible linear combinations of <span class="math inline">v_{1}, \dots, v_{m}</span></p>
+<section id="orthogonal-projection" class="level1">
+<h1>Orthogonal projection</h1>
+<p>Suppose <span class="math inline">\mathcal{M}</span> is a subspace in the vector space <span class="math inline">\mathcal{V}</span>. Since <span class="math inline">\mathcal{M}^{\perp}</span> is a orthogonal complementary subspace of <span class="math inline">\mathcal{M}</span>, we have <span class="math inline">\mathcal{M} \oplus \mathcal{M}^{\perp} = \mathcal{V}</span>.</p>
+<p>For <span class="math inline">v \in \mathcal{V}</span>, let <span class="math inline">v = m + n</span>, where <span class="math inline">m \in \mathcal{M}</span> and <span class="math inline">n \in \mathcal{M}^{\perp}</span>. We define a linear operator <span class="math inline">\mathbf{P}_{\mathcal{M}} \in \mathbb{C}^{n \times n}</span> such that</p>
 <p><span class="math display">
-\text{span} (v_{1}, \dots, v_{n}) = \left\{
-    \sum_{i=1}^{n} \alpha_{i} \cdot v_{i}, \forall \alpha_{i} \in \mathbb{F}
-\right\}.
+\mathbf{P}_{\mathcal{M}} v = m.
 </span></p>
-<p>If <span class="math inline">\mathcal{V}</span> is <span class="math inline">\mathbb{F}^{m}</span>, the set vectors <span class="math inline">v_{1}, \dots, v_{n}</span> can be viewed as the columns of the matrix <span class="math inline">\mathbf{A} \in \mathbb{F}^{m \times n}</span>. Then</p>
-<p><span class="math display">
-\text{span} (v_{1}, \dots, v_{n}) = R (\mathbf{A}).
-</span></p>
-<p>Since we have proved <span class="math inline">R (\mathbf{A})</span> is a subspace of <span class="math inline">\mathcal{V}</span>, the span of a set of vectors is a subspace of <span class="math inline">\mathcal{V}</span>.</p>
-<section id="spanning-set" class="level2">
-<h2 class="anchored" data-anchor-id="spanning-set">Spanning set</h2>
-<p>For a set of vectors <span class="math inline">\mathcal{S} = v_{1}, \dots, v_{n}</span>, if the subspace <span class="math inline">\mathcal{W}</span> is the span of <span class="math inline">\mathcal{S}</span></p>
-<p><span class="math display">
-\mathcal{W} = \text{span} (\mathcal{S}),
-</span></p>
-<p>then the set of vectors <span class="math inline">\mathcal{S}</span> is the spanning set of the subspace <span class="math inline">\mathcal{W}</span>.S.</p>
-</section>
-<section id="properties-of-the-spanning-set" class="level2">
-<h2 class="anchored" data-anchor-id="properties-of-the-spanning-set">Properties of the spanning set</h2>
-<p>Consider a set of vectors $ = { v_{1}, , v_{n} }$ and a subspace <span class="math inline">\mathcal{W}</span>.</p>
-<p>(spanning-set-property-1)=</p>
+<p>where</p>
 <ul>
-<li><p>If <span class="math inline">\mathcal{A}</span> is a spanning set of <span class="math inline">\mathcal{W}</span>, the new set</p>
-<p><span class="math display">
-  \mathcal{A} \cup \left\{
-      u_{1}, \dots, u_{n}
-  \right\}
-  </span></p>
-<p>is still a spanning set of <span class="math inline">\mathcal{W}</span> for arbitrary vectors <span class="math inline">u_{1}, \dots, u_{n} \in \mathcal{W}</span>.</p></li>
+<li><p><span class="math inline">m</span> is the <strong>orthogonal projection</strong> of <span class="math inline">v</span> onto <span class="math inline">\mathcal{M}</span> along <span class="math inline">\mathcal{M}^{\perp}</span>,</p></li>
+<li><p><span class="math inline">\mathbf{P}_{\mathcal{M}}</span> is the <strong>orthogonal projection matrix</strong> of <span class="math inline">v</span> onto <span class="math inline">\mathcal{M}</span> along <span class="math inline">\mathcal{M}^{\perp}</span>.</p></li>
 </ul>
-<p>(spanning-set-property-2)=</p>
+<section id="properties-of-orthogonal-projection" class="level2">
+<h2 class="anchored" data-anchor-id="properties-of-orthogonal-projection">Properties of orthogonal projection</h2>
+<p>Suppose <span class="math inline">m</span> is the orthogonal projection of <span class="math inline">v</span> on the subspace <span class="math inline">\mathcal{M}</span></p>
+<p><span class="math display">
+m = \mathbf{P}_{\mathcal{M}} v.
+</span></p>
+<p>(orthogonal-projection-property-1)=</p>
 <ul>
-<li><p><span class="math inline">\mathcal{A}</span> is a spanning set of <span class="math inline">\mathcal{W}</span> if and only if</p>
-<ul>
-<li><p>all vectors in <span class="math inline">\mathcal{W}</span> are linear combinations of <span class="math inline">v_{1}, \dots, v_{n}</span> and</p></li>
-<li><p><span class="math inline">v_{1}, \dots, v_{n} \in \mathcal{W}</span>.</p></li>
-</ul>
+<li><p><span class="math inline">m</span> always exists and is unique.</p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -398,32 +381,16 @@ Proof
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Since this statement has “if and only if”, we first prove in the forward direction.</p>
-<p>If <span class="math inline">v_{1}, \dots, v_{n}</span> is a spanning set of <span class="math inline">\mathcal{W}</span>, then by the definition of spanning set, the set of all linear combinations of <span class="math inline">v_{1}, \dots, v_{n}</span> is the subspace <span class="math inline">\mathcal{W}</span>.</p>
-<p>Thus, all vectors in the subspace <span class="math inline">\mathcal{W}</span> are the linear combinations of <span class="math inline">v_{1}, \dots, v_{n}</span>.</p>
-<p>Since every <span class="math inline">v_{i}, i = 1, \dots, n</span> is a linear combination of itself, then <span class="math inline">v_{1}, \dots, v_{n}</span> are also in <span class="math inline">\mathcal{W}</span>.</p>
-<p>Then we prove in the backward direction.</p>
-<p>Since all vectors in <span class="math inline">\mathcal{W}</span> are linear combinations of <span class="math inline">v_{1}, \dots, v_{n}</span>, by the definition of span,</p>
-<p><span class="math display">
-  \mathcal{W} \subseteq \text{span} (v_{1}, \dots, v_{n}).
-  </span></p>
-<p>Since <span class="math inline">v_{1}, \dots, v_{n} \in \mathcal{W}</span> and the closure property of the subspace, all linear combinations of <span class="math inline">v_{1}, \dots, v_{n}</span> are also in <span class="math inline">\mathcal{W}</span>, which means that</p>
-<p><span class="math display">
-  \text{span} (v_{1}, \dots, v_{n}) \subseteq \mathcal{W}.
-  </span></p>
-<p>Thus,</p>
-<p><span class="math display">
-  \mathcal{W} = \text{span} (v_{1}, \dots, v_{n}).
-  </span></p>
+<p>TODO</p>
 </div>
 </div>
 </div></li>
 </ul>
-<p>(spanning-set-property-3)=</p>
+<p>(orthogonal-projection-property-2)=</p>
 <ul>
-<li><p>If vectors in set <span class="math inline">\mathcal{B}</span> are linear combinations of the vectors in <span class="math inline">\mathcal{A}</span>, then</p>
+<li><p>Orthogonality of the difference.</p>
 <p><span class="math display">
-  \text{span} (\mathcal{B}) \subseteq \text{span} (\mathcal{A}).
+  \langle v - m, x \rangle = 0, \quad \forall x \in \mathcal{M}
   </span></p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
@@ -437,28 +404,23 @@ Proof
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>We prove by contradiction. Suppose that the vectors in set <span class="math inline">\mathcal{B}</span> are linear combinations of the vectors in <span class="math inline">\mathcal{A}</span>, but there exists an vector <span class="math inline">v \in \text{span} (\mathcal{B})</span> but <span class="math inline">v \notin \text{span} (\mathcal{A})</span>.</p>
-<p>Suppose <span class="math inline">\mathcal{A} = \{ a_{1}, \dots, a_{n} \}</span>. Since <span class="math inline">v \in \mathcal{B}</span> is a linear combinations of vectors in <span class="math inline">\mathcal{A}</span>, there exists a set of coefficients <span class="math inline">\alpha_{1}, \dots, \alpha_{n}</span> such that</p>
+<p>Since <span class="math inline">n \in \mathcal{M}^{\perp}</span>, by definition of the orthogonal complement of subspaces,</p>
 <p><span class="math display">
-  v = \sum_{i = 1}^{n} \alpha_{i} a_{i}.
+  \langle n, x \rangle = 0, \quad \forall x \in \mathcal{M}.
   </span></p>
-<p>which by definition of span means <span class="math inline">v \in \text{span} (\mathbf{A})</span>.</p>
-<p>However, we assume that <span class="math inline">v \notin \text{span} (\mathbf{A})</span>, which raises a contradiction.</p>
+<p>Since by definition <span class="math inline">v = m + n</span>,</p>
+<p><span class="math display">
+  \langle v - m, x \rangle = 0, \quad \forall x \in \mathcal{M}.
+  </span></p>
 </div>
 </div>
 </div></li>
 </ul>
-<p>(spanning-set-property-4)=</p>
+<p>(orthogonal-projection-property-3)=</p>
 <ul>
-<li><p>If <span class="math inline">\text{span} (\mathcal{A}) = \mathcal{W}</span> and <span class="math inline">\text{span} (\mathcal{B}) = \mathcal{U}</span>, then</p>
+<li><p>Closest point theorem: <span class="math inline">m</span> is the closest point in <span class="math inline">\mathcal{M}</span> to <span class="math inline">v</span> in terms of the ip norm:</p>
 <p><span class="math display">
-  \text{span} (\mathcal{A} \cup \mathcal{B}) = \mathcal{W} + \mathcal{U},
-  </span></p>
-<p>where</p>
-<p><span class="math display">
-  \mathcal{W} + \mathcal{U} = \left\{
-      w + u \mid w \in \mathcal{W}, u \in \mathcal{U}
-  \right\}.
+  m = \min_{x \in \mathcal{M}} \lVert v - x \rVert.
   </span></p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
@@ -472,46 +434,52 @@ Proof
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Consider <span class="math inline">\mathcal{A} = \{ a_{1}, \dots, a_{n} \}, \mathcal{B} = \{ b_{1}, \dots, b_{m} \}</span>, then</p>
+<p>According to the <a href="orthogonal-projection-property-1">property of orthogonal projection</a>, the projection <span class="math inline">m</span> always exists.</p>
+<p>Thus, we can add and subtract <span class="math inline">m</span>,</p>
 <p><span class="math display">
-  \text{span} (\mathcal{A} \cup \mathcal{B}) = \left\{
-      \sum_{i=1}^{n} \alpha_{i} a_{i} + \sum_{i=1}^{n} \beta_{i} b_{i}, \forall \alpha_{i}, \beta_{i} \in \mathbb{F}
-  \right\}.
+  \begin{aligned}
+  \lVert v - x \rVert^{2}
+  &amp; = \lVert v - m + m - x \rVert^{2} \quad \forall x \in \mathcal{M}
+  \\
+  &amp; = \langle v - m + m - x, v - m + m - x \rangle
+  \\
+  &amp; = \langle v - m, v - m + m - x \rangle + \langle m - x, v - m + m - x \rangle
+  \\
+  &amp; = \lVert v - m \rVert^{2} + \langle v - m, m - x \rangle + \langle m - x, v - m \rangle + \lVert m - x \rVert^{2}
+  \\
+  \end{aligned}
   </span></p>
-<p>Note that</p>
+<p>Since <span class="math inline">m - x \in \mathcal{M}</span>, according to the <a href="orthogonal-projection-property-2">property of orthogonal projection</a>,</p>
 <p><span class="math display">
-  w \in \mathcal{W} = \sum_{i=1}^{n} \alpha_{i} a_{i}, \forall \alpha_{i} \in \mathbb{F},
-  </span></p>
-<p><span class="math display">
-  u \in \mathcal{U} = \sum_{i=1}^{n} \beta_{i} b_{i}, \forall \beta_{i} \in \mathbb{F}.
+  \langle v - m, m - x \rangle = \langle m - x, v - m \rangle = 0.
   </span></p>
 <p>Thus,</p>
 <p><span class="math display">
-  \text{span} (\mathcal{A} \cup \mathcal{B}) = \left\{
-      w + u \mid w \in \mathcal{W}, u \in \mathcal{U}
-  \right\} = \mathcal{W} + \mathcal{U}.
+  \begin{aligned}
+  \lVert v - x \rVert^{2}
+  &amp; = \lVert v - m \rVert^{2} + \lVert m - x \rVert^{2}
+  \\
+  \lVert v - x \rVert^{2}
+  &amp; \geq \lVert v - m \rVert^{2}
+  &amp; [\lVert m - x \rVert^{2} \geq 0]
+  \end{aligned}
   </span></p>
+<p>which shows that</p>
+<p><span class="math display">
+  \lVert v - m \rVert^{2}
+  </span></p>
+<p>minimizes the distances between <span class="math inline">v</span> to all vectors <span class="math inline">x</span> in the subspace <span class="math inline">\mathcal{M}</span>.</p>
 </div>
 </div>
 </div></li>
 </ul>
 </section>
-</section>
-<section id="linear-independence" class="level1">
-<h1>Linear independence</h1>
-<p>Given a vector space <span class="math inline">\mathcal{V}</span> over a field <span class="math inline">\mathbb{F}</span>, a set of non-zero vectors <span class="math inline">v_{1}, \dots, v_{n} \in \mathcal{V}</span> is linearly independent when</p>
+<section id="orthogonal-projection-matrix" class="level2">
+<h2 class="anchored" data-anchor-id="orthogonal-projection-matrix">Orthogonal projection matrix</h2>
+<p>If <span class="math inline">\mathbf{P}_{\mathcal{M}}</span> is the orthogonal projection matrix of <span class="math inline">v</span> onto the subspace <span class="math inline">\mathcal{M}</span>, and the columns of <span class="math inline">\mathbf{M} \in \mathbb{C}^{n \times r}</span> are <span class="math inline">r</span> bases for <span class="math inline">\mathcal{M}</span>, then</p>
 <p><span class="math display">
-\sum_{i=1}^{n} \alpha_{i} \cdot v_{i} = 0 \iff \alpha_{i} = 0, i = 1, \dots, n.
+\mathbf{P}_{\mathcal{M}} = \mathbf{M} (\mathbf{M}^{H} \mathbf{M})^{-1} \mathbf{M}^{H}.
 </span></p>
-<section id="properties-of-linear-independence" class="level2">
-<h2 class="anchored" data-anchor-id="properties-of-linear-independence">Properties of linear independence</h2>
-<ul>
-<li><p>Given a matrix <span class="math inline">\mathbf{A}</span> whose columns are vectors <span class="math inline">\mathbf{v}_{1}, \dots, \mathbf{v}_{n} \in \mathbb{F}^{m}</span> the set of vectors <span class="math inline">\mathcal{S} = \{ \mathbf{v}_{1}, \dots, \mathbf{v}_{n} \}</span> is linearly independent when the null space of <span class="math inline">\mathbf{A}</span> only contains <span class="math inline">\mathbf{0} \in \mathbb{F}^{n}</span>.</p>
-<p><span class="math display">
-  N (\mathbf{A}) = \left\{
-      \mathbf{0}
-  \right\}
-  </span></p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -524,15 +492,77 @@ Proof
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>By definition, <span class="math inline">N (\mathbf{A}) = \{ \mathbf{0} \}</span> says that the only set of <span class="math inline">\alpha_{1}, \dots, \alpha_{n}</span> satisfying</p>
+<p>Since <span class="math inline">\text{rank} (\mathbf{M}^{H} \mathbf{H}) = \text{rank} (\mathcal{M}) = r</span> and <span class="math inline">\mathbf{M}^{H} \mathbf{H} \in \mathbb{C}^{r \times r}</span>, according to the <a href="rank-property-5">property of rank</a>, <span class="math inline">(\mathbf{M}^{H} \mathbf{H})^{-1}</span> exists.</p>
+<p>Suppose the columns of <span class="math inline">\mathbf{N} \in \mathbb{C}^{n \times s}</span> are orthonormal bases for <span class="math inline">\mathcal{M}^{\perp}</span>, where <span class="math inline">s = n - r</span> according to the <a href="complementary-subspaces-property-2">property of complementary subspaces</a>.</p>
+<p>Thus, we can construct the below matrix</p>
 <p><span class="math display">
-  \sum_{i = 1}^{n} \alpha_{i} \mathbf{A}_{*, i} = 0
+\begin{bmatrix}
+    (\mathbf{M}^{H} \mathbf{H})^{-1} \mathbf{M}^{H} \\
+    \mathbf{N}^{H} \\
+\end{bmatrix}.
+</span></p>
+<p>According to the definition of complementary subspaces, <span class="math inline">\mathbf{N}^{T} \mathbf{M} = 0</span> and <span class="math inline">\mathbf{M}^{T} \mathbf{N} = 0</span>.</p>
+<p>Thus,</p>
+<p><span class="math display">
+\begin{aligned}
+\begin{bmatrix}
+    (\mathbf{M}^{H} \mathbf{H})^{-1} \mathbf{M}^{H} \\
+    \mathbf{N}^{H} \\
+\end{bmatrix}
+\begin{bmatrix}
+    \mathbf{M} &amp; \mathbf{N} \\
+\end{bmatrix}
+&amp; =
+\begin{bmatrix}
+    \mathbf{I}_{r \times r} &amp; \mathbf{0} \\
+    \mathbf{0} &amp; \mathbf{I}_{s \times s} \\
+\end{bmatrix}
+\\
+\begin{bmatrix}
+    \mathbf{M} &amp; \mathbf{N} \\
+\end{bmatrix}^{-1}
+&amp; =
+\begin{bmatrix}
+    (\mathbf{M}^{H} \mathbf{H})^{-1} \mathbf{M}^{H} \\
+    \mathbf{N}^{H} \\
+\end{bmatrix}.
+\end{aligned}
+</span></p>
+<p>Since <span class="math inline">\mathcal{M}</span> and <span class="math inline">\mathcal{M}^{\perp}</span> are complementary subspaces, by the definition of projector,</p>
+<p><span class="math display">
+\begin{aligned}
+\mathbf{P}_{\mathcal{M}}
+&amp; =
+\begin{bmatrix}
+    \mathbf{M} &amp; \mathbf{0}
+\end{bmatrix}
+\begin{bmatrix}
+    \mathbf{M} &amp; \mathbf{N}
+\end{bmatrix}^{-1} \\
+&amp; =
+\begin{bmatrix}
+    \mathbf{M} &amp; \mathbf{0}
+\end{bmatrix}
+\begin{bmatrix}
+    (\mathbf{M}^{H} \mathbf{H})^{-1} \mathbf{M}^{H} \\
+    \mathbf{N}^{H} \\
+\end{bmatrix}
+\\
+&amp; = \mathbf{M} (\mathbf{M}^{H} \mathbf{H})^{-1} \mathbf{M}^{H}.
+\end{aligned}
+</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="properties-of-orthogonal-projection-matrix" class="level2">
+<h2 class="anchored" data-anchor-id="properties-of-orthogonal-projection-matrix">Properties of orthogonal projection matrix</h2>
+<p>(orthogonal-projection-matrix-property-1)=</p>
+<ul>
+<li><p><span class="math inline">\mathbf{P}</span> is a orthogonal projection matrix if and only if</p>
+<p><span class="math display">
+  R (\mathbf{P}) = N (\mathbf{P})^{\perp}.
   </span></p>
-<p>is <span class="math inline">\alpha_{1}, \dots, \alpha_{n} = 0</span>, which is equivalent to saying the columns of <span class="math inline">\mathbf{A}</span> are a linearly independent set.</p>
-</div>
-</div>
-</div></li>
-<li><p>If vectors <span class="math inline">v_{1}, \dots, v_{n} \in \mathcal{V}</span> are linearly independent and the subspace <span class="math inline">\mathcal{W} = \text{span} (v_{1}, \dots, v_{n})</span>, the set of field elements <span class="math inline">\{ \alpha_{1}, \dots, \alpha_{n} \}</span> that is paired with the set of vectors <span class="math inline">\{ v_{1}, \dots, v_{n} \}</span> to represent any vector <span class="math inline">u \in \mathcal{W}: u = \sum_{i=1}^{n} \alpha_{i} v_{i}</span> is unique.</p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -545,48 +575,17 @@ Proof
 </div>
 <div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Proof by contradiction. Suppose there is another set of field elements that can be paired with <span class="math inline">v_{1}, \dots, v_{n}</span> to represent <span class="math inline">u</span></p>
-<p><span class="math display">
-  \left\{
-      \beta_{1}, \dots, \beta_{n} \mid u = \sum_{i=1}^{n} \beta_{i} \cdot v_{i}
-  \right\}.
-  </span></p>
-<p>Then,</p>
-<p><span class="math display">
-  \begin{aligned}
-  \sum_{i=1}^{n} \alpha_{i} \cdot v_{i}
-  &amp; = \sum_{i=1}^{n} \beta_{i} \cdot v_{i}
-  \\
-  \sum_{i=1}^{n} \alpha_{i} \cdot v_{i} - \sum_{i=1}^{n} \beta_{i} \cdot v_{i}
-  &amp; = 0
-  \\
-  \sum_{i=1}^{n} (\alpha_{i} - \beta_{i}) \cdot v_{i}
-  &amp; = 0
-  \\
-  \alpha_{i} - \beta_{i}
-  &amp; = 0
-  \\
-  \alpha_{i}
-  &amp; = \beta_{i},
-  \end{aligned}
-  </span></p>
-<p>which contradicts to the fact <span class="math inline">\alpha_{i}</span> and <span class="math inline">\beta_{i}</span> should be different.</p>
+<p>TODO</p>
 </div>
 </div>
 </div></li>
 </ul>
-</section>
-<section id="linear-dependence" class="level2">
-<h2 class="anchored" data-anchor-id="linear-dependence">Linear dependence</h2>
-<p>Given a vector space <span class="math inline">\mathcal{V}</span> over a field <span class="math inline">\mathbb{F}</span>, a set of non-zero vectors <span class="math inline">v_{1}, \dots, v_{n} \in \mathcal{V}</span> is linear dependent when there exists an <span class="math inline">\alpha_{i} \neq 0</span> such that</p>
+<p>(orthogonal-projection-matrix-property-2)=</p>
+<ul>
+<li><p><span class="math inline">\mathbf{P}</span> is a orthogonal projection matrix if and only if</p>
 <p><span class="math display">
-\sum_{i=1}^{n} \alpha_{i} \cdot v_{i} = 0.
-</span></p>
-<p>(existence-of-linear-combination)=</p>
-<p>If a set of vectors <span class="math inline">\{ v_{1}, \dots, v_{n} \}</span> is linearly dependent, there exists an index <span class="math inline">j</span> <span class="math inline">(1 \leq j \leq n)</span> such that <span class="math inline">v_{j}</span> is a linear combination of the rest of the vectors:</p>
-<p><span class="math display">
-v_{j} = \sum_{i=1, i \neq j}^{n} \alpha_{i} \cdot v_{i}.
-</span></p>
+  \mathbf{P}^{H} = \mathbf{P}.
+  </span></p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -599,26 +598,358 @@ Proof
 </div>
 <div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Since the set <span class="math inline">\{ v_{1}, \dots, v_{n} \}</span> is linearly dependent, there exists an <span class="math inline">\beta_{j} \neq 0</span> <span class="math inline">(1 \leq j \leq n)</span> such that</p>
+<p>According to the orthogonal decomposition theorem,</p>
 <p><span class="math display">
-\beta_{1} \cdot v_{1} + \dots \beta_{j} \cdot v_{j} + \dots \beta_{n} \cdot v_{n} = 0.
+  \begin{aligned}
+  R (\mathbf{P})^{\perp}
+  &amp; = N (\mathbf{P}^{H})
+  \\
+  R (\mathbf{P})
+  &amp; = N (\mathbf{P}^{H})^{\perp}.
+  \\
+  \end{aligned}
+  </span></p>
+<p>According to the property of the <a href="orthogonal-projection-matrix-property-1">orthogonal projection matrix</a>,</p>
+<p><span class="math display">
+  \begin{aligned}
+  N (\mathbf{P})^{\perp}
+  &amp; = N (\mathbf{P}^{H})^{\perp}
+  \\
+  \mathbf{P}
+  &amp; = \mathbf{P}^{H}.
+  \\
+  \end{aligned}
+  </span></p>
+</div>
+</div>
+</div></li>
+</ul>
+</section>
+<section id="application-least-square-problem" class="level2">
+<h2 class="anchored" data-anchor-id="application-least-square-problem">Application: least square problem</h2>
+<p>Consider the problem of solving a system of linear equation for <span class="math inline">\mathbf{x} \in \mathbb{C}^{n}</span> given <span class="math inline">\mathbf{y} \in \mathbb{C}^{m}</span> and <span class="math inline">\mathbf{A} \in \mathbb{C}^{m \times n}</span>,</p>
+<p><span class="math display">
+\mathbf{y} = \mathbf{A} \mathbf{x}.
+</span></p>
+<p>This problem has a solution only when <span class="math inline">\mathbf{y} \in R (\mathbf{A})</span>. When it has no solution, the objective is changed to solve the least square problem</p>
+<p><span class="math display">
+\mathbf{x}^{*} = \min_{\mathbf{x} \in \mathbb{C}^{n}} \lVert \mathbf{y} - \mathbf{A} \mathbf{x} \rVert_{2}^{2}
+</span></p>
+<p>so that <span class="math inline">\mathbf{A} \mathbf{x}</span> can be as close to <span class="math inline">\mathbf{y}</span> as possible.</p>
+<p>Solving the least square problem is the same as solving an orthogonal projection problem,</p>
+<p><span class="math display">
+\begin{aligned}
+\mathbf{x}^{*}
+&amp; = \min_{\mathbf{x} \in \mathbb{C}^{n}} \lVert \mathbf{y} - \mathbf{A} \mathbf{x} \rVert_{2}^{2}
+\\
+&amp; = \min_{\mathbf{x} \in \mathbb{C}^{n}} \lVert \mathbf{y} - \mathbf{A} \mathbf{x} \rVert_{2}
+&amp; [\lVert \mathbf{y} - \mathbf{A} \mathbf{x} \rVert_{2} \geq 0]
+\\
+\mathbf{z}^{*}
+&amp; = \min_{\mathbf{z} \in R (\mathbf{A})} \lVert \mathbf{y} - \mathbf{z} \rVert_{2}
+&amp; [\mathbf{z} = \mathbf{A} \mathbf{x}, \mathbf{z}^{*} = \mathbf{A} \mathbf{x}^{*}].
+\end{aligned}
+</span></p>
+<p>which is the problem of finding the closest point of <span class="math inline">\mathbf{y}</span> on <span class="math inline">R (\mathbf{A})</span>,</p>
+<p><span class="math display">
+\begin{aligned}
+\mathbf{z}^{*}
+&amp; = \mathbf{P}_{R (\mathbf{A})} \mathbf{y}
+\\
+\mathbf{A} \mathbf{x}^{*}
+&amp; = \mathbf{P}_{R (\mathbf{A})} \mathbf{y}.
+\end{aligned}
+</span></p>
+<p>We can then deduce the system of normal equations:</p>
+<p><span class="math display">
+\mathbf{A} \mathbf{x}^{*} = \mathbf{P}_{R (\mathbf{A})} \mathbf{y} \iff \mathbf{A}^{H} \mathbf{A} \mathbf{x}^{*} = \mathbf{A}^{H} \mathbf{y}.
+</span></p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>First multiplying both ends by <span class="math inline">\mathbf{P}_{R (\mathbf{A})}</span> and use the <a href="projector-property-3">projector property</a>,</p>
+<p><span class="math display">
+\begin{aligned}
+\mathbf{A} \mathbf{x}^{*}
+&amp; = \mathbf{P}_{R (\mathbf{A})} \mathbf{y}
+\\
+\mathbf{P}_{R (\mathbf{A})} \mathbf{A} \mathbf{x}^{*}
+&amp; = \mathbf{P}_{R (\mathbf{A})}^{2} \mathbf{y}
+\\
+\mathbf{P}_{R (\mathbf{A})} \mathbf{A} \mathbf{x}^{*}
+&amp; = \mathbf{P}_{R (\mathbf{A})} \mathbf{y}.
+&amp; [\mathbf{P}_{R (\mathbf{A})}^{2} = \mathbf{P}_{R (\mathbf{A})}]
+\\
+\end{aligned}
+</span></p>
+<p>Then,</p>
+<p><span class="math display">
+\begin{aligned}
+\mathbf{P}_{R (\mathbf{A})} \mathbf{A} \mathbf{x}^{*}
+&amp; = \mathbf{P}_{R (\mathbf{A})} \mathbf{y}.
+\\
+\mathbf{P}_{R (\mathbf{A})} (\mathbf{A} \mathbf{x}^{*} - \mathbf{y})
+&amp; = 0
+\\
+\end{aligned}
+</span></p>
+<p>which shows that</p>
+<p><span class="math display">
+\mathbf{A} \mathbf{x}^{*} - \mathbf{y} \in N (\mathbf{P}_{R (\mathbf{A})}).
+</span></p>
+<p>According to the <a href="orthogonal-projection-matrix-property-1">property of the orthogonal projection matrix</a>,</p>
+<p><span class="math display">
+N (\mathbf{P}_{R (\mathbf{A})}) = R (\mathbf{A})^{\perp} = N (\mathbf{A}^{H}),
+</span></p>
+<p>which means</p>
+<p><span class="math display">
+\begin{aligned}
+\mathbf{A}^{H} (\mathbf{A} \mathbf{x}^{*} - \mathbf{y})
+&amp; = 0
+\\
+\mathbf{A}^{H} \mathbf{A} \mathbf{x}^{*}
+&amp; = \mathbf{A}^{H} \mathbf{y}.
+\end{aligned}
+</span></p>
+</div>
+</div>
+</div>
+<p>(affine-projection)=</p>
+</section>
+</section>
+<section id="affine-projection" class="level1">
+<h1>Affine projection</h1>
+<section id="affine-space" class="level2">
+<h2 class="anchored" data-anchor-id="affine-space">Affine space</h2>
+<p>A set of vectors in the vector space <span class="math inline">\mathcal{V}</span> forms an <strong>affine space</strong> <span class="math inline">\mathcal{A}</span> if they are the sums of the vectors in a subspace <span class="math inline">\mathcal{M} \subset \mathcal{V}</span> and a non-zero vector <span class="math inline">v \in \mathcal{V}</span>,</p>
+<p><span class="math display">
+\mathcal{A} = v + \mathcal{M}.
+</span></p>
+<p>That is, all vectors in <span class="math inline">\mathcal{A}</span> are sums of vectors in <span class="math inline">\mathcal{M}</span> and <span class="math inline">v</span>.</p>
+<ul>
+<li><p><span class="math inline">\mathcal{A}</span> is a subspace as it does NOT necessarily contain 0 vector.</p></li>
+<li><p><span class="math inline">\mathcal{A}</span> can visualized as the subspace <span class="math inline">\mathcal{M}</span> translated away from origin through <span class="math inline">v</span>.</p></li>
+</ul>
+</section>
+<section id="affine-projection-1" class="level2">
+<h2 class="anchored" data-anchor-id="affine-projection-1">Affine projection</h2>
+<p>Although affine spaces are not a subspaces, the concept of orthogonal projection can also be applied to affine spaces.</p>
+<p>Given a vector <span class="math inline">b \in \mathcal{V}</span> and an affine space <span class="math inline">\mathcal{A}</span>, the <strong>affine projection</strong> <span class="math inline">a \in \mathcal{A}</span> is the orthogonal projection of <span class="math inline">b</span> onto the affine space <span class="math inline">\mathcal{A}</span> and can be expressed as</p>
+<p><span class="math display">
+a = v + \mathbf{P}_{\mathcal{M}} (b - v),
+</span></p>
+<p>where <span class="math inline">\mathbf{P}_{\mathcal{M}}</span> is the orthogonal projection matrix of <span class="math inline">\mathcal{M}</span>.</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Since the affine space <span class="math inline">\mathcal{A}</span> is the set of vectors translated from <span class="math inline">\mathcal{M}</span> through the vector <span class="math inline">v</span>, the affine projection <span class="math inline">a</span> of <span class="math inline">b</span> onto <span class="math inline">\mathcal{A}</span> is the translated version of orthogonal projection of the translated version of <span class="math inline">b</span> onto the translated version of <span class="math inline">\mathcal{A}</span>.</p>
+<p>Thus, the affine projection onto <span class="math inline">\mathcal{A}</span> is a orthogonal projection onto <span class="math inline">\mathcal{M}</span> with a translated input and output.</p>
+<p>By the definition of the orthogonal projection,</p>
+<p><span class="math display">
+a - v = \mathbf{P}_{\mathcal{M}} (b - v)
+</span></p>
+<p>where <span class="math inline">a - v</span> is the translated version of <span class="math inline">a</span>, <span class="math inline">b - v</span> the translated version of <span class="math inline">b</span>, and <span class="math inline">\mathbf{P}_{\mathcal{M}}</span> is the orthogonal projection matrix of subspace <span class="math inline">\mathcal{M}</span>.</p>
+<p>Thus, the affine projection <span class="math inline">a</span> of <span class="math inline">b</span> onto <span class="math inline">\mathcal{A}</span> can be expressed as</p>
+<p><span class="math display">
+a = v + \mathbf{P}_{\mathcal{M}} (b - v).
+</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="hyperplanes" class="level2">
+<h2 class="anchored" data-anchor-id="hyperplanes">Hyperplanes</h2>
+<p>An affine space <span class="math inline">\mathcal{H} = \mathbf{v} + \mathcal{M} \subseteq \mathbb{R}^{n}</span> for which <span class="math inline">\text{dim} (\mathcal{M}) = n − 1</span> is called a <strong>hyperplane</strong>, and is usually expressed as the set</p>
+<p><span class="math display">
+\mathcal{H} = \{ \mathbf{x} | \mathbf{w}^{T} \mathbf{x} = \beta \}
+</span></p>
+<p>where <span class="math inline">\beta</span> is a scalar and <span class="math inline">\mathbf{w}</span> is a non-zero vector.</p>
+<p>In this case, the hyperplane can be viewed as the subspace</p>
+<p><span class="math display">
+\mathcal{M} = \mathbf{w}^{\perp}
+</span></p>
+<p>translated by the vector</p>
+<p><span class="math display">
+\mathbf{v} = \frac{\beta}{\mathbf{w}^{T} \mathbf{w}} \mathbf{w}.
+</span></p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The set <span class="math inline">\mathcal{H}</span> contains the general solutions of the linear system <span class="math inline">\mathbf{w}^{T} \mathbf{x} = \beta</span>.</p>
+<p>A particular solution to the linear system is</p>
+<p><span class="math display">
+\begin{aligned}
+\mathbf{x}
+&amp; = (\mathbf{w}^{T})^{-1} \beta
+\\
+&amp; = (\mathbf{w}^{T})^{T} (\mathbf{w}^{T} (\mathbf{w}^{T})^{T})^{-1} \beta
+\\
+&amp; = \mathbf{w} (\mathbf{w}^{T} \mathbf{w})^{-1} \beta
+\\
+&amp; = \frac{\beta}{\mathbf{w}^{T} \mathbf{w}} \mathbf{w}
+&amp; [\beta, \mathbf{w}^{T} \mathbf{w} \text{ are scalars}].
+\end{aligned}
+</span></p>
+<p>According to the orthogonal decomposition theorem, the general solution to the linear system can be expressed as</p>
+<p><span class="math display">
+\begin{aligned}
+N (\mathbf{w}^{T})
+&amp; = R (\mathbf{w})^{\perp}
+\\
+&amp; = \{ \mathbf{x} \mid \langle \mathbf{x}, \mathbf{y} \rangle = 0, \forall \mathbf{y} \in R (\mathbf{w}) \}
+&amp; [\text{def of perp}]
+\\
+&amp; = \{ \mathbf{x} \mid \langle \mathbf{x}, \alpha \mathbf{w} \rangle = 0, \forall \alpha \in \mathbb{R} \}
+&amp; [\text{def of } R (\mathbf{w})]
+\\
+&amp; = \{ \mathbf{x} \mid \alpha \langle \mathbf{x}, \mathbf{w} \rangle = 0, \forall \alpha \in \mathbb{R} \}
+&amp; [\text{def of } \langle \cdot, \cdot \rangle]
+\\
+&amp; = \{ \mathbf{x} \mid \langle \mathbf{x}, \mathbf{w} \rangle = 0 \}
+\\
+&amp; = \mathbf{w}^{\perp}.
+\end{aligned}
+</span></p>
+<p>Since the general solution of any linear system is the sum of a particular solution and the general solution of the associated homogeneous equation, the set of general solutions is expressed as</p>
+<p><span class="math display">
+\frac{\beta}{\mathbf{w}^{T} \mathbf{w}} \mathbf{w} + \mathbf{w}^{\perp}.
 </span></p>
 <p>Thus,</p>
 <p><span class="math display">
+\mathcal{H} = \mathbf{v} + \mathcal{M},
+</span></p>
+<p>where</p>
+<p><span class="math display">
+\mathbf{v} = \frac{\beta}{\mathbf{w}^{T} \mathbf{w}} \mathbf{w},
+</span></p>
+<p><span class="math display">
+\mathcal{M} = \mathbf{w}^{\perp}.
+</span></p>
+<p>TODO: explain the general solution of any linear system.</p>
+</div>
+</div>
+</div>
+<p>The orthogonal projection <span class="math inline">\mathbf{a}</span> of a point <span class="math inline">\mathbf{b} \in \mathbb{R}^{n}</span> onto the hyperplane <span class="math inline">\mathcal{H}</span> is given by</p>
+<p><span class="math display">
+\mathbf{a} = \mathbf{b} - \left(
+    \frac{
+        \mathbf{w}^{T} \mathbf{b} - \beta
+    }{
+        \mathbf{w}^{T} \mathbf{w}
+    }
+\right) \mathbf{w}.
+</span></p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Since we know that <span class="math inline">\mathcal{H}</span> is an affine space with <span class="math inline">\mathcal{W} = \mathbf{w}^{\perp}</span> and <span class="math inline">\mathbf{v} = \frac{\beta}{\mathbf{w}^{T} \mathbf{w}} \mathbf{w}</span>, the affine projection can be expressed as</p>
+<p><span class="math display">
 \begin{aligned}
-\beta_{j} \cdot v_{j}
-&amp; = - \sum_{i=1, i \neq j} \beta_{i} \cdot v_{i}
+\mathbf{a}
+&amp; = \mathbf{v} + \mathbf{P}_{\mathcal{M}} (\mathbf{b} - \mathbf{v}),
 \\
-v_{j}
-&amp; = - \beta_{j}^{-1} \cdot \sum_{i=1, i \neq j} \beta_{i} \cdot v_{i}
+&amp; = \frac{\beta}{\mathbf{w}^{T} \mathbf{w}} \mathbf{w} + \mathbf{P}_{\mathbf{w}^{\perp}} \left(
+    \mathbf{b} - \frac{\beta}{\mathbf{w}^{T} \mathbf{w}} \mathbf{w}
+\right),
+\end{aligned}
+</span></p>
+<p>According to the <a href="projection-matrix-property-1">property of projection matrix</a>,</p>
+<p><span class="math display">
+\mathbf{P}_{\mathbf{w}^{\perp}} = \mathbf{I} - \mathbf{P}_{\mathbf{w}}.
+</span></p>
+<p>Denoted the basis of subspace <span class="math inline">\mathcal{M}</span> as the columns of matrix <span class="math inline">\mathbf{M}</span>, the orthogonal projection matrix onto <span class="math inline">\mathcal{M}</span> is</p>
+<p><span class="math display">
+\begin{aligned}
+\mathbf{P}_{\mathcal{M}}
+&amp; = \mathbf{M} (\mathbf{M}^{T} \mathbf{M})^{-1} \mathbf{M}^{T}
 \\
-v_{j}
-&amp; = \sum_{i=1, i \neq j} - \beta_{j}^{-1} \beta_{i} \cdot v_{i}
+\mathbf{P}_{\mathbf{w}}
+&amp; = \mathbf{w} (\mathbf{w}^{T} \mathbf{w})^{-1} \mathbf{w}^{T}
 \\
-v_{j}
-&amp; = \sum_{i=1, i \neq j} \alpha_{i} \cdot v_{i}
-&amp; [\text{rewrite } - \beta_{j}^{-1} \beta_{i} = \alpha_{i}]
+\mathbf{P}_{\mathbf{w}}
+&amp; = \frac{\mathbf{w} \mathbf{w}^{T}}{\mathbf{w}^{T} \mathbf{w}}.
+\end{aligned}
+</span></p>
+<p>Thus,</p>
+<p><span class="math display">
+\mathbf{P}_{\mathbf{w}^{\perp}} = \mathbf{I} - \frac{\mathbf{w} \mathbf{w}^{T}}{\mathbf{w}^{T} \mathbf{w}}.
+</span></p>
+<p>Plugging it back into the top equation</p>
+<p><span class="math display">
+\begin{aligned}
+\mathbf{a}
+&amp; = \frac{
+    \beta
+}{
+    \mathbf{w}^{T} \mathbf{w}
+} \mathbf{w} + \mathbf{P}_{\mathbf{w}^{\perp}} \left(
+    \mathbf{b} - \frac{
+        \beta
+    }{
+        \mathbf{w}^{T} \mathbf{w}
+    } \mathbf{w}
+\right),
 \\
+&amp; = \frac{
+    \beta
+}{
+    \mathbf{w}^{T} \mathbf{w}
+} \mathbf{w} + \left(
+    \mathbf{I} - \frac{
+        \mathbf{w} \mathbf{w}^{T}
+    }{
+        \mathbf{w}^{T} \mathbf{w}
+    }
+\right) \left(
+    \mathbf{b} - \frac{\beta}{\mathbf{w}^{T} \mathbf{w}} \mathbf{w}
+\right),
+\\
+&amp; = \frac{\beta}{\mathbf{w}^{T} \mathbf{w}} \mathbf{w} + \left(
+    \mathbf{b}
+    - \frac{\beta}{\mathbf{w}^{T} \mathbf{w}} \mathbf{w}
+    - \frac{\mathbf{w} \mathbf{w}^{T}}{\mathbf{w}^{T} \mathbf{w}} \mathbf{b}
+    + \frac{\mathbf{w}^{T} \mathbf{w} \beta}{\mathbf{w}^{T} \mathbf{w} \mathbf{w}^{T} \mathbf{w}} \mathbf{w}
+\right)
+\\
+&amp; = \mathbf{b}
+- \frac{\mathbf{w} \mathbf{w}^{T}}{\mathbf{w}^{T} \mathbf{w}} \mathbf{b}
++ \frac{\beta}{\mathbf{w}^{T} \mathbf{w}} \mathbf{w}
 \end{aligned}
 </span></p>
 </div>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Joeyonng - Span and Linear Independence</title>
+<title>Joeyonng - Normal and Positive Definite Matrices</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -126,7 +126,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Knowledge/Linear Algebra/01_Fields_and_Spaces.html">Linear Algebra</a></li><li class="breadcrumb-item"><a href="../../Knowledge/Linear Algebra/03_Span_and_Linear_Independence.html">Span and Linear Independence</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Knowledge/Linear Algebra/01_Fields_and_Spaces.html">Linear Algebra</a></li><li class="breadcrumb-item"><a href="../../Knowledge/Linear Algebra/15_Normal_and_Positive_Definite_Matrices.html">Normal and Positive Definite Matrices</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -169,7 +169,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Knowledge/Linear Algebra/03_Span_and_Linear_Independence.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../Knowledge/Linear Algebra/03_Span_and_Linear_Independence.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Span and Linear Independence</span></a>
   </div>
 </li>
@@ -241,7 +241,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Knowledge/Linear Algebra/15_Normal_and_Positive_Definite_Matrices.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Knowledge/Linear Algebra/15_Normal_and_Positive_Definite_Matrices.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Normal and Positive Definite Matrices</span></a>
   </div>
 </li>
@@ -312,15 +312,16 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#span" id="toc-span" class="nav-link active" data-scroll-target="#span">Span</a>
+  <li><a href="#normal-matrices" id="toc-normal-matrices" class="nav-link active" data-scroll-target="#normal-matrices">Normal Matrices</a>
   <ul class="collapse">
-  <li><a href="#spanning-set" id="toc-spanning-set" class="nav-link" data-scroll-target="#spanning-set">Spanning set</a></li>
-  <li><a href="#properties-of-the-spanning-set" id="toc-properties-of-the-spanning-set" class="nav-link" data-scroll-target="#properties-of-the-spanning-set">Properties of the spanning set</a></li>
+  <li><a href="#properties-of-normal-matrices" id="toc-properties-of-normal-matrices" class="nav-link" data-scroll-target="#properties-of-normal-matrices">Properties of normal matrices</a></li>
+  <li><a href="#unitary-diagonalization" id="toc-unitary-diagonalization" class="nav-link" data-scroll-target="#unitary-diagonalization">Unitary diagonalization</a></li>
+  <li><a href="#hermitian-symmetric-matrices" id="toc-hermitian-symmetric-matrices" class="nav-link" data-scroll-target="#hermitian-symmetric-matrices">Hermitian (symmetric) matrices</a></li>
+  <li><a href="#rayleigh-quotient" id="toc-rayleigh-quotient" class="nav-link" data-scroll-target="#rayleigh-quotient">Rayleigh quotient</a></li>
   </ul></li>
-  <li><a href="#linear-independence" id="toc-linear-independence" class="nav-link" data-scroll-target="#linear-independence">Linear independence</a>
+  <li><a href="#positive-definite-matrices" id="toc-positive-definite-matrices" class="nav-link" data-scroll-target="#positive-definite-matrices">Positive Definite Matrices</a>
   <ul class="collapse">
-  <li><a href="#properties-of-linear-independence" id="toc-properties-of-linear-independence" class="nav-link" data-scroll-target="#properties-of-linear-independence">Properties of linear independence</a></li>
-  <li><a href="#linear-dependence" id="toc-linear-dependence" class="nav-link" data-scroll-target="#linear-dependence">Linear dependence</a></li>
+  <li><a href="#properties-of-definite-matrices" id="toc-properties-of-definite-matrices" class="nav-link" data-scroll-target="#properties-of-definite-matrices">Properties of definite matrices</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -330,7 +331,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Span and Linear Independence</h1>
+<h1 class="title">Normal and Positive Definite Matrices</h1>
 </div>
 
 
@@ -345,47 +346,17 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="span" class="level1">
-<h1>Span</h1>
-<p>Given a vector space <span class="math inline">\mathcal{V}</span> over a field <span class="math inline">\mathbb{F}</span>, the span of a set of vectors <span class="math inline">v_{1}, \dots, v_{n} \in \mathcal{V}</span> is the set of all possible linear combinations of <span class="math inline">v_{1}, \dots, v_{m}</span></p>
+<section id="normal-matrices" class="level1">
+<h1>Normal Matrices</h1>
+<p>The matrix <span class="math inline">\mathbf{A} \in \mathbb{C}^{n \times n}</span> is a <strong>normal matrix</strong> if and only if</p>
 <p><span class="math display">
-\text{span} (v_{1}, \dots, v_{n}) = \left\{
-    \sum_{i=1}^{n} \alpha_{i} \cdot v_{i}, \forall \alpha_{i} \in \mathbb{F}
-\right\}.
+\mathbf{A}^{H} \mathbf{A} = \mathbf{A} \mathbf{A}^{H}.
 </span></p>
-<p>If <span class="math inline">\mathcal{V}</span> is <span class="math inline">\mathbb{F}^{m}</span>, the set vectors <span class="math inline">v_{1}, \dots, v_{n}</span> can be viewed as the columns of the matrix <span class="math inline">\mathbf{A} \in \mathbb{F}^{m \times n}</span>. Then</p>
-<p><span class="math display">
-\text{span} (v_{1}, \dots, v_{n}) = R (\mathbf{A}).
-</span></p>
-<p>Since we have proved <span class="math inline">R (\mathbf{A})</span> is a subspace of <span class="math inline">\mathcal{V}</span>, the span of a set of vectors is a subspace of <span class="math inline">\mathcal{V}</span>.</p>
-<section id="spanning-set" class="level2">
-<h2 class="anchored" data-anchor-id="spanning-set">Spanning set</h2>
-<p>For a set of vectors <span class="math inline">\mathcal{S} = v_{1}, \dots, v_{n}</span>, if the subspace <span class="math inline">\mathcal{W}</span> is the span of <span class="math inline">\mathcal{S}</span></p>
-<p><span class="math display">
-\mathcal{W} = \text{span} (\mathcal{S}),
-</span></p>
-<p>then the set of vectors <span class="math inline">\mathcal{S}</span> is the spanning set of the subspace <span class="math inline">\mathcal{W}</span>.S.</p>
-</section>
-<section id="properties-of-the-spanning-set" class="level2">
-<h2 class="anchored" data-anchor-id="properties-of-the-spanning-set">Properties of the spanning set</h2>
-<p>Consider a set of vectors $ = { v_{1}, , v_{n} }$ and a subspace <span class="math inline">\mathcal{W}</span>.</p>
-<p>(spanning-set-property-1)=</p>
+<section id="properties-of-normal-matrices" class="level2">
+<h2 class="anchored" data-anchor-id="properties-of-normal-matrices">Properties of normal matrices</h2>
+<p>(normal-matrices-property-1)=</p>
 <ul>
-<li><p>If <span class="math inline">\mathcal{A}</span> is a spanning set of <span class="math inline">\mathcal{W}</span>, the new set</p>
-<p><span class="math display">
-  \mathcal{A} \cup \left\{
-      u_{1}, \dots, u_{n}
-  \right\}
-  </span></p>
-<p>is still a spanning set of <span class="math inline">\mathcal{W}</span> for arbitrary vectors <span class="math inline">u_{1}, \dots, u_{n} \in \mathcal{W}</span>.</p></li>
-</ul>
-<p>(spanning-set-property-2)=</p>
-<ul>
-<li><p><span class="math inline">\mathcal{A}</span> is a spanning set of <span class="math inline">\mathcal{W}</span> if and only if</p>
-<ul>
-<li><p>all vectors in <span class="math inline">\mathcal{W}</span> are linear combinations of <span class="math inline">v_{1}, \dots, v_{n}</span> and</p></li>
-<li><p><span class="math inline">v_{1}, \dots, v_{n} \in \mathcal{W}</span>.</p></li>
-</ul>
+<li><p>Unitary matrices are normal.</p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -398,33 +369,18 @@ Proof
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Since this statement has “if and only if”, we first prove in the forward direction.</p>
-<p>If <span class="math inline">v_{1}, \dots, v_{n}</span> is a spanning set of <span class="math inline">\mathcal{W}</span>, then by the definition of spanning set, the set of all linear combinations of <span class="math inline">v_{1}, \dots, v_{n}</span> is the subspace <span class="math inline">\mathcal{W}</span>.</p>
-<p>Thus, all vectors in the subspace <span class="math inline">\mathcal{W}</span> are the linear combinations of <span class="math inline">v_{1}, \dots, v_{n}</span>.</p>
-<p>Since every <span class="math inline">v_{i}, i = 1, \dots, n</span> is a linear combination of itself, then <span class="math inline">v_{1}, \dots, v_{n}</span> are also in <span class="math inline">\mathcal{W}</span>.</p>
-<p>Then we prove in the backward direction.</p>
-<p>Since all vectors in <span class="math inline">\mathcal{W}</span> are linear combinations of <span class="math inline">v_{1}, \dots, v_{n}</span>, by the definition of span,</p>
+<p>According to the <a href="unitary-matrix-property-2">property of unitary matrices</a>, a matrix <span class="math inline">\mathbf{U}</span> is unitary if and only if</p>
 <p><span class="math display">
-  \mathcal{W} \subseteq \text{span} (v_{1}, \dots, v_{n}).
+  \mathbf{U}^{-1} \mathbf{U} = \mathbf{U} \mathbf{U}^{-1} = \mathbf{I}.
   </span></p>
-<p>Since <span class="math inline">v_{1}, \dots, v_{n} \in \mathcal{W}</span> and the closure property of the subspace, all linear combinations of <span class="math inline">v_{1}, \dots, v_{n}</span> are also in <span class="math inline">\mathcal{W}</span>, which means that</p>
-<p><span class="math display">
-  \text{span} (v_{1}, \dots, v_{n}) \subseteq \mathcal{W}.
-  </span></p>
-<p>Thus,</p>
-<p><span class="math display">
-  \mathcal{W} = \text{span} (v_{1}, \dots, v_{n}).
-  </span></p>
+<p>Thus, unitary matrices are normal.</p>
 </div>
 </div>
 </div></li>
 </ul>
-<p>(spanning-set-property-3)=</p>
+<p>(normal-matrices-property-2)=</p>
 <ul>
-<li><p>If vectors in set <span class="math inline">\mathcal{B}</span> are linear combinations of the vectors in <span class="math inline">\mathcal{A}</span>, then</p>
-<p><span class="math display">
-  \text{span} (\mathcal{B}) \subseteq \text{span} (\mathcal{A}).
-  </span></p>
+<li><p>Diagonal matrices are normal.</p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -437,29 +393,25 @@ Proof
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>We prove by contradiction. Suppose that the vectors in set <span class="math inline">\mathcal{B}</span> are linear combinations of the vectors in <span class="math inline">\mathcal{A}</span>, but there exists an vector <span class="math inline">v \in \text{span} (\mathcal{B})</span> but <span class="math inline">v \notin \text{span} (\mathcal{A})</span>.</p>
-<p>Suppose <span class="math inline">\mathcal{A} = \{ a_{1}, \dots, a_{n} \}</span>. Since <span class="math inline">v \in \mathcal{B}</span> is a linear combinations of vectors in <span class="math inline">\mathcal{A}</span>, there exists a set of coefficients <span class="math inline">\alpha_{1}, \dots, \alpha_{n}</span> such that</p>
+<p>Consider <span class="math inline">\mathbf{D} \in \mathbb{C}^{n \times n}</span> as a diagonal matrix with <span class="math inline">d_{1}, \dots, d_{n}</span> in its diagonal.</p>
 <p><span class="math display">
-  v = \sum_{i = 1}^{n} \alpha_{i} a_{i}.
+  \mathbf{D}^{H} \mathbf{D} = \sum_{i=1}^{n} d_{i}^{2} = \mathbf{D} \mathbf{D}^{H}.
   </span></p>
-<p>which by definition of span means <span class="math inline">v \in \text{span} (\mathbf{A})</span>.</p>
-<p>However, we assume that <span class="math inline">v \notin \text{span} (\mathbf{A})</span>, which raises a contradiction.</p>
 </div>
 </div>
 </div></li>
 </ul>
-<p>(spanning-set-property-4)=</p>
+<p>(normal-matrices-property-3)=</p>
 <ul>
-<li><p>If <span class="math inline">\text{span} (\mathcal{A}) = \mathcal{W}</span> and <span class="math inline">\text{span} (\mathcal{B}) = \mathcal{U}</span>, then</p>
+<li><p>Unitary similarity preserves normality. That is, if <span class="math inline">\mathbf{A}</span> is a normal matrix and is unitarily similar to <span class="math inline">\mathbf{B}</span></p>
 <p><span class="math display">
-  \text{span} (\mathcal{A} \cup \mathcal{B}) = \mathcal{W} + \mathcal{U},
+  \mathbf{U}^{-1} \mathbf{A} \mathbf{U} = \mathbf{B}
   </span></p>
-<p>where</p>
+<p>or</p>
 <p><span class="math display">
-  \mathcal{W} + \mathcal{U} = \left\{
-      w + u \mid w \in \mathcal{W}, u \in \mathcal{U}
-  \right\}.
+  \mathbf{U}^{H} \mathbf{A} \mathbf{U} = \mathbf{B},
   </span></p>
+<p>then <span class="math inline">\mathbf{B}</span> is also a normal matrix.</p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -472,46 +424,63 @@ Proof
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Consider <span class="math inline">\mathcal{A} = \{ a_{1}, \dots, a_{n} \}, \mathcal{B} = \{ b_{1}, \dots, b_{m} \}</span>, then</p>
+<p>The goal is to prove</p>
 <p><span class="math display">
-  \text{span} (\mathcal{A} \cup \mathcal{B}) = \left\{
-      \sum_{i=1}^{n} \alpha_{i} a_{i} + \sum_{i=1}^{n} \beta_{i} b_{i}, \forall \alpha_{i}, \beta_{i} \in \mathbb{F}
-  \right\}.
+  \mathbf{B}^{H} \mathbf{B} = \mathbf{B} \mathbf{B}^{H}.
   </span></p>
-<p>Note that</p>
+<p>First we expand <span class="math inline">\mathbf{B}^{H} \mathbf{B}</span> to have</p>
 <p><span class="math display">
-  w \in \mathcal{W} = \sum_{i=1}^{n} \alpha_{i} a_{i}, \forall \alpha_{i} \in \mathbb{F},
+  \begin{aligned}
+  \mathbf{B}^{H} \mathbf{B}
+  &amp; = (\mathbf{U}^{H} \mathbf{A} \mathbf{U})^{H} (\mathbf{U}^{H} \mathbf{A} \mathbf{U})
+  \\
+  &amp; = \mathbf{U} \mathbf{A}^{H} \mathbf{U}^{H} \mathbf{U}^{H} \mathbf{A} \mathbf{U}
+  \\
+  &amp; = \mathbf{U}^{H} \mathbf{A}^{H} \mathbf{U} \mathbf{U}^{H} \mathbf{A} \mathbf{U}
+  &amp; [TODO]
+  \\
+  &amp; = \mathbf{U}^{H} \mathbf{A}^{H} \mathbf{I} \mathbf{A} \mathbf{U}
+  &amp; [\mathbf{U} \mathbf{U}^{H} = \mathbf{U} \mathbf{U}^{-1} = \mathbf{I}]
+  \\
+  &amp; = \mathbf{U}^{H} \mathbf{A}^{H} \mathbf{A} \mathbf{U}.
+  \end{aligned}
   </span></p>
+<p>Since <span class="math inline">\mathbf{A}</span> is a normal matrix,</p>
 <p><span class="math display">
-  u \in \mathcal{U} = \sum_{i=1}^{n} \beta_{i} b_{i}, \forall \beta_{i} \in \mathbb{F}.
+  \mathbf{A} \mathbf{A}^{H} = \mathbf{A}^{H} \mathbf{A}.
   </span></p>
-<p>Thus,</p>
+<p>Continue from the derivation above,</p>
 <p><span class="math display">
-  \text{span} (\mathcal{A} \cup \mathcal{B}) = \left\{
-      w + u \mid w \in \mathcal{W}, u \in \mathcal{U}
-  \right\} = \mathcal{W} + \mathcal{U}.
+  \begin{aligned}
+  \mathbf{B}^{H} \mathbf{B}
+  &amp; = \mathbf{U}^{H} \mathbf{A} \mathbf{A}^{H} \mathbf{U}
+  \\
+  &amp; = \mathbf{U}^{H} \mathbf{A}^{H} \mathbf{A} \mathbf{U}
+  \\
+  &amp; = \mathbf{U}^{H} \mathbf{A}^{H} \mathbf{I} \mathbf{A} \mathbf{U}
+  \\
+  &amp; = \mathbf{U}^{H} \mathbf{A}^{H} \mathbf{U} \mathbf{U}^{H} \mathbf{A} \mathbf{U}
+  \\
+  &amp; = \mathbf{U} \mathbf{A}^{H} \mathbf{U}^{H} \mathbf{U}^{H} \mathbf{A} \mathbf{U}
+  &amp; [TODO]
+  \\
+  &amp; = (\mathbf{U}^{H} \mathbf{A}^{H} \mathbf{U})^{H} (\mathbf{U}^{H} \mathbf{A} \mathbf{U})
+  \\
+  &amp; = \mathbf{B} \mathbf{B}^{H}.
+  \end{aligned}
   </span></p>
 </div>
 </div>
 </div></li>
 </ul>
 </section>
-</section>
-<section id="linear-independence" class="level1">
-<h1>Linear independence</h1>
-<p>Given a vector space <span class="math inline">\mathcal{V}</span> over a field <span class="math inline">\mathbb{F}</span>, a set of non-zero vectors <span class="math inline">v_{1}, \dots, v_{n} \in \mathcal{V}</span> is linearly independent when</p>
+<section id="unitary-diagonalization" class="level2">
+<h2 class="anchored" data-anchor-id="unitary-diagonalization">Unitary diagonalization</h2>
+<p>A matrix <span class="math inline">\mathbf{A} \in \mathbb{C}^{n \times n}</span> is normal if and only if <span class="math inline">\mathbf{A}</span> is unitarily similar to a diagonal matrix</p>
 <p><span class="math display">
-\sum_{i=1}^{n} \alpha_{i} \cdot v_{i} = 0 \iff \alpha_{i} = 0, i = 1, \dots, n.
+\mathbf{A}^{H} \mathbf{A} = \mathbf{A} \mathbf{A}^{H} \iff \mathbf{U}^{-1} \mathbf{A} \mathbf{U} = \mathbf{\Lambda}.
 </span></p>
-<section id="properties-of-linear-independence" class="level2">
-<h2 class="anchored" data-anchor-id="properties-of-linear-independence">Properties of linear independence</h2>
-<ul>
-<li><p>Given a matrix <span class="math inline">\mathbf{A}</span> whose columns are vectors <span class="math inline">\mathbf{v}_{1}, \dots, \mathbf{v}_{n} \in \mathbb{F}^{m}</span> the set of vectors <span class="math inline">\mathcal{S} = \{ \mathbf{v}_{1}, \dots, \mathbf{v}_{n} \}</span> is linearly independent when the null space of <span class="math inline">\mathbf{A}</span> only contains <span class="math inline">\mathbf{0} \in \mathbb{F}^{n}</span>.</p>
-<p><span class="math display">
-  N (\mathbf{A}) = \left\{
-      \mathbf{0}
-  \right\}
-  </span></p>
+<p>where <span class="math inline">\mathbf{U}</span> is a unitary matrix and <span class="math inline">\mathbf{\Lambda}</span> is a diagonal matrix.</p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -524,15 +493,31 @@ Proof
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>By definition, <span class="math inline">N (\mathbf{A}) = \{ \mathbf{0} \}</span> says that the only set of <span class="math inline">\alpha_{1}, \dots, \alpha_{n}</span> satisfying</p>
+<p>We first prove that</p>
 <p><span class="math display">
-  \sum_{i = 1}^{n} \alpha_{i} \mathbf{A}_{*, i} = 0
-  </span></p>
-<p>is <span class="math inline">\alpha_{1}, \dots, \alpha_{n} = 0</span>, which is equivalent to saying the columns of <span class="math inline">\mathbf{A}</span> are a linearly independent set.</p>
+\mathbf{A}^{H} \mathbf{A} = \mathbf{A} \mathbf{A}^{H} \Rightarrow \mathbf{U}^{-1} \mathbf{A} \mathbf{U} = \mathbf{\Lambda}.
+</span></p>
+<p>TODO</p>
+<p>Then we prove that</p>
+<p><span class="math display">
+\mathbf{U}^{-1} \mathbf{A} \mathbf{U} = \mathbf{\Lambda} \Rightarrow \mathbf{A}^{H} \mathbf{A} = \mathbf{A} \mathbf{A}^{H}.
+</span></p>
+<p>According to the <a href="normal-matrices-property-3">property of unitary matrices</a>, unitary similarity preserves normality.</p>
+<p>Also according to <a href="normal-matrices-property-2">property of unitary matrices</a>, all diagonal matrices are normal.</p>
+<p>Thus, <span class="math inline">\mathbf{A}</span> is normal because <span class="math inline">\mathbf{A}</span> is unitarily similar to a diagonal matrix, which is always normal.</p>
 </div>
 </div>
-</div></li>
-<li><p>If vectors <span class="math inline">v_{1}, \dots, v_{n} \in \mathcal{V}</span> are linearly independent and the subspace <span class="math inline">\mathcal{W} = \text{span} (v_{1}, \dots, v_{n})</span>, the set of field elements <span class="math inline">\{ \alpha_{1}, \dots, \alpha_{n} \}</span> that is paired with the set of vectors <span class="math inline">\{ v_{1}, \dots, v_{n} \}</span> to represent any vector <span class="math inline">u \in \mathcal{W}: u = \sum_{i=1}^{n} \alpha_{i} v_{i}</span> is unique.</p>
+</div>
+<p>Since the columns of <span class="math inline">\mathbf{U}</span> are eigenvectors of <span class="math inline">\mathbf{A}</span> and are orthonormal to each other the columns of <span class="math inline">\mathbf{U}</span> must be a complete orthonormal set of eigenvectors for <span class="math inline">\mathbf{A}</span>, and the diagonal entries of <span class="math inline">\mathbf{\Lambda}</span> are the associated eigenvalues.</p>
+</section>
+<section id="hermitian-symmetric-matrices" class="level2">
+<h2 class="anchored" data-anchor-id="hermitian-symmetric-matrices">Hermitian (symmetric) matrices</h2>
+<p>A square complex (real) matrix <span class="math inline">\mathbf{A}</span> is hermitian (symmetric) if and only if</p>
+<p><span class="math display">
+\mathbf{A}^{H} = \mathbf{A},
+</span></p>
+<p>which implies <strong>a hermitian (symmetric) matrix is a normal matrix</strong>.</p>
+<p>All eigenvalues of Hermitian matrices are real.</p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -545,47 +530,92 @@ Proof
 </div>
 <div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Proof by contradiction. Suppose there is another set of field elements that can be paired with <span class="math inline">v_{1}, \dots, v_{n}</span> to represent <span class="math inline">u</span></p>
+<p>Suppose <span class="math inline">(\lambda, \mathbf{v})</span> is a eigenpair for the Hermitian matrix <span class="math inline">\mathbf{A}</span>.</p>
 <p><span class="math display">
-  \left\{
-      \beta_{1}, \dots, \beta_{n} \mid u = \sum_{i=1}^{n} \beta_{i} \cdot v_{i}
-  \right\}.
-  </span></p>
-<p>Then,</p>
-<p><span class="math display">
-  \begin{aligned}
-  \sum_{i=1}^{n} \alpha_{i} \cdot v_{i}
-  &amp; = \sum_{i=1}^{n} \beta_{i} \cdot v_{i}
-  \\
-  \sum_{i=1}^{n} \alpha_{i} \cdot v_{i} - \sum_{i=1}^{n} \beta_{i} \cdot v_{i}
-  &amp; = 0
-  \\
-  \sum_{i=1}^{n} (\alpha_{i} - \beta_{i}) \cdot v_{i}
-  &amp; = 0
-  \\
-  \alpha_{i} - \beta_{i}
-  &amp; = 0
-  \\
-  \alpha_{i}
-  &amp; = \beta_{i},
-  \end{aligned}
-  </span></p>
-<p>which contradicts to the fact <span class="math inline">\alpha_{i}</span> and <span class="math inline">\beta_{i}</span> should be different.</p>
-</div>
-</div>
-</div></li>
-</ul>
-</section>
-<section id="linear-dependence" class="level2">
-<h2 class="anchored" data-anchor-id="linear-dependence">Linear dependence</h2>
-<p>Given a vector space <span class="math inline">\mathcal{V}</span> over a field <span class="math inline">\mathbb{F}</span>, a set of non-zero vectors <span class="math inline">v_{1}, \dots, v_{n} \in \mathcal{V}</span> is linear dependent when there exists an <span class="math inline">\alpha_{i} \neq 0</span> such that</p>
-<p><span class="math display">
-\sum_{i=1}^{n} \alpha_{i} \cdot v_{i} = 0.
+\mathbf{A} \mathbf{v} = \lambda \mathbf{v}.
 </span></p>
-<p>(existence-of-linear-combination)=</p>
-<p>If a set of vectors <span class="math inline">\{ v_{1}, \dots, v_{n} \}</span> is linearly dependent, there exists an index <span class="math inline">j</span> <span class="math inline">(1 \leq j \leq n)</span> such that <span class="math inline">v_{j}</span> is a linear combination of the rest of the vectors:</p>
+<p>Multiplying both sides by <span class="math inline">\mathbf{v}^{H}</span> on the left to get,</p>
 <p><span class="math display">
-v_{j} = \sum_{i=1, i \neq j}^{n} \alpha_{i} \cdot v_{i}.
+\begin{aligned}
+\mathbf{A} \mathbf{v}
+&amp; = \lambda \mathbf{v}
+\\
+\mathbf{v}^{H} \mathbf{A} \mathbf{v}
+&amp; = \lambda \mathbf{v}^{H} \mathbf{v}
+\\
+\mathbf{v}^{H} \mathbf{A} \mathbf{v}
+&amp; = \lambda \lVert \mathbf{v} \rVert^{2}.
+\\
+\end{aligned}
+</span></p>
+<p>Alternatively we can take the transpose conjugate of both sides, and then multiply both sides by <span class="math inline">\mathbf{v}</span> on the right to get,</p>
+<p><span class="math display">
+\begin{aligned}
+\mathbf{A} \mathbf{v}
+&amp; = \lambda \mathbf{v}
+\\
+(\mathbf{A} \mathbf{v})^{H}
+&amp; = (\lambda \mathbf{v})^{H}
+\\
+\mathbf{v}^{H} \mathbf{A}^{H}
+&amp; = \lambda^{*} \mathbf{v}^{H}
+\\
+\mathbf{v}^{H} \mathbf{A}^{H} \mathbf{v}
+&amp; = \lambda^{*} \mathbf{v}^{H} \mathbf{v}
+\\
+\mathbf{v}^{H} \mathbf{A}^{H} \mathbf{v}
+&amp; = \lambda^{*} \lVert \mathbf{v} \rVert^{2}
+\\
+\end{aligned}
+</span></p>
+<p>Since <span class="math inline">\mathbf{A}</span> is a hermitian matrix</p>
+<p><span class="math display">
+\begin{aligned}
+\mathbf{v}^{H} \mathbf{A} \mathbf{v}
+&amp; = \mathbf{v}^{H} \mathbf{A}^{H} \mathbf{v}
+\\
+\lambda \lVert \mathbf{v} \rVert^{2}
+&amp; = \lambda^{*} \lVert \mathbf{v} \rVert^{2}
+\\
+\lambda
+&amp; = \lambda^{*},
+\end{aligned}
+</span></p>
+<p>which means <span class="math inline">\lambda</span> is a real number.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="rayleigh-quotient" class="level2">
+<h2 class="anchored" data-anchor-id="rayleigh-quotient">Rayleigh quotient</h2>
+<p>Given a Hermitian matrix <span class="math inline">\mathbf{M} \in \mathbb{C}^{n \times n}</span>, the Rayleigh quotient is a function <span class="math inline">R_{\mathbf{M}} (\mathbf{x}): \mathbb{C}^{n} \setminus \{ 0 \} \rightarrow \mathbb{R}</span></p>
+<p><span class="math display">
+R_{\mathbf{M}} (\mathbf{x}) = \frac{
+    \mathbf{x}^{H} \mathbf{M} \mathbf{x}
+}{
+    \mathbf{x}^{H} \mathbf{x}
+}
+</span></p>
+<p>that takes a nonzero vector <span class="math inline">\mathbf{x}</span> and returns a real number.</p>
+<p>Since the Hermitian matrix <span class="math inline">\mathbf{M}</span> has all real eigenvalues, they can be ordered. Suppose <span class="math inline">\lambda_{1}, \dots, \lambda_{n}</span> is the eigenvalues in descending orders.</p>
+<p>Then, given a Hermitian matrix, its Rayleigh quotient is upper bounded and lower bounded by maximum and minimum eigenvalues of <span class="math inline">\mathbf{M}</span> respectively,</p>
+<p><span class="math display">
+\lambda_{1} \geq R_{\mathbf{M}} (\mathbf{x}) \geq \lambda_{n}.
+</span></p>
+<p>That is,</p>
+<p><span class="math display">
+\lambda_{1} = \max_{\mathbf{x} \neq 0} \frac{
+    \mathbf{x}^{H} \mathbf{M} \mathbf{x}
+}{
+    \mathbf{x}^{H} \mathbf{x}
+},
+</span></p>
+<p><span class="math display">
+\lambda_{n} = \min_{\mathbf{x} \neq 0} \frac{
+    \mathbf{x}^{H} \mathbf{M} \mathbf{x}
+}{
+    \mathbf{x}^{H} \mathbf{x}
+}.
 </span></p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
@@ -599,31 +629,241 @@ Proof
 </div>
 <div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Since the set <span class="math inline">\{ v_{1}, \dots, v_{n} \}</span> is linearly dependent, there exists an <span class="math inline">\beta_{j} \neq 0</span> <span class="math inline">(1 \leq j \leq n)</span> such that</p>
+<p>Since <span class="math inline">\mathbf{M}</span> is a Hermitian matrix, we can expand it using unitary diagonalization:</p>
 <p><span class="math display">
-\beta_{1} \cdot v_{1} + \dots \beta_{j} \cdot v_{j} + \dots \beta_{n} \cdot v_{n} = 0.
+\begin{aligned}
+\frac{
+    \mathbf{x}^{H} \mathbf{M} \mathbf{x}
+}{
+    \mathbf{x}^{H} \mathbf{x}
+}
+&amp; = \frac{
+    \mathbf{x}^{H} \mathbf{U}^{H} \mathbf{\Lambda} \mathbf{U} \mathbf{x}
+}{
+    \mathbf{x}^{H} \mathbf{x}
+}
+\\
+&amp; = \frac{
+    \mathbf{y}^{H} \mathbf{\Lambda} \mathbf{y}
+}{
+    \mathbf{x}^{H} \mathbf{x}
+}
+&amp;
+[\mathbf{y} = \mathbf{U} \mathbf{x}].
+\end{aligned}
+</span></p>
+<p>Since <span class="math inline">\mathbf{U}</span> is a unitary matrix, according to the <a href="unitary-matrix-property-3">property of the unitary matrix</a>,</p>
+<p><span class="math display">
+\mathbf{y}^{H} \mathbf{y} = \mathbf{x}^{H} \mathbf{x}.
 </span></p>
 <p>Thus,</p>
 <p><span class="math display">
 \begin{aligned}
-\beta_{j} \cdot v_{j}
-&amp; = - \sum_{i=1, i \neq j} \beta_{i} \cdot v_{i}
+\frac{
+    \mathbf{y}^{H} \mathbf{\Lambda} \mathbf{y}
+}{
+    \mathbf{x}^{H} \mathbf{x}
+}
+&amp; =
+\frac{
+    \mathbf{y}^{H} \mathbf{\Lambda} \mathbf{y}
+}{
+    \mathbf{y}^{H} \mathbf{y}
+}
 \\
-v_{j}
-&amp; = - \beta_{j}^{-1} \cdot \sum_{i=1, i \neq j} \beta_{i} \cdot v_{i}
-\\
-v_{j}
-&amp; = \sum_{i=1, i \neq j} - \beta_{j}^{-1} \beta_{i} \cdot v_{i}
-\\
-v_{j}
-&amp; = \sum_{i=1, i \neq j} \alpha_{i} \cdot v_{i}
-&amp; [\text{rewrite } - \beta_{j}^{-1} \beta_{i} = \alpha_{i}]
-\\
+&amp; =
+\frac{
+    \sum_{i=1}^{n} \lambda_{i} y_{i}^{2}
+}{
+    \sum_{i=1}^{n} y_{i}^{2}
+}.
 \end{aligned}
+</span></p>
+<p>Since <span class="math inline">\lambda_{1} \geq \lambda_{i} \geq \lambda_{n}, \forall i = 1, \dots, n</span>,</p>
+<p><span class="math display">
+\lambda_{1}
+=
+\lambda_{1}
+\frac{
+    \sum_{i=1}^{n} y_{i}^{2}
+}{
+    \sum_{i=1}^{n} y_{i}^{2}
+}
+=
+\frac{
+    \sum_{i=1}^{n} \lambda_{1} y_{i}^{2}
+}{
+    \sum_{i=1}^{n} y_{i}^{2}
+}
+\geq
+\frac{
+    \sum_{i=1}^{n} \lambda_{i} y_{i}^{2}
+}{
+    \sum_{i=1}^{n} y_{i}^{2}
+},
+</span></p>
+<p><span class="math display">
+\lambda_{n}
+=
+\lambda_{n}
+\frac{
+    \sum_{i=1}^{n} y_{i}^{2}
+}{
+    \sum_{i=1}^{n} y_{i}^{2}
+}
+=
+\frac{
+    \sum_{i=1}^{n} \lambda_{n} y_{i}^{2}
+}{
+    \sum_{i=1}^{n} y_{i}^{2}
+}
+\leq
+\frac{
+    \sum_{i=1}^{n} \lambda_{i} y_{i}^{2}
+}{
+    \sum_{i=1}^{n} y_{i}^{2}
+}.
 </span></p>
 </div>
 </div>
 </div>
+</section>
+</section>
+<section id="positive-definite-matrices" class="level1">
+<h1>Positive Definite Matrices</h1>
+<p>Given a <em>Hermitian matrix</em> <span class="math inline">\mathbf{A} \in \mathbb{C}^{n \times n}</span>, it is <strong>positive definite</strong> if and only if</p>
+<p><span class="math display">
+\mathbf{x}^{H} \mathbf{A} \mathbf{x} &gt; 0,
+</span></p>
+<p>for all nonzero vectors <span class="math inline">\mathbf{x} \in \mathbb{C}^{n}</span>, and it is <strong>positive semi-definite</strong> if and only if</p>
+<p><span class="math display">
+\mathbf{x}^{H} \mathbf{A} \mathbf{x} \geq 0,
+</span></p>
+<p>for all vectors <span class="math inline">\mathbf{x}</span>.</p>
+<section id="properties-of-definite-matrices" class="level2">
+<h2 class="anchored" data-anchor-id="properties-of-definite-matrices">Properties of definite matrices</h2>
+<p>(definite-matrices-property-1)=</p>
+<ul>
+<li><p>Positive definite matrix always has full rank.</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>We prove by contradiction.</p>
+<p>Suppose a positive definite matrix <span class="math inline">\mathbf{A}</span> does NOT have full rank, which means that there exists at least one non-zero vector <span class="math inline">\mathbf{x} \in N (\mathbf{A})</span> such that</p>
+<p><span class="math display">
+  \mathbf{A} \mathbf{x} = 0.
+  </span></p>
+<p>Then, multiplying both sides by <span class="math inline">\mathbf{x}^{H}</span>,</p>
+<p><span class="math display">
+  \mathbf{x}^{H} \mathbf{A} \mathbf{x} = 0.
+  </span></p>
+<p>which contradicts to the fact that <span class="math inline">\mathbf{A}</span> is positive definite.</p>
+<p>Thus, positive definite matrix always has full rank.</p>
+</div>
+</div>
+</div></li>
+</ul>
+<p>(definite-matrices-property-2)=</p>
+<ul>
+<li><p>A matrix <span class="math inline">\mathbf{A}</span> is positive definite (semi-definite) if and only if its eigenvalues are positive (non-negative).</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>We first prove that a matrix <span class="math inline">\mathbf{A}</span> is positive definite (semi-definite) if its all eigenvalues are positive (non-negative).</p>
+<p>Since <span class="math inline">\mathbf{A}</span> is a Hermitian matrix, it can be unitarily diagonalized:</p>
+<p><span class="math display">
+  \mathbf{A} = \mathbf{U} \mathbf{\Lambda} \mathbf{U}^{H},
+  </span></p>
+<p>where the columns of <span class="math inline">\mathbf{U}</span> contains the orthonormal eigenvectors of <span class="math inline">\mathbf{A}</span> and diagonal of <span class="math inline">\mathbf{\Lambda}</span> has the corresponding real eigenvalues.</p>
+<p>Since we are told all eigenvalues are positive or non-negative(TODO),</p>
+<p><span class="math display">
+  \mathbf{\Lambda} = \mathbf{\Lambda}^{\frac{1}{2}} \mathbf{\Lambda}^{\frac{1}{2}}
+  = \mathbf{\Lambda}^{\frac{1}{2}} (\mathbf{\Lambda}^{\frac{1}{2}})^{H}
+  </span></p>
+<p>Thus,</p>
+<p><span class="math display">
+  \begin{aligned}
+  \mathbf{A}
+  &amp; = \mathbf{U} \mathbf{\Lambda} \mathbf{U}^{H}
+  \\
+  &amp; = \mathbf{U} \mathbf{\Lambda}^{\frac{1}{2}} (\mathbf{\Lambda}^{\frac{1}{2}})^{H} \mathbf{U}^{H}
+  \\
+  &amp; = \mathbf{U} \mathbf{\Lambda}^{\frac{1}{2}} (\mathbf{U} \mathbf{\Lambda}^{\frac{1}{2}})^{H}
+  \\
+  \end{aligned}
+  </span></p>
+<p>Multiplying <span class="math inline">\mathbf{A}</span> with <span class="math inline">\mathbf{x}</span> to get</p>
+<p><span class="math display">
+  \begin{aligned}
+  \mathbf{x}^{H} \mathbf{A} \mathbf{x}
+  &amp; = \mathbf{x}^{H} \mathbf{U} \mathbf{\Lambda}^{\frac{1}{2}} (\mathbf{\Lambda}^{\frac{1}{2}} \mathbf{U})^{H} \mathbf{x}
+  \\
+  &amp; = \mathbf{x}^{H} \mathbf{U} \mathbf{\Lambda}^{\frac{1}{2}} (\mathbf{x}^{H} \mathbf{U} \mathbf{\Lambda}^{\frac{1}{2}})^{H}
+  \\
+  &amp; = \lVert \mathbf{x}^{H} \mathbf{U} \mathbf{\Lambda}^{\frac{1}{2}} \rVert^{2}
+  &amp; [\mathbf{x}^{H} \mathbf{U} \mathbf{\Lambda}^{\frac{1}{2}} \in \mathbb{C}^{n}].
+  \\
+  \end{aligned}
+  </span></p>
+<p>Since <span class="math inline">\lVert \mathbf{x}^{H} \mathbf{U} \mathbf{\Lambda}^{\frac{1}{2}} \rVert^{2}</span> is non-negative for any vector <span class="math inline">\mathbf{x}</span>, the matrix <span class="math inline">\mathbf{A}</span> is positive semi-definite.</p>
+<p>If all eigenvalues are positive, there is no zero in <span class="math inline">\mathbf{\Lambda}</span>. Since <span class="math inline">\mathbf{\Lambda}^{\frac{1}{2}}</span> is a diagonal matrix, the matrix <span class="math inline">\mathbf{U} \mathbf{\Lambda}^{\frac{1}{2}}</span> has scaled columns of <span class="math inline">\mathbf{U}</span>. Since <span class="math inline">\mathbf{U}</span> is a unitary matrix, its columns are all linearly independent and thus <span class="math inline">\mathbf{U} \mathbf{\Lambda}^{\frac{1}{2}}</span> also have linearly independent columns. Thus, <span class="math inline">\mathbf{U} \mathbf{\Lambda}^{\frac{1}{2}}</span> has full rank and</p>
+<p><span class="math display">
+  N (\mathbf{U} \mathbf{\Lambda}^{\frac{1}{2}}) = \{ 0 \}.
+  </span></p>
+<p>Thus, <span class="math inline">\lVert \mathbf{x}^{H} \mathbf{U} \mathbf{\Lambda}^{\frac{1}{2}} \rVert^{2} &gt; 0</span> for any non-zero vector <span class="math inline">\mathbf{x}</span>. Therefore, the matrix <span class="math inline">\mathbf{A}</span> is positive definite.</p>
+<p>Then we prove that all eigenvalues of positive definite (semi-definite) matrices are positive (non-negative).</p>
+<p>Consider any eigenpair <span class="math inline">(\lambda, \mathbf{v})</span> of <span class="math inline">\mathbf{A}</span>.</p>
+<p>Since <span class="math inline">\mathbf{v}</span> is non-zero by the definition of eigenvector, we have</p>
+<p><span class="math display">
+  \begin{aligned}
+  \mathbf{A} \mathbf{v}
+  &amp; = \lambda \mathbf{v}
+  \\
+  \mathbf{v}^{H} \mathbf{A} \mathbf{v}
+  &amp; = \lambda \mathbf{v}^{H} \mathbf{v}
+  \\
+  \mathbf{v}^{H} \mathbf{A} \mathbf{v}
+  &amp; = \lambda \lVert \mathbf{v} \rVert^{2}
+  \\
+  \lambda
+  &amp; = \frac{
+      \mathbf{v}^{H} \mathbf{A} \mathbf{v}
+  }{
+      \lVert \mathbf{v} \rVert^{2}
+  }
+  \end{aligned}
+  </span></p>
+<p>Since <span class="math inline">\mathbf{A}</span> is positive definite (semi-definite),</p>
+<p><span class="math display">
+  \mathbf{v}^{H} \mathbf{A} \mathbf{v} &gt; 0 \quad (\mathbf{v}^{H} \mathbf{A} \mathbf{v} \geq 0),
+  </span></p>
+<p>which means</p>
+<p><span class="math display">
+  \lambda &gt; 0 \quad (\lambda \geq 0).
+  </span></p>
+</div>
+</div>
+</div></li>
+<li><p>TODO <span class="math inline">\mathbf{A} = \mathbf{B}^{H} \mathbf{B}</span></p></li>
+</ul>
 
 
 </section>
