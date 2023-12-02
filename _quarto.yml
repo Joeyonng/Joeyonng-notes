@@ -4,32 +4,42 @@ project:
     - "resume.pdf"
   preview:
     port: 3000
+    browser: false
 
 format:
   html:
-    theme: spacelab
-    css: styles.css
+    theme: 
+      - litera
+      - theme.scss
     toc: true
     html-math-method: katex
     callout-icon: false
     callout-appearance: simple
     page-layout: full
     grid:
+      sidebar-width: 300px
       body-width: 1200px
 
 website:
   title: "Joeyonng"
+  
+  search: 
+    location: navbar
+    type: textbox
 
   navbar:
     left:
       - href: "index.md"
         text: "Knowledge"
-      - href: "Notes"
+      - href: "Notes/index.md" # Not "Notes" since it causes no highlight in navbar
         text: "Notes"
       - href: "about.md"
         text: "About"
+
+    right:
       - href: "https://joeyonng.github.io/joeyonng-backyard/"
         text: "Backyard"
+        icon: "House"
 
   sidebar:
     - title: "Knowledge"
@@ -37,8 +47,9 @@ website:
       search: true
       alignment: center
       contents: 
-        # - section: "Linear Algebra"
-        #   contents: "Knowledge/Linear Algebra/*"
+        - section: "Linear Algebra"
+          contents: "Knowledge/Linear Algebra/*"
+        - text: "---"
         - section: "Learning Theory"
           contents: Knowledge/Learning Theory/*
         - text: "---"

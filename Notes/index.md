@@ -1,5 +1,5 @@
 ---
-title: "Research notes"
+title: "Research Notes"
 listing:
     type: table
 ---
