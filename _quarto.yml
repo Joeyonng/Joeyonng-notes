@@ -24,35 +24,26 @@ website:
   title: "Joeyonng"
   
   search: 
-    location: navbar
+    location: sidebar
     type: textbox
 
   navbar:
+    title: "Joeyonng" 
+    pinned: true
     left:
-      - href: "index.md"
-        text: "Knowledge"
+      - href: "https://joeyonng.github.io/joeyonng-notebook/"
+        text: "Notebook"
       - href: "Notes/index.md" # Not "Notes" since it causes no highlight in navbar
-        text: "Notes"
-      - href: "about.md"
+        text: "Pages"
+      - href: "index.md"
         text: "About"
 
     right:
       - href: "https://joeyonng.github.io/joeyonng-backyard/"
         text: "Backyard"
-        icon: "House"
 
   sidebar:
-    - title: "Knowledge"
+    - title: "Pages"
       collapse-level: 1
       search: true
-      alignment: center
-      contents: 
-        - section: "Linear Algebra"
-          contents: "Knowledge/Linear Algebra/*"
-        - text: "---"
-        - section: "Learning Theory"
-          contents: Knowledge/Learning Theory/*
-        - text: "---"
-        # - section: "Statistical Learning"
-        #   contents: Knowledge/Statistical Learning/*
-        # - text: "---"
+      contents: "Notes"
