@@ -70,9 +70,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-title','listing-author',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      valueNames: ['listing-title','listing-date','listing-reading-time','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
       
-      searchColumns: ["listing-title","listing-author"],
+      searchColumns: ["listing-date","listing-title","listing-author"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -131,7 +131,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="../Notes/index.html" rel="" target="" aria-current="page">
- <span class="menu-text">Drafts</span></a>
+ <span class="menu-text">Pages</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../index.html" rel="" target="">
@@ -249,6 +249,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">SSGD</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/Traversing Diagonals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Traversing Diagonals</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -290,11 +296,14 @@ ul.task-list li input[type="checkbox"] {
      <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
        <option value="" disabled="" selected="" hidden="">Order By</option>
        <option value="index" data-direction="asc">Default</option>
+         <option value="listing-date-sort" data-direction="asc">
+          Date - Oldest
+        </option>
+         <option value="listing-date-sort" data-direction="desc">
+          Date - Newest
+        </option>
          <option value="listing-title-sort" data-direction="asc">
           Title
-        </option>
-         <option value="listing-author" data-direction="asc">
-          Author
         </option>
      </select>
   </div>
@@ -311,97 +320,183 @@ ul.task-list li input[type="checkbox"] {
 <a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Title</a>
 </th>
 <th>
-<a class="sort" data-sort="listing-author" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Author</a>
+<a class="sort" data-sort="listing-date-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Date</a>
+</th>
+<th>
+Reading Time
+</th>
+<th>
+Description
 </th>
 </tr>
 </thead>
 <tbody class="list">
-<tr data-index="0" data-listing-file-modified-sort="1701147184407" data-listing-reading-time-sort="8" data-listing-title-sort="Birkhoff+" data-listing-filename-sort="Birkhoff+.ipynb">
+<tr data-index="0" data-listing-date-sort="1626073200000" data-listing-file-modified-sort="1703231554294" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-title-sort="Birkhoff+" data-listing-filename-sort="Birkhoff+.ipynb">
 <td>
 <a href="../Notes/Birkhoff+.html" class="title listing-title">Birkhoff+</a>
 </td>
 <td>
-<span class="listing-author"></span>
+<span class="listing-date">Jul 12, 2021</span>
+</td>
+<td>
+<span class="listing-reading-time">8 min</span>
+</td>
+<td>
+<span class="listing-description">This page contains my reading notes on</span>
 </td>
 </tr>
-<tr data-index="1" data-listing-file-modified-sort="1701147184407" data-listing-reading-time-sort="6" data-listing-title-sort="CG Decision Rules" data-listing-filename-sort="CG Decision Rules.ipynb">
+<tr data-index="1" data-listing-date-sort="1632034800000" data-listing-file-modified-sort="1703231323807" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-title-sort="CG Decision Rules" data-listing-filename-sort="CG Decision Rules.ipynb">
 <td>
 <a href="../Notes/CG Decision Rules.html" class="title listing-title">CG Decision Rules</a>
 </td>
 <td>
-<span class="listing-author"></span>
+<span class="listing-date">Sep 19, 2021</span>
+</td>
+<td>
+<span class="listing-reading-time">6 min</span>
+</td>
+<td>
+<span class="listing-description">This page contains my reading notes on</span>
 </td>
 </tr>
-<tr data-index="2" data-listing-file-modified-sort="1701147184407" data-listing-reading-time-sort="3" data-listing-title-sort="Confident Learning" data-listing-filename-sort="Confident Learning.ipynb">
+<tr data-index="2" data-listing-date-sort="1657263600000" data-listing-file-modified-sort="1703231338267" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-title-sort="Confident Learning" data-listing-filename-sort="Confident Learning.ipynb">
 <td>
 <a href="../Notes/Confident Learning.html" class="title listing-title">Confident Learning</a>
 </td>
 <td>
-<span class="listing-author"></span>
+<span class="listing-date">Jul 8, 2022</span>
+</td>
+<td>
+<span class="listing-reading-time">3 min</span>
+</td>
+<td>
+<span class="listing-description">This page contains my reading notes on</span>
 </td>
 </tr>
-<tr data-index="3" data-listing-file-modified-sort="1701147184407" data-listing-reading-time-sort="6" data-listing-title-sort="L0 Regularization" data-listing-filename-sort="L0 Regularization.ipynb">
+<tr data-index="3" data-listing-date-sort="1654153200000" data-listing-file-modified-sort="1703231530801" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-title-sort="L0 Regularization" data-listing-filename-sort="L0 Regularization.ipynb">
 <td>
 <a href="../Notes/L0 Regularization.html" class="title listing-title">L0 Regularization</a>
 </td>
 <td>
-<span class="listing-author"></span>
+<span class="listing-date">Jun 2, 2022</span>
+</td>
+<td>
+<span class="listing-reading-time">6 min</span>
+</td>
+<td>
+<span class="listing-description">This page contains my reading notes on</span>
 </td>
 </tr>
-<tr data-index="4" data-listing-file-modified-sort="1701147184407" data-listing-reading-time-sort="50" data-listing-title-sort="ML Q &amp; A" data-listing-filename-sort="ML Q&amp;A.ipynb">
+<tr data-index="4" data-listing-date-sort="1614931200000" data-listing-file-modified-sort="1703231738491" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="50" data-listing-title-sort="ML Q &amp; A" data-listing-filename-sort="ML Q&amp;A.ipynb">
 <td>
 <a href="../Notes/ML Q&amp;A.html" class="title listing-title">ML Q &amp; A</a>
 </td>
 <td>
-<span class="listing-author"></span>
+<span class="listing-date">Mar 5, 2021</span>
+</td>
+<td>
+<span class="listing-reading-time">50 min</span>
+</td>
+<td>
+<span class="listing-description">Machine Learning Interview Questions</span>
 </td>
 </tr>
-<tr data-index="5" data-listing-file-modified-sort="1701147184407" data-listing-reading-time-sort="3" data-listing-title-sort="MLIC IMLI" data-listing-filename-sort="MLIC IMLI.ipynb">
+<tr data-index="5" data-listing-date-sort="1649660400000" data-listing-file-modified-sort="1703231731671" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-title-sort="MLIC IMLI" data-listing-filename-sort="MLIC IMLI.ipynb">
 <td>
 <a href="../Notes/MLIC IMLI.html" class="title listing-title">MLIC IMLI</a>
 </td>
 <td>
-<span class="listing-author"></span>
+<span class="listing-date">Apr 11, 2022</span>
+</td>
+<td>
+<span class="listing-reading-time">3 min</span>
+</td>
+<td>
+<span class="listing-description">This page contains my reading notes on</span>
 </td>
 </tr>
-<tr data-index="6" data-listing-file-modified-sort="1701147184411" data-listing-reading-time-sort="7" data-listing-title-sort="Mobile Nets" data-listing-filename-sort="MobileNets.ipynb">
+<tr data-index="6" data-listing-date-sort="1619852400000" data-listing-file-modified-sort="1703231777324" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-title-sort="Mobile Nets" data-listing-filename-sort="MobileNets.ipynb">
 <td>
 <a href="../Notes/MobileNets.html" class="title listing-title">Mobile Nets</a>
 </td>
 <td>
-<span class="listing-author"></span>
+<span class="listing-date">May 1, 2021</span>
+</td>
+<td>
+<span class="listing-reading-time">7 min</span>
+</td>
+<td>
+<span class="listing-description">This page contains my reading notes on</span>
 </td>
 </tr>
-<tr data-index="7" data-listing-file-modified-sort="1701147184411" data-listing-reading-time-sort="3" data-listing-title-sort="Quantization Survey" data-listing-filename-sort="Quantization Survey.ipynb">
+<tr data-index="7" data-listing-date-sort="1638950400000" data-listing-file-modified-sort="1703231944733" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-title-sort="Quantization Survey" data-listing-filename-sort="Quantization Survey.ipynb">
 <td>
 <a href="../Notes/Quantization Survey.html" class="title listing-title">Quantization Survey</a>
 </td>
 <td>
-<span class="listing-author"></span>
+<span class="listing-date">Dec 8, 2021</span>
+</td>
+<td>
+<span class="listing-reading-time">3 min</span>
+</td>
+<td>
+<span class="listing-description">This page contains my reading notes on</span>
 </td>
 </tr>
-<tr data-index="8" data-listing-file-modified-sort="1701147184411" data-listing-reading-time-sort="11" data-listing-title-sort="RIPPER" data-listing-filename-sort="RIPPER.ipynb">
+<tr data-index="8" data-listing-date-sort="1619247600000" data-listing-file-modified-sort="1703231943545" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-title-sort="RIPPER" data-listing-filename-sort="RIPPER.ipynb">
 <td>
 <a href="../Notes/RIPPER.html" class="title listing-title">RIPPER</a>
 </td>
 <td>
-<span class="listing-author"></span>
+<span class="listing-date">Apr 24, 2021</span>
+</td>
+<td>
+<span class="listing-reading-time">11 min</span>
+</td>
+<td>
+<span class="listing-description">This page contains my reading notes on</span>
 </td>
 </tr>
-<tr data-index="9" data-listing-file-modified-sort="1701147184411" data-listing-reading-time-sort="3" data-listing-title-sort="SGD Warm Restarts" data-listing-filename-sort="SGD Warm Restarts.ipynb">
+<tr data-index="9" data-listing-date-sort="1627887600000" data-listing-file-modified-sort="1703231973314" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-title-sort="SGD Warm Restarts" data-listing-filename-sort="SGD Warm Restarts.ipynb">
 <td>
 <a href="../Notes/SGD Warm Restarts.html" class="title listing-title">SGD Warm Restarts</a>
 </td>
 <td>
-<span class="listing-author"></span>
+<span class="listing-date">Aug 2, 2021</span>
+</td>
+<td>
+<span class="listing-reading-time">3 min</span>
+</td>
+<td>
+<span class="listing-description">This page contains my reading notes on</span>
 </td>
 </tr>
-<tr data-index="10" data-listing-file-modified-sort="1701147184411" data-listing-reading-time-sort="3" data-listing-title-sort="SSGD" data-listing-filename-sort="SSGD.ipynb">
+<tr data-index="10" data-listing-date-sort="1614931200000" data-listing-file-modified-sort="1703232001910" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-title-sort="SSGD" data-listing-filename-sort="SSGD.ipynb">
 <td>
 <a href="../Notes/SSGD.html" class="title listing-title">SSGD</a>
 </td>
 <td>
-<span class="listing-author"></span>
+<span class="listing-date">Mar 5, 2021</span>
+</td>
+<td>
+<span class="listing-reading-time">3 min</span>
+</td>
+<td>
+<span class="listing-description">This page contains my reading notes on</span>
+</td>
+</tr>
+<tr data-index="11" data-listing-date-sort="1703145600000" data-listing-file-modified-sort="1703232447399" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-title-sort="Traversing Diagonals" data-listing-filename-sort="Traversing Diagonals.ipynb">
+<td>
+<a href="../Notes/Traversing Diagonals.html" class="title listing-title">Traversing Diagonals</a>
+</td>
+<td>
+<span class="listing-date">Dec 21, 2023</span>
+</td>
+<td>
+<span class="listing-reading-time">4 min</span>
+</td>
+<td>
+<span class="listing-description">This page contains an coding algorithm to iterate the diagonals of a matrix.</span>
 </td>
 </tr>
 </tbody>

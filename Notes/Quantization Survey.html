@@ -6,6 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2021-12-08">
 
 <title>Joeyonng - Quantization Survey</title>
 <style>
@@ -100,7 +101,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="../Notes/index.html" rel="" target="" aria-current="page">
- <span class="menu-text">Drafts</span></a>
+ <span class="menu-text">Pages</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../index.html" rel="" target="">
@@ -218,6 +219,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">SSGD</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/Traversing Diagonals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Traversing Diagonals</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -248,6 +255,12 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 8, 2021</p>
+    </div>
+  </div>
   
     
   </div>
@@ -261,7 +274,7 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <section id="problem" class="level2">
 <h2 class="anchored" data-anchor-id="problem">Problem:</h2>
-<p>Given a full precision number <span class="math inline">x</span>, which is either a weight or an activation in the network, we want to only use <span class="math inline">2^{k}</span> number of distinct values <span class="math inline">\hat{x}</span> to replace <span class="math inline">x</span> in the inference time. 1. <span class="math inline">k</span> here is called the bit-width. 1. The goal is to reduce the inference time and memory usage because less number of distinct values uses less memory and benefit from integer arithmetic hardware. 1. Unlike the application of quantization method used in signal processing, whose primary goal is to minimze the difference between the quantized values and the full-precision values, the quantization in neural network aims to minimize the accuracy drop, which can be achieved even if the average difference is huge. 1.</p>
+<p>Given a full precision number <span class="math inline">x</span>, which is either a weight or an activation in the network, we want to only use <span class="math inline">2^{k}</span> number of distinct values <span class="math inline">\hat{x}</span> to replace <span class="math inline">x</span> in the inference time. 1. <span class="math inline">k</span> here is called the bit-width. 1. The goal is to reduce the inference time and memory usage because less number of distinct values uses less memory and benefit from integer arithmetic hardware. 1. Unlike the application of quantization method used in signal processing, whose primary goal is to minimze the difference between the quantized values and the full-precision values, the quantization in neural network aims to minimize the accuracy drop, which can be achieved even if the average difference is huge.</p>
 </section>
 <section id="uniform-quantization" class="level2">
 <h2 class="anchored" data-anchor-id="uniform-quantization">Uniform Quantization</h2>

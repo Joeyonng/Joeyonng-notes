@@ -6,6 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2021-03-05">
 
 <title>Joeyonng - ML Q &amp; A</title>
 <style>
@@ -100,7 +101,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="../Notes/index.html" rel="" target="" aria-current="page">
- <span class="menu-text">Drafts</span></a>
+ <span class="menu-text">Pages</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../index.html" rel="" target="">
@@ -218,6 +219,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">SSGD</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/Traversing Diagonals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Traversing Diagonals</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -230,13 +237,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#machine-learning-interview-questions" id="toc-machine-learning-interview-questions" class="nav-link active" data-scroll-target="#machine-learning-interview-questions">Machine Learning Interview Questions</a>
-  <ul class="collapse">
-  <li><a href="#ml-basics" id="toc-ml-basics" class="nav-link" data-scroll-target="#ml-basics">ML Basics</a></li>
+  <li><a href="#ml-basics" id="toc-ml-basics" class="nav-link active" data-scroll-target="#ml-basics">ML Basics</a></li>
   <li><a href="#neural-network" id="toc-neural-network" class="nav-link" data-scroll-target="#neural-network">Neural Network</a></li>
   <li><a href="#unsupervised-learning" id="toc-unsupervised-learning" class="nav-link" data-scroll-target="#unsupervised-learning">Unsupervised learning</a></li>
   <li><a href="#supervised-learning" id="toc-supervised-learning" class="nav-link" data-scroll-target="#supervised-learning">Supervised Learning</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -253,6 +257,12 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 5, 2021</p>
+    </div>
+  </div>
   
     
   </div>
@@ -260,8 +270,7 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="machine-learning-interview-questions" class="level1">
-<h1>Machine Learning Interview Questions</h1>
+<p>Machine Learning Interview Questions</p>
 <section id="ml-basics" class="level2">
 <h2 class="anchored" data-anchor-id="ml-basics">ML Basics</h2>
 <section id="what-is-the-trade-off-between-bias-and-variance" class="level4">
@@ -653,7 +662,6 @@ https://arxiv.org/pdf/1403.1452.pdf 1. Adaboost, or boosting in general, combine
 <p>Given a loss function <span class="math inline">L(\cdot)</span>, a training set <span class="math inline">X = \{\mathbf{x_{i}}\}</span>, <span class="math inline">\mathbf{y} = \{y_{i}\}</span>, a learning rate <span class="math inline">\alpha</span>, and a number of iterations <span class="math inline">M</span>, the algorithm to train a GBRT is as follows: 1. Intiailize <span class="math inline">G(x)</span> by fitting CART on <span class="math inline">D</span> 1. For <span class="math inline">m = 1 \dots M</span>, 1. Evaluate the loss over the current <span class="math inline">G(x)</span> 1. Calculate the gradient of the loss w.r.t the labels to get the <strong>residuals</strong> <span class="math inline">\tilde{\mathbf{y}}</span>: <span class="math display"> \tilde{\mathbf{y}} = \frac{\partial L(G(X), \mathbf{y})}{\partial \mathbf{y}}</span> Note <span class="math inline">\tilde{\mathbf{y}}</span> has the same shape as <span class="math inline">\mathbf{y}</span>. 1. Use <span class="math inline">X</span> and <strong>residuals</strong> <span class="math inline">\tilde{\mathbf{y}}</span> as the new training set to train a CART <span class="math inline">g(x)</span>. 1. Add the new weak leaner into the current model: <span class="math display"> G(x) = G(x) + \alpha g(x) </span></p>
 
 
-</section>
 </section>
 </section>
 

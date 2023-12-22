@@ -6,6 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2022-06-02">
 
 <title>Joeyonng - L0 Regularization</title>
 <style>
@@ -138,7 +139,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="../Notes/index.html" rel="" target="" aria-current="page">
- <span class="menu-text">Drafts</span></a>
+ <span class="menu-text">Pages</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../index.html" rel="" target="">
@@ -256,6 +257,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">SSGD</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/Traversing Diagonals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Traversing Diagonals</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -291,6 +298,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">June 2, 2022</p>
+    </div>
+  </div>
   
     
   </div>
@@ -298,7 +311,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
+<p>This page contains my reading notes on</p>
+<ul>
+<li><a href="https://www.semanticscholar.org/paper/Learning-Sparse-Neural-Networks-through-L0-Louizos-Welling/572f5d18a3943dce4e14f937ef66977a01891096"><strong>Learning Sparse Neural Networks through <span class="math inline">L_{0}</span> Regularization</strong></a></li>
+</ul>
 <div class="cell" data-jupyter="{&quot;source_hidden&quot;:true}" data-slideshow="{&quot;slide_type&quot;:&quot;skip&quot;}" data-tags="[&quot;remove-input&quot;]" data-execution_count="1">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -340,12 +359,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> samples <span class="kw">in</span> list_samples:</span>
 <span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>        weights <span class="op">=</span> np.ones_like(samples) <span class="op">/</span> <span class="bu">len</span>(samples)</span>
 <span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>        plt.hist(samples, weights<span class="op">=</span>weights, bins<span class="op">=</span>bins, alpha<span class="op">=</span><span class="fl">0.5</span>, <span class="op">**</span>kwargs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
-<p><em>05-03-2021 (Updated 06-02-2022)</em></p>
-<p>This page contains my reading notes on</p>
-<ul>
-<li><a href="https://www.semanticscholar.org/paper/Learning-Sparse-Neural-Networks-through-L0-Louizos-Welling/572f5d18a3943dce4e14f937ef66977a01891096"><strong>Learning Sparse Neural Networks through <span class="math inline">L_{0}</span> Regularization</strong></a></li>
-</ul>
 <section id="problem-formulation" class="level2">
 <h2 class="anchored" data-anchor-id="problem-formulation">Problem formulation</h2>
 <p>Given a vector <span class="math inline">x</span> of length <span class="math inline">n</span> (matrix can also be seen as a vector by stacking up the rows/cols), the common vector norms are:</p>
@@ -413,11 +428,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="math display"> s = \operatorname{sigmoid} \left( \frac{\alpha + l}{\beta} \right) </span></p>
 <p>where <span class="math inline">l</span> is a sample from the logistic distribution.</p>
 <div class="cell" data-jupyter="{&quot;source_hidden&quot;:true}" data-slideshow="{&quot;slide_type&quot;:&quot;subslide&quot;}" data-tags="[&quot;remove-input&quot;]" data-execution_count="2">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_logit(size<span class="op">=</span><span class="dv">100000</span>, <span class="op">**</span>kwargs):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    logit_samples <span class="op">=</span> [logit_dist() <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(size)]</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    plot_probability([logit_samples])</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>interact(plot_logit)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id":"7c609ff46804483cbbc078626eeecb7c","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
@@ -425,12 +443,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell" data-jupyter="{&quot;source_hidden&quot;:true}" data-slideshow="{&quot;slide_type&quot;:&quot;subslide&quot;}" data-tags="[&quot;remove-input&quot;]" data-execution_count="3">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_bc(size<span class="op">=</span><span class="dv">100000</span>, <span class="op">**</span>kwargs):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    ber_samples <span class="op">=</span> np.random.binomial(<span class="dv">1</span>, <span class="fl">0.5</span>, size<span class="op">=</span>size)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    bc_samples <span class="op">=</span> [binary_concrete(kwargs[<span class="st">'loc'</span>], kwargs[<span class="st">'temp'</span>]) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(size)]</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    plot_probability([ber_samples, bc_samples])</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>interact(plot_bc, loc<span class="op">=</span>(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>), temp<span class="op">=</span>(<span class="fl">0.001</span>, <span class="dv">1</span>))<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id":"f73042ad6690425c87a36d14a2d92437","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
@@ -454,12 +475,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ol>
 <div class="cell" data-jupyter="{&quot;source_hidden&quot;:true}" data-slideshow="{&quot;slide_type&quot;:&quot;subslide&quot;}" data-tags="[&quot;remove-input&quot;]" data-execution_count="4">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_sbc(size<span class="op">=</span><span class="dv">100000</span>, <span class="op">**</span>kwargs):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    bc_samples <span class="op">=</span> [binary_concrete(kwargs[<span class="st">'loc'</span>], kwargs[<span class="st">'temp'</span>]) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(size)]</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    sbc_samples <span class="op">=</span> [stretch_binary_concrete(kwargs[<span class="st">'loc'</span>], kwargs[<span class="st">'temp'</span>]) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(size)]</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    plot_probability([bc_samples, sbc_samples])</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>interact(plot_sbc, loc<span class="op">=</span>(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>), temp<span class="op">=</span>(<span class="fl">0.001</span>, <span class="dv">1</span>))<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id":"fb32e219e9ed4ec3bf2b3c3cb4efa4fa","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
@@ -467,12 +491,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell" data-jupyter="{&quot;source_hidden&quot;:true}" data-slideshow="{&quot;slide_type&quot;:&quot;subslide&quot;}" data-tags="[&quot;remove-input&quot;]" data-execution_count="5">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_hc(size<span class="op">=</span><span class="dv">100000</span>, <span class="op">**</span>kwargs):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    hc_samples <span class="op">=</span> [hard_concrete(kwargs[<span class="st">'loc'</span>], kwargs[<span class="st">'temp'</span>]) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(size)]</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    sbc_samples <span class="op">=</span> [stretch_binary_concrete(kwargs[<span class="st">'loc'</span>], kwargs[<span class="st">'temp'</span>]) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(size)]</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    plot_probability([hc_samples, sbc_samples])</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>interact(plot_hc, loc<span class="op">=</span>(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>), temp<span class="op">=</span>(<span class="fl">0.001</span>, <span class="dv">1</span>))<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id":"f5aaf3b071be48fcb4546c3430a449d8","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}

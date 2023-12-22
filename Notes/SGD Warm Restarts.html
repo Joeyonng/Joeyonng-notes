@@ -6,6 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2021-08-02">
 
 <title>Joeyonng - SGD Warm Restarts</title>
 <style>
@@ -137,7 +138,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="../Notes/index.html" rel="" target="" aria-current="page">
- <span class="menu-text">Drafts</span></a>
+ <span class="menu-text">Pages</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../index.html" rel="" target="">
@@ -255,6 +256,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">SSGD</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/Traversing Diagonals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Traversing Diagonals</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -287,6 +294,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 2, 2021</p>
+    </div>
+  </div>
   
     
   </div>
@@ -294,7 +307,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p><em>08-02-2021</em></p>
 <p>This page contains my reading notes on</p>
 <ul>
 <li><a href="https://www.semanticscholar.org/paper/SGDR%3A-Stochastic-Gradient-Descent-with-Warm-Loshchilov-Hutter/b022f2a277a4bf5f42382e86e4380b96340b9e86"><strong>SGDR: Stochastic Gradient Descent with Warm Restarts</strong></a></li>
@@ -332,8 +344,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><span class="math inline">l_{\mathrm{min}}</span> and <span class="math inline">l_{\mathrm{max}}</span> can also be changed in each restart, but the authors suggest not to change it to reduce the number of hyper-parameters involved.</li>
 </ol>
 <div class="cell" data-tags="[]" data-execution_count="1">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> IFrame</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>IFrame(<span class="st">'https://www.desmos.com/calculator/9hrbpo2ajf?embed'</span>, width<span class="op">=</span><span class="dv">500</span>, height<span class="op">=</span><span class="dv">500</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="1">
 
         <iframe width="500" height="500" src="https://www.desmos.com/calculator/9hrbpo2ajf?embed" frameborder="0" allowfullscreen=""></iframe>

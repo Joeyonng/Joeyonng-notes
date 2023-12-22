@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2022-04-11">
+<meta name="dcterms.date" content="2023-12-21">
 
-<title>Joeyonng - MLIC IMLI</title>
+<title>Joeyonng - Traversing Diagonals</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -60,22 +94,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
- var mathElements = document.getElementsByClassName("math");
- var macros = [];
- for (var i = 0; i < mathElements.length; i++) {
-  var texText = mathElements[i].firstChild;
-  if (mathElements[i].tagName == "SPAN") {
-   katex.render(texText.data, mathElements[i], {
-    displayMode: mathElements[i].classList.contains('display'),
-    throwOnError: false,
-    macros: macros,
-    fleqn: false
-   });
-}}});
-  </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 </head>
 
@@ -124,7 +142,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/index.html">Research Notes</a></li><li class="breadcrumb-item"><a href="../Notes/MLIC IMLI.html">MLIC IMLI</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/index.html">Research Notes</a></li><li class="breadcrumb-item"><a href="../Notes/Traversing Diagonals.html">Traversing Diagonals</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -185,7 +203,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/MLIC IMLI.html" class="sidebar-item-text sidebar-link active">
+  <a href="../Notes/MLIC IMLI.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">MLIC IMLI</span></a>
   </div>
 </li>
@@ -221,7 +239,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/Traversing Diagonals.html" class="sidebar-item-text sidebar-link">
+  <a href="../Notes/Traversing Diagonals.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Traversing Diagonals</span></a>
   </div>
 </li>
@@ -237,8 +255,14 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#satisfiability-problem-sat" id="toc-satisfiability-problem-sat" class="nav-link active" data-scroll-target="#satisfiability-problem-sat">Satisfiability problem (SAT)</a></li>
-  <li><a href="#problem-formulation" id="toc-problem-formulation" class="nav-link" data-scroll-target="#problem-formulation">Problem formulation</a></li>
+  <li><a href="#observation" id="toc-observation" class="nav-link active" data-scroll-target="#observation">Observation</a></li>
+  <li><a href="#algorithm-and-explanations" id="toc-algorithm-and-explanations" class="nav-link" data-scroll-target="#algorithm-and-explanations">Algorithm and explanations</a>
+  <ul class="collapse">
+  <li><a href="#top-left-to-bottom-right-top-to-bottom" id="toc-top-left-to-bottom-right-top-to-bottom" class="nav-link" data-scroll-target="#top-left-to-bottom-right-top-to-bottom">top left to bottom right + top to bottom</a></li>
+  <li><a href="#reverse-the-range-of-d" id="toc-reverse-the-range-of-d" class="nav-link" data-scroll-target="#reverse-the-range-of-d">Reverse the <code>range</code> of <code>d</code></a></li>
+  <li><a href="#reverse-the-range-of-i" id="toc-reverse-the-range-of-i" class="nav-link" data-scroll-target="#reverse-the-range-of-i">Reverse the <code>range</code> of <code>i</code></a></li>
+  <li><a href="#reverse-j" id="toc-reverse-j" class="nav-link" data-scroll-target="#reverse-j">Reverse <code>j</code></a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -247,7 +271,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">MLIC IMLI</h1>
+<h1 class="title">Traversing Diagonals</h1>
 </div>
 
 
@@ -258,7 +282,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 11, 2022</p>
+      <p class="date">December 21, 2023</p>
     </div>
   </div>
   
@@ -268,61 +292,206 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>This page contains my reading notes on</p>
+<p>This page contains an coding algorithm to iterate the diagonals of a matrix.</p>
+<p>Given a matrix of <code>(n_rows, n_cols)</code>, there are 4 directions to iterate its diagonals.</p>
 <ul>
-<li><a href="https://www.semanticscholar.org/paper/MLIC%3A-A-MaxSAT-Based-Framework-for-Learning-Rules-Malioutov-Meel/d4294e394f9fad9bc29e4c8b5d653ff9b2dfbca8"><strong>MLIC: A MaxSAT-Based Framework for Learning Interpretable Classification Rules</strong></a></li>
-<li><a href="https://www.semanticscholar.org/paper/IMLI%3A-An-Incremental-Framework-for-MaxSAT-Based-of-Ghosh-Meel/f52d22d1bb0394b7c26d955a6bbadbfe7f60d191"><strong>IMLI: An Incremental Framework for MaxSAT-Based Learning of Interpretable Classification Rules</strong></a></li>
+<li><p>From top left to bottom right.</p></li>
+<li><p>From bottom right to top left.</p></li>
+<li><p>From top right to bottom left.</p></li>
+<li><p>From bottom left to top right.</p></li>
 </ul>
-<section id="satisfiability-problem-sat" class="level2">
-<h2 class="anchored" data-anchor-id="satisfiability-problem-sat">Satisfiability problem (SAT)</h2>
-<p>Let <span class="math inline">\{C_{1}, \dots, C_{m}\}</span> be a set of Boolean clauses on variables <span class="math inline">x_{1}, \dots, x_{n}</span> where each clause is a disjunction of literals, each literal being a Boolean variable or its negation. SAT is the problem of finding an assignment of the boolean variables that makes all clauses true</p>
-<section id="maximum-satisfiability-problem-maxsat" class="level4">
-<h4 class="anchored" data-anchor-id="maximum-satisfiability-problem-maxsat">Maximum satisfiability problem (MaxSAT)</h4>
-<p>Let there be a nonnegative weight <span class="math inline">W(C) = w_{c}</span> associated with each clause. MaxSAT is the problem of finding an assignment of the boolean variables that maximizes the total weight of the satisfied clauses.</p>
+<p>For example, a matrix of <code>3 rows</code> and <code>4 cols</code> has <code>6 diagonals</code>.</p>
+<pre><code>Matrix:
+
+      0 1 2 3
+    0 0 1 2 3
+    1 4 5 6 7
+    2 8 9 a b
+
+Iterate the diagonals from top left to bottom right:
+
+    0
+    1 4
+    2 5 8
+    3 6 9
+    7 a
+    b
+
+Iterate the diagonals from bottom left to top right:
+
+    2
+    1 8
+    4 9
+    0 5 a
+    1 6 b
+    2 7
+    3</code></pre>
+<p>Also, for each diagonal, there are 2 ways to iterate its values.</p>
+<ul>
+<li><p>From top to bottom.</p></li>
+<li><p>From bottom to top</p></li>
+</ul>
+<pre><code>Iterate the diagonals from top left to bottom right and iterate values in each diagonal from top to bottom:
+
+    0
+    1 4
+    2 5 8
+    3 6 9
+    7 a
+    b
+
+Iterate the diagonals from top left to bottom right and iterate values in each diagonal from bottom to top:
+
+    0
+    4 1
+    8 5 2
+    9 6 3
+    a 7
+    b</code></pre>
+<p>Therefore there are in total of 8 combinations to traverse the diagonals of a matrix. Here we present a systematic way to cover all combinations.</p>
+<div class="cell" data-execution_count="7">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>matrix <span class="op">=</span> [</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    [<span class="st">'0'</span>, <span class="st">'1'</span>, <span class="st">'2'</span>, <span class="st">'3'</span>], </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    [<span class="st">'4'</span>, <span class="st">'5'</span>, <span class="st">'6'</span>, <span class="st">'7'</span>], </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    [<span class="st">'8'</span>, <span class="st">'9'</span>, <span class="st">'a'</span>, <span class="st">'b'</span>]</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="observation" class="level2">
+<h2 class="anchored" data-anchor-id="observation">Observation</h2>
+<p>For the diagonals that <strong>span from top right to bottom left</strong>, which are also the diagonals that we <strong>iterate from top left to bottom right</strong>, the sum of row index and col index (<code>i + j</code>) is the same for all cells in the same diagonal.</p>
+<pre><code>For the example above, the sums of the row index and col index are
+
+      0 1 2 3
+    0 0 1 2 3
+    1 1 2 3 4
+    2 2 3 4 5
+</code></pre>
+<p>Therefore we can iterate through the diagonals and calculate the indices based on this observation.</p>
 </section>
-<section id="partial-maxsat-problem" class="level4">
-<h4 class="anchored" data-anchor-id="partial-maxsat-problem">Partial MaxSAT problem</h4>
-<p>Let <span class="math inline">\{C_{1}, \dots, C_{m}\}</span> consist of <em>soft</em> clauses and <em>hard</em> clauses. Let there be a nonnegative weight <span class="math inline">W(C) = w_{c}</span> associated with each soft clause. Partial MaxSAT is the problem of finding an assignment to the boolean variables that makes all hard clauses true and maximizes the total weight of the satisfied soft clauses.</p>
+<section id="algorithm-and-explanations" class="level2">
+<h2 class="anchored" data-anchor-id="algorithm-and-explanations">Algorithm and explanations</h2>
+<section id="top-left-to-bottom-right-top-to-bottom" class="level3">
+<h3 class="anchored" data-anchor-id="top-left-to-bottom-right-top-to-bottom">top left to bottom right + top to bottom</h3>
+<p>First we present the algorithm to iterate the diagonals from top left to bottom right. Then we generalize this algorithm to cover other directions.</p>
+<ol type="1">
+<li><p>Outer loop: iterate diagonals from top left to bottom right using <code>d</code> as the index of the diagonal.</p>
+<pre class="{python}"><code>for d in range(n_rows + n_cols - 1):</code></pre>
+<p>Since there are <code>num_diags = n_rows + n_cols - 1</code> number of diagonals, the <code>range</code> of <code>d</code> starts with <code>0</code> and ends with <code>num_rows + n_cols - 1</code>.</p></li>
+<li><p>Inner loop: iterate the elements in each diagonal using <code>i</code> as the row index.</p>
+<pre class="{python}"><code>for i in range(max(0, d - (n_cols - 1)), min(n_rows, d + 1)):</code></pre></li>
+<li><p>Calculate <code>j</code> index: as the elements in each diagonal are iterated using the row indices, their col indices <code>j</code> can also be calculated.</p>
+<pre class="{python}"><code>j = d - i</code></pre>
+<p>This is because the observation above that <code>i + j = d</code>.</p></li>
+</ol>
+<div class="cell" data-execution_count="3">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>n_rows <span class="op">=</span> <span class="bu">len</span>(matrix)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>n_cols <span class="op">=</span> <span class="bu">len</span>(matrix[<span class="dv">0</span>])</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> d <span class="kw">in</span> <span class="bu">range</span>(n_rows <span class="op">+</span> n_cols <span class="op">-</span> <span class="dv">1</span>):</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">max</span>(<span class="dv">0</span>, d <span class="op">-</span> n_cols <span class="op">+</span> <span class="dv">1</span>), <span class="bu">min</span>(n_rows, d <span class="op">+</span> <span class="dv">1</span>)):</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        j <span class="op">=</span> d <span class="op">-</span> i</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(matrix[i][j], end<span class="op">=</span><span class="st">" "</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>0 
+1 4 
+2 5 8 
+3 6 9 
+7 a 
+b </code></pre>
+</div>
+</div>
 </section>
+<section id="reverse-the-range-of-d" class="level3">
+<h3 class="anchored" data-anchor-id="reverse-the-range-of-d">Reverse the <code>range</code> of <code>d</code></h3>
+<p>By putting <code>reversed</code> to the <code>range</code> of <code>d</code>, you can change the iteration of diagonals from</p>
+<ul>
+<li><p><em>from top left to bottom right</em> to <em>from bottom right to top left</em>,</p></li>
+<li><p><em>from top right to bottom left</em> to <em>from bottom left to top right</em>.</p></li>
+</ul>
+<pre class="{python}"><code>for d in reversed(range(n_rows + n_cols - 1)):</code></pre>
+<div class="cell" data-execution_count="5">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>n_rows <span class="op">=</span> <span class="bu">len</span>(matrix)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>n_cols <span class="op">=</span> <span class="bu">len</span>(matrix[<span class="dv">0</span>])</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> d <span class="kw">in</span> <span class="bu">reversed</span>(<span class="bu">range</span>(n_rows <span class="op">+</span> n_cols <span class="op">-</span> <span class="dv">1</span>)):</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">max</span>(<span class="dv">0</span>, d <span class="op">-</span> n_cols <span class="op">+</span> <span class="dv">1</span>), <span class="bu">min</span>(n_rows, d <span class="op">+</span> <span class="dv">1</span>)):</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>        j <span class="op">=</span> d <span class="op">-</span> i</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(matrix[i][j], end<span class="op">=</span><span class="st">" "</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>b 
+7 a 
+3 6 9 
+2 5 8 
+1 4 
+0 </code></pre>
+</div>
+</div>
 </section>
-<section id="problem-formulation" class="level2">
-<h2 class="anchored" data-anchor-id="problem-formulation">Problem formulation</h2>
-<p>Inputs:</p>
-<ol type="1">
-<li>Binary matrix <span class="math inline">\mathbf{X} \in \mathbb{R}^{n \times m}</span> of <span class="math inline">n</span> instances with <span class="math inline">m</span> binary features.</li>
-<li>Binary vector <span class="math inline">\mathbf{y} \in \mathbb{R}^{n}</span> of <span class="math inline">n</span> binary labels.</li>
-<li>Integer <span class="math inline">k</span> indicating the number of clauses in the CNF rule</li>
-<li>Regularization parameter <span class="math inline">\lambda</span>.</li>
-</ol>
-<p>Outputs:</p>
-<ol type="1">
-<li>a CNF rule.</li>
-</ol>
-<p>Variables:</p>
-<ol type="1">
-<li><span class="math inline">k \times m</span> binary matrix <span class="math inline">\mathbf{B}</span> of the variables <span class="math inline">\{b_{1, 1}, b_{1, 2}, \dots, b_{1, m}, \dots, b_{k, m}\}</span> that represents the result CNF rule.
-<ol type="1">
-<li><span class="math inline">\mathbf{B}_{l, j} = 1</span> means that the feature <span class="math inline">f_{j}</span> appears in clause <span class="math inline">C_{i}</span> of the CNF rule.</li>
-<li><span class="math inline">\mathbf{B}_{l}</span> means the <span class="math inline">l</span>th row of the matrix <span class="math inline">\mathbf{B}</span>, which is also the <span class="math inline">l</span>th clause <span class="math inline">C_{l}</span>.</li>
-</ol></li>
-<li><span class="math inline">n</span> binary noise variables <span class="math inline">\{\eta_{1}, \dots, \eta_{n}\}</span> that indicates the instances that can be treated as noise.
-<ol type="1">
-<li>If <span class="math inline">\eta_{i} = 1</span>, the results CNF rule doesn’t have to classifies the <span class="math inline">\mathbf{x}_{i}</span> correctly.</li>
-</ol></li>
-</ol>
-<p>Partial MaxSAT formulation:</p>
-<ol type="1">
-<li><p>CNF constraint</p>
-<p><span class="math display"> Q = \bigwedge_{i=1}^{n} N_{i} \wedge \bigwedge_{i=1, j=1}^{i=k, j=m} V_{i, j} \wedge \bigwedge_{i=1}^{n} D_{i}  </span></p></li>
-<li><p>We want the training accuracy to be higher. Each non-noise will have a <span class="math inline">\lambda</span> weight. (soft clauses)</p>
-<p><span class="math display"> N_{i} = \neg \eta_{i} \quad W(N_{i}) = \lambda </span></p></li>
-<li><p>We want the CNF rule to be sparse. Each don’t care literal will have a <span class="math inline">1</span> weight. (soft clauses)</p>
-<p><span class="math display"> V_{l, j} = \neg \mathbf{B}_{l, j} \quad W(V_{l, j}) = 1 </span></p></li>
-<li><p>We want each non-noise instance to be correctly classified by the CNF rule. (hard clauses)</p>
-<p><span class="math display"> D_{i} = \left( \neg \eta_{q} \rightarrow \left( y_{i} \leftrightarrow \bigwedge_{l = 1}^{k} \left( \bigvee_{j=1}^{m} \mathbf{X}_{i, j} \wedge \mathbf{B}_{l, j} \right) \right) \right) \quad W(D_{i}) = \infty </span></p></li>
-</ol>
+<section id="reverse-the-range-of-i" class="level3">
+<h3 class="anchored" data-anchor-id="reverse-the-range-of-i">Reverse the <code>range</code> of <code>i</code></h3>
+<p>By putting <code>reversed</code> to the <code>range</code> of <code>i</code>, you can reverse the iteration of the elements in each diagonal.</p>
+<pre class="{python}"><code>for i in reversed(range(max(0, d - (n_cols - 1)), min(n_rows, d + 1))):</code></pre>
+<div class="cell" data-execution_count="4">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>n_rows <span class="op">=</span> <span class="bu">len</span>(matrix)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>n_cols <span class="op">=</span> <span class="bu">len</span>(matrix[<span class="dv">0</span>])</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> d <span class="kw">in</span> <span class="bu">reversed</span>(<span class="bu">range</span>(n_rows <span class="op">+</span> n_cols <span class="op">-</span> <span class="dv">1</span>)):</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">reversed</span>(<span class="bu">range</span>(<span class="bu">max</span>(<span class="dv">0</span>, d <span class="op">-</span> n_cols <span class="op">+</span> <span class="dv">1</span>), <span class="bu">min</span>(n_rows, d <span class="op">+</span> <span class="dv">1</span>))):</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>        j <span class="op">=</span> d <span class="op">-</span> i</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(matrix[i][j], end<span class="op">=</span><span class="st">" "</span>)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>b 
+a 7 
+9 6 3 
+8 5 2 
+4 1 
+0 </code></pre>
+</div>
+</div>
+</section>
+<section id="reverse-j" class="level3">
+<h3 class="anchored" data-anchor-id="reverse-j">Reverse <code>j</code></h3>
+<p>By “reverse” <code>j</code>, you can change the iteration of diagonals from</p>
+<ul>
+<li><p><em>from top left to bottom right</em> to <em>from top right to bottom left</em>,</p></li>
+<li><p><em>from bottom right to top left</em> to <em>from bottom left to top right</em>.</p></li>
+</ul>
+<pre class="{python}"><code>j = n_cols - 1 - (d - i)</code></pre>
+<div class="cell" data-execution_count="6">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>n_rows <span class="op">=</span> <span class="bu">len</span>(matrix)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>n_cols <span class="op">=</span> <span class="bu">len</span>(matrix[<span class="dv">0</span>])</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> d <span class="kw">in</span> <span class="bu">reversed</span>(<span class="bu">range</span>(n_rows <span class="op">+</span> n_cols <span class="op">-</span> <span class="dv">1</span>)):</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">reversed</span>(<span class="bu">range</span>(<span class="bu">max</span>(<span class="dv">0</span>, d <span class="op">-</span> n_cols <span class="op">+</span> <span class="dv">1</span>), <span class="bu">min</span>(n_rows, d <span class="op">+</span> <span class="dv">1</span>))):</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>        j <span class="op">=</span> n_cols <span class="op">-</span> <span class="dv">1</span> <span class="op">-</span> (d <span class="op">-</span> i)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(matrix[i][j], end<span class="op">=</span><span class="st">" "</span>)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>8 
+9 4 
+a 5 0 
+b 6 1 
+7 2 
+3 </code></pre>
+</div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
