@@ -11,14 +11,14 @@ format:
     theme: 
       - litera
       - theme.scss
-    toc: true
+    toc: false
     html-math-method: katex
     callout-icon: false
     callout-appearance: simple
     page-layout: full
     grid:
       sidebar-width: 300px
-      body-width: 1200px
+      body-width: 900px
 
 website:
   title: "Joeyonng"
