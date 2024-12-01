@@ -11,7 +11,7 @@ format:
     theme: 
       - litera
       - theme.scss
-    toc: false
+    toc: true
     html-math-method: katex
     callout-icon: false
     callout-appearance: simple
